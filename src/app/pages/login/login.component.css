@@ -15,7 +15,13 @@ form {
     display: flex;
     flex-direction: column;
     width: 400px;
+    justify-content: center;
 }
 mat-error {
     text-align: center;
+}
+.example-button-row {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
 }

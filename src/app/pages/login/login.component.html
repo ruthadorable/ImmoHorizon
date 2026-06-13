@@ -1,6 +1,6 @@
 <div class="container">
     <form (submit)="login()" [formGroup]="loginForm">
-        <h3 >Login</h3>
+        <div class="font-heading text-2xl py-4 flex items-center justify-center">Login</div>
         <mat-form-field>
             <mat-label>Email</mat-label>
          <input matInput formControlName="email" required>
@@ -9,13 +9,16 @@
             <mat-label>Password</mat-label>
          <input matInput type="password" formControlName="password" required>
         </mat-form-field>
-        
-        <button  class="bg-blue-500 border-2rounded-md font-bold text-center" [disabled]="loginForm.invalid" type="submit">Login</button>
+        <div class="example-button-row">
+        <button  mat-flat-button [disabled]="loginForm.invalid" type="submit">Login</button>
+        </div>
         @if(invalidCredentials){
             <mat-error>Invalid email or password</mat-error>
         }
-        Pas encore inscrit?
-            <button class="border-2rounded-md" type="button" (click)="register()"   class="btn btn-light">S'inscrire</button>
+         <div class="py-4 flex items-center justify-center">Pas encore inscrit?</div>
+            <div class="example-button-row ">
+            <button mat-stroked-button type="button" (click)="register()" >S'inscrire</button>
+            </div>
     </form>
 </div>
 
