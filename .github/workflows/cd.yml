@@ -13,6 +13,6 @@ jobs:
     - name: Delete old container
       run: sudo docker rm -f immohorizon-frontend || true
     - name: Run Docker Container
-      run: sudo docker run -d -p 8080:8080 --name immohorizon-frontend ruthann33/immohorizon-frontend:latest
+      run: sudo docker run -d -p 80:80 --name immohorizon-frontend ruthann33/immohorizon-frontend:latest
 
       
