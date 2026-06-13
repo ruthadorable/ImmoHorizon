@@ -4,7 +4,9 @@ FROM node:20 AS build
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install -g npm@11.17.0
 RUN npm install --omit=optional
+
 
 
 COPY . .
