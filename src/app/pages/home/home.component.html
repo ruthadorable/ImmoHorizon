@@ -1,0 +1,87 @@
+
+<div class="min-h-full">
+  <nav class="bg-gray-800"> 
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <div class="flex items-center">
+          <div class="flex items-center justify-between shrink-0">
+            
+            <img class="size-8 invert brightness-0" src="images/home.png" alt="Your Company" />
+            <span class="ml-4 text-white">ImmoHorizon</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
+              <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/aboutus">{{ 'MENU.ABOUT_US' | translate }}</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/blog">{{ 'MENU.BLOG' | translate }}</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/login">{{ 'MENU.LOGIN' | translate }}</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/register">{{ 'MENU.REGISTER' | translate }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6 items-baseline space-x-4">
+             <button matButton [matMenuTriggerFor]="menu" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Language</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="setLanguage('fr')">FR</button>
+                <button mat-menu-item (click)="setLanguage('en')">EN</button>
+                <button mat-menu-item (click)="setLanguage('nl')">NL</button>
+              </mat-menu>
+            <button type="button" class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+              <span class="absolute -inset-1.5"></span>
+              <span class="sr-only">View notifications</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+  </nav>
+
+  <header class="relative bg-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ 'Slogan' | translate }}</h1>
+    </div>
+  </header>
+  <main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 invert">
+      <h2>{{ 'HOME.WELCOME' | translate }}</h2>
+      <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
+    </div>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="jusity-center mt-5  p-10 flex">{{ 'HOME.FEATURED_PROPERTIES' | translate }}</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          @for(property of featuredProperties;track property.id){
+          <mat-card  class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img mat-card-image [src]="property.imageUrl" alt="{{ property.title }}" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold">{{ property.title }}</h3>
+              <p class="text-gray-600">{{ property.description }}</p>
+              <button mat-button color="primary" class="mt-2">{{ 'HOME.VIEW_DETAILS' | translate }}</button>
+            </div>
+          </mat-card>
+          }
+        </div>
+      </div>
+  </main>
+</div>

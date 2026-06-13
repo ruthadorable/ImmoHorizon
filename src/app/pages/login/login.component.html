@@ -1,0 +1,22 @@
+<div class="container">
+    <form (submit)="login()" [formGroup]="loginForm">
+        <h3 >Login</h3>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+         <input matInput formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+         <input matInput type="password" formControlName="password" required>
+        </mat-form-field>
+        
+        <button  class="bg-blue-500 border-2rounded-md font-bold text-center" [disabled]="loginForm.invalid" type="submit">Login</button>
+        @if(invalidCredentials){
+            <mat-error>Invalid email or password</mat-error>
+        }
+        Pas encore inscrit?
+            <button class="border-2rounded-md" type="button" (click)="register()"   class="btn btn-light">S'inscrire</button>
+    </form>
+</div>
+
+  

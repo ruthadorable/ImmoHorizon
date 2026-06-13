@@ -1,0 +1,20 @@
+{
+    "Slogan": "Find your dream home with ImmoHorizon - Your trusted real estate partner!",
+    "HOME": {
+        "WELCOME": "Welcome to ImmoHorizon",
+        "DESCRIPTION": "Your one-stop solution for all your real estate needs. Whether you're looking to buy, sell, or rent, we've got you covered with our extensive listings and expert advice.",
+        "FEATURED_PROPERTIES": "Recent Properties",
+        "VIEW_DETAILS": "View Details"
+    },
+    "MENU":{
+        "HOME": "Home",
+        "ABOUT_US": "About us",
+        "PROPERTIES": "Properties",
+        "BLOG": "Blog",
+        "LOGIN": "Login",
+        "REGISTER": "Register"
+    }
+
+
+
+}
