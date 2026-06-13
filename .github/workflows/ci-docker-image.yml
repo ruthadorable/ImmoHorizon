@@ -19,6 +19,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t ruthann33/immohorizon-frontend:latest .
     - name: Push to Dockerhub
-      run: docker push ruthann33/immohorizon-frontend:latest
+      run: docker push ruthann33/immohorizon-frontend:tagname
       
     
