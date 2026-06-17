@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +22,32 @@ export class LoginComponent {
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
-  loginForm = this.formBuilder.group({
+  private loginService = inject(LoginService);
+
+  loginForm = this.formBuilder.nonNullable.group({
     email: ['',[Validators.required, Validators.email]],
     password: ['',[Validators.required]]
   });
   invalidCredentials = false;
   login() {
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;   
+    
+    const email = this.loginForm.get('email')!.value;
+    const password = this.loginForm.get('password')!.value;   
+    const request = { email, password };
+    if (email && password) {
+      this.loginService.onLogin(request).subscribe({
+        next: (response) => {
+          console.log('Received Response:'+JSON.stringify(response.token));
+          // Handle successful login (e.g., store token, redirect)
+          localStorage.setItem('token', response.token || '');
+          this.router.navigate(['/home']);
+        },
+        error: () => {
+          this.invalidCredentials = true;
+          console.log('Invalid credentials');
+        }
+      });
+    }
   }
   register() {
     this.router.navigate(['/register']);
