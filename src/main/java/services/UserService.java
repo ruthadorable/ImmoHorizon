@@ -1,20 +1,19 @@
 package services;
 
-import lombok.extern.slf4j.Slf4j;
+
 import model.LoginRequest;
 import model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
 import request.RegisterRequest;
-
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
+
 @Service
 public class UserService {
     @Autowired
@@ -23,20 +22,22 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtService jwtService;
+    private static final Logger logger =
+            LoggerFactory.getLogger(UserService.class);
 
 
     public User createUser(User user){
-        log.info("Creating user{user}");
+        logger.info("Creating user{user}");
         return userRepo.save(user);
 
     }
     public List<User>getUsers(){
-        log.info("Fetching all users");
+        logger.info("Fetching all users");
         return userRepo.findAll();
     }
 
     public User getUser(int id){
-        log.info("Fetching user by id");
+        logger.info("Fetching user by id");
         return userRepo.getById(id);
     }
     public User getUserByEmail(String email){

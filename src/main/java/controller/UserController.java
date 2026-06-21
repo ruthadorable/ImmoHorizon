@@ -4,15 +4,16 @@ package controller;
 import lombok.extern.slf4j.Slf4j;
 import model.LoginRequest;
 import model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import request.RegisterRequest;
 import services.UserService;
-
 import java.util.List;
 
-@Slf4j
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -21,23 +22,26 @@ public class UserController {
     }
     @Autowired
     UserService userService;
+    private static final Logger logger =
+            LoggerFactory.getLogger(UserService.class);
+
     @PostMapping(path="/addUser")
     public User createUser(@RequestBody User user)
     {
-        log.info("Creating user");
+        logger.info("Creating user");
 
         return  userService.createUser(user);
     }
     @GetMapping(path="/users")
     public List<User> getUsers()
     {
-        log.info("Get all users");
+        logger.info("Get all users");
         return userService.getUsers();
     }
 
     @GetMapping(path="user/:id")
     public User getUser(int id){
-        log.info("Get user by id", id);
+        logger.info("Get user by id", id);
         return userService.getUser(id);
     }
     @PostMapping("/loginUser")

@@ -35,17 +35,17 @@ public class Candidature {
 
     @PrePersist
     public void prePersist() {
-        createdAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
     }
 
     public void addDocument(Document document) {
         documents.add(document);
-        document.setCandidature(this);
+       // documents.setCandidature(this);
     }
 
     public void removeDocument(Document document) {
         documents.remove(document);
-        document.setCandidature(null);
+        //document.setCandidature(null);
     }
 
 
