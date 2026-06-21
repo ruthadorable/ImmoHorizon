@@ -19,6 +19,8 @@ public class Bien {
     @Column
     private String title;
     @Column
+    private  String typeDeBien;
+    @Column
     private String description;
     @Column
     private double prix;
@@ -29,35 +31,45 @@ public class Bien {
     @Column
     private char peb;
     @Column
+    private int energieTotale;
+    @Column
+    private int energieSpecifique;
+    @Column
+    private int emissionCO2;
+    @Column
     private String rue;
     @Column
-    private String numero;
+    private int numero;
     @Column
     private int code_postal;
     @Column
     private String commune;
     @Column
-    private int nbfacades;
+    private int facades;
     @Column
     private long annee_construction;
-    @Column
-    private java.sql.Date disponibilité;
+    @Column(name = "disponibilite")
+    private java.time.LocalDate disponibilité;
     @Column
     private String etat;
     @Column
     private int etages;
     @Column
+    private boolean parking;
+    @Column
     private boolean garage;
     @Column
     private boolean jardin;
     @Column
-    private boolean terasse;
+    private boolean terrasse;
     @Column
     private boolean cave;
     @Column
-    private int surface_habitable;
+    private int surfaceHabitable;
     @Column
-    private int surface_jardin;
+    private int surfaceJardinTerrasse;
+    @Column
+    private boolean disponible;
     @OneToOne
     private User proprietaire;
     @OneToOne
