@@ -1,11 +1,435 @@
-openapi: 3.0.1
+openapi: 3.0.3
+
 info:
   title: ImmoHorizon API
   version: 1.0.0
+  description: Production API for real estate management system
 
+servers:
+  - url: http://localhost:8080/api
+
+# ======================
+# SECURITY (JWT)
+# ======================
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Auth
+  - name: Utilisateur
+  - name: Bien
+  - name: Annonce
+  - name: Visite
+  - name: Contrat
+  - name: Paiement
+  - name: Message
+  - name: Article
+  - name: Admin
+
+# ======================
+# PATHS
+# ======================
 paths:
+
+  # ======================
+  # AUTH
+  # ======================
+  /auth/register:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        "201":
+          description: User registered
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Login user and return JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        "200":
+          description: JWT token returned
+
+  /auth/me:
+    get:
+      tags: [Auth]
+      summary: Get current authenticated user
+      responses:
+        "200":
+          description: Current user info
+
+  # ======================
+  # UTILISATEUR
+  # ======================
   /users:
     get:
+      tags: [Utilisateur]
+      summary: Get all users (ADMIN only)
+      responses:
+        "200":
+          description: List users
+
+    post:
+      tags: [Utilisateur]
+      summary: Create user (ADMIN only)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilisateur'
+      responses:
+        "201":
+          description: Created
+
+  /users/{id}:
+    get:
+      tags: [Utilisateur]
+      summary: Get user by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: User found
+
+    put:
+      tags: [Utilisateur]
+      summary: Update user (ADMIN or OWNER)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilisateur'
+      responses:
+        "200":
+          description: Updated
+
+    delete:
+      tags: [Utilisateur]
+      summary: Delete user (ADMIN only)
+      responses:
+        "204":
+          description: Deleted
+
+  # ======================
+  # BIEN (PROPERTIES)
+  # ======================
+  /biens:
+    get:
+      tags: [Bien]
+      summary: Get all properties
+      responses:
+        "200":
+          description: List biens
+
+    post:
+      tags: [Bien]
+      summary: Create property (EMPLOYE or ADMIN)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bien'
+      responses:
+        "201":
+          description: Created
+
+  /biens/{id}:
+    get:
+      tags: [Bien]
+      summary: Get property by id
       responses:
         "200":
           description: OK
+
+    put:
+      tags: [Bien]
+      summary: Update property
+      responses:
+        "200":
+          description: Updated
+
+    delete:
+      tags: [Bien]
+      summary: Delete property (ADMIN only)
+      responses:
+        "204":
+          description: Deleted
+
+  # ======================
+  # ANNONCES
+  # ======================
+  /annonces:
+    get:
+      tags: [Annonce]
+      summary: Get all listings
+      responses:
+        "200":
+          description: OK
+
+    post:
+      tags: [Annonce]
+      summary: Publish listing (EMPLOYE)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Annonce'
+      responses:
+        "201":
+          description: Created
+
+  # ======================
+  # VISITES
+  # ======================
+  /visites:
+    get:
+      tags: [Visite]
+      summary: Get all visits
+      responses:
+        "200":
+          description: OK
+
+    post:
+      tags: [Visite]
+      summary: Book visit (LOCATAIRE)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visite'
+      responses:
+        "201":
+          description: Created
+
+  # ======================
+  # CONTRATS
+  # ======================
+  /contrats:
+    get:
+      tags: [Contrat]
+      summary: Get contracts
+      responses:
+        "200":
+          description: OK
+
+  # ======================
+  # PAIEMENTS
+  # ======================
+  /paiements:
+    get:
+      tags: [Paiement]
+      summary: Get payments (ADMIN/PROPRIETAIRE)
+      responses:
+        "200":
+          description: OK
+
+  # ======================
+  # MESSAGES
+  # ======================
+  /messages:
+    get:
+      tags: [Message]
+      summary: Get messages
+      responses:
+        "200":
+          description: OK
+
+    post:
+      tags: [Message]
+      summary: Send message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+
+  # ======================
+  # ARTICLES
+  # ======================
+  /articles:
+    get:
+      tags: [Article]
+      summary: Get blog articles
+      responses:
+        "200":
+          description: OK
+
+    post:
+      tags: [Article]
+      summary: Create article (EMPLOYE)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+
+# ======================
+# SCHEMAS
+# ======================
+components:
+  schemas:
+
+    # AUTH
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    RegisterRequest:
+      type: object
+      properties:
+        nom:
+          type: string
+        prenom:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    # USER
+    Utilisateur:
+      type: object
+      properties:
+        idUtilisateur:
+          type: integer
+        nom:
+          type: string
+        prenom:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: [ADMIN, EMPLOYE, PROPRIETAIRE, LOCATAIRE]
+
+    # BIEN
+    Bien:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        description:
+          type: string
+        prix:
+          type: number
+        superficie:
+          type: number
+        chambres:
+          type: integer
+        etat:
+          type: string
+          enum: [DISPONIBLE, VENDU, LOUE, SOUS_OPTION, EN_ATTENTE]
+
+    # ANNONCE
+    Annonce:
+      type: object
+      properties:
+        id:
+          type: integer
+        datePublication:
+          type: string
+          format: date
+        valide:
+          type: boolean
+
+    # VISITE
+    Visite:
+      type: object
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date
+        heure:
+          type: string
+          format: date-time
+
+    # CONTRAT
+    Contrat:
+      type: object
+      properties:
+        id:
+          type: integer
+        dateDebut:
+          type: string
+          format: date
+        dateFin:
+          type: string
+          format: date
+        duree:
+          type: integer
+
+    # PAIEMENT
+    Paiement:
+      type: object
+      properties:
+        id:
+          type: integer
+        montant:
+          type: number
+        type:
+          type: string
+
+    # MESSAGE
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        expediteur:
+          type: integer
+        destinataire:
+          type: integer
+
+    # ARTICLE
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+        titre:
+          type: string
+        contenu:
+          type: stringption: OK

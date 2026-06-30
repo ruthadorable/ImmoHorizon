@@ -2,7 +2,7 @@ package util;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import  Enum.TypeBien;
+import com.immohorizon.propertymanagement.Enum.TypeBien;
 
 public class RandomGenerator {
     public static double generateSurface(TypeBien type) {
