@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.immohorizon.propertymanagement.config.EnvConfig;
 import com.immohorizon.propertymanagement.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +24,10 @@ import java.util.List;
 public class FileService implements IFileService {
     @Autowired
     private FileRepository fileRepo;
-    @Value("${aws.s3.access.keys}")
-    private String awsS3AccessKey;
-    @Value("${aws.s3.secret.keys}")
-    private String awsS3SecretKey;
+
+    private String awsS3AccessKey= EnvConfig.get("AWS_ACCESS_KEY");
+
+    private String awsS3SecretKey=EnvConfig.get("AWS_SECRET_KEY");
 
 
     @Override
