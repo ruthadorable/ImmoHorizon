@@ -7,11 +7,11 @@ import { Property } from '../models/property.model';
   providedIn: 'root'
 })
 export class PropertiesService {
-  properties : Observable<Property[]>;
+  private properties : Observable<Property[]>;
 
   constructor(private http: HttpClient) { }
 
   getProperties() {
-    this.properties = this.http.get('http://localhost:8080/api/properties');
+    this.properties = this.http.get<Property[]>('http://localhost:8080/api/properties');
   }
 }

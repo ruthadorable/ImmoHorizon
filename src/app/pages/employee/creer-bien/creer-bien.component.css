@@ -1,0 +1,59 @@
+.property-card {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.drop-zone {
+  border: 2px dashed #3f51b5;
+  padding: 30px;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.drop-zone:hover {
+  background: #f5f7ff;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.image-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.image-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: gold;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}

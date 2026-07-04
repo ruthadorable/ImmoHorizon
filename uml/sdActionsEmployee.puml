@@ -1,0 +1,62 @@
+@startuml
+actor employee
+participant ImmoHorizon
+actor candidat
+employee -> ImmoHorizon: Requête d'authentication 
+activate employee
+activate ImmoHorizon
+alt succès
+    ImmoHorizon --> employee: Authentication Accepté
+else erreur
+    ImmoHorizon --> employee: Authentication Echoué
+    deactivate ImmoHorizon
+end
+    group Gérer un article de blog 
+        employee -> ImmoHorizon : créerBlog(titre,text)
+        activate ImmoHorizon
+        alt update
+            loop 
+                employee -> ImmoHorizon: mettreAJourBlog(id,text)
+            end
+        else delete 
+            break
+            employee -> ImmoHorizon : supprimerBlog(id)
+            end
+        
+        else publication
+        employee -> ImmoHorizon: publierBlog(id)
+        ImmoHorizon --> candidat: publicationBlog()
+
+            opt 
+
+            employee -> ImmoHorizon: dépublierBlog(id)
+            ImmoHorizon --> candidat: dépublicationBlog()
+            end
+        
+        deactivate ImmoHorizon
+        end
+    end
+    opt répondre aux emails
+        candidat -> ImmoHorizon: Demande d'informations
+        activate candidat
+        activate ImmoHorizon
+        ImmoHorizon --> employee: receptionMessage()
+        
+        employee -> candidat: répondreEmail(user,text)
+    end
+    group Organiser les visites
+    candidat -> ImmoHorizon: Demande de visite
+    ImmoHorizon -> employee: receptionDemande() 
+    deactivate ImmoHorizon
+    employee -> candidat : propositionDeVisite(date,lieu)
+        alt succès
+        candidat -> employee: accepte()
+        else refus 
+        candidat ->employee : refuse()
+    end
+    employee -> candidat : Confirmer Rendez vous
+
+end
+
+
+@enduml

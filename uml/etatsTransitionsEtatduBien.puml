@@ -1,0 +1,65 @@
+@startuml
+title Cycle de vie d'un bien immobilier (Location / Vente)
+
+skinparam shadowing true
+skinparam roundcorner 20
+skinparam dpi 180
+skinparam backgroundColor white
+
+skinparam state {
+    FontName Arial
+    FontSize 14
+    FontColor black
+    BorderColor #2C3E50
+    BorderThickness 2
+}
+
+[*] --> Disponible
+
+state "Disponible" as Disponible #B8F5B1
+state "En visite" as Visite #AED6F1
+state "En concertation" as Concertation #F8C471
+state "Sous option" as Option #F9E79F
+state "Loué / Vendu" as Vendu #76D7C4
+state "En maintenance" as Maintenance #F1948A
+state "Archivé" as Archive #D5D8DC
+
+Disponible --> Visite
+: Planifier une visite
+
+Visite --> Concertation
+: Recevoir une offre\nou un dossier locatif
+
+Visite --> Disponible
+: Annuler la visite
+
+Concertation --> Option
+: Accepter l'offre\nou valider le dossier
+
+Concertation --> Disponible
+: Refuser l'offre\nÉchec des négociations
+
+Option --> Vendu
+: Signer le bail\nou l'acte de vente
+
+Option --> Disponible
+: Lever l'option\nou rétractation
+
+Disponible --> Maintenance
+: Mettre en maintenance
+
+Maintenance --> Disponible
+: Fin des travaux\nRemettre en commercialisation
+
+Disponible --> Archive
+: Retirer du marché
+
+Maintenance --> Archive
+: Abandonner la commercialisation
+
+Vendu --> Archive
+: Clôturer le dossier
+
+Archive --> [*]
+
+@enduml

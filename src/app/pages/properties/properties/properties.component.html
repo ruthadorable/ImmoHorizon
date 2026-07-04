@@ -1,0 +1,71 @@
+<mat-toolbar class="bg-white shadow-sm px-8 h-20 flex justify-between">
+
+  <!-- Logo -->
+  <div class="flex items-center">
+    <a routerLink="/" class="text-4xl font-bold text-blue-700">
+      ImmoHorizon
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="hidden md:flex items-center gap-12">
+
+    <a
+      mat-button
+      routerLink="/vente"
+      class="nav-link">
+      <mat-icon>home</mat-icon>
+      <span>A vendre</span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="/location"
+      class="nav-link">
+      <mat-icon>key</mat-icon>
+      <span>A louer</span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="/neuf"
+      class="nav-link">
+      <mat-icon>apartment</mat-icon>
+      <span>Neuf</span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="/professionnels"
+      class="nav-link">
+      <mat-icon>business_center</mat-icon>
+      <span>Professionnels</span>
+    </a>
+
+  </nav>
+
+  <!-- CTA -->
+  <button
+    mat-raised-button
+    color="primary"
+    class="publish-btn">
+
+    <mat-icon>add</mat-icon>
+    Publier une annonce
+
+  </button>
+
+</mat-toolbar>
+<app-searchbar (search)="onSearch($event)"></app-searchbar>
+
+<main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 black">
+      <h2>{{ 'HOME.WELCOME' | translate }}</h2>
+      <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
+    </div>
+     
+      <app-properties-list
+            [criteria]="criteria">
+        </app-properties-list>
+  </main>
+

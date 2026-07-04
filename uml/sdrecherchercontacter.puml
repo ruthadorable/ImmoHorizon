@@ -1,0 +1,88 @@
+@startuml
+actor Visiteur
+participant pageBien [
+    = pageBien
+    ----
+    "" <<boundary>>""
+]
+participant pageDeRecherche
+participant BienController
+participant BienService
+participant BienRepository
+database BDD 
+autonumber
+
+loop tant que le visiteur souhaite rechercher
+        alt recherche rapide
+
+            Visiteur -> pageDeRecherche: rechercheRapide(motsClés)
+            activate Visiteur
+            activate pageDeRecherche
+            pageDeRecherche -> BienController: GET /api/biens/recherche
+            deactivate pageDeRecherche
+            activate BienController
+            BienController -> BienService: rechercheRapide(motclé)
+            deactivate BienController
+            activate BienService
+            BienService -> BienRepository : rechercher(motCle)
+            deactivate BienService
+            activate BienRepository
+            BienRepository-> BDD: executeQuery()
+            deactivate BienRepository
+            activate BDD
+        else recherche détaillée
+            autonumber 1
+            Visiteur -> pageDeRecherche: rechercheDétaillées(critères)
+            activate pageDeRecherche
+            pageDeRecherche -> BienController : GET /api/biens/recherche-detaillee
+            deactivate pageDeRecherche
+            activate BienController
+            BienController -> BienService: rechercheDétaillees(critèresDTO)
+            deactivate BienController
+            activate BienService
+            BienService -> BienRepository : rechercherParCritères(criteria)
+            deactivate BienService
+            activate BienRepository
+            BienRepository -> BDD : executeQuery()
+            deactivate BienRepository
+        end
+        alt echec
+            break 
+            BDD --> pageDeRecherche: aucun bien trouvé !
+            activate pageDeRecherche
+            pageDeRecherche --> Visiteur : AfficherMessage("Aucun bien trouvé")
+            deactivate pageDeRecherche 
+            end
+
+        else succès
+        autonumber 6
+            BDD --> pageDeRecherche: listeBiens
+            deactivate BDD
+            activate pageDeRecherche
+            pageDeRecherche --> Visiteur : voirListeDesBiens()
+            deactivate pageDeRecherche
+            Visiteur -> pageDeRecherche: selectionBien(id)
+            activate pageDeRecherche
+            pageDeRecherche -> BienController: GET /api/biens/:id
+            deactivate pageDeRecherche
+            activate BienController
+            BienController -> BienService: getBien(id)
+            deactivate BienController
+            activate BienService
+            BienService -> BienRepository : bienRepository.findByID(id)
+            deactivate BienService
+            activate BienRepository
+            BienRepository-> BDD: executeQuery()
+            deactivate BienRepository
+            activate BDD
+            BDD --> pageBien : retourneDétailleBien(id)
+            deactivate BDD
+            activate pageBien
+            pageBien --> Visiteur : voirBienEnDétails()
+            deactivate pageBien
+
+        end
+        
+        
+end
+@enduml

@@ -1,0 +1,89 @@
+@startuml
+actor Visiteur
+actor employee
+participant pageContact
+participant messagerie
+participant messageRepository
+autonumber
+        opt contacterAgence
+            opt demande d'informations supplémentaires
+            Visiteur->pageContact: envoiDemande(infoscontact)
+            activate Visiteur
+            activate pageContact
+            pageContact -> messageRepository : saveInfosRequest()
+            deactivate pageContact
+            
+            employee -> messagerie : consulterMessages()
+            activate employee
+            activate messagerie
+            messagerie -> messageRepository : getMessage(id)
+            activate messageRepository
+            messageRepository --> messagerie : renvoiMessage()
+            deactivate messageRepository
+            messagerie --> employee : afficherMessage()
+            deactivate messagerie
+           
+            employee -> messagerie : sendResponse()
+            deactivate employee
+            activate messagerie
+            messagerie -> messageRepository: saveMessage()
+            deactivate messagerie
+            Visiteur -> messagerie : consulterMessages()
+            activate messagerie
+            messagerie -> messageRepository: getMessages()
+            activate messageRepository
+            messageRepository --> messagerie: renvoiMessage()
+            deactivate messageRepository
+            messagerie --> Visiteur: afficheMessage()
+            deactivate messagerie
+            deactivate employee
+            end
+            activate pageContact
+            opt demander visite 
+            autonumber 1
+            Visiteur->pageContact: demanderVisite(infoscontact)
+            activate pageContact
+            pageContact -> messageRepository : saveVisitRequest()
+            deactivate pageContact
+            employee -> messagerie : consulterDemandes()
+            activate employee
+            activate messagerie
+            messagerie -> messageRepository : getDemande(id)
+            activate messageRepository
+            messageRepository --> messagerie : renvoiDemande()
+            deactivate messageRepository
+            messagerie --> employee : afficheMessage()
+            deactivate messagerie
+            employee -> messagerie : planifierVisite()
+            deactivate employee
+            activate messagerie
+            messagerie -> messageRepository: saveMessage()
+            deactivate messagerie
+            Visiteur -> messagerie : consulterMessages()
+            activate messagerie
+            messagerie -> messageRepository: getMessage(id)
+            activate messageRepository
+            messageRepository --> messagerie: renvoiMessage()
+            deactivate messageRepository
+            messagerie --> Visiteur: afficheMessage()
+            deactivate messagerie
+            deactivate employee
+            alt accepter
+            Visiteur -> messagerie : confirmerRdv()
+            activate messagerie
+            messagerie -> messageRepository : saveMessage()
+            deactivate messagerie
+            else refus
+            autonumber 13
+            Visiteur -> messagerie : refuserRdv()
+            deactivate Visiteur
+            activate messagerie
+            messagerie -> messageRepository : saveMessage()
+            deactivate messagerie
+            deactivate messageRepository
+            end
+            
+             
+        end
+        
+@enduml

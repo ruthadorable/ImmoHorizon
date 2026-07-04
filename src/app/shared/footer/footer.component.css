@@ -1,0 +1,181 @@
+.footer {
+    background: #111;
+    color: #fff;
+    margin-top: 80px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 70px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    flex: 1;
+    min-width: 260px;
+
+    h2{
+        font-size:2rem;
+        margin-bottom:20px;
+    }
+
+    p{
+        color:#bbb;
+        line-height:1.7;
+    }
+}
+
+.links{
+
+    flex:2;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:40px;
+
+    h4{
+        margin-bottom:20px;
+        font-size:18px;
+    }
+
+    a{
+        display:block;
+        color:#bbb;
+        text-decoration:none;
+        margin-bottom:12px;
+        transition:.3s;
+    }
+
+    a:hover{
+        color:#c9a227;
+        transform:translateX(5px);
+    }
+
+    p{
+        color:#bbb;
+        margin-bottom:10px;
+    }
+
+}
+
+.bottom{
+
+    border-top:1px solid #2d2d2d;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 30px;
+
+    max-width:1400px;
+    margin:auto;
+
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.social{
+
+    display:flex;
+    gap:20px;
+
+    a{
+        color:white;
+        font-size:22px;
+        transition:.3s;
+    }
+
+    a:hover{
+        color:#c9a227;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .bottom{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+.footer-bottom {
+  background-color: #ffffff;
+  color: #333333;
+
+  padding: 20px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  border-top: 1px solid #e5e5e5;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #666666;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.legal-links a {
+  font-size: 13px;
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-links a:hover {
+  color: #c9a227;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact a:hover{
+     color: #c9a227;
+}
+
+.contact-title {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* hover jaune sur le titre uniquement */
+.contact-title:hover {
+  color: #c9a227;
+}
+
+.contact-phone,
+.contact-email {
+  font-size: 13px; /* plus petit */
+  color: #666;
+  margin: 0;
+}
+
+/* optionnel: style email hover */
+.contact-email:hover {
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+}

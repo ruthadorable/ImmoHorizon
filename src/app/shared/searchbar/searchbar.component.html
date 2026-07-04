@@ -1,0 +1,142 @@
+<div class="search-container">
+
+    <!-- Simple Search -->
+
+    <div class="simple-search" [formGroup]="simpleSearchForm">
+
+        <mat-form-field appearance="outline" class="city">
+
+
+            <input
+                matInput
+                formControlName="commune"
+                placeholder="{{ 'SEARCHBAR.LOCATION' | translate }}">
+
+            <mat-icon matSuffix>location_on</mat-icon>
+
+        </mat-form-field>
+
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="submitSimpleForm()">
+
+            <mat-icon>search</mat-icon>
+
+            {{ 'SEARCHBAR.SEARCH' | translate }}
+
+        </button>
+
+        <button
+            mat-stroked-button
+            (click)="toggleAdvanced()">
+
+            <mat-icon>tune</mat-icon>
+
+            {{ 'SEARCHBAR.ADVANCED_SEARCH' | translate }}
+
+        </button>
+
+    </div>
+
+    <!-- Advanced -->
+
+    <mat-expansion-panel [expanded]="advanced">
+
+        <div class="advanced-grid" [formGroup]="advancedForm"
+        >
+
+            <mat-form-field appearance="outline">
+
+                <mat-select placeholder="{{ 'SEARCHBAR.PROPERTY_TYPE' | translate }}" formControlName="typeDeBien">
+                    @for(type of propertyTypes;track type){    
+
+                    <mat-option value="type">{{'TYPES.'+type | translate}}</mat-option>
+                    }
+                    
+                </mat-select>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <input placeholder="{{ 'SEARCHBAR.BEDROOMS' | translate }}" matInput type="number" formControlName="chambres">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <input placeholder="{{ 'SEARCHBAR.BATHROOMS' | translate }}" matInput type="number" formControlName="bathrooms">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+            
+
+                <input placeholder="{{ 'SEARCHBAR.MIN_PRICE' | translate }}" matInput type="number" formControlName="minPrix">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <input placeholder="{{ 'SEARCHBAR.MAX_PRICE' | translate }}" matInput type="number" formControlName="maxPrix">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <input placeholder="{{ 'SEARCHBAR.MIN_AREA' | translate }}" matInput type="number" formControlName="minSuperficie">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <input placeholder="{{ 'SEARCHBAR.MAX_AREA' | translate }}" matInput type="number" formControlName="maxSuperficie">
+
+            </mat-form-field>
+
+            <div class="options">
+
+                <mat-checkbox formControlName="jardin">
+                    {{ 'SEARCHBAR.GARDEN' | translate }}
+                </mat-checkbox>
+
+                <mat-checkbox formControlName="garage">
+                    {{ 'SEARCHBAR.GARAGE' | translate }}
+                </mat-checkbox>
+
+                <mat-checkbox formControlName="meuble">
+                    {{ 'SEARCHBAR.FURNISHED' | translate }}
+                </mat-checkbox>
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="submit2()">
+
+                    <mat-icon>search</mat-icon>
+
+                    {{ 'SEARCHBAR.SEARCH' | translate }}
+
+                </button>
+
+                <button
+                    mat-button
+                    (click)="reset()">
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </mat-expansion-panel>
+
+</div>

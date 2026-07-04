@@ -1,0 +1,146 @@
+<div class="dialog-wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <img class="size-8" src="images/home.png" />
+      <span class="brand">ImmoHorizon</span>
+    </div>
+  </div>
+
+  <h2 class="title">
+    {{ mode === 'login' ? 'Login' : 'Register' }}
+  </h2>
+
+  <p class="subtitle">
+    {{ mode === 'login'
+      ? 'Welcome back! Please login to your account.'
+      : 'Create your account to continue.' }}
+  </p>
+
+  <!-- ================= LOGIN ================= -->
+  @if (mode === 'login') {
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>lock</mat-icon>
+
+        <input matInput
+               [type]="hidePassword ? 'password' : 'text'"
+               placeholder="Password"
+               formControlName="password" />
+
+        <button mat-icon-button matSuffix type="button"
+                (click)="hidePassword = !hidePassword">
+          <mat-icon>
+            {{ hidePassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-checkbox formControlName="remember">
+          Remember me
+        </mat-checkbox>
+
+        <a class="link">Forgot password?</a>
+      </div>
+
+      <!-- BUTTON INSIDE FORM -->
+      <button type="submit"
+              mat-flat-button
+              color="primary"
+              class="full btn-login">
+        Login
+      </button>
+
+    </form>
+  }
+
+  <!-- ================= REGISTER ================= -->
+  @else {
+
+    <form [formGroup]="form2" (ngSubmit)="submitRegister()">
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput placeholder="First name" formControlName="prenom" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput placeholder="Last name" formControlName="nom" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>phone</mat-icon>
+        <input matInput placeholder="Phone number" formControlName="noGsm" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      <!-- PASSWORD -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>lock</mat-icon>
+
+        <input matInput
+               [type]="hidePassword ? 'password' : 'text'"
+               placeholder="Password"
+               formControlName="password" />
+
+        <button mat-icon-button matSuffix type="button"
+                (click)="hidePassword = !hidePassword">
+          <mat-icon>
+            {{ hidePassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- CONFIRM PASSWORD -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-icon matPrefix>lock</mat-icon>
+
+        <input matInput
+               [type]="hidePassword ? 'password' : 'text'"
+               placeholder="Confirm Password"
+               formControlName="confirmPassword" />
+      </mat-form-field>
+
+      <!-- SUBMIT -->
+      <button type="submit"
+              mat-flat-button
+              color="primary"
+              class="full btn-login">
+        Create account
+      </button>
+
+    </form>
+  }
+
+  <!-- SWITCH -->
+  <div class="switch">
+    <span>
+      {{ mode === 'login'
+        ? "Don't have an account?"
+        : "Already have an account?" }}
+    </span>
+
+    <button mat-button type="button" (click)="switchMode()">
+      {{ mode === 'login' ? 'Sign up' : 'Login' }}
+    </button>
+  </div>
+
+  <button mat-button type="button" class="cancel" (click)="close()">
+    Cancel
+  </button>
+
+</div>

@@ -1,0 +1,41 @@
+@startuml
+title Diagramme de navigation - Cas d'utilisation : Candidater pour un bien
+
+[*] --> Accueil
+
+AccueiI : Page d'accueil
+Accueil --> Catalogue : Rechercher un bien
+
+Catalogue : Liste des biens
+Catalogue --> DetailsBien : Sélectionner un bien
+Catalogue --> Recherche : Filtrer / Rechercher
+
+Recherche --> Catalogue : Résultats
+
+DetailsBien : Fiche du bien
+DetailsBien --> Connexion : Candidater\n(utilisateur non connecté)
+DetailsBien --> FormulaireCandidature : Candidater\n(utilisateur connecté)
+DetailsBien --> Catalogue : Retour
+
+Connexion : Authentification
+Connexion --> Inscription : Créer un compte
+Connexion --> FormulaireCandidature : Connexion réussie
+Inscription --> FormulaireCandidature : Compte créé
+
+FormulaireCandidature : Formulaire de candidature
+FormulaireCandidature --> PiecesJustificatives : Ajouter les documents
+
+PiecesJustificatives : Téléversement des pièces
+PiecesJustificatives --> Recapitulatif : Continuer
+
+Recapitulatif : Vérification des informations
+Recapitulatif --> Confirmation : Confirmer la candidature
+Recapitulatif --> FormulaireCandidature : Modifier
+
+Confirmation : Confirmation d'envoi
+Confirmation --> MesCandidatures : Consulter mes candidatures
+Confirmation --> Catalogue : Retour aux annonces
+
+MesCandidatures --> DetailsBien : Voir le bien
+
+@enduml

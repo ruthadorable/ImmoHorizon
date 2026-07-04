@@ -1,0 +1,13 @@
+@startuml
+actor Internaute
+participant ImmoHorizon
+
+alt client 
+    ref over Internaute,ImmoHorizon : S'authentifier
+     
+else visiteur
+    ref over Internaute,ImmoHorizon : Créer un compte client
+    
+end
+
+@enduml
