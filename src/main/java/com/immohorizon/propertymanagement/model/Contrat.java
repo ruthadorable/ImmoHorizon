@@ -11,6 +11,7 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="contrats")
 public class Contrat {
     @Id

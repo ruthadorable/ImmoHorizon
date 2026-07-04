@@ -4,16 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Table(name="biens")
 public class Bien {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private long idBien;
     @Column
     private String title;
@@ -73,14 +76,14 @@ public class Bien {
     private User proprietaire;
     @OneToOne
     private User locataire;
-    @OneToMany
-    private List<File> images;
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images = new ArrayList<>();
 
-    public List<File> getImages() {
-        return images;
+    public List<Image> getImages() {
+        return this.images;
     }
 
-    public void setImages(List<File> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 

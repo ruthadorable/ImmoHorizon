@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table
+@Builder
 public class Rendezvous {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

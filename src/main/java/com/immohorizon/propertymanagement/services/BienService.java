@@ -1,7 +1,12 @@
 package com.immohorizon.propertymanagement.services;
 
+import com.immohorizon.propertymanagement.dto.CritereRechercheDto;
 import com.immohorizon.propertymanagement.model.Bien;
+import com.immohorizon.propertymanagement.model.Image;
+import com.immohorizon.propertymanagement.repository.BienRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import util.RandomGenerator;
 
 import java.time.LocalDate;
@@ -9,10 +14,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
 import com.immohorizon.propertymanagement.Enum.TypeBien;
 
 @Service
 public class BienService {
+
+    private final BienRepository bienRepository;
+    private final S3Service s3Service;
+    @Autowired
+    public BienService(BienRepository bienRepository,S3Service s3Service) {
+        this.bienRepository = bienRepository;
+        this.s3Service=s3Service;
+    }
+    public Bien creerBien(String title, String description, Double price,String commune, List<MultipartFile> images) throws Exception {
+
+        Bien bien = new Bien();
+        bien.setTitle(title);
+        bien.setDescription(description);
+        bien.setPrix(price);
+        bien.setCommune(commune);
+
+        for (MultipartFile file : images) {
+
+            String key = s3Service.uploadFile(file);
+
+            Image img = new Image();
+            img.setImageKey(key);
+            img.setBien(bien);
+
+            bien.getImages().add(img);
+        }
+
+        return bienRepository.save(bien);
+    }
+
+    public List<Bien> getAllBiens() {
+        return bienRepository.findAll();
+    }
+
     public List<Bien> generateDummyBien(int count){
         List<Bien> biens = new ArrayList<>();
         Random random = new Random();
@@ -74,8 +115,51 @@ public class BienService {
             b.setDisponible(bool);
 
             biens.add(b);
+            bienRepository.save(b);
         }
 
         return biens;
     }
+
+
+        /**
+         * Recherche rapide par mot-clé
+         */
+        public List<Bien> rechercheRapide(String motCle) {
+
+            return bienRepository
+                    .findByCommuneContainingIgnoreCaseOrTypeDeBienContainingIgnoreCase(
+                            motCle,
+                            motCle
+                    );
+        }
+
+        /**
+         * Recherche détaillée
+         */
+        public List<Bien> rechercheDetaillee(CritereRechercheDto critere) {
+
+            return bienRepository.findAll()
+                    .stream()
+                    .filter(b -> critere.getVille() == null ||
+                            b.getCommune().equalsIgnoreCase(critere.getVille()))
+
+                    .filter(b -> critere.getType() == null ||
+                            b.getTypeDeBien().equalsIgnoreCase(critere.getType()))
+
+                    .filter(b -> critere.getPrixMin() == null ||
+                            b.getPrix() >= critere.getPrixMin())
+
+                    .filter(b -> critere.getPrixMax() == null ||
+                            b.getPrix() <= critere.getPrixMax())
+
+                    .filter(b -> critere.getSurfaceMin() == null ||
+                            b.getSurfaceHabitable() >= critere.getSurfaceMin())
+
+                    .filter(b -> critere.getNbPieces() == null ||
+                            b.getChambres() == critere.getNbPieces())
+
+                    .collect(Collectors.toList());
+        }
+
 }

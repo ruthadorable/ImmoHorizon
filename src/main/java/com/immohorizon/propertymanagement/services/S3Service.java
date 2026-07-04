@@ -1,5 +1,7 @@
 package com.immohorizon.propertymanagement.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -12,13 +14,17 @@ import java.util.UUID;
 
 @Service
 public class S3Service {
-    private final S3Client s3Client = S3Client.builder()
-            .region(Region.EU_WEST_3)
-            .build();
 
-    private final String bucket = "ton-bucket";
+    @Value("${aws.s3.bucket}")
+    private String bucket;
 
-    public String upload(MultipartFile file) throws IOException {
+    private final S3Client s3Client;
+    @Autowired
+    public S3Service(S3Client s3Client) {
+        this.s3Client = s3Client;
+    }
+
+    public String uploadFile(MultipartFile file) throws IOException {
 
         String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
 
@@ -31,6 +37,6 @@ public class S3Service {
         s3Client.putObject(request,
                 RequestBody.fromBytes(file.getBytes()));
 
-        return "https://" + bucket + ".s3.eu-west-3.amazonaws.com/" + fileName;
+        return fileName; // store in DB
     }
 }

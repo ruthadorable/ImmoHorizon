@@ -1,7 +1,9 @@
 package com.immohorizon.propertymanagement.services;
 
 
+import com.immohorizon.propertymanagement.dto.UserDto;
 import com.immohorizon.propertymanagement.model.LoginRequest;
+import com.immohorizon.propertymanagement.model.LoginResponse;
 import com.immohorizon.propertymanagement.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +32,7 @@ public class UserService {
         User newUser = new User();
         user.setEmail(user.getEmail());
         user.setNom(user.getNom());
-        user.setIdRole(user.getIdRole());
+        user.setRole(user.getRole());
         user.setNoGsm(user.getNoGsm());
         // encrypt password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -49,6 +51,29 @@ public class UserService {
     public User getUserByEmail(String email){
         return userRepo.findByEmail(email)
         .orElseThrow(()-> new RuntimeException("Users not found"));
+    }
+
+    public LoginResponse login(String email, String password) {
+
+        User user = userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        String token = jwtService.generateToken(user.getEmail());
+
+        UserDto userDTO = new UserDto(
+                user.getIdUser(),
+                user.getRole(),
+                user.getNom(),
+                user.getPrenom(),
+                user.getEmail(),
+                user.getNoGsm()
+        );
+
+        return new LoginResponse(token, userDTO);
     }
 
     public String loginUser(LoginRequest loginRequest) {
@@ -81,9 +106,10 @@ public class UserService {
         // create user
         User user = new User();
         user.setEmail(request.email);
-        user.setNom(request.name);
+        user.setNom(request.nom);
+        user.setPrenom(request.prenom);
         user.setNoGsm(request.noGsm);
-        user.setIdRole(request.idRole);
+        user.setRole(request.role);
         // encrypt password
         user.setPassword(passwordEncoder.encode(request.password));
         return userRepo.save(user);

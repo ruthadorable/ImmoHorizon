@@ -5,5 +5,7 @@ public enum Etat {
     VENDU,
     LOUE,
     SOUS_OPTION,
-    EN_ATTENTE
+    EN_MAINTENANCE,
+    EN_FIN_DE_LOCATION,
+    ARCHIVE
 }

@@ -43,11 +43,15 @@ public class UserController {
         logger.info("Get user by id", id);
         return userService.getUser(id);
     }
-    @PostMapping(path="/login")
-    public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest){
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 
-        String token=userService.loginUser(loginRequest);
-        return ResponseEntity.ok(new LoginResponse(token));
+        LoginResponse response = userService.login(
+                request.getEmail(),
+                request.getPassword()
+        );
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping(path="/register")

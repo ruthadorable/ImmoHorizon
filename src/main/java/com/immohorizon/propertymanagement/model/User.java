@@ -1,7 +1,9 @@
 package com.immohorizon.propertymanagement.model;
 
 
+import com.immohorizon.propertymanagement.Enum.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 
@@ -9,19 +11,24 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int idUser;
     @Column
-    private int idRole;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @Column
     private String nom;
     @Column
     private String prenom;
+    @NotBlank(message="email is required!")
     @Column(unique= true)
     private String email;
+    @NotBlank(message="password is required!")
     @Column
     private String password;
     @Column
@@ -67,12 +74,12 @@ public class User {
         this.nom = nom;
     }
 
-    public int getIdRole() {
-        return idRole;
+    public Role getRole() {
+        return role;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public int getIdUser() {
