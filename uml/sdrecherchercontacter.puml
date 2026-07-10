@@ -5,8 +5,16 @@ participant pageBien [
     ----
     "" <<boundary>>""
 ]
-participant pageDeRecherche
-participant BienController
+participant pageDeRecherche [
+    = pageDeRecherche
+    ----
+    "" <<boundary>>""
+]
+participant BienController [
+    = BienController
+    ----
+    "" <<controller>>""
+]
 participant BienService
 participant BienRepository
 database BDD 

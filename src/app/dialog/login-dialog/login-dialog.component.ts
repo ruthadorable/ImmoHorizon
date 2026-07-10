@@ -101,25 +101,27 @@ export class LoginDialogComponent {
         this.loginService.setToken(response.jwtToken);
         localStorage.setItem("auth_token",response.jwtToken);
         const role= response.user?.role;
+        console.log("role",role);
         localStorage.setItem('username',response.user?.nom);
         localStorage.setItem('prenom',response.user?.prenom)
         console.log(localStorage.getItem('username'));
-        if(role=='ADMIN'){
+        if(role=="ADMIN"){
           localStorage.setItem('role',"Admin")
-          this.router.navigate(['/admin/dashboard']);
-        }else if(role=='EMPLOYEE'){
-          localStorage.setItem('role',"Employee")
+          console.log("should navigate to dashboard");
+          this.router.navigate(['/admin']);
+        }
+        if(role=="EMPLOYE"){
+          localStorage.setItem('role',"Employe")
+          console.log("should navigate to dashboard");
           this.router.navigate(['/employee/dashboard']);
         }
-        else if(role=='CLIENT'){
+        if(role=="CLIENT"){
           localStorage.setItem('role',"User")
           alert("Vous êtes connecté en tant qu'utilisateur. Vous serez redirigé vers la page d'accueil.");
           this.router.navigate(['/home']);
-          this.dialogRef.close(this.form.value);
   
         }
-        
-        this.router.navigate(['/home']);
+        this.dialogRef.close(this.form.value);
       },
 
       error: (err) => {

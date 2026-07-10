@@ -15,19 +15,55 @@
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/">{{ 'MENU.ABOUT_US' | translate }}</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/">{{ 'MENU.BLOG' | translate }}</a>
+              @if(getRole()=="Employe" || getRole()=="Admin"){
+                <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
+              }
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
+              
             </div>
           </div>
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6 items-baseline space-x-4">
-             <button matButton [matMenuTriggerFor]="menu" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Language</button>
+            <app-language-selector></app-language-selector>
+             <!-- <button matButton [matMenuTriggerFor]="menu" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Language</button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="setLanguage('fr')">FR</button>
                 <button mat-menu-item (click)="setLanguage('en')">EN</button>
                 <button mat-menu-item (click)="setLanguage('nl')">NL</button>
-              </mat-menu>
-              @if(this.loginService.isLoggedIn()==true) {
-                <div class="ml-4 text-white invert brightness-0"> Bienvenue {{ getUsername() }}! </div>
+              </mat-menu> -->
+              @if(this.loginService.isLoggedIn()==true ) {
+                @if(role==="Client"){
+                  <button [matMenuTriggerFor]="user" class="ml-4 text-white text-center invert brightness-0" mat-button>Bienvenue {{getUsername()}}</button>
+                  <mat-menu #user="matMenu">
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Biens sauvegardés</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Mes visites</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Mes candidatures</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Messagerie</button>
+
+                    </mat-menu>
+                }
+                  @if(role==="Employe"){
+                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
+                    <mat-menu #dashboard="matMenu">
+                      <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                    </mat-menu>
+                  } 
+                  @if(role==="Admin"){
+                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
+                    <mat-menu #dashboard="matMenu">
+                      <button mat-menu-item (click)="navToAdminDashboard()">Dashboard</button>
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                    </mat-menu>
+                  } 
+                
+                
                 <button mat-button (click)="logout()" class="text-white px-4 invert brightness-0 py-2 rounded-md hover:bg-slate-700">
                   <mat-icon>power_settings_new</mat-icon>
                   <span>{{ 'MENU.LOGOUT' | translate }}</span>

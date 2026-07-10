@@ -1,7 +1,14 @@
 @startuml
 actor employee
-participant ImmoHorizon
+participant ImmoHorizon [
+    = ImmoHorizon
+    ----
+    ""application""
+]
+participant serviceBlog
+participant BaseDeBonnées
 actor candidat
+autonumber
 employee -> ImmoHorizon: Requête d'authentication 
 activate employee
 activate ImmoHorizon

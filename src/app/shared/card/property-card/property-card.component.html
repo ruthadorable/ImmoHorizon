@@ -1,0 +1,116 @@
+<div class="bg-white shadow-sm w-[310px] overflow-hidden" >
+
+  <!-- Image Section -->
+  <div class="relative">
+    <img
+      [src]="getImageUrl(property.images?.[0]?.url)"
+      [alt]="property.title"
+      class="w-full h-[210px] object-cover"
+    />
+
+    <!-- New Badge -->
+     @if(isRecent()){
+      <div
+      
+      class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-semibold px-3 py-1"
+      >
+      ✨ NIEUW
+      </div>
+     }
+    
+
+    <!-- Prev Button -->
+    <button
+      class="absolute left-0 top-1/2 -translate-y-1/2 bg-white w-8 h-8 flex items-center justify-center shadow"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      class="absolute right-0 top-1/2 -translate-y-1/2 bg-white w-8 h-8 flex items-center justify-center shadow"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <!-- Counter -->
+    <div
+      class="absolute bottom-3 right-3 bg-white px-2 py-1 text-xs"
+    >
+      <!-- {{ property.currentImage }}/{{ property.totalImages }} -->
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-3">
+
+    <div class="flex justify-between items-start">
+      <div>
+        <p class="text-sm text-gray-800">
+          {{ property.typeDeBien.replace("_"," ") }}
+        </p>
+
+        <p class="text-[20px] font-light text-gray-700">
+          {{ property.code_postal }} {{ property.commune }}
+        </p>
+      </div>
+
+      <button mat-icon-button>
+        <mat-icon class="text-gray-500">
+          favorite_border
+        </mat-icon>
+      </button>
+    </div>
+
+    <!-- Price -->
+    <div class="mt-4">
+      <span class="text-[30px] font-bold text-gray-800">
+        {{ property.prix | number:'1.0-0':'fr' }} €
+      </span>
+    </div>
+    <div class="mt-4">
+      <span class="text-[15px] font-bold text-gray-800">
+         <button
+        mat-button
+        color="primary" (click)="navigateToProperty(property.idBien!)">Voir détails</button>
+      </span>
+    </div>
+
+    <!-- Features -->
+    <div
+      class="mt-4 flex items-center gap-6 text-gray-700 text-sm"
+    >
+      <div class="flex items-center gap-1">
+        <mat-icon class="!text-[18px]">
+          bed
+        </mat-icon>
+        <span>{{ property.chambres }}</span>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <mat-icon class="!text-[18px]">
+          bathtub
+        </mat-icon>
+        <span>{{ property.salleDeBain }}</span>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <mat-icon>
+          square_foot
+        </mat-icon>
+        <span>{{ property.superficie }} m²</span>
+      </div>
+
+      <div class="ml-auto">
+        <span
+          class="bg-sky-700 text-white text-xs px-2 py-1"
+        >
+          PEB {{property.peb}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Line -->
+  <div class="h-[4px] bg-yellow-700"></div>
+</div>

@@ -30,7 +30,7 @@ export const HasRoleGuard : CanActivateFn =(
     return true;
   }else{
     alert("You don't have the required role to access this page.");
-    router.navigate(['/']);
+    router.navigate(['/home']);
     return false;
   }
   

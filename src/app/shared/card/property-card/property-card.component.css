@@ -1,0 +1,5 @@
+.relative{
+transition:duration-300;
+hover:scale-[1.02];
+hover:shadow-2xl
+}

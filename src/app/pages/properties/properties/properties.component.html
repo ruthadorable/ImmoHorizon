@@ -56,16 +56,52 @@
   </button>
 
 </mat-toolbar>
+<section class="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-3xl p-12 mb-12">
+
+  <h1 class="text-5xl font-extrabold text-slate-900 mb-4">
+    Trouvez le bien immobilier idéal
+  </h1>
+
+  <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">
+    Achat, location, immobilier neuf ou professionnel.
+    Découvrez des milliers d'annonces et trouvez votre futur bien en quelques clics.
+  </p>
+
+  <div class="mt-8 flex gap-4">
+    <button mat-raised-button color="primary">
+      Explorer les biens
+    </button>
+
+    <button mat-stroked-button>
+      En savoir plus
+    </button>
+  </div>
+
+</section>
+
 <app-searchbar (search)="onSearch($event)"></app-searchbar>
 
 <main>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 black">
-      <h2>{{ 'HOME.WELCOME' | translate }}</h2>
-      <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
-    </div>
-     
+    
       <app-properties-list
             [criteria]="criteria">
         </app-properties-list>
+        <div class="flex items-center justify-between mb-8">
+
+  <div>
+    <h2 class="text-3xl font-bold text-slate-900">
+      Dernières annonces
+    </h2>
+
+    <p class="text-slate-500 mt-1">
+      Les biens récemment ajoutés
+    </p>
+  </div>
+
+  <button mat-button color="primary">
+    Voir tout
+  </button>
+
+</div>
   </main>
 

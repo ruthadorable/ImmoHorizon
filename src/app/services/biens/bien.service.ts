@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Bien } from '../../models/bien.model';
+import { CriteresRecherche } from '../../models/criteresRecherche.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,18 @@ export class BienService {
 
   constructor(private http: HttpClient) {}
 
+
+  getPropertyById(id:number): Observable<Bien>{
+    return this.http.get<Bien>(this.apiUrl+'/'+id);
+  }
+
+
+ searchProperties(criteria: CriteresRecherche): Observable<Bien[]> {
+    return this.http.post<Bien[]>(
+      `${this.apiUrl}/search`,
+      criteria
+    );
+  }
   getAllProperties(): Observable<Bien[]> {
     return this.http.get<Bien[]>(this.apiUrl+'/all');
   }
@@ -36,9 +49,55 @@ export class BienService {
     formData
   );
 }
-  updateBien(bien: Bien): Observable<Bien> {
-    return this.http.put<Bien>(this.apiUrl+'/update', bien);
+  updateBien(id:number,
+    bien: Bien,
+    newImages: File[],
+    deletedImages: number[]
+  ): Observable<any> {
+
+
+    const formData = new FormData();
+
+
+    // Property JSON
+    formData.append(
+      'property',
+      new Blob(
+        [
+          JSON.stringify(bien)
+        ],
+        {
+          type: 'application/json'
+        }
+      )
+    );
+
+
+    // New images
+    newImages.forEach(image => {
+
+      formData.append(
+        'images',
+        image
+      );
+
+    });
+
+
+    // Deleted image IDs
+    formData.append(
+      'deletedImages',
+      JSON.stringify(deletedImages)
+    );
+
+
+    return this.http.put(
+      `${this.apiUrl}/${id}/update`,
+      formData
+    );
+
   }
+
   deleteBien(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }

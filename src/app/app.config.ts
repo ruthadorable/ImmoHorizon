@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, HttpClient, withFetch } from '@angular/common/http';
@@ -6,6 +6,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { frenchPaginator } from '../paginator';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(
@@ -20,8 +23,13 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({
       eventCoalescing: true
     }),
-    provideAnimations(),
-
+    provideAnimations(),{
+    provide: MatPaginatorIntl,
+    useFactory: frenchPaginator
+  }, {
+      provide: LOCALE_ID,
+      useValue: 'fr'
+    },
     provideHttpClient(withFetch()),
 
     importProvidersFrom(

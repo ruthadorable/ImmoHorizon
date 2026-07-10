@@ -1,64 +1,66 @@
 import { Image } from "./image.model";
 export class Bien {
 
-        id?: number;
-        title?: string;
+        idBien?: number| null;
+        title?: string| null;
+        type?:string| null;
+        typeDeBien?: string| null;
+        description?: string| null;
+        prix?: number| null;
 
-        typeDeBien?: string;
+        superficie?: number| null;
 
-        description?: string;
+        chambres?: number| null;
 
-        prix?: number;
+        salleDeBain? :number| null;
 
-        superficie?: number;
+        peb?: string| null;
 
-        chambres?: number;
+        energieTotale?: number| null;
 
-        peb?: string;
+        energieSpecifique?: number| null;
 
-        energieTotale?: number;
+        emissionCO2?: number| null;
 
-        energieSpecifique?: number;
+        rue?: string| null;
 
-        emissionCO2?: number;
+        numero?: number| null;
 
-        rue?: string;
+        code_postal?: number| null;
 
-        numero?: number;
+        commune?: string| null;
 
-        code_postal?: number;
+        facades?: number| null;
 
-        commune?: string;
+        annee_construction?: number| null;
 
-        facades?: number;
+        disponibilite?: Date| null;
 
-        annee_construction?: number;
+        etat?: string| null;
 
-        disponibilite?: Date;
+        etages?: number| null;
 
-        etat?: string;
+        parking?: boolean| null;
 
-        etages?: number;
+        garage?: boolean| null;
 
-        parking?: boolean;
+        jardin?: boolean| null;
 
-        garage?: boolean;
+        terrasse?: boolean| null;
 
-        jardin?: boolean;
+        cave?: boolean| null;
 
-        terrasse?: boolean;
+        datePublication?: Date| null;
 
-        cave?: number;
+        surfaceJardinTerrasse?: number| null;
 
-        surfaceJardinTerrasse?: number;
+        disponible?: boolean| null;
 
-        disponible?: boolean;
+        proprietaireId?: number| null;
 
-        proprietaireId?: number;
+        locataireId?: number| null;
 
-        locataireId?: number;
+        imageUrl?:string| null;
 
-        imageUrl?:string;
-
-        images?: Image[];
+        images?: Image[]| null;
 }

@@ -1,0 +1,320 @@
+<div class="p-8 bg-slate-100 min-h-screen">
+
+    <!-- Header -->
+
+    <div class="flex justify-between items-center">
+
+        <div>
+
+            <h1 class="text-3xl font-bold text-slate-800">
+                Good Morning, John 👋
+            </h1>
+
+            <p class="text-slate-500">
+                Here's what's happening today.
+            </p>
+
+        </div>
+
+        <button
+            mat-flat-button
+            color="primary">
+
+            New Property
+
+        </button>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="grid grid-cols-4 gap-6 mt-8">
+
+        @for(card of cards; track card.title){
+
+        <div
+            class="bg-white rounded-2xl shadow-sm p-6">
+
+            <div class="flex justify-between">
+
+                <div>
+
+                    <p class="text-gray-500">
+
+                        {{card.title}}
+
+                    </p>
+
+                    <h2 class="text-3xl font-bold mt-2">
+
+                        {{card.value}}
+
+                    </h2>
+
+                </div>
+
+                <div
+                    class="w-14 h-14 rounded-xl flex justify-center items-center"
+                    [class]="card.color">
+
+                    <mat-icon>
+
+                        {{card.icon}}
+
+                    </mat-icon>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+
+    <!-- Middle -->
+
+    <div class="grid grid-cols-3 gap-6 mt-8">
+
+        <!-- Visits -->
+
+        <div class="col-span-2 bg-white rounded-2xl shadow-sm p-6">
+
+            <h2 class="font-semibold text-xl">
+
+                Today's Visits
+
+            </h2>
+
+            <div class="mt-5 space-y-4">
+
+                <div class="flex justify-between border-b pb-3">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Luxury Apartment
+
+                        </p>
+
+                        <p class="text-gray-500">
+
+                            10:00 • Brussels
+
+                        </p>
+
+                    </div>
+
+                    <button mat-stroked-button>
+
+                        Details
+
+                    </button>
+
+                </div>
+
+                <div class="flex justify-between border-b pb-3">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Villa with Garden
+
+                        </p>
+
+                        <p class="text-gray-500">
+
+                            14:00 • Antwerp
+
+                        </p>
+
+                    </div>
+
+                    <button mat-stroked-button>
+
+                        Details
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Messages -->
+
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+
+            <h2 class="font-semibold text-xl">
+
+                Recent Messages
+
+            </h2>
+
+            <div class="space-y-5 mt-5">
+
+                <div class="flex gap-4">
+
+                    <img
+                        class="w-10 h-10 rounded-full"
+                        src="https://i.pravatar.cc/150?img=5">
+
+                    <div>
+
+                        <h3 class="font-semibold">
+
+                            Sarah Smith
+
+                        </h3>
+
+                        <p class="text-gray-500 text-sm">
+
+                            Interested in apartment...
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex gap-4">
+
+                    <img
+                        class="w-10 h-10 rounded-full"
+                        src="https://i.pravatar.cc/150?img=10">
+
+                    <div>
+
+                        <h3 class="font-semibold">
+
+                            Michael Brown
+
+                        </h3>
+
+                        <p class="text-gray-500 text-sm">
+
+                            Sent contract.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Recent Properties -->
+
+    <div class="bg-white rounded-2xl shadow-sm p-6 mt-8">
+
+        <div class="flex justify-between">
+
+            <h2 class="text-xl font-semibold">
+
+                Recent Properties
+
+            </h2>
+
+            <button mat-button>
+
+                View All
+
+            </button>
+
+        </div>
+
+        <table class="w-full mt-5">
+
+            <thead>
+
+            <tr class="text-left border-b">
+
+                <th class="py-4">
+
+                    Property
+
+                </th>
+
+                <th>
+
+                    Price
+
+                </th>
+
+                <th>
+
+                    Status
+
+                </th>
+
+                <th>
+
+                    Action
+
+                </th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr class="border-b">
+
+                <td class="py-4">
+
+                    Modern Apartment
+
+                </td>
+
+                <td>
+
+                    €320,000
+
+                </td>
+
+                <td>
+
+                    <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">
+
+                        Available
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button mat-icon-button>
+
+                        <mat-icon>
+
+                            visibility
+
+                        </mat-icon>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

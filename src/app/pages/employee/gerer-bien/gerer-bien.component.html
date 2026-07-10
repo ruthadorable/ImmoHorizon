@@ -1,1 +1,143 @@
-<p>gerer-bien works!</p>
+<div class="min-h-full">
+  <main>
+    <mat-sidenav-container class="h-screen bg-gray-100">
+
+      <mat-sidenav-content>
+        <app-top-toolbar></app-top-toolbar>
+        <!-- Main Content -->
+        <main class="p-8">
+
+          <div class="dashboard-container">
+
+            <div class="header-section">
+              <div>
+                <h1>Property Management</h1>
+                <p class="subtitle">
+                  Manage your real estate portfolio
+                </p>
+              </div>
+
+              <button mat-raised-button color="primary" (click)="createProperty()">
+
+                <mat-icon>add</mat-icon>
+                New Property
+              </button>
+            </div>
+
+            <mat-card class="table-card">
+              <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons>
+              </mat-paginator>
+
+              <table mat-table [dataSource]="dataSource" class="property-table">
+
+                <!-- Image -->
+                <ng-container matColumnDef="image">
+                  <th mat-header-cell *matHeaderCellDef></th>
+
+                  <td mat-cell *matCellDef="let property">
+                    <img [src]="getImageUrl()" [alt]="property.title" class="property-image">
+                  </td>
+                </ng-container>
+
+                <!-- Title -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'BIEN.Type_de_bien'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let property">
+                    <div class="property-info">
+                      <span class="property-title">
+                        {{ property.typeDeBien.replace("_"," ") }}
+                      </span>
+
+                      <span class="property-address">
+                        {{ property.rue}} {{property.numero}}, {{property.code_postal}} {{property.commune}}
+                      </span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- Price -->
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'BIEN.Prix'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let property">
+                    {{ property.prix | number:'1.2-2':'fr' }}€
+                  </td>
+                </ng-container>
+
+                <!-- Type -->
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'BIEN.Disponibilité'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let property">
+                    {{ property.disponibilite | date:'dd/MM/yyyy' }}
+                  </td>
+                </ng-container>
+
+                <!-- Status -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'BIEN.Etat'| translate }}
+                  </th>
+
+                  <td mat-cell *matCellDef="let property">
+
+                    <span class="status-badge">
+
+                      {{ property.etat }}
+
+                    </span>
+
+                  </td>
+                </ng-container>
+
+                <!-- Actions -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Actions
+                  </th>
+
+                  <td mat-cell *matCellDef="let property">
+
+                    <button mat-icon-button color="primary" matTooltip="View" (click)="viewProperty(property.idBien)">
+
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent" matTooltip="Edit" (click)="editProperty(property.idBien)">
+
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteProperty(property.idBien)">
+
+                      <mat-icon>delete</mat-icon>
+                    </button>
+
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+
+              </table>
+
+
+            </mat-card>
+
+          </div>
+        </main>
+
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
+  </main>
+</div>

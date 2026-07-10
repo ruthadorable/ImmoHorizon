@@ -1,77 +1,49 @@
-.search-container {
-
-    background: white;
-
-    border-radius: 12px;
-
-    padding: 24px;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+.saved-search-btn {
+  border-radius: 14px !important;
+  padding: 12px 18px !important;
 }
 
-.simple-search {
-
-    display: flex;
-
-    gap: 15px;
-
-    align-items: center;
-
-    flex-wrap: wrap;
+.search-btn {
+  height: 56px !important;
+  border-radius: 16px !important;
+  background: #f59e0b !important;
+  color: white !important;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
 }
 
-.city {
-
-    flex: 1;
-
-    min-width: 280px;
+.search-btn:hover {
+  background: #ea580c !important;
+  transform: translateY(-2px);
 }
 
-.advanced-grid {
-
-    margin-top: 20px;
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-
-    gap: 18px;
+.filter-field {
+  width: 180px;
 }
 
-.options {
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    gap: 12px;
+.extra-filter-btn {
+  height: 56px !important;
+  border-radius: 14px !important;
 }
 
-.buttons {
-
-    display: flex;
-
-    gap: 10px;
-
-    align-items: center;
+/* Angular Material customization */
+::ng-deep .mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 16px;
 }
 
-@media(max-width:768px){
-
-.simple-search{
-
-flex-direction:column;
-
-align-items:stretch;
-
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
 }
 
-.buttons{
-
-justify-content:center;
-
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: #f59e0b !important;
 }
 
+.mat-button-toggle-checked{
+    background:#f59e0b !important;
+    color:black !important;
 }

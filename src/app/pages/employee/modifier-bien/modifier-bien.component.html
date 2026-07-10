@@ -1,1 +1,306 @@
-<p>modifier-bien works!</p>
+<div class="min-h-full">
+    <main>
+    
+    <mat-sidenav-container class="h-screen bg-gray-100">
+
+        <mat-sidenav-content>
+            <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+                
+                <!-- Main Content -->
+            
+
+                    <div class="dashboard-container">
+
+                        <div class="dashboard-layout">
+                            <div>
+                                <h1>{{'EMPLOYEE.PropertyManagement' | translate}}</h1>
+                                <p class="subtitle"> {{'EMPLOYEE.EDITPROPERTY' | translate}} </p>
+                            </div>
+                            <mat-card class="width-full property-card rounded-2xl ">
+
+                                <mat-card-header>
+
+                                    <mat-card-title>
+
+                                        General Information
+
+                                    </mat-card-title>
+
+                                </mat-card-header>
+
+                                <mat-card-content>
+
+                                    <div class="grid grid-cols-2 gap-6">
+                                        
+                                        <mat-form-field appearance="outline">
+
+                                            <input matInput [placeholder]="'BIEN.Title' | translate " formControlName="title">
+
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline"> 
+
+
+                                            <mat-select  [placeholder] ="'BIEN.Type_de_bien'|translate" formControlName="type">
+
+                                                <mat-option value="A Vendre">{{'BIEN.FORSALE'| translate}}</mat-option>
+
+                                                <mat-option value="A louer">{{'BIEN.FORRENT'| translate}}</mat-option>
+
+                                            </mat-select>
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <mat-form-field appearance="outline" class="w-full">
+
+
+                                        <textarea matInput [placeholder]="'BIEN.Description'|translate" rows="6" formControlName="description">
+
+                                        </textarea>
+
+                                    </mat-form-field>
+
+                                </mat-card-content>
+
+                            </mat-card>
+                            <mat-card>
+
+                                <mat-card-title>
+
+                                    Property Details
+
+                                </mat-card-title>
+
+                                <div class="grid grid-cols-3 gap-5 mt-6">
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Prix'|translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.Prix'| translate" type="number" formControlName="prix">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Surface'|translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.Surface'| translate" type="number" formControlName="superficie">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Chambres'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.Chambres'| translate " type="number" formControlName="chambres">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Salle_de_bains'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.Salle_de_bains'| translate" type="number" formControlName="salleDeBain">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Floors'| translate}} </mat-label>
+                                        <input matInput [placeholder]="'BIEN.Floors'| translate" type="number" formControlName="etages">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Année_de_construction'|translate}}</mat-label>
+                                        <input matInput type="number" formControlName="annee_construction">
+                                    </mat-form-field>
+
+                                </div>
+
+                            </mat-card>
+                            <mat-card>
+
+                                <mat-card-title>
+                                    {{'BIEN.Classe_Energie'|translate}}
+                                </mat-card-title>
+                                <div class="grid grid-cols-4 gap-4 mt-6">
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.PEB'|translate}}</mat-label>
+                                        <mat-select  [placeholder] ="'BIEN.PEB'|translate" formControlName="peb">
+                                            @for(peb of pebs; track peb ){
+                                                <mat-option [value] ="peb">{{peb}} </mat-option>
+                                            }
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.EnergieTotale'|translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.EnergieTotale'| translate" type="number" formControlName="energieTotale">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.EnergieSpécifique'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.EnergieSpécifique'| translate " type="number" formControlName="energieSpecifique">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.Emissions_CO2'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.Emissions_CO2'| translate" type="number" formControlName="emissionCO2">
+                                    </mat-form-field>
+
+                                    </div>
+                            </mat-card>
+                            <mat-card>
+                                <mat-card-title>
+                                    {{'BIEN.ADRESSE'| translate}}
+                                </mat-card-title>
+                                <div class="grid grid-cols-4 gap-4 mt-6">
+
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{'BIEN.RUE'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.RUE'| translate " type="text" formControlName="rue">
+                                        
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.NUMERO'|translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.NUMERO'| translate" type="number" formControlName="numero">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.CODE_POSTAL'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.CODE_POSTAL'| translate " type="number" formControlName="code_postal">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{'BIEN.VILLE'| translate}}</mat-label>
+                                        <input matInput [placeholder]="'BIEN.VILLE'| translate" type="text" formControlName="commune">
+                                    </mat-form-field>
+
+                                    </div>
+                            </mat-card>
+                            <mat-card class="images-card">
+  <mat-card-header>
+    <mat-card-title>Property Images</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <!-- Existing images -->
+    <div class="image-grid">
+        @for(image of property.images;track $index; let i = $index){
+      <div class="image-item">
+
+        <img 
+          [src]="image.url" 
+          [alt]="'Image ' + (i + 1)"
+          class="preview-image"
+        />
+
+        <div class="image-actions">
+
+          <!-- Set primary image -->
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Set as primary"
+            (click)="setPrimaryImage(image)"
+            [disabled]="image.primary">
+            <mat-icon>
+              {{ image.primary ? 'star' : 'star_border' }}
+            </mat-icon>
+          </button>
+
+          <!-- Delete image -->
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Delete image"
+            (click)="removeImage(image)">
+            <mat-icon>
+              delete
+            </mat-icon>
+          </button>
+
+        </div>
+            @if(image.primary){
+                <mat-chip color="primary">
+                 Primary
+                </mat-chip>
+            }
+        
+
+      </div>}
+
+    </div>
+
+
+    <!-- Upload new images -->
+    <div class="upload-section">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        (click)="fileInput.click()">
+
+        <mat-icon>add_photo_alternate</mat-icon>
+        Add Images
+
+      </button>
+
+
+      <input
+        #fileInput
+        hidden
+        type="file"
+        multiple
+        accept="image/*"
+        (change)="onImagesSelected($event)"
+      />
+
+
+      <!-- New images preview -->
+      <div class="image-grid new-images">
+
+        <div 
+          class="image-item">
+            @for(image of newImages;track $index ; let i = $index){
+          <img 
+            [src]="image.preview"
+            class="preview-image"
+          />
+
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="removeNewImage(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+            }
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </mat-card-content>
+
+
+  <mat-card-actions align="end">
+
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="saveImages()">
+
+      <mat-icon>save</mat-icon>
+      Save Images
+
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>
+                        </div>
+                    </div>
+                    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">{{'BIEN.Edit'| translate}} </button>   
+        
+                    </form>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    </main>
+    
+</div>

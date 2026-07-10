@@ -13,7 +13,7 @@ export const AuthGuard: CanActivateFn = () => {
   {
     return  true;
   }else{
-    router.navigate(["/"]);
+    router.navigate(["/home"]);
     alert("You cannot access this page ! You must login first!")
     return false;
 

@@ -27,7 +27,7 @@ export class PropertiesComponent {
   onSearch(criteria: CriteresRecherche) {
 
     this.criteria = criteria;
-
+    console.log("on search clicked");
     // Optional: Call your API
     this.loadProperties();
   }
@@ -40,17 +40,6 @@ export class PropertiesComponent {
 
   } 
   
-  featuredProperties=[{
-    id: 1,
-    title: 'Maison',
-    description: "Cette maison polyvalente avec espace commercial, grand garage intérieur et espace de stockage étonnamment grand se trouve dans un endroit extrêmement pratique à Meire, à distance de marche du centre de Zottegem, des supermarchés et des écoles.",
-    imageUrl: './images/properties/E1639047601343846456_8058AXL.jpg'}, 
-    {id: 2,
-    title: 'Penthouse avec une belle vue sur la plage de Costa del Sol', 
-    description: 'Penthouse comprenant 2 chambres avec une terrasse orienté sud', 
-    imageUrl: './images/properties/penthouse1.jpg'}, 
-    {id: 3, 
-    title: 'Appartement ', 
-    description: 'Magnifique appartement en bord de mer.',
-    imageUrl: './images/properties/src_BZPAAP11693_315262_V0_CEFF.jpg'}];  
-}
+  
+  } 
+  

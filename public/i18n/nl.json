@@ -4,7 +4,8 @@
         "DESCRIPTION": "Uw all-in-one oplossing voor al uw onroerend goed behoeften. Of u nu zoekt naar een huis om te kopen, verkopen of huren, wij hebben wat u nodig heeft met onze uitgebreide advertenties en expert advies.",
         "FEATURED_PROPERTIES": "Uitgelichte Eigendommen",
         "VIEW_DETAILS": "Bekijk Details",
-        "All_PROPERTIES": "Alle Eigendommen"
+        "All_PROPERTIES": "Alle Eigendommen",
+        "Publish":"Woning aanbieden"
     },
     "MENU":{
         "HOME": "Home",
@@ -49,7 +50,9 @@
         "MAX_AREA": "Max oppervlakte (m²)",
         "GARDEN": "Tuin",
         "GARAGE": "Garage",
-        "FURNISHED": "Gemeubileerd"
+        "FURNISHED": "Gemeubileerd",
+        "AVENDRE":"Te koop",
+        "ALOUER":"Te huur"
     },
     "TYPES":{"APPARTEMENT": "Appartement",
     "MAISON": "Huis",
@@ -71,6 +74,7 @@
         "Surface": "Oppervlakte",
         "Chambres": " slaapkamers",
         "Salle_de_bains": "Badkamers",
+        "Floors":"Verdiepingen",
         "Jardin": "Tuin",
         "Garage": "Garage",
         "Description": "Beschrijving",
@@ -131,6 +135,69 @@
         "Delete": "Verwijderen",
         "Create": " Eigendom Aanmaken",
         "ConfirmDelete": "Bevestig Verwijderen",
-        "AreYouSureDelete": "Bent u zeker dat u deze eigendom wilt verwijderen?"
-    }
+        "AreYouSureDelete": "Bent u zeker dat u deze eigendom wilt verwijderen?",
+        "FORSALE": "Te Koop",
+        "FORRENT":"Te Huur"
+    },
+    "CONTACT": {
+    "ContacterAgence": "Neem contact op met het kantoor",
+    "DemandeInfos": "Meer informatie aanvragen"
+  },
+  "DETAILS": {
+    "FAVORITE": "Favorieten"
+  },
+    "EMPLOYEE":{
+        "Dashboard": "Dashboard",
+  "Properties": "Eigendommen",
+  "Employees": "Medewerkers",
+  "Candidatures": "Sollicitaties",
+  "Calendar": "Kalender",
+  "Blog": "Blog",
+  "Contrats": "Contracten",
+  "Messages": "Berichten",
+  "EmployeePortal": "Medewerkersportaal",
+  "PropertyManagement": "Vastgoedbeheer",
+  "PropertySubtitle": "Beheer uw vastgoedportefeuille",
+  "EDITPROPERTY": "Vastgoed bewerken",
+  "NewProperty": "Nieuw pand",
+  "ButtonView": "Bekijken",
+  "ButtonEdit": "Bewerken",
+  "ButtonDelete": "Verwijderen",
+  "Agent": "Vastgoedmakelaar",
+  "CandidacyManagement": "Beheer van sollicitaties",
+  "Respond": "Beantwoorden",
+  "ContactClient": "Contact opnemen met de klant",
+  "Visites": "Alle bezichtigingen bekijken",
+  "PlanVisite": "Bezichtiging plannen",
+  "VisitManagement": "Beheer van bezichtigingen",
+  "BlogManagement": "Blogbeheer",
+  "NewArticle": "Nieuw artikel",
+  "ContractManagement": "Contractbeheer",
+  "NewContract": "Nieuw contract",
+  "TotalProperties": "Totaal aantal eigendommen",
+  "TotalContracts": "Totaal aantal contracten",
+  "TotalSold": "Totaal verkocht",
+  "TotalVisits": "Totaal aantal bezichtigingen deze maand",
+  "ListingManagement": "Beheer van advertenties",
+  "Publish": "Publiceren",
+  "Accept": "Accepteren",
+  "ConfirmationMsg": "Weet u zeker dat u deze advertentie wilt publiceren?",
+  "Cancel": "Annuleren"
+        },
+"TYPEOFPROPERTY":{
+            "APPARTEMENT": "Appartement",
+            "MAISON": "Huis",
+            "STUDIO": "Studio",
+            "DUPLEX": "Duplex",
+            "LOFT": "Loft",
+            "VILLA": "Villa",
+            "TERRAIN": "Grond",
+            "BUREAU": "Kantoor",
+            "COMMERCE": "Handelspand",
+            "ENTREPOT": "Magazijn",
+            "PARKING": "Parkeerplaats",
+            "LOCAL_COMMERCIAL": "Commerciële ruimte",
+            "IMMEUBLE": "Gebouw"
+        }
+ 
 }

@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component,PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +12,7 @@ import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.compone
 import {MatMenuModule } from '@angular/material/menu';
 import { LoginService } from './services/auth/login/login.service';
 import { MatIconModule } from '@angular/material/icon';
+import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatMenuModule,
     TranslateModule,
     FooterComponent,
-    MatIconModule
+    MatIconModule,
+    LanguageSelectorComponent
    ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -31,9 +34,17 @@ import { MatIconModule } from '@angular/material/icon';
 export class AppComponent {
   title = 'ImmoHorizon-frontend';
   public loginService = inject(LoginService);
-  constructor(private translate: TranslateService,private dialog: MatDialog) {
+  private platformId = inject(PLATFORM_ID);
+  public role:any;
+  constructor(private translate: TranslateService,private dialog: MatDialog,private router:Router) {
     this.translate.addLangs(['en', 'fr', 'nl']);
     this.translate.use('en');
+    
+   }
+   ngOnInit(){
+     if (isPlatformBrowser(this.platformId)) {
+      this.role = localStorage.getItem('role');
+    }
    }
 
   setLanguage(lang: string) {
@@ -42,7 +53,25 @@ export class AppComponent {
   public getBiens()
   {
 
+  }
+  navToSauvegarde()
+  {
+    this.router.navigate(['/sauvegardes'])
+  }
+  navToProfile()
+  {
+    this.router.navigate(['/profile']);
   } 
+  navToEmployeeDashboard(){
+    this.router.navigate(['/employee/dashboard']);
+  }
+  navToAdminDashboard(){
+    this.router.navigate(['/admin']);
+  }
+  public getRole(){
+    const role=this.loginService.role.toString();
+    return role || ''
+  }
 
   public getUsername(): string {
     const username = localStorage.getItem('prenom');

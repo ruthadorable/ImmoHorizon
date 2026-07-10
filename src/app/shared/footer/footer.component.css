@@ -154,12 +154,6 @@
      color: #c9a227;
 }
 
-.contact-title {
-  font-size: 16px;
-  color: #333;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
 
 /* hover jaune sur le titre uniquement */
 .contact-title:hover {

@@ -4,7 +4,8 @@
         "DESCRIPTION": "Votre solution tout-en-un pour tous vos besoins immobiliers. Que vous cherchiez à acheter, vendre ou louer, nous avons ce qu'il vous faut avec nos annonces étendues et nos conseils d'experts.",
         "FEATURED_PROPERTIES": "Propriétés en vedette",
         "VIEW_DETAILS": "Voir les détails",
-        "All_PROPERTIES": "Toutes les propriétés"
+        "All_PROPERTIES": "Toutes les propriétés",
+        "Publish":"Publier une annonce"
     },
     "MENU":{
         "HOME": "Accueil",
@@ -56,7 +57,9 @@
         "MAX_AREA": "Superficie maximale (m²)",
         "GARDEN": "Jardin",
         "GARAGE": "Garage",
-        "FURNISHED": "Meublé"
+        "FURNISHED": "Meublé",
+        "AVENDRE":"A vendre",
+        "ALOUER":"A louer"
     },
     "TYPES":{"APPARTEMENT": "Appartement",
     "MAISON": "Maison",
@@ -78,6 +81,7 @@
         "Surface": "Surface",
         "Chambres": "Chambres",
         "Salle_de_bains": "Salle de bains",
+        "Floors":"Etages",
         "Jardin": "Jardin",
         "Garage": "Garage",
         "Description": "Description",
@@ -138,6 +142,68 @@
         "Delete": "Supprimer",
         "Create": "Créer un bien",
         "ConfirmDelete": "Confirmer la suppression",
-        "AreYouSureDelete": "Êtes-vous sûr de vouloir supprimer ce bien?"
+        "AreYouSureDelete": "Êtes-vous sûr de vouloir supprimer ce bien?",
+        "FORSALE": "A vendre",
+        "FORRENT":"A louer"
+    },
+    "CONTACT":{
+        "ContacterAgence":"Contacter l'agence",
+        "DemandeInfos": "Demande d'informations"
+    }
+    ,"DETAILS":{
+        "FAVORITE":"Préférés"
+    },
+    "EMPLOYEE":{
+        "Dashboard":"Tableau de bord",
+        "Properties":"Propriétés",
+        "Employees":"Employées",
+        "Candidatures":"Candidatures",
+        "Calendar":"Calendrier",
+        "Blog":"Blog",
+        "Contrats":"Contrats",
+        "Messages":"Messages",
+        "EmployeePortal": "Portail de l'agent",
+        "PropertyManagement": "Gestion de propriété",
+        "PropertySubtitle": "Gérer votre portfolio immobilier",
+        "EDITPROPERTY": "Modifier un bien",
+        "NewProperty": "Nouveau Bien",
+        "ButtonView": "Afficher",
+        "ButtonEdit": "Modifier",
+        "ButtonDelete":"Supprimer",
+        "Agent":"Agent Immobilier",
+        "CandidacyManagement":"Gestion de candidatures",
+        "Respond":"Répondre",
+        "ContactClient":"Contacter le client",
+        "Visites":"Consulter toutes les visites",
+        "PlanVisite": "Planifier une visite",
+        "VisitManagement": "Gestion des visites",
+        "BlogManagement": "Gestion de blogs",
+        "NewArticle": "Nouvel Article",
+        "ContractManagement":"Gestion de contrat",
+        "NewContract": "Nouveau contrat",
+        "TotalProperties": "Total de propriétés",
+        "TotalContracts": "Total de contrats",
+        "TotalSold":"Total de ventes",
+        "TotalVisits": "Total de visites ce mois",
+        "ListingManagement":"Listing management",
+        "Publish":"Publier",
+        "Accept":"Accepter",
+        "ConfirmationMsg":"Etes-vous sûre de publier l'annonce ?",
+        "Cancel":"Annuler"
+    },
+    "TYPEOFPROPERTY":{
+        "APPARTEMENT":"Appartement",
+    "MAISON":"Maison",
+    "STUDIO":"Studio",
+    "DUPLEX":"Duplex",
+    "LOFT":"Loft",
+    "VILLA":"Villa",
+    "TERRAIN":"Terrain",
+    "BUREAU":"Bureau",
+    "COMMERCE":"Commerce",
+    "ENTREPOT":"Entrepôt",
+    "PARKING":"Parking",
+    "LOCAL_COMMERCIAL":"Espace Commercial",
+    "IMMEUBLE":"Immeuble"
     }
 }

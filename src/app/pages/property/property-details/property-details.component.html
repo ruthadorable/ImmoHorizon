@@ -1,0 +1,297 @@
+<div class="bg-[#f8f8f8] min-h-screen">
+  <button mat-button (click)="navBack()"><mat-icon>ArrowBack</mat-icon>Back</button>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-6 py-4 text-sm text-gray-500">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+
+  <!-- Gallery -->
+ <!-- Gallery -->
+<section class="max-w-7xl mx-auto px-6">
+
+  <div
+    class="relative group overflow-hidden rounded-xl bg-gray-100 h-[600px]"
+  >
+
+    <!-- Main Image -->
+     @if(selectedImage){
+      <img
+      [src]="getImageUrl(selectedImage.url)"
+      class="w-full h-full object-cover transition-all duration-500"
+      />
+     }
+    <!-- Previous -->
+    <button
+      (click)="previousImage()"
+      class="absolute left-4 top-1/2 -translate-y-1/2
+             opacity-0 group-hover:opacity-100
+             transition duration-300
+             bg-white/80 hover:bg-white
+             rounded-full w-12 h-12 shadow-lg
+             flex items-center justify-center"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Next -->
+    <button
+      (click)="nextImage()"
+      class="absolute right-4 top-1/2 -translate-y-1/2
+             opacity-0 group-hover:opacity-100
+             transition duration-300
+             bg-white/80 hover:bg-white
+             rounded-full w-12 h-12 shadow-lg
+             flex items-center justify-center"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="flex gap-3 mt-4 overflow-x-auto">
+
+    @for(img of property.images ?? []; track img.id){
+
+      <img
+        [src]="getImageUrl(img.url)"
+        (click)="selectImage(img)"
+        class="w-28 h-20 object-cover rounded-lg cursor-pointer
+               border-2 transition"
+
+        [class.border-blue-600]="selectedImage.id === img.id"
+        [class.border-transparent]="selectedImage.id !== img?.id"
+      />
+
+    }
+
+  </div>
+
+</section>
+
+  <section class="max-w-7xl mx-auto px-6 py-8">
+
+    <div class="grid grid-cols-12 gap-8">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-span-8">
+          @if(isRecent()){
+            <!-- Status -->
+        <span
+          class="inline-block bg-[#f8b400] text-white px-4 py-1 text-sm font-semibold uppercase"
+        >
+          New
+        </span>
+
+          }
+        
+        <!-- Title -->
+        <h1 class="text-4xl font-light mt-4">
+          {{ property.typeDeBien }}
+        </h1>
+
+        <!-- Address -->
+        <p class="text-lg text-gray-600 mt-2">
+          {{ adresse }}
+        </p>
+
+        <!-- Price -->
+        <div class="mt-6">
+          <h2 class="text-5xl font-bold text-[#1c1c1c]">
+            {{ property.prix | number:'1.0-0':'fr' }} €
+          </h2>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-6 mt-6 border-b pb-6">
+
+          <button
+            mat-button
+            class="icon-button"
+          >
+            <mat-icon>favorite_border</mat-icon>
+            
+          </button>
+
+          <button
+            mat-button
+            class="icon-button"
+          >
+            <mat-icon>print</mat-icon>
+            
+          </button>
+
+          <button
+            mat-button
+            class="icon-button"
+          >
+            <mat-icon>share</mat-icon>
+            
+          </button>
+
+        </div>
+
+        <!-- Stats -->
+        <div
+          class="grid grid-cols-4 gap-6 py-8 border-b"
+        >
+
+          <div>
+            <p class="text-gray-500 text-sm">
+              {{'BIEN.Chambres'| translate}}
+            </p>
+            <p class="text-3xl font-bold">
+              {{ property.chambres }}
+            </p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">
+              {{'BIEN.Salle_de_bains'| translate}}
+            </p>
+            <p class="text-3xl font-bold">
+              {{ property.salleDeBain }}
+            </p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">
+              {{'BIEN.SurfaceHabitable'| translate}}
+            </p>
+            <p class="text-3xl font-bold">
+              {{ property.superficie }} m²
+            </p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">
+              {{'BIEN.SurfaceJardin' | translate }}
+            </p>
+            <p class="text-3xl font-bold">
+              {{ property.surfaceJardinTerrasse }} m²
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Description -->
+        <section class="py-10 border-b">
+
+          <h3 class="text-3xl font-light mb-6">
+            {{'BIEN.Description'| translate}}
+          </h3>
+
+          <p class="leading-8 text-gray-700">
+            {{ property.description }}
+          </p>
+
+        </section>
+
+        <!-- Property Details -->
+        <section class="py-10 border-b">
+
+          <h3 class="text-3xl font-light mb-6">
+            Property Information
+          </h3>
+
+          <div class="grid grid-cols-2 gap-x-20 gap-y-4">
+
+            <div class="flex justify-between">
+              <span>Reference</span>
+              <span>{{ property.proprietaireId ? 'Yes' : 'No' }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>{{'BIEN.Disponibilité'| translate}}</span>
+              <span>{{ property.disponibilite | date:'dd/MM/yyyy'}}</span>
+            </div>
+
+
+            <div class="flex justify-between">
+              <span>{{'BIEN.Jardin'| translate}}</span>
+              <span>{{ property.jardin ? 'Yes' : 'No' }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>{{'BIEN.Parking'| translate}}</span>
+              <span>{{ property.parking ? 'Yes' : 'No' }}</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Energy -->
+        <section class="py-10">
+
+          <h3 class="text-3xl font-light mb-6">
+            {{'BIEN.EnergieSpécifique' | translate }}
+          </h3>
+
+          <div class="grid grid-cols-2 gap-10">
+
+            <div>
+              <p class="text-gray-500">
+                PEB
+              </p>
+
+              <p class="text-4xl font-bold">
+                {{ property.peb }}
+              </p>
+            </div>
+
+
+          </div>
+
+        </section>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-span-4">
+
+        <div
+          class="sticky top-6 bg-white shadow-md p-8"
+        >
+
+          <h3 class="text-2xl font-light mb-6">
+            {{'CONTACT.ContacterAgence'| translate}}
+          </h3>
+
+          <img
+            
+            class="h-16 object-contain mb-6"
+          />
+
+          <h4 class="font-semibold text-lg text-center">
+            ImmoHorizon
+          </h4>
+
+          <p class="text-gray-600 text-center">
+            Rue Léon Lepage 57,
+            <br> 1000 Bruxelles
+          </p>
+
+          <button
+            mat-stroked-button
+        class="saved-search-btn text-center py-3"
+          >
+            {{'CONTACT.DemandeInfos' | translate }}
+          </button>
+
+          <button
+            mat-stroked-button
+        class="saved-search-btn text-center py-3"
+          >
+            {{'CONTACT.ContacterAgence' | translate }}
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
