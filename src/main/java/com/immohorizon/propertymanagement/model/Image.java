@@ -1,5 +1,6 @@
 package com.immohorizon.propertymanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,7 +18,12 @@ public class Image {
 
     private String url; // optional (can be generated instead)
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_bien")
+    @JsonIgnore
     private Bien bien;
+    public void setBien(Bien bien){
+        this.bien = bien;
+    }
+
 }

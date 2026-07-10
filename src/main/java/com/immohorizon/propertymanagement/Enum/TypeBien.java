@@ -13,6 +13,5 @@ public enum TypeBien {
     ENTREPOT,
     PARKING,
     LOCAL_COMMERCIAL,
-    IMMEUBLE,
-    AUTRE
+    IMMEUBLE
 }

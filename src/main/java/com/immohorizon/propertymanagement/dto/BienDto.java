@@ -42,7 +42,7 @@ public class BienDto {
 
         private long annee_construction;
 
-        private java.time.LocalDate disponibilité;
+        private java.time.LocalDate disponibilite;
 
         private String etat;
 

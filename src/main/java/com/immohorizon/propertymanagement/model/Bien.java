@@ -21,6 +21,8 @@ public class Bien {
     @Column
     private String title;
     @Column
+    private  String type;
+    @Column
     private  String typeDeBien;
     @Column
     private String description;
@@ -31,7 +33,9 @@ public class Bien {
     @Column
     private int chambres;
     @Column
-    private char peb;
+    private int salleDeBain;
+    @Column
+    private String peb;
     @Column
     private int energieTotale;
     @Column
@@ -51,21 +55,25 @@ public class Bien {
     @Column
     private long annee_construction;
     @Column(name = "disponibilite")
-    private java.time.LocalDate disponibilité;
+    private java.time.LocalDate disponibilite;
     @Column
     private String etat;
     @Column
     private int etages;
     @Column
-    private boolean parking;
+    private Boolean parking;
     @Column
-    private boolean garage;
+    private Boolean ascenseur;
     @Column
-    private boolean jardin;
+    private Boolean garage;
     @Column
-    private boolean terrasse;
+    private Boolean jardin;
     @Column
-    private boolean cave;
+    private Boolean terrasse;
+    @Column
+    private Boolean cave;
+    @Column
+    private Boolean meuble;
     @Column
     private int surfaceHabitable;
     @Column
@@ -121,6 +129,38 @@ public class Bien {
 
     public int getSurfaceHabitable() {
         return surfaceHabitable;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isMeuble() {
+        return meuble;
+    }
+
+    public void setMeuble(boolean meuble) {
+        this.meuble = meuble;
+    }
+
+    public LocalDate getDisponibilite() {
+        return disponibilite;
+    }
+
+    public void setDisponibilite(LocalDate disponibilite) {
+        this.disponibilite = disponibilite;
+    }
+
+    public int getSalleDeBain() {
+        return salleDeBain;
+    }
+
+    public void setSalleDeBain(int salleDeBain) {
+        this.salleDeBain = salleDeBain;
     }
 
     public void setSurfaceHabitable(int surfaceHabitable) {
@@ -184,11 +224,11 @@ public class Bien {
     }
 
     public LocalDate getDisponibilité() {
-        return disponibilité;
+        return disponibilite;
     }
 
     public void setDisponibilité(LocalDate disponibilité) {
-        this.disponibilité = disponibilité;
+        this.disponibilite = disponibilite;
     }
 
     public long getAnnee_construction() {
@@ -263,11 +303,11 @@ public class Bien {
         this.energieTotale = energieTotale;
     }
 
-    public char getPeb() {
+    public String getPeb() {
         return peb;
     }
 
-    public void setPeb(char peb) {
+    public void setPeb(String peb) {
         this.peb = peb;
     }
 
