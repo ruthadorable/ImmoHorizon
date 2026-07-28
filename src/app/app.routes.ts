@@ -10,6 +10,10 @@ import { GererBienComponent } from './pages/employee/gerer-bien/gerer-bien.compo
 import { PropertyDetailsComponent } from './pages/property/property-details/property-details.component';
 import { DashboardContentComponent } from './pages/employee/dashboard-content/dashboard-content.component';
 import { ModifierBienComponent } from './pages/employee/modifier-bien/modifier-bien.component';
+import { AvendreComponent } from './pages/properties/avendre/avendre.component';
+import { AlouerComponent } from './pages/properties/alouer/alouer.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { BlogComponent } from './pages/blog/blog.component';
 export const routes: Routes = [
     {
         path:'',
@@ -28,10 +32,31 @@ export const routes: Routes = [
         data: { breadcrumb: 'Property details' },
     },
     {
+        path:'avendre',
+        component: AvendreComponent,
+        data: { breadcrumb: 'A VENDRE' },
+        children:[]
+    },
+    {
+        path:'alouer',
+        component: AlouerComponent,
+        data: { breadcrumb: 'A LOUER' },
+        children:[]
+    },
+    {
         path:'properties',
         component: PropertiesComponent,
-        canActivate: [AuthGuard],
         data: { breadcrumb: 'Properties' }
+    },
+    {   path:'about',
+        component: AboutusComponent,
+        data: { breadcrumb: 'About us' }
+
+    },
+    {   path:'blog',
+        component: BlogComponent,
+        data: { breadcrumb: 'Blog' }
+
     },
     {
         path:'employee/dashboard',
@@ -41,8 +66,7 @@ export const routes: Routes = [
         children: [
       {
         path: 'properties',
-        component: GererBienComponent,
-        data: { breadcrumb: 'Properties' }
+        component: GererBienComponent
       },{
         path:'creer-bien',
         component: CreerBienComponent,
@@ -55,12 +79,10 @@ export const routes: Routes = [
         data: { roles: ['EMPLOYE'] }
     },{
         path:'property/:id',
-        component: PropertyDetailsComponent,
-        data: { breadcrumb: 'Property details' },
+        component: PropertyDetailsComponent
     },{
         path:'content',
-        component: DashboardContentComponent,
-        data: { breadcrumb: 'Dashboard content' }
+        component: DashboardContentComponent
     }
     ]
     },

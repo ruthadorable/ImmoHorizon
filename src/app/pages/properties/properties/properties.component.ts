@@ -7,10 +7,11 @@ import { CriteresRecherche } from '../../../models/criteresRecherche.model';
 import { PropertiesListComponent } from '../../../shared/properties-list/properties-list.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-properties',
-  imports: [MatToolbarModule,TranslateModule,MatCardModule,SearchBarComponent,PropertiesListComponent,MatButtonModule,MatIconModule],
+  imports: [MatToolbarModule,TranslateModule,MatCardModule,SearchBarComponent,PropertiesListComponent,MatButtonModule,MatIconModule,RouterLink],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css'
 })

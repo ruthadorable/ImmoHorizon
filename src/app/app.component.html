@@ -11,10 +11,10 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-              <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/">{{ 'MENU.ABOUT_US' | translate }}</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" href="/">{{ 'MENU.BLOG' | translate }}</a>
+              <a aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" routerLink="/home">Home</a>
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/about">{{ 'MENU.ABOUT_US' | translate }}</a>
+              <a  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/blog">{{ 'MENU.BLOG' | translate }}</a>
               @if(getRole()=="Employe" || getRole()=="Admin"){
                 <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
               }
@@ -96,6 +96,65 @@
 
     
   </nav>
+  <mat-toolbar class="bg-white shadow-sm px-8 h-20 flex justify-between">
+
+  <!-- Logo -->
+  <div class="flex items-center">
+    <a routerLink="/" class="text-4xl font-bold text-blue-700">
+      ImmoHorizon
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="hidden md:flex items-center gap-12">
+
+    <a
+      mat-button
+      routerLink="avendre"
+      class="nav-link">
+      <mat-icon>home</mat-icon>
+      <span>{{'BIEN.FORSALE'| translate}} </span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="alouer"
+      class="nav-link">
+      <mat-icon>key</mat-icon>
+      <span> {{'BIEN.FORRENT'| translate}} </span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="/new"
+      class="nav-link">
+      <mat-icon>apartment</mat-icon>
+      <span>Neuf</span>
+    </a>
+
+    <a
+      mat-button
+      routerLink="/professionnels"
+      class="nav-link">
+      <mat-icon>business_center</mat-icon>
+      <span>Professionnels</span>
+    </a>
+
+  </nav>
+
+  <!-- CTA -->
+  <button
+    mat-raised-button
+    color="primary"
+    class="publish-btn">
+
+    <mat-icon>add</mat-icon>
+    Publier une annonce
+
+  </button>
+
+</mat-toolbar>
 <router-outlet />
 </div>
+
 <app-footer></app-footer>

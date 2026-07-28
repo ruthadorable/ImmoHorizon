@@ -46,6 +46,8 @@
     },
 "SEARCHBAR": {
         "SEARCH": "Rechercher",
+        "Title": "Trouvez votre prochain logement",
+        "Subtitle": "Recherchez parmi des milliers de biens immobiliers",
         "ADVANCED_SEARCH": "Recherche avancée",
         "LOCATION": "Commune",
         "PROPERTY_TYPE": "Type de propriété",
@@ -81,6 +83,7 @@
         "Surface": "Surface",
         "Chambres": "Chambres",
         "Salle_de_bains": "Salle de bains",
+        "Type_Transaction":"Type de transaction",
         "Floors":"Etages",
         "Jardin": "Jardin",
         "Garage": "Garage",
@@ -89,8 +92,8 @@
         "Localisation": "Localisation",
         "Meublé": "Meublé",
         "Etat": "Etat du bien",
-        "Surface_habitable": "Surface habitable",
-        "Surface_totale": "Surface totale",
+        "Surface_habitable": "Surface habitable (m²)",
+        "Surface_totale": "Surface totale (m²)",
         "Nombre_de_chambres": "Nombre de chambres",
         "Nombre_de_salles_de_bains": "Nombre de salles de bains",
         "Date_de_publication": "Date de publication",
@@ -107,7 +110,7 @@
         "Archivé": "Archivé",
         "En_attente": "En attente",
         "type_de_bien": "Type de bien",
-        "Superficie": "Superficie",
+        "Superficie": "Superficie (m²)",
         "PEB": "PEB",
         "Année_de_construction": "Année de construction",
         "ADRESSE": "Address",
@@ -131,8 +134,8 @@
         "Piscine": "Piscine",
         "Ascenseur": "Ascenseur",
         "SurfaceHabitable": "Surface habitable",
-        "SurfaceJardin": "Surface Jardin",
-        "SurfaceTerrasse": "Surface Terrasse",
+        "SurfaceJardin": "Surface Jardin (m²)",
+        "SurfaceTerrasse": "Surface Terrasse (m²)",
         "ConsommationEnergie": "Consommation d'énergie",
         "ContactezLepropriétaire": "Contactez le propriétaire:",
         "ContactezNous": "Contactez-nous:",
@@ -205,5 +208,19 @@
     "PARKING":"Parking",
     "LOCAL_COMMERCIAL":"Espace Commercial",
     "IMMEUBLE":"Immeuble"
-    }
+    },
+    "GREETING":{
+        "Good_morning":"Bonjour",
+        "Good_afternoon":"Bonjour",
+        "Good_evening":"Bonsoir"
+    },
+    "ETAT": {
+  "DISPONIBLE": "Disponible",
+  "VENDU": "Vendu",
+  "LOUE": "Loué",
+  "SOUS_OPTION": "Sous option",
+  "EN_MAINTENANCE": "En maintenance",
+  "EN_FIN_DE_LOCATION": "Fin de location",
+  "ARCHIVE": "Archivé"
+}
 }

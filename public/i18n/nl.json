@@ -39,6 +39,8 @@
     },
 "SEARCHBAR": {
         "SEARCH": "Zoeken",
+         "Title": "Vind uw volgende woning",
+         "Subtitle": "Zoek tussen duizenden vastgoedobjecten",
         "ADVANCED_SEARCH": "Geavanceerd Zoeken",
         "LOCATION": "Locaties",
         "PROPERTY_TYPE": "Soort Eigendom",
@@ -74,6 +76,7 @@
         "Surface": "Oppervlakte",
         "Chambres": " slaapkamers",
         "Salle_de_bains": "Badkamers",
+        "Type_Transaction":"Soort van transactie",
         "Floors":"Verdiepingen",
         "Jardin": "Tuin",
         "Garage": "Garage",
@@ -82,8 +85,8 @@
         "Localisation": "Locatie",
         "Meublé": "Gemeubileerd",
         "Etat": "Staat van het eigendom",
-        "Surface_habitable": "Bewoonbare Oppervlakte",
-        "Surface_totale": "Totale Oppervlakte",
+        "Surface_habitable": "Bewoonbare Oppervlakte (m²)",
+        "Surface_totale": "Totale Oppervlakte (m²)",
         "Nombre_de_chambres": "Aantal slaapkamers",
         "Nombre_de_salles_de_bains": "Aantal badkamers",
         "Date_de_publication": "Publicatiedatum",
@@ -105,7 +108,7 @@
         "ADRESSE": "Adres",
         "RUE": "Straat",
         "NUMERO": "Nummer",
-        "Contact": "Contact",
+        "Contact": "Contact",    
         "EMAIL": "Email",
         "VILLE": "Stad",
         "CODE_POSTAL": "Postcode",
@@ -123,9 +126,9 @@
         "Cave": "Kelder",
         "Piscine": "Zwembad",
         "Ascenseur": "Lift",
-        "SurfaceHabitable": "Bewoonbare Oppervlakte",
-        "SurfaceJardin": "Tuin Oppervlakte",
-        "SurfaceTerrasse": "Terras Oppervlakte",
+        "SurfaceHabitable": "Bewoonbare Oppervlakte (m²)",
+        "SurfaceJardin": "Tuin Oppervlakte (m²)",
+        "SurfaceTerrasse": "Terras Oppervlakte (m²)",
         "ConsommationEnergie": "Energieverbruik",
         "ContactezLepropriétaire": "Contacteer de eigenaar:",
         "ContactezNous": "Contacteer ons:",
@@ -198,6 +201,19 @@
             "PARKING": "Parkeerplaats",
             "LOCAL_COMMERCIAL": "Commerciële ruimte",
             "IMMEUBLE": "Gebouw"
-        }
- 
+        },
+    "GREETING": {
+    "Good_morning": "Goedemorgen",
+    "Good_afternoon": "Goedemiddag",
+    "Good_evening": "Goedenavond"
+  },
+  "ETAT": {
+  "DISPONIBLE": "Beschikbaar",
+  "VENDU": "Verkocht",
+  "LOUE": "Verhuurd",
+  "SOUS_OPTION": "Onder optie",
+  "EN_MAINTENANCE": "In onderhoud",
+  "EN_FIN_DE_LOCATION": "Einde huurcontract",
+  "ARCHIVE": "Gearchiveerd"
+}
 }

@@ -1,1 +1,15 @@
-<p>alouer works!</p>
+<main>
+<section>
+        <p class="text-center text-gray-500 py-5"> Results: {{properties.length}} </p>
+        <div
+        class="grid gap-8
+        grid-cols-1
+        md:grid-cols-2
+        lg:grid-cols-3
+        xl:grid-cols-4">
+          @for(property of properties;track property.idBien){
+            <app-property-card [property]="property"></app-property-card>
+          }
+        </div>
+</section>
+</main>

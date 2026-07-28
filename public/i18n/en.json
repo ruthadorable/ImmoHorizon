@@ -40,6 +40,8 @@
     },
     "SEARCHBAR": {
         "SEARCH": "Search",
+        "Title":"Find your next home",
+        "Subtitle":"Search Thousands of properties",
         "ADVANCED_SEARCH": "Advanced Search",
         "LOCATION": "Location",
         "PROPERTY_TYPE": "Property Type",
@@ -77,6 +79,7 @@
         "Surface": "Area",
         "Chambres": "Bedrooms",
         "Salle_de_bains": "Bathrooms",
+        "Type_Transaction":"Type of transaction",
         "Floors":"Floors",
         "Jardin": "Garden",
         "Garage": "Garage",
@@ -127,9 +130,9 @@
         "Cave": "Cellar",
         "Piscine": "Swimming Pool",
         "Ascenseur": "Elevator",
-        "SurfaceHabitable": "Habitable Area",
-        "SurfaceJardin": "Garden Area",
-        "SurfaceTerrasse": "Terrace Area",
+        "SurfaceHabitable": "Habitable Area (m²)",
+        "SurfaceJardin": "Garden Area (m²)",
+        "SurfaceTerrasse": "Terrace Area (m²)",
         "ConsommationEnergie": "Energy Consumption",
         "ContactezLepropriétaire": "Contact the Owner:",
         "ContactezNous": "Contact Us:",
@@ -202,5 +205,18 @@
   "PARKING": "Parking Space",
   "LOCAL_COMMERCIAL": "Commercial Space",
   "IMMEUBLE": "Building"
-}
+},"GREETING":{
+        "Good_morning":"Good morning",
+        "Good_afternoon":"Good afternoon",
+        "Good_evening":"Good evening"
+    },
+    "ETAT":{
+        "DISPONIBLE":"Available",
+    "VENDU":"Sold",
+    "LOUE":"Rented",
+    "SOUS_OPTION":"Under offer",
+    "EN_MAINTENANCE":"Under maintenance",
+    "EN_FIN_DE_LOCATION":"End of lease",
+    "ARCHIVE":"Archived"
+    }
 }

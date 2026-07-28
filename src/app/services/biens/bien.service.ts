@@ -16,6 +16,12 @@ export class BienService {
   getPropertyById(id:number): Observable<Bien>{
     return this.http.get<Bien>(this.apiUrl+'/'+id);
   }
+  getBiensAvendre(): Observable<Bien>{
+    return this.http.get<Bien>(this.apiUrl+'/type/avendre');
+  }
+ getBiensAlouer(): Observable<Bien>{
+    return this.http.get<Bien>(this.apiUrl+'/type/alouer');
+  }
 
 
  searchProperties(criteria: CriteresRecherche): Observable<Bien[]> {

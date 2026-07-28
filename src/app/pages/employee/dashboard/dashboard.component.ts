@@ -12,7 +12,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterOutlet } from '@angular/router';
 import {MatBadgeModule} from '@angular/material/badge'
 
-
 @Component({
   selector: 'app-dashboard',
   imports: [MatCardModule,MatIcon,MatButtonModule,MatToolbarModule,RouterOutlet,

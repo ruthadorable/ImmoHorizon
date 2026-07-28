@@ -1,0 +1,26 @@
+.nav-link {
+  @apply flex items-center gap-2 text-gray-800 font-medium transition-all duration-300;
+}
+
+.nav-link:hover {
+  @apply text-yellow-500;
+}
+
+.nav-link mat-icon {
+  font-size: 20px;
+}
+
+.publish-btn {
+  background-color: #facc15 !important;
+  color: #000 !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+}
+
+.publish-btn:hover {
+  background-color: #eab308 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
+}

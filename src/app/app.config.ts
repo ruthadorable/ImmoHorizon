@@ -8,7 +8,7 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { frenchPaginator } from '../paginator';
-
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(
@@ -30,6 +30,7 @@ export const appConfig: ApplicationConfig = {
       provide: LOCALE_ID,
       useValue: 'fr'
     },
+    provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
 
     importProvidersFrom(

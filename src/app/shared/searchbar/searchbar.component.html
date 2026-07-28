@@ -4,17 +4,14 @@
         <form [formGroup]="advancedForm">
         <mat-card
             class="bg-grey rounded-3xl shadow-2xl p-8 border border-zinc-800">
-
-            <div class="flex-column justify-between items-center py-5 mb-8">
-
+            <div class="flex-col justify-between items-center py-5 mb-8">
                 <div>
-
                     <h1 class="text-4xl font-bold invert text-white">
-                        Find your next home
+                        {{'SEARCHBAR.Title'| translate}}
                     </h1>
 
                     <p class="text-zinc-400 mt-2">
-                        Search thousands of properties
+                       {{'SEARCHBAR.Subtitle'| translate}}
                     </p>
 
                 </div>
@@ -25,8 +22,7 @@
                         <mat-icon>refresh</mat-icon>
                         Reset
                       </button>
-                  </div>
-                    
+                  </div>  
                 <div class="flex justify-center">
                   <mat-button-toggle-group formControlName="type" class="my-5">
 
@@ -41,7 +37,7 @@
                   </mat-button-toggle-group>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-5 gap-6">
 
                   <mat-form-field appearance="outline">
                       <input
@@ -69,13 +65,11 @@
                   </mat-form-field>
 
                   <mat-form-field appearance="outline"><mat-icon matPrefix>home_work</mat-icon>
-
                       <mat-select [placeholder]="'BIEN.Type_de_bien'|translate" formControlName="typeDeBien">
                           @for( type of typesBien ;track type){
                             <mat-option [value]="type" > {{'TYPEOFPROPERTY.'+ type |translate}} </mat-option>
                           }
                       </mat-select>
-
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">

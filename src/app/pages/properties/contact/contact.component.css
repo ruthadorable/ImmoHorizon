@@ -1,0 +1,59 @@
+.icon-btn {
+    width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  padding: 0 !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.icon-btn:hover {
+  @apply bg-red-50 text-red-500;
+}
+
+
+.saved-search-btn {
+  border-radius: 14px !important;
+  padding: 12px 18px !important;
+}
+
+.search-btn {
+  height: 56px !important;
+  border-radius: 16px !important;
+  background: #f59e0b !important;
+  color: white !important;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #ea580c !important;
+  transform: translateY(-2px);
+}
+
+.filter-field {
+  width: 180px;
+}
+
+.extra-filter-btn {
+  height: 56px !important;
+  border-radius: 14px !important;
+}
+
+/* Angular Material customization */
+::ng-deep .mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 16px;
+}
+
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
+}
+
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: #f59e0b !important;
+}

@@ -10,6 +10,7 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { BreadcrumbComponent } from '../../../shared/breadcrumb/breadcrumb.component';
 
+
 @Component({
   selector: 'app-property-details',
   imports: [CommonModule,TranslateModule,MatIconModule,MatButtonModule,MatIconModule,DatePipe,BreadcrumbComponent],
@@ -50,8 +51,8 @@ export class PropertyDetailsComponent {
     window.history.back();
   }
 
-  getImageUrl(url: string): string {
-     if (!url) {
+  getImageUrl(url?: string): string {
+     if (url == undefined) {
     return './images/properties/penthouse1.jpg';
   }
   return url;

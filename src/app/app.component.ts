@@ -13,11 +13,15 @@ import {MatMenuModule } from '@angular/material/menu';
 import { LoginService } from './services/auth/login/login.service';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
+import { RouterLink } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
+export class HomeComponent {}
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
+    RouterLink,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -26,7 +30,7 @@ import { LanguageSelectorComponent } from './shared/language-selector/language-s
     TranslateModule,
     FooterComponent,
     MatIconModule,
-    LanguageSelectorComponent
+    LanguageSelectorComponent,RouterLink,MatToolbarModule
    ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

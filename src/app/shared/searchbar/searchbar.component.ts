@@ -25,13 +25,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { typesDeBien } from '../../models/typeBiens.model';
+import { typesDeBien } from '../../enum/typeBiens.enum';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
-import { belgianCities } from '../../models/belgianCities.model';
-import { pebs } from '../../models/pebs.model';
+import { belgianCities } from '../../enum/belgianCities.model';
+import { pebs } from '../../enum/pebs.enum';
 import { CriteresRecherche } from '../../models/criteresRecherche.model';
 import { NonNullableFormBuilder } from '@angular/forms';
+import { etats } from '../../enum/etats.enum';
 @Component({
   selector: 'app-searchbar',
   standalone: true,
@@ -66,9 +67,10 @@ export class SearchBarComponent {
 
   @Output()
   search = new EventEmitter<CriteresRecherche>();
-  typesBien=typesDeBien;
+  readonly typesBien = Object.values(typesDeBien);
   belgianCities=belgianCities;
-  pebs=pebs;
+  readonly pebs = Object.values(pebs);
+  readonly etats=Object.values(etats);
   private fb = inject(FormBuilder);
 
   cityControl = new FormControl('');
@@ -131,27 +133,6 @@ export class SearchBarComponent {
     ])
 
     const formValue = this.advancedForm.getRawValue();
-
-
-  // const criteria: CriteresRecherche = {
-  //   commune: formValue.commune ?? '',
-  //   minPrix: formValue.minPrix ?? 0,
-  //   maxPrix: formValue.maxPrix ?? 0,
-  //   type: formValue.type ?? '',
-  //   typeDeBien: formValue.typeDeBien ?? '',
-  //   peb: formValue.peb ?? '',
-  //   chambres: formValue.chambres ?? 0,
-  //   salleDeBain: formValue.salleDeBain ?? 0,
-  //   minSuperficie: formValue.minSuperficie ?? 0,
-  //   maxSuperficie: formValue.maxSuperficie ?? 100000,  
-  //   jardin: formValue.jardin ?? false,
-  //   terrasse:formValue.terrasse ??false,
-  //   garage:formValue.garage ?? false,
-  //   parking:formValue.parking ?? false,
-  //   cave:formValue.cave ?? false,
-  //   ascenseur:formValue.ascenseur ?? false,
-  //   meuble:formValue.meuble ?? false
-  // };
 
   console.log(formValue);
   this.search.emit(formValue);

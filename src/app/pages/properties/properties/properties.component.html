@@ -1,61 +1,4 @@
-<mat-toolbar class="bg-white shadow-sm px-8 h-20 flex justify-between">
 
-  <!-- Logo -->
-  <div class="flex items-center">
-    <a routerLink="/" class="text-4xl font-bold text-blue-700">
-      ImmoHorizon
-    </a>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="hidden md:flex items-center gap-12">
-
-    <a
-      mat-button
-      routerLink="/vente"
-      class="nav-link">
-      <mat-icon>home</mat-icon>
-      <span>A vendre</span>
-    </a>
-
-    <a
-      mat-button
-      routerLink="/location"
-      class="nav-link">
-      <mat-icon>key</mat-icon>
-      <span>A louer</span>
-    </a>
-
-    <a
-      mat-button
-      routerLink="/neuf"
-      class="nav-link">
-      <mat-icon>apartment</mat-icon>
-      <span>Neuf</span>
-    </a>
-
-    <a
-      mat-button
-      routerLink="/professionnels"
-      class="nav-link">
-      <mat-icon>business_center</mat-icon>
-      <span>Professionnels</span>
-    </a>
-
-  </nav>
-
-  <!-- CTA -->
-  <button
-    mat-raised-button
-    color="primary"
-    class="publish-btn">
-
-    <mat-icon>add</mat-icon>
-    Publier une annonce
-
-  </button>
-
-</mat-toolbar>
 <section class="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-3xl p-12 mb-12">
 
   <h1 class="text-5xl font-extrabold text-slate-900 mb-4">
@@ -89,16 +32,16 @@
         <div class="flex items-center justify-between mb-8">
 
   <div>
-    <h2 class="text-3xl font-bold text-slate-900">
+    <h2 class="text-3xl text-center font-bold text-slate-900">
       Dernières annonces
     </h2>
 
-    <p class="text-slate-500 mt-1">
+    <p class="text-center text-slate-500 mt-1">
       Les biens récemment ajoutés
     </p>
   </div>
 
-  <button mat-button color="primary">
+  <button class="text-center" mat-button color="primary">
     Voir tout
   </button>
 

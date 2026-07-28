@@ -1,123 +1,139 @@
-<mat-card  class="property-card flex justify-center items-center py-2">
+<section class="bg-gray-800 py-10">
+<div class="bg-gray-800 max-w-7xl mx-auto px-6">
 
-  <mat-card-title class="text-center w-full p-10">{{ 'BIEN.Create' | translate }}</mat-card-title>
+<mat-card  class="bg-grey rounded-3xl shadow-2xl p-8 border border-zinc-800">
 
+  <mat-card-title class="text-center text-4xl font-bold invert text-white py-4">{{ 'BIEN.Create' | translate }}</mat-card-title>
   <mat-card-content>
-
     <!-- FORM -->
-    <form [formGroup]="form">
-
-      <mat-form-field appearance="outline" class="full-width">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
         
-        <input placeholder="{{ 'BIEN.Title' | translate }}" matInput formControlName="title">
-      </mat-form-field>
-      
-        <mat-form-field appearance="outline" class="full-width">
-            <input placeholder="{{ 'BIEN.Type_de_bien' | translate }}" matInput formControlName="typeDeBien">
+        <mat-form-field appearance="outline"><mat-icon matPrefix>home_work</mat-icon>
+
+                      <mat-select [placeholder]="'BIEN.Type_de_bien'|translate" formControlName="typeDeBien">
+                          @for( type of typesDeBien ;track type){
+                            <mat-option [value]="type" > {{'TYPEOFPROPERTY.'+ type |translate}} </mat-option>
+                          }
+                      </mat-select>
         </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-        <input placeholder="{{ 'BIEN.VILLE' | translate }}" matInput formControlName="commune">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        
-        <textarea placeholder="{{ 'BIEN.Description' | translate }}" matInput formControlName="description"></textarea>
-      </mat-form-field>
-      
-      <mat-form-field class="full-width" >
+        <mat-form-field appearance="outline">
+        <mat-select placeholder="{{ 'BIEN.Type_Transaction' | translate }}" formControlName="type">
+                            <mat-option [value]="'A vendre'"> {{'BIEN.FORSALE' | translate}} </mat-option>
+                            <mat-option [value]="'A louer'"> {{'BIEN.FORRENT' | translate}} </mat-option>
+                      </mat-select>
+        </mat-form-field>
+      <mat-form-field  appearance="outline" >
         <mat-label>{{ 'BIEN.Prix' | translate }}</mat-label>
         <input placeholder="{{ 'BIEN.Prix' | translate }}" matInput type="number" formControlName="prix">
       </mat-form-field>
-        <mat-form-field  class="full-width">
-            <mat-label>{{ 'BIEN.Surface_habitable' | translate }}</mat-label>
-            <input type="number" matInput placeholder="{{ 'BIEN.Surface_habitable' | translate }}" formControlName="superficie">
-         </mat-form-field>
+        
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="{{ 'BIEN.Etat' | translate }}" formControlName="etat">
+          @for(etat of etats; track etat){
+            <mat-option [value]="etat">{{'ETAT.'+etat | translate }} </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="w-full">
+          <mat-label>{{ 'BIEN.Disponibilité' | translate }}</mat-label>
 
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.Chambres' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.Chambres' | translate }}" formControlName="chambres">
-  </mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [placeholder]="'BIEN.Disponibilité' | translate"
+            formControlName="disponibilite"
+          />
 
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.PEB' | translate }}</mat-label>
-    <input matInput placeholder="{{ 'BIEN.PEB' | translate }}" formControlName="peb">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.EnergieTotale' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.EnergieTotale' | translate }}" formControlName="energieTotale">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.EnergieSpécifique' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.EnergieSpécifique' | translate }}" formControlName="energieSpecifique">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.Emissions_CO2' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.Emissions_CO2' | translate }}" formControlName="emissionCO2">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <input placeholder="{{ 'BIEN.Title' | translate }}" matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          
+          <textarea placeholder="{{ 'BIEN.Description' | translate }}" matInput formControlName="description"></textarea>
+        </mat-form-field>
+      
+      <p class="text-2xl text-gray-900 py-3 mb-3"> Adresse</p>
+      <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-4 gap-6">
+        <mat-form-field  appearance="outline">
     <mat-label>{{ 'BIEN.RUE' | translate }}</mat-label>
     <input matInput placeholder="{{ 'BIEN.RUE' | translate }}" formControlName="rue">
   </mat-form-field>
 
-  <mat-form-field  class="full-width">
+  <mat-form-field  appearance="outline">
     <mat-label>{{ 'BIEN.NUMERO' | translate }}</mat-label>
     <input type="number" matInput placeholder="{{ 'BIEN.NUMERO' | translate }}" formControlName="numero">
   </mat-form-field>
 
-  <mat-form-field  class="full-width">
+  <mat-form-field appearance="outline" >
     <mat-label>{{ 'BIEN.CODE_POSTAL' | translate }}</mat-label>
     <input type="number" matInput placeholder="{{ 'BIEN.CODE_POSTAL' | translate }}" formControlName="code_postal">
   </mat-form-field>
 
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.VILLE' | translate }}</mat-label>
-    <input matInput placeholder="{{ 'BIEN.VILLE' | translate }}" formControlName="commune">
-  </mat-form-field>
+  <mat-form-field appearance="outline">
+                      <input
+                          matInput
+                          [placeholder]="'BIEN.Localisation'|translate"
+                          formControlName="commune"
+                           [matAutocomplete]="auto">
+                      <mat-icon matPrefix>location_on</mat-icon>
+                      <mat-autocomplete #auto="matAutocomplete">
+                        @for(city of filteredCities | async; track city.commune) {
+                          <mat-option [value]="city.commune" (onSelectionChange)="selectedCity(city)">
+                            {{city.commune}}
+                            ({{city.postalCode}})
+                          </mat-option>
+                        }
+                      </mat-autocomplete>
 
-  <mat-form-field  class="full-width">
+        </mat-form-field>
+      </div>
+      <p class="text-2xl text-gray-900 py-3 mb-3">Infrastructure</p>
+      <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-4 gap-6">
+        <mat-form-field appearance="outline" >
+            <mat-label>{{ 'BIEN.Surface_habitable' | translate }}</mat-label>
+            <input type="number" matInput placeholder="{{ 'BIEN.Surface_habitable' | translate }}" formControlName="superficie">
+         </mat-form-field>
+   <mat-form-field appearance="outline">
+          <mat-label>{{ 'BIEN.Floors' | translate }}</mat-label>
+          <input type="number" matInput placeholder="{{ 'BIEN.Etages' | translate }}" formControlName="etages">
+    </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label>{{ 'BIEN.Chambres' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.Chambres' | translate }}" formControlName="chambres">
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label>{{ 'BIEN.Salle_de_bains' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.Salle_de_bains' | translate }}" formControlName="salle">
+  </mat-form-field>
+   <mat-form-field appearance="outline">
     <mat-label>{{ 'BIEN.Façades' | translate }}</mat-label>
     <input type="number" matInput placeholder="{{ 'BIEN.Façades' | translate }}" formControlName="facades">
   </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.Année_de_construction' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.Année_de_construction' | translate }}" formControlName="annee_construction">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-label>{{ 'BIEN.Disponibilité' | translate }}</mat-label>
-    <input type="date" matInput placeholder="{{ 'BIEN.Disponibilité' | translate }}" formControlName="disponibilite">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
-    <mat-select placeholder="{{'BIEN.Etat' | translate}}" formControlName="etat">
-        @for(etat of etats; track etat){
-      <mat-option [value]="etat">
-        {{ etat }}
-      </mat-option>
-        }
-    </mat-select>
-  </mat-form-field>
-
-
-  <mat-form-field class="full-width">
-    <mat-label>{{ 'BIEN.Etages' | translate }}</mat-label>
-    <input type="number" matInput placeholder="{{ 'BIEN.Etages' | translate }}" formControlName="etages">
-  </mat-form-field>
-
-  <mat-form-field  class="full-width">
+  <mat-form-field appearance="outline">
     <mat-label>{{ 'BIEN.Surface' | translate }}</mat-label>
     <input type="number" matInput placeholder="{{ 'BIEN.Surface' | translate }}" formControlName="surfaceHabitable">
   </mat-form-field>
-
-  <mat-form-field  class="full-width">
+  <mat-form-field appearance="outline">
     <mat-label>{{ 'BIEN.SurfaceJardin' | translate }}</mat-label>
     <input type="number" matInput placeholder="{{ 'BIEN.Surface_Jardin_Terrasse' | translate }}" formControlName="surfaceJardinTerrasse">
+  </mat-form-field>
+    <mat-form-field appearance="outline">
+    <mat-label>{{ 'BIEN.Année_de_construction' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.Année_de_construction' | translate }}" formControlName="annee_construction">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'BIEN.TypeDeChauffage' | translate }}</mat-label>
+    <mat-select placeholder="{{ 'BIEN.TypeDeChauffage' | translate }}" formControlName="type_chauffage">
+      @for(chauffage of typeChauffage;track chauffage){ 
+      <mat-option [value]="chauffage" >
+        {{chauffage}}
+      </mat-option>}
+    </mat-select>
   </mat-form-field>
 
   <!-- BOOLEAN FIELDS -->
@@ -126,18 +142,37 @@
   <mat-checkbox formControlName="jardin">{{ 'BIEN.Jardin' | translate }}</mat-checkbox>
   <mat-checkbox formControlName="terrasse">{{ 'BIEN.Terrasse' | translate }}</mat-checkbox>
   <mat-checkbox formControlName="cave">Cave</mat-checkbox>
-  <!-- Select dropdown -->
-  
-  <!-- OWNER -->
-  <mat-form-field class="px-20" appearance="outline">
-    <mat-select placeholder="Propriétaire" formControlName="proprietaire">
-      <mat-option *ngFor="let user of users" [value]="user">
-        {{ user.name }}
-      </mat-option>
+  </div>
+      <p class="text-2xl text-gray-900 mb-3 py-3"> Classe Energetique</p>
+      <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-4 gap-6">
+
+  <mat-form-field appearance="outline" >
+    <mat-label>{{ 'BIEN.PEB' | translate }}</mat-label>
+    <mat-select placeholder="{{ 'BIEN.PEB' | translate }}" formControlName="peb">
+      @for(peb of pebs;track peb){
+        <mat-option [value]="peb">{{peb}}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
 
-    </form>
+  <mat-form-field  appearance="outline">
+    <mat-label>{{ 'BIEN.EnergieTotale' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.EnergieTotale' | translate }}" formControlName="energieTotale">
+  </mat-form-field>
+
+  <mat-form-field  appearance="outline">
+    <mat-label>{{ 'BIEN.EnergieSpécifique' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.EnergieSpécifique' | translate }}" formControlName="energieSpecifique">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" >
+    <mat-label>{{ 'BIEN.Emissions_CO2' | translate }}</mat-label>
+    <input type="number" matInput placeholder="{{ 'BIEN.Emissions_CO2' | translate }}" formControlName="emissionCO2">
+  </mat-form-field>
+  <!-- Select dropdown -->
+
+    </div>
+    
 
     <!-- DRAG & DROP AREA -->
     <div
@@ -158,9 +193,9 @@
     <div class="image-grid">
         @for (img of images; track $index; let i = $index) {
       <div class="image-card">
-
-        <img [src]="img.url">
-
+        @if(img.url){
+          <img [src]="img.url">
+        }
         <!-- PRIMARY BADGE -->
          @if(img.isPrimary) {
         <div class="badge" >
@@ -186,14 +221,18 @@
         }
 
     </div>
-
+    <mat-card-actions>
+        <button mat-flat-button color="primary" 
+                (click)="submit()">
+          {{'BIEN.Save' | translate}}
+        </button>
+      </mat-card-actions>
+        </form>
   </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-flat-button color="primary"
-            (click)="submit()">
-      {{'BIEN.Save' | translate}}
-    </button>
-  </mat-card-actions>
+  
+
 
 </mat-card>
+</div>
+</section>

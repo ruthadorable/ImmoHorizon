@@ -1,5 +1,5 @@
 <div class="bg-[#f8f8f8] min-h-screen">
-  <button mat-button (click)="navBack()"><mat-icon>ArrowBack</mat-icon>Back</button>
+  <button mat-button (click)="navBack()"><mat-icon><img src="./images/arrow_back_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" /></mat-icon>Back</button>
   <!-- Breadcrumb -->
   <div class="max-w-7xl mx-auto px-6 py-4 text-sm text-gray-500">
     <app-breadcrumb></app-breadcrumb>
@@ -15,10 +15,10 @@
 
     <!-- Main Image -->
      @if(selectedImage){
-      <img
+      <img 
       [src]="getImageUrl(selectedImage.url)"
       class="w-full h-full object-cover transition-all duration-500"
-      />
+      >
      }
     <!-- Previous -->
     <button
@@ -71,7 +71,7 @@
 
   <section class="max-w-7xl mx-auto px-6 py-8">
 
-    <div class="grid grid-cols-12 gap-8">
+    <div class="grid grid-cols-12 gap-8" style="text-align: center;min-height: 600px;">
 
       <!-- LEFT CONTENT -->
       <div class="col-span-8">
@@ -274,21 +274,21 @@
 
           <button
             mat-stroked-button
-        class="saved-search-btn text-center py-3"
+        class="saved-search-btn text-center m-3"
           >
             {{'CONTACT.DemandeInfos' | translate }}
           </button>
 
           <button
             mat-stroked-button
-        class="saved-search-btn text-center py-3"
+        class="saved-search-btn text-center m-3"
           >
             {{'CONTACT.ContacterAgence' | translate }}
           </button>
 
         </div>
 
-      </div>
+    </div>
 
     </div>
 

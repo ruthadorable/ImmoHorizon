@@ -3,13 +3,14 @@
         <div class="jusity-center mt-5  p-10 flex">{{ 'HOME.FEATURED_PROPERTIES' | translate }}</div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> -->
           <section class="mx-auto max-w-7xl py-10">
-
+           <p class="text-center text-gray-500 py-5"> Results: {{properties?.length}} </p>
 <div
 class="grid gap-8
 grid-cols-1
 md:grid-cols-2
 lg:grid-cols-3
 xl:grid-cols-4">
+
 
 
           @for(property of properties;track property.idBien){

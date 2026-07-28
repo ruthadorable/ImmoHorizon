@@ -47,6 +47,10 @@ export class LoginService {
   return localStorage.getItem('jwtToken');
   }
 
+  public getUsername():string|null{
+    return localStorage.getItem('username');
+  }
+
   public clear()
   {
     localStorage.clear();

@@ -7,23 +7,17 @@
         <div>
 
             <h1 class="text-3xl font-bold text-slate-800">
-                Good Morning, John 👋
+                {{'GREETING.'+greeting | translate}}, {{username}}!
             </h1>
-
             <p class="text-slate-500">
                 Here's what's happening today.
             </p>
-
         </div>
-
-        <button
+        <button routerLink="/employee/dashboard/creer-bien"
             mat-flat-button
             color="primary">
-
             New Property
-
         </button>
-
     </div>
 
 
@@ -48,7 +42,7 @@
 
                     <h2 class="text-3xl font-bold mt-2">
 
-                        {{card.value}}
+                        {{this.amount}}
 
                     </h2>
 
