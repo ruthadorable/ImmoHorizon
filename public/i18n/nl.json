@@ -215,5 +215,17 @@
   "EN_MAINTENANCE": "In onderhoud",
   "EN_FIN_DE_LOCATION": "Einde huurcontract",
   "ARCHIVE": "Gearchiveerd"
+},
+    "SLOGAN":{
+        "TITLE":"Vind uw ideale woning",
+        "TEXT": "Kopen, huren, nieuwbouw of commercieel vastgoed. Ontdek duizenden vastgoedadvertenties en vind uw toekomstige woning in slechts enkele klikken.",
+        "EXPLORE":"Bekijk woningen",
+        "CONTACT":"Meer informatie"
+    },
+"SEARCH":{
+  "RESULTS": "Resultaten",
+  "SEARCH_RESULTS": "Zoekresultaten",
+  "NO_RESULTS": "Geen resultaten gevonden"
 }
+
 }

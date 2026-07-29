@@ -73,11 +73,20 @@ export class GererBienComponent {
     'actions'
   ];
 
-   getImageUrl(imageKey?: string): string {
-     if (!imageKey) {
+   getImageUrl(url?: string): string {
+     if (!url) {
     return './images/properties/penthouse1.jpg';
   }
-  return `https://immohorizon-images.s3.us-east-1.amazonaws.com/${imageKey}`;
+  return url;
+  }
+
+  getType(type:string){
+    if(type=='A louer'){
+      return 'FORRENT'
+    }
+    else
+      return 'FORSALE'
+
   }
   createProperty() {
     this.route.navigate(['employee/dashboard/creer-bien']);

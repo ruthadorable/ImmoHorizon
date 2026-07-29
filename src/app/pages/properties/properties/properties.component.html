@@ -2,21 +2,20 @@
 <section class="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-3xl p-12 mb-12">
 
   <h1 class="text-5xl font-extrabold text-slate-900 mb-4">
-    Trouvez le bien immobilier idéal
+    {{ 'SLOGAN.TITLE' | translate }}
   </h1>
 
   <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">
-    Achat, location, immobilier neuf ou professionnel.
-    Découvrez des milliers d'annonces et trouvez votre futur bien en quelques clics.
+    {{'SLOGAN.TEXT' | translate}}
   </p>
 
   <div class="mt-8 flex gap-4">
     <button mat-raised-button color="primary">
-      Explorer les biens
+      {{'SLOGAN.EXPLORE' | translate}}
     </button>
 
     <button mat-stroked-button>
-      En savoir plus
+      {{'SLOGAN.CONTACT' | translate }}
     </button>
   </div>
 
@@ -45,6 +44,8 @@
     Voir tout
   </button>
 
-</div>
+</div>  
   </main>
+
+
 

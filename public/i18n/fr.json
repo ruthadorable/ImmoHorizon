@@ -222,5 +222,18 @@
   "EN_MAINTENANCE": "En maintenance",
   "EN_FIN_DE_LOCATION": "Fin de location",
   "ARCHIVE": "Archivé"
+},
+    "SLOGAN":{
+        "TITLE":"Trouvez le bien immobilier idéal",
+        "TEXT": "Achat, location, immobilier neuf ou professionnel. Découvrez des milliers d'annonces et trouvez votre futur bien en quelques clics.",
+        "EXPLORE":"Explorer les biens",
+        "CONTACT":"En savoir plus"
+},
+"SEARCH":{
+    
+  "RESULTS": "Resultats",
+  "SEARCH_RESULTS": "Resultats de recherche",
+  "NO_RESULTS": "Aucun bien ne correspond à vos critères de recherche"
 }
+
 }

@@ -35,20 +35,20 @@
                   <th mat-header-cell *matHeaderCellDef></th>
 
                   <td mat-cell *matCellDef="let property">
-                    <img [src]="getImageUrl()" [alt]="property.title" class="property-image">
+                    <img [src]="getImageUrl(property.images?.[0]?.url)" [alt]="property.title" class="property-image">
                   </td>
                 </ng-container>
 
                 <!-- Title -->
                 <ng-container matColumnDef="title">
                   <th mat-header-cell *matHeaderCellDef>
-                    {{'BIEN.Type_de_bien'| translate}}
+                    {{'BIEN.Type_de_bien'| translate}} 
                   </th>
 
                   <td mat-cell *matCellDef="let property">
                     <div class="property-info">
                       <span class="property-title">
-                        {{ property.typeDeBien.replace("_"," ") }}
+                        {{ property.typeDeBien.replace("_"," ") }} {{ 'BIEN.'+getType(property.type) | translate }}
                       </span>
 
                       <span class="property-address">
