@@ -5,34 +5,13 @@ on:
     types:
       - completed
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Angular application
-        run: npm run build --prod
-      - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        with:
-          args: --delete
-        env:
-          AWS_REGION: us-east-1
-          AWS_S3_BUCKET: immohorizon-demo
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SOURCE_DIR: dist\immo-horizon-frontend\browser
-        
-
-      
+    - name: Pull Docker image
+      run: sudo docker pull ruthann33/immohorizon-frontend:latest
+    - name: Delete old container
+      run: sudo docker rm -f immohorizon-frontend || true
+    - name: Run Docker Container
+      run: sudo docker run -d -p 80:80 --name immohorizon-frontend ruthann33/immohorizon-frontend:latest
+  
