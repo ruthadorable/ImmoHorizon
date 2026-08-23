@@ -15,6 +15,7 @@ public class BienDto {
         private  String typeDeBien;
 
         private String description;
+        private String type;
 
         private double prix;
 
@@ -22,7 +23,7 @@ public class BienDto {
 
         private int chambres;
 
-        private char peb;
+        private String peb;
 
         private int energieTotale;
 
@@ -42,6 +43,8 @@ public class BienDto {
 
         private long annee_construction;
 
+        private String type_chauffage;
+
         private java.time.LocalDate disponibilite;
 
         private String etat;
@@ -51,6 +54,8 @@ public class BienDto {
         private boolean parking;
 
         private boolean garage;
+
+        private boolean ascenceur;
 
         private boolean jardin;
 

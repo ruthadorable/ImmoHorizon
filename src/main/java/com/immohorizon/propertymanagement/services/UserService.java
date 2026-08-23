@@ -2,6 +2,7 @@ package com.immohorizon.propertymanagement.services;
 
 
 import com.immohorizon.propertymanagement.dto.UserDto;
+import com.immohorizon.propertymanagement.mapper.UserMapper;
 import com.immohorizon.propertymanagement.model.LoginRequest;
 import com.immohorizon.propertymanagement.model.LoginResponse;
 import com.immohorizon.propertymanagement.model.User;
@@ -23,6 +24,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtService jwtService;
+    @Autowired
+    private UserMapper mapper;
     private static final Logger logger =
             LoggerFactory.getLogger(UserService.class);
 
@@ -62,7 +65,7 @@ public class UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        String token = jwtService.generateToken(user.getEmail());
+        String token = jwtService.generateToken(user);
 
         UserDto userDTO = new UserDto(
                 user.getIdUser(),
@@ -89,8 +92,8 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
         try {
-            System.out.println("Token:"+jwtService.generateToken(loginRequest.getEmail()));
-            return jwtService.generateToken(loginRequest.getEmail());
+            System.out.println("Token:"+jwtService.generateToken(mapper.toEntity(loginRequest)));
+            return jwtService.generateToken(mapper.toEntity(loginRequest));
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

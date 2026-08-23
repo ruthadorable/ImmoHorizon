@@ -41,6 +41,8 @@ public class Bien {
     @Column
     private int energieSpecifique;
     @Column
+    private String type_chauffage;
+    @Column
     private int emissionCO2;
     @Column
     private String rue;

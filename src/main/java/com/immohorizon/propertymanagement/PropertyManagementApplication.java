@@ -2,6 +2,7 @@ package com.immohorizon.propertymanagement;
 
 import com.immohorizon.propertymanagement.repository.BienRepository;
 import com.immohorizon.propertymanagement.services.BienService;
+import com.immohorizon.propertymanagement.services.LeVifScraper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +14,11 @@ import java.util.*;
 
 @SpringBootApplication
 public class PropertyManagementApplication {
+
     public static void main(String[] args) {
 
         SpringApplication.run(PropertyManagementApplication.class, args);
+
 
     }
 

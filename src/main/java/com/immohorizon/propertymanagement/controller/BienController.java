@@ -33,7 +33,7 @@ public class BienController
         this.bienService = bienService;
         this.s3Service=s3Service;
         this.repository = repository;
-        this.bienService.generateDummyBien(100);
+        this.bienService.generateDummyBien(20);
         this.objectMapper=objectMapper;
     }
     @GetMapping("/all")
@@ -68,20 +68,21 @@ public class BienController
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     public ResponseEntity<?> createProperty(
-            @RequestPart("property")
-            PropertyRequest request,
-
-            @RequestPart("images")
+            @RequestPart("property") BienDto request,
+            @RequestPart(value = "images", required = false)
             List<MultipartFile> images
-    ) throws IOException {
+    ) throws Exception {
 
         List<String> imageKeys = new ArrayList<>();
 
-        for (MultipartFile image : images) {
-            imageKeys.add(
-                    s3Service.uploadFile(image)
-            );
+        if (images != null) {
+            for (MultipartFile image : images) {
+                imageKeys.add(s3Service.uploadFile(image));
+
+
+            }
         }
+        bienService.creerBien(request,images);
 
         return ResponseEntity.ok(imageKeys);
     }
@@ -107,6 +108,15 @@ public class BienController
             @RequestBody CritereRechercheDto critere) {
 
         return bienService.rechercheDetaillee(critere);
+    }
+
+    @GetMapping("/type/avendre")
+    public List<Bien> getBiensAvendre() {
+        return bienService.getBiensAVendre();
+    }
+    @GetMapping("/type/alouer")
+    public List<Bien> getBienAlouer() {
+        return bienService.getBiensALouer();
     }
     @PutMapping(
             value="/{id}/update",
@@ -153,5 +163,14 @@ public class BienController
 
 
         return ResponseEntity.ok(updatedBien);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteBien(
+            @PathVariable Long id) {
+
+        bienService.deleteBien(id);
+
+        return ResponseEntity.noContent().build();
+
     }
 }

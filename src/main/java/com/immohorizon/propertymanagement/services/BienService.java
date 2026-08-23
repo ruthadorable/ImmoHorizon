@@ -29,14 +29,41 @@ public class BienService {
         this.bienRepository = bienRepository;
         this.s3Service=s3Service;
     }
-    public Bien creerBien(String title, String description, Double price,String commune, List<MultipartFile> images) throws Exception {
+    public Bien creerBien(BienDto bienDto, List<MultipartFile> images) throws Exception {
 
         Bien bien = new Bien();
-        bien.setTitle(title);
-        bien.setDescription(description);
-        bien.setPrix(price);
-        bien.setCommune(commune);
-
+        bien.setTitle(bienDto.getTitle());
+        bien.setDescription(bienDto.getDescription());
+        bien.setPrix(bienDto.getPrix());
+        bien.setCommune(bienDto.getCommune());
+        bien.setAscenseur(bienDto.isAscenceur());
+        bien.setType(bienDto.getType());
+        bien.setTypeDeBien(bienDto.getTypeDeBien());
+        bien.setSuperficie(bienDto.getSuperficie());
+        bien.setChambres(bienDto.getChambres());
+        bien.setPeb(bienDto.getPeb());
+        bien.setEnergieTotale(bienDto.getEnergieTotale());
+        bien.setEnergieSpecifique(bienDto.getEnergieSpecifique());
+        bien.setEmissionCO2(bienDto.getEmissionCO2());
+        bien.setRue(bienDto.getRue());
+        bien.setNumero(bienDto.getNumero());
+        bien.setCode_postal(bien.getCode_postal());
+        bien.setCommune(bienDto.getCommune());
+        bien.setFacades(bienDto.getFacades());
+        bien.setAnnee_construction(bienDto.getAnnee_construction());
+        bien.setType_chauffage(bienDto.getType_chauffage());
+        bien.setDisponibilite(bienDto.getDisponibilite());
+        bien.setEtat(bienDto.getEtat());
+        bien.setEtages(bienDto.getEtages());
+        bien.setParking(bienDto.isParking());
+        bien.setGarage(bienDto.isGarage());
+        bien.setJardin(bienDto.isJardin());
+        bien.setTerrasse(bienDto.isTerrasse());
+        bien.setCave(bienDto.isCave());
+        bien.setDisponible(bienDto.isDisponible());
+        bien.setSurfaceHabitable(bienDto.getSurfaceHabitable());
+        bien.setSurfaceJardinTerrasse(bienDto.getSurfaceJardinTerrasse());
+        if (images != null && !images.isEmpty()) {
         for (MultipartFile file : images) {
 
             String key = s3Service.uploadFile(file);
@@ -46,7 +73,7 @@ public class BienService {
             img.setBien(bien);
 
             bien.getImages().add(img);
-        }
+        }}
 
         return bienRepository.save(bien);
     }
@@ -127,6 +154,14 @@ public class BienService {
         }
 
         return biens;
+    }
+
+    public List<Bien> getBiensALouer() {
+        return bienRepository.findByTypeIgnoreCase("A louer");
+    }
+
+    public List<Bien> getBiensAVendre() {
+        return bienRepository.findByTypeIgnoreCase("A vendre");
     }
 
 
@@ -342,6 +377,15 @@ public class BienService {
 
 
         return bienRepository.save(bien);
+    }
+    public void deleteBien(Long id) {
+
+        Bien bien = bienRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Property not found with id : " + id));
+
+        bienRepository.delete(bien);
+
     }
 
 }

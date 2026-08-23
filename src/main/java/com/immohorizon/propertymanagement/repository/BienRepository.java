@@ -10,4 +10,7 @@ public interface BienRepository extends JpaRepository<Bien,Long> {
             String commune,
             String typeDeBien
     );
+
+    List<Bien> findByTypeIgnoreCase(String type);
+
 }

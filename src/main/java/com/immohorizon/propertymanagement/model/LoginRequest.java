@@ -13,6 +13,8 @@ public class LoginRequest {
     @Column
     private int idRole;
     @Column
+    private String role;
+    @Column
     private String nom;
     @Column
     private String prenom;

@@ -2,6 +2,7 @@ package com.immohorizon.propertymanagement.services;
 
 import com.immohorizon.propertymanagement.model.LoginRequest;
 
+import com.immohorizon.propertymanagement.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -18,16 +19,38 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-    }
+    public String generateToken(User user) {
 
-    public String generateToken(String email) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(user.getEmail())
+                .claim("role", user.getRole())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .setExpiration(
+                        new Date(
+                                System.currentTimeMillis() + 86400000
+                        )
+                )
+                .signWith(
+                        Keys.hmacShaKeyFor(
+                                secret.getBytes()
+                        )
+                )
                 .compact();
     }
+
+    public String extractEmail(String token){
+
+        return Jwts.parserBuilder()
+                .setSigningKey(
+                        Keys.hmacShaKeyFor(
+                                secret.getBytes()
+                        )
+                )
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
+
 }
