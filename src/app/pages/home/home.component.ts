@@ -19,7 +19,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent {
 
-  banner: HomepageBanner | null = null;; 
+  banner!: HomepageBanner; 
   homePageService = inject(HomepageService);
 
   constructor(private translate: TranslateService) { }
