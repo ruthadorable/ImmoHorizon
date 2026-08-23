@@ -14,6 +14,10 @@ export class AuthService {
     this.currentUser.set(user);
   }
 
+  getRoles(): string[] {
+    return this.currentUser()?.roles ?? [];
+  }
+
   clearUser() {
     this.currentUser.set(null);
   }

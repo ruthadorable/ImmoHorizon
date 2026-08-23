@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-properties',
-  imports: [MatToolbarModule,TranslateModule,MatCardModule,SearchBarComponent,PropertiesListComponent,MatButtonModule,MatIconModule,RouterLink],
+  imports: [MatToolbarModule,TranslateModule,MatCardModule,SearchBarComponent,PropertiesListComponent,MatButtonModule,MatIconModule],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css'
 })

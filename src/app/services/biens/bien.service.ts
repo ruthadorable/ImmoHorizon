@@ -12,6 +12,11 @@ export class BienService {
 
   constructor(private http: HttpClient) {}
 
+  deleteProperty(id: number): Observable<void> {
+
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+
+  }
 
   getPropertyById(id:number): Observable<Bien>{
     return this.http.get<Bien>(this.apiUrl+'/'+id);

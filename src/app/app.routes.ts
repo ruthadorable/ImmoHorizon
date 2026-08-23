@@ -14,6 +14,10 @@ import { AvendreComponent } from './pages/properties/avendre/avendre.component';
 import { AlouerComponent } from './pages/properties/alouer/alouer.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { GererBlogComponent } from './pages/blog/gerer-blog/gerer-blog.component';
+import { CreerBlogComponent } from './pages/blog/creer-blog/creer-blog.component';
+import { ModifierBlogComponent } from './pages/blog/modifier-blog/modifier-blog.component';
+import { ArticleDetailsComponent } from './pages/blog/article-details/article-details.component';
 export const routes: Routes = [
     {
         path:'',
@@ -83,6 +87,23 @@ export const routes: Routes = [
     },{
         path:'content',
         component: DashboardContentComponent
+    },
+    {
+        path: 'gerer-blog',
+        component: GererBlogComponent
+      },{
+        path:'creer-blog',
+        component: CreerBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
+    },{
+        path:'modifier-blog/:id',
+        component: ModifierBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
+    },{
+        path:'blog/:id',
+        component: ArticleDetailsComponent
     }
     ]
     },
@@ -92,7 +113,6 @@ export const routes: Routes = [
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['EMPLOYE'] }
     },
-    
     {
         path:'admin',
         component: AdminDashboardComponent,

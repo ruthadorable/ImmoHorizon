@@ -1,0 +1,233 @@
+.blog-hero{
+
+    height:350px;
+
+    background-image:url("/assets/images/blog-banner.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+
+}
+
+
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+}
+
+
+.hero-overlay h1{
+
+    font-size:48px;
+
+    font-weight:700;
+
+}
+
+
+.hero-overlay p{
+
+    margin-top:10px;
+
+    font-size:20px;
+
+}
+
+
+.search{
+
+    margin-top:30px;
+
+    width:450px;
+
+    background:white;
+
+    border-radius:8px;
+
+}
+
+
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding:50px 0;
+
+}
+
+
+
+.categories{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:50px;
+
+}
+
+
+
+.categories button{
+
+    border-radius:40px;
+
+}
+
+
+
+.featured-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+    margin-bottom:60px;
+
+}
+
+
+
+.featured-card{
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+
+
+.featured-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+}
+
+
+
+.featured-card img{
+
+    height:330px;
+
+    object-fit:cover;
+
+}
+
+
+
+.articles-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+
+
+.article-card{
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+
+
+.article-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+
+.article-card img{
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+
+
+.category{
+
+    display:inline-block;
+
+    background:#d4af37;
+
+    color:white;
+
+    padding:5px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.article-card h3{
+
+    margin-top:10px;
+
+    font-size:22px;
+
+}
+
+
+
+.article-card p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}

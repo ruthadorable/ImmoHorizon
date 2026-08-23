@@ -208,7 +208,8 @@
 },"GREETING":{
         "Good_morning":"Good morning",
         "Good_afternoon":"Good afternoon",
-        "Good_evening":"Good evening"
+        "Good_evening":"Good evening",
+        "Welcome":"Welcome"
     },
     "ETAT":{
         "DISPONIBLE":"Available",
@@ -229,5 +230,32 @@
         "RESULTS": "Results",
         "SEARCH_RESULTS": "Search results",
         "NO_RESULTS": "No results"
+    },
+    "BLOG":{
+        "Heading":"Blog Management",
+        "TITLE":"Our Blog",
+        "TEXT": "Discover our latest articles and news about the real estate market, home decoration, and more. Stay informed and inspired with ImmoHorizon.",
+        "READ_MORE":"Read more",
+        "COMMENTS":"Comments",
+        "POSTED_ON":"Posted on",
+        "AUTHOR":"Author"
+    },
+    "ARTICLE":{
+        "TITLE":"Article Details",
+        "TEXT": "Read the full article and discover more about the real estate market, home decoration, and more. Stay informed and inspired with ImmoHorizon.",
+        "BACK_TO_BLOG":"Back to Blog",
+        "CATEGORY":"Category",
+        "LINK":"Link",
+        "READ_MORE":"Read more",
+        "COMMENTS":"Comments",
+        "POSTED_ON":"Posted on",
+        "AUTHOR":"Author",
+        "DESCRIPTION":"Description",
+        "CONTENT":"Contenu",
+        "Heading":"Blog Management",
+        "SubHeading":"Manage your blog articles and share your knowledge with your audience.",
+        "NewArticle":"New Article",
+        "EditArticle":"Edit Article",
+        "Title": "Article Title"
     }
 }

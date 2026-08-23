@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-avendre',
   imports: [MatIconModule,
-    RouterLink,
     MatButtonModule,MatToolbarModule,PropertyCardComponent,TranslateModule
   ],
   templateUrl: './avendre.component.html',

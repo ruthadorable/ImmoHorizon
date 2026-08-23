@@ -10,9 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginService } from '../../services/auth/login/login.service';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../models/login-request';
 import { RegisterService } from '../../services/auth/register/register.service';
-import { error } from 'node:console';
 
 @Component({
   selector: 'app-login-dialog',
@@ -95,11 +93,17 @@ export class LoginDialogComponent {
           return;
         }
 
-        localStorage.setItem('token', token);
+        
         console.log(response);
         this.loginService.setRoles(response.user?.role);
-        this.loginService.setToken(response.jwtToken);
-        localStorage.setItem("auth_token",response.jwtToken);
+         localStorage.setItem(
+                "token",
+                response.jwtToken
+            );
+          localStorage.setItem(
+                "user",
+                JSON.stringify(response.user)
+            );
         const role= response.user?.role;
         console.log("role",role);
         localStorage.setItem('username',response.user?.nom);

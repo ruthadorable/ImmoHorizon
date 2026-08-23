@@ -212,7 +212,8 @@
     "GREETING":{
         "Good_morning":"Bonjour",
         "Good_afternoon":"Bonjour",
-        "Good_evening":"Bonsoir"
+        "Good_evening":"Bonsoir",
+        "Welcome":"Bienvenue"
     },
     "ETAT": {
   "DISPONIBLE": "Disponible",
@@ -234,6 +235,50 @@
   "RESULTS": "Resultats",
   "SEARCH_RESULTS": "Resultats de recherche",
   "NO_RESULTS": "Aucun bien ne correspond à vos critères de recherche"
+},
+"BLOG": { "Heading": "Gestion du blog", 
+"TITLE": "Notre Blog",
+ "TEXT": "Découvrez nos derniers articles et actualités sur le marché immobilier, la décoration intérieure et bien plus encore. Restez informé et laissez-vous inspirer avec ImmoHorizon.",
+  "READ_MORE": "Lire la suite",
+   "COMMENTS": "Commentaires",
+    "POSTED_ON": "Publié le", 
+    "AUTHOR": "Auteur"
+},
+  "ARTICLE": { "TITLE": "Détails de l'article",
+   "TEXT": "Lisez l'article complet et découvrez davantage d'informations sur le marché immobilier, la décoration intérieure et bien plus encore. Restez informé et laissez-vous inspirer avec ImmoHorizon.",
+    "BACK_TO_BLOG": "Retour au blog",
+     "CATEGORY": "Catégorie",
+      "LINK": "Lien",
+       "READ_MORE": "Lire la suite",
+        "COMMENTS": "Commentaires",
+         "POSTED_ON": "Publié le",
+          "AUTHOR": "Auteur", 
+          "DESCRIPTION": "Description",
+           "CONTENT": "Contenu",
+            "Heading": "Gestion du blog", 
+            "SubHeading": "Gérez les articles de votre blog et partagez vos connaissances avec votre audience.", 
+            "NewArticle": "Nouvel article", 
+            "EditArticle": "Modifier l'article",
+        "Title": "Titre de l'article" },
+       "CATEGORIES": {
+    "Title": "Catégories",
+    "AddCategory": "Ajouter une catégorie",
+    "EditCategory": "Modifier une catégorie",
+    "DeleteCategory": "Supprimer une catégorie",
+    "CategoryName": "Nom de la catégorie",
+    "CategoryDescription": "Description de la catégorie",
+    "Buying": "Achat",
+    "Selling": "Vente",
+    "Renting": "Location",
+    "Investment": "Investissement",
+    "Taxes": "Fiscalité",
+    "ECONOMY": "ÉCONOMIE",
+    "MARKETING": "MARKETING",
+    "TECHNOLOGY": "TECHNOLOGIE",
+    "Finance": "Finance",
+    "Real Estate": "Immobilier",
+    "Lifestyle": "Style de vie",
+    "Charity": "Œuvres caritatives",
+    "Legal Advice": "Conseils juridiques"
 }
-
 }

@@ -1,0 +1,38 @@
+@startuml
+
+actor Utilisateur
+participant Angular
+participant "Spring Boot" as API
+participant Stripe
+database MySQL
+
+Utilisateur -> Angular : Cliquer sur "Publier"
+
+Angular -> API : POST /payments/create\n(propertyId)
+
+API -> MySQL : Créer Payment(PENDING)
+API -> Stripe : Create PaymentIntent(amount)
+
+Stripe --> API : paymentIntentId + client_secret
+
+API --> Angular : client_secret
+
+Angular -> Stripe : confirmPayment(client_secret)
+
+Stripe --> Angular : Paiement accepté
+
+== Webhook ==
+
+Stripe -> API : payment_intent.succeeded
+
+API -> API : Vérifier signature webhook
+
+API -> MySQL : Rechercher Payment\npar paymentIntentId
+
+API -> MySQL : Payment.status = SUCCEEDED
+
+API -> MySQL : Property.published = true
+
+API --> Stripe : HTTP 200 OK
+
+@enduml

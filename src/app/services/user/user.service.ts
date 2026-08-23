@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserAuthService } from '../auth/user-auth.service';
-import { MOCK_USER } from '../../models/mock-user';
+import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService{
-    
-
   private userCopy!:User;
   private baseUrl!:string;
   private addUserUrl!: string;
@@ -18,21 +15,20 @@ export class UserService{
   private updateUserUrl!:string;
   private deleteUserUrl!:string;
   private PATH_OF_API = 'http://localhost:8080';
+  private authService = inject(AuthService);
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
   headers = new HttpHeaders()
   .set('Content-Type', 'application/json')
   .set('X-API-TOKEN', localStorage.getItem('jwtToken') || '');
 
-  constructor(private httpclient: HttpClient,private userAuthService: UserAuthService) 
+
+  constructor(private httpclient: HttpClient) 
   {    
     this.baseUrl="http://localhost:8080/api/user";
     this.addUserUrl="http://localhost:8080/api/user/add";
     this.getUserUrl="http://localhost:8080/api/user/all";
     this.updateUserUrl="http://localhost:8080/api/user/update/";
     this.deleteUserUrl="http://localhost:8080/api/user/delete/";
-
-    
-
   }
 
 
@@ -72,7 +68,7 @@ export class UserService{
 
   public roleMatch(allowedRoles:any): boolean{
     let isMatch = false;
-    const userRoles: any = this.userAuthService.getRoles();
+    const userRoles: any = this.authService.getRoles();
 
     if (userRoles != null && userRoles) {
       
@@ -103,19 +99,21 @@ export class UserService{
     return this.httpclient.get<User[]>(`${this.getUserUrl}`);
   }
 
+  public getUsers(): Observable<User[]> {
+    return this.httpclient.get<User[]>(`${this.baseUrl}/all`);
+  }
+
   public postUser(user: User): Observable<User> {
     return this.httpclient.post<User>(`${this.addUserUrl}`, user);
   }
 
   public updateUser(user: User): Observable<User>{
-    return this.httpclient.put<User>(`${this.updateUserUrl}${user.id}`,user);
+    return this.httpclient.put<User>(`${this.updateUserUrl}${user.id_user}`,user);
   }
   public getUserById(id:number): Observable<User>{
     return this.httpclient.get<User>(`${this.baseUrl}/id`);
   }
-  public getUserByFind(id:number):any{
-    return MOCK_USER.find( (x)=> x.id === id);
-  }
+  
   public deleteUser(id:number,user:User): Observable<User>{
     return this.httpclient.delete<User>(`${this.deleteUserUrl}`+id);
   }

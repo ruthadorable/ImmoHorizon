@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, HttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, HttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
@@ -31,7 +31,29 @@ export const appConfig: ApplicationConfig = {
       useValue: 'fr'
     },
     provideNativeDateAdapter(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(),
+  withInterceptors([
+      (req,next)=>{
+
+      const token =
+      localStorage.getItem('token');
+
+
+      if(token){
+
+      req=req.clone({
+      setHeaders:{
+      Authorization:`Bearer ${token}`
+      }
+      });
+
+      }
+
+
+      return next(req);
+
+      }
+      ])),
 
     importProvidersFrom(
       TranslateModule.forRoot({

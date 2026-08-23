@@ -18,7 +18,8 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DeleteConfirmDialogComponent } from '../../../shared/delete-confirm-dialog/delete-confirm-dialog.component';
 export function frenchPaginator() {
   const paginator = new MatPaginatorIntl();
 
@@ -34,21 +35,28 @@ export function frenchPaginator() {
   selector: 'app-gerer-bien',
   imports: [CommonModule,MatCardModule,MatButtonModule,MatToolbarModule,
     MatSidenavModule, MatListModule,MatButtonModule,MatTableModule,MatIcon,
-    MatIconModule,MatTooltipModule,TopToolbarComponent,TranslateModule,DatePipe,MatPaginatorModule
+    MatIconModule,MatTooltipModule,TopToolbarComponent,TranslateModule,DatePipe,MatPaginatorModule,
+    MatDialogModule
   ],
   templateUrl: './gerer-bien.component.html',
   styleUrl: './gerer-bien.component.css'
 })
 export class GererBienComponent {
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+   paginator!: MatPaginator;
 
-  bienService=inject(BienService)
-  route=inject(Router)
-  properties!:Bien[];
-  dataSource:any;
+   bienService=inject(BienService);
+   route=inject(Router)
+   properties!:Bien[];
+   dataSource:any;
+   dialog= inject(MatDialog);
   ngOnInit(){
-    this.bienService.getAllProperties().subscribe((data)=>{
+    this.loadProperties();
+
+  }
+
+  loadProperties(){
+     this.bienService.getAllProperties().subscribe((data)=>{
       this.properties=data;
        this.dataSource = new MatTableDataSource(this.properties);
        if (this.paginator) {
@@ -56,13 +64,7 @@ export class GererBienComponent {
     }
     }
     )
-
   }
- 
-
-  
-  
- 
   
   displayedColumns = [
     'image',
@@ -100,6 +102,47 @@ export class GererBienComponent {
      this.route.navigate(['employee/dashboard/modifier-bien/'+id]);
   }
 
-  deleteProperty(id: number) {}
-  
+  deleteDialog(id: number) {
+      this.dialog.open(DeleteConfirmDialogComponent, {
+        data: {
+          title:'Confimer la suppression ',
+          message: 'Etes-vous sûre de vouloir supprimer le bien '+id+'?'
+        },
+        width: '600px',
+        disableClose: true
+      });
+    }
+
+ deleteProperty(id: number): void {
+
+  const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
+    width: '400px',
+    disableClose: true,
+    data: {
+      title: 'Delete Property',
+      message: 'Are you sure you want to permanently delete this property?'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (result) {
+
+      this.bienService.deleteBien(id).subscribe({
+
+        next: () => {
+
+          this.loadProperties();
+
+        },
+
+        error: err => console.error(err)
+
+      });
+
+    }
+
+  });
+
+}
 }

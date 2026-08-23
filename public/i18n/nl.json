@@ -205,7 +205,8 @@
     "GREETING": {
     "Good_morning": "Goedemorgen",
     "Good_afternoon": "Goedemiddag",
-    "Good_evening": "Goedenavond"
+    "Good_evening": "Goedenavond",
+    "Welcome":"Welkom"
   },
   "ETAT": {
   "DISPONIBLE": "Beschikbaar",
@@ -226,6 +227,45 @@
   "RESULTS": "Resultaten",
   "SEARCH_RESULTS": "Zoekresultaten",
   "NO_RESULTS": "Geen resultaten gevonden"
+},"BLOG": { "Heading": "Blogbeheer", 
+"TITLE": "Onze Blog",
+ "TEXT": "Ontdek onze nieuwste artikelen en nieuws over de vastgoedmarkt, interieurdecoratie en nog veel meer. Blijf op de hoogte en laat je inspireren door ImmoHorizon.", "READ_MORE": "Lees meer", "COMMENTS": "Reacties", "POSTED_ON": "Gepubliceerd op",
+  "AUTHOR": "Auteur" }, 
+  "ARTICLE": { "TITLE": "Artikelgegevens",
+   "TEXT": "Lees het volledige artikel en ontdek meer over de vastgoedmarkt, interieurdecoratie en nog veel meer. Blijf op de hoogte en laat je inspireren door ImmoHorizon.", 
+   "BACK_TO_BLOG": "Terug naar de blog", 
+   "CATEGORY": "Categorie", 
+   "LINK": "Link", 
+   "READ_MORE": "Lees meer", 
+   "COMMENTS": "Reacties", 
+   "POSTED_ON": "Gepubliceerd op", 
+   "AUTHOR": "Auteur", 
+   "DESCRIPTION": "Beschrijving", 
+   "CONTENT": "Inhoud", 
+   "Heading": "Artikelbeheer", 
+   "SubHeading": "Beheer je artikel en deel je kennis met je publiek.", 
+   "NewArticle": "Nieuw artikel", 
+   "EditArticle": "Artikel bewerken",
+    "Title": "Artikel titel"
+ },"CATEGORIES": {
+    "Title": "Categorieën",
+    "AddCategory": "Categorie toevoegen",
+    "EditCategory": "Categorie bewerken",
+    "DeleteCategory": "Categorie verwijderen",
+    "CategoryName": "Categorienaam",
+    "CategoryDescription": "Categoriebeschrijving",
+    "Buying": "Kopen",
+    "Selling": "Verkopen",
+    "Renting": "Huren",
+    "Investment": "Investeren",
+    "Taxes": "Belastingen",
+    "ECONOMY": "ECONOMIE",
+    "MARKETING": "MARKETING",
+    "TECHNOLOGY": "TECHNOLOGIE",
+    "Finance": "Financiën",
+    "Real Estate": "Vastgoed",
+    "Lifestyle": "Levensstijl",
+    "Charity": "Goede doelen",
+    "Legal Advice": "Juridisch advies"
 }
-
 }

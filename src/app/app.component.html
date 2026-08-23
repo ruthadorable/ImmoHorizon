@@ -49,7 +49,7 @@
                     </mat-menu>
                 }
                   @if(role==="Employe"){
-                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
+                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
                     <mat-menu #dashboard="matMenu">
                       <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
                       <button mat-menu-item (click)="navToProfile()">Profile</button>

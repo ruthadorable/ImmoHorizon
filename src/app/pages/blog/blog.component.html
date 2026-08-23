@@ -1,1 +1,107 @@
-<p>blog works!</p>
+<section class="blog-hero">
+
+    <div class="hero-overlay">
+
+        <h1>Real Estate Blog</h1>
+
+        <p>
+            Buying • Selling • Renting • Investment • Advice
+        </p>
+
+        <mat-form-field class="search">
+
+            <mat-icon matPrefix>search</mat-icon>
+
+            <input
+                    matInput
+                    type="text"
+                    placeholder="Search article"
+                    [(ngModel)]="searchText"
+                    (input)="filterArticles()">
+
+        </mat-form-field>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+    <div class="categories">
+
+        <button mat-stroked-button color="primary">
+            All
+        </button>
+
+        <button mat-button>
+            Buying
+        </button>
+
+        <button mat-button>
+            Selling
+        </button>
+
+        <button mat-button>
+            Renting
+        </button>
+
+        <button mat-button>
+            Investment
+        </button>
+
+        <button mat-button>
+            Taxes
+        </button>
+
+    </div>
+
+
+
+    <section class="articles-grid">
+        @for(article of filteredArticles|search:searchText; track $index){
+            @if(article.image){
+
+        <mat-card
+                class="article-card">
+
+            <img
+                    mat-card-image
+                    [src]="article.image">
+
+            <mat-card-content>
+
+                <span class="category my-4">
+                    {{article.category.split(" ")[0]}}
+                </span>
+
+                <h3>
+
+                    {{article.title}}
+
+                </h3>
+
+                <p>
+
+                    {{article.description}}
+
+                </p>
+
+                <button
+                    mat-button
+                    color="primary"
+                    (click)="goTo(article.link)"
+                    >
+
+                    Read article
+
+            </button>
+
+            </mat-card-content>
+
+        </mat-card>}
+    }
+
+    </section>
+
+</div>

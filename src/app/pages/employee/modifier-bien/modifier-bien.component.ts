@@ -65,7 +65,6 @@ export class ModifierBienComponent {
   private bienService =inject(BienService);
   private route = inject(ActivatedRoute);
   private propertyId!: number;
-  private translateService = inject(TranslateService);
 propertyForm = this.fb.group({
   title: this.fb.control<string | null>(null),
   description: this.fb.control<string | null>(null),
@@ -144,8 +143,6 @@ propertyForm = this.fb.group({
         response
       );
     },
-
-
     error: err => {
       console.error(
         "Update failed",
@@ -241,8 +238,7 @@ saveImages() {
     );
 
   });
-
-
-
 }
+
+
 }

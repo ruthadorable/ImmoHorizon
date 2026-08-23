@@ -2,6 +2,11 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:application": {
+      "ssr": false
+    }
+  },
   "projects": {
     "ImmoHorizon-frontend": {
       "projectType": "application",
@@ -31,13 +36,8 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
             "security": {
               "allowedHosts": []
-            },
-            "prerender": true,
-            "ssr": {
-              "entry": "src/server.ts"
             }
           },
           "configurations": {

@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-alouer',
   imports: [MatIconModule,
-    RouterLink,
     MatButtonModule,MatToolbarModule,PropertyCardComponent,TranslateModule],
   templateUrl: './alouer.component.html',
   styleUrl: './alouer.component.css'

@@ -1,31 +1,225 @@
+<div class="bg-gray-50 min-h-screen">
 
-<div class="min-h-full">
-  
+    <!-- HERO BANNER -->
 
-  <header class="relative bg-white shadow-sm">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ 'Slogan' | translate }}</h1>
-    </div>
-  </header>
-  <main>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 invert">
-      <h2>{{ 'HOME.WELCOME' | translate }}</h2>
-      <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
-    </div>
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <div class="jusity-center mt-5  p-10 flex">{{ 'HOME.FEATURED_PROPERTIES' | translate }}</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          @for(property of featuredProperties;track property.id){
-          <mat-card  class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img mat-card-image [src]="property.imageUrl" alt="{{ property.title }}" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="text-lg font-semibold">{{ property.title | translate }}</h3>
-              <p class="text-gray-600">{{ property.description }}</p>
-              <button mat-button color="primary" class="mt-2">{{ 'HOME.VIEW_DETAILS' | translate }}</button>
-            </div>
-          </mat-card>
-          }
+    <section
+        class="relative h-[650px] overflow-hidden">
+
+        <img
+            class="absolute inset-0 w-full h-full object-cover"
+            [src]="banner?.image"
+            alt="Homepage Banner">
+
+        <div
+            class="absolute inset-0 bg-black/60">
         </div>
-      </div>
-  </main>
+
+        <div
+            class="relative z-10 h-full flex items-center">
+
+            <div class="max-w-7xl mx-auto px-6 w-full">
+
+                <div class="max-w-3xl text-white">
+
+                    <span
+                        class="uppercase tracking-widest text-orange-400 font-semibold">
+
+                        Welcome to ImmoHorizon
+
+                    </span>
+
+                    <h1
+                        class="text-5xl lg:text-7xl font-bold mt-4 leading-tight">
+
+                        {{banner?.title}}
+
+                    </h1>
+
+                    <p
+                        class="mt-8 text-xl text-gray-200 leading-8">
+
+                        {{banner?.subtitle}}
+
+                    </p>
+
+                    <p
+                        class="mt-6 text-lg text-gray-300">
+
+                        {{banner?.description}}
+
+                    </p>
+
+                    <div
+                        class="mt-10 flex gap-4 flex-wrap">
+
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            [routerLink]="banner?.buttonLink">
+
+                            {{banner?.buttonText}}
+
+                        </button>
+
+                        <button
+                            mat-stroked-button
+                            class="!border-white !text-white"
+                            [routerLink]="banner?.secondaryButtonLink">
+
+                            {{banner?.secondaryButtonText}}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="py-20">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div
+                class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <mat-card class="text-center p-8">
+
+                    <mat-icon
+                        class="!text-5xl text-orange-500">
+
+                        home
+
+                    </mat-icon>
+
+                    <h3
+                        class="font-bold text-xl mt-6">
+
+                        Buy
+
+                    </h3>
+
+                    <p class="mt-4 text-gray-600">
+
+                        Thousands of verified homes.
+
+                    </p>
+
+                </mat-card>
+
+                <mat-card class="text-center p-8">
+
+                    <mat-icon
+                        class="!text-5xl text-orange-500">
+
+                        apartment
+
+                    </mat-icon>
+
+                    <h3
+                        class="font-bold text-xl mt-6">
+
+                        Rent
+
+                    </h3>
+
+                    <p class="mt-4 text-gray-600">
+
+                        Apartments, houses and offices.
+
+                    </p>
+
+                </mat-card>
+
+                <mat-card class="text-center p-8">
+
+                    <mat-icon
+                        class="!text-5xl text-orange-500">
+
+                        trending_up
+
+                    </mat-icon>
+
+                    <h3
+                        class="font-bold text-xl mt-6">
+
+                        Invest
+
+                    </h3>
+
+                    <p class="mt-4 text-gray-600">
+
+                        Find investment opportunities.
+
+                    </p>
+
+                </mat-card>
+
+                <mat-card class="text-center p-8">
+
+                    <mat-icon
+                        class="!text-5xl text-orange-500">
+
+                        support_agent
+
+                    </mat-icon>
+
+                    <h3
+                        class="font-bold text-xl mt-6">
+
+                        Advice
+
+                    </h3>
+
+                    <p class="mt-4 text-gray-600">
+
+                        Professional real estate experts.
+
+                    </p>
+
+                </mat-card>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- LATEST PROPERTIES -->
+
+    <section class="pb-20">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex justify-between items-center mb-10">
+
+                <h2
+                    class="text-4xl font-bold">
+
+                    Latest Properties
+
+                </h2>
+
+                <button
+                    mat-button
+                    routerLink="/properties">
+
+                    View All
+
+                </button>
+
+            </div>
+
+            <!-- Property cards -->
+
+        </div>
+
+    </section>
+
 </div>
