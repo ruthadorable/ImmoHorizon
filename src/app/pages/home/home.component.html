@@ -7,7 +7,7 @@
 
         <img
             class="absolute inset-0 w-full h-full object-cover"
-            [src]="banner?.image"
+            [src]="banner.image"
             alt="Homepage Banner">
 
         <div
@@ -31,21 +31,21 @@
                     <h1
                         class="text-5xl lg:text-7xl font-bold mt-4 leading-tight">
 
-                        {{banner?.title}}
+                        {{banner.title}}
 
                     </h1>
 
                     <p
                         class="mt-8 text-xl text-gray-200 leading-8">
 
-                        {{banner?.subtitle}}
+                        {{banner.subtitle}}
 
                     </p>
 
                     <p
                         class="mt-6 text-lg text-gray-300">
 
-                        {{banner?.description}}
+                        {{banner.description}}
 
                     </p>
 
@@ -55,9 +55,9 @@
                         <button
                             mat-raised-button
                             color="primary"
-                            [routerLink]="banner?.buttonLink">
+                            [routerLink]="banner.buttonLink">
 
-                            {{banner?.buttonText}}
+                            {{banner.buttonText}}
 
                         </button>
 
@@ -66,7 +66,7 @@
                             class="!border-white !text-white"
                             [routerLink]="banner?.secondaryButtonLink">
 
-                            {{banner?.secondaryButtonText}}
+                            {{banner.secondaryButtonText}}
 
                         </button>
 
