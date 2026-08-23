@@ -5,15 +5,6 @@ on:
     types:
       - completed
 jobs:
-  build:
-    runs-on: self-hosted
-    steps:
-    - name: Pull Docker image
-      run: sudo docker pull ruthann33/immohorizon-frontend:latest
-    - name: Delete old container
-      run: sudo docker rm -f immohorizon-frontend || true
-    - name: Run Docker Container
-      run: sudo docker run -d -p 80:80 --name immohorizon-frontend ruthann33/immohorizon-frontend:latest
   deploy:
     runs-on: ubuntu-latest
 
