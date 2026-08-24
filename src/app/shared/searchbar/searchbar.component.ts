@@ -125,7 +125,7 @@ export class SearchBarComponent {
     console.log('Advanced search toggled:', this.advanced);
   }
   onSearch(){
-
+    this.reset
     Object.entries(this.advancedForm.getRawValue())
     .map(([key, value]) => [
       key,
