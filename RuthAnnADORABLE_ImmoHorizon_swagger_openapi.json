@@ -1,0 +1,1744 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/put": {
+      "put": {
+        "tags": [
+          "controller"
+        ],
+        "operationId": "put",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/homepage/banner/{id}": {
+      "get": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "getBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "updateBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "banner": {
+                    "$ref": "#/components/schemas/BannerDto"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "banner"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "deleteBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/blog/{id}": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "getArticle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Article"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/biens/{id}/update": {
+      "put": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "updateProperty",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "$ref": "#/components/schemas/BienDto"
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "deletedImages": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "property"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file/upload": {
+      "post": {
+        "tags": [
+          "file-controller"
+        ],
+        "operationId": "saveFile",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/post": {
+      "post": {
+        "tags": [
+          "controller"
+        ],
+        "operationId": "post",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/test/generate": {
+      "post": {
+        "tags": [
+          "test-controller"
+        ],
+        "operationId": "generate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/homepage/banner": {
+      "get": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "getBanner_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "createBanner",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "banner": {
+                    "$ref": "#/components/schemas/BannerDto"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "banner"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog": {
+      "post": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArticleDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/search": {
+      "post": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "rechercheDetaillee",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CritereRechercheDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bien"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/create": {
+      "post": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "createProperty",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "$ref": "#/components/schemas/BienDto"
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": [
+                  "property"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "registerUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/addUser": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/patch": {
+      "patch": {
+        "tags": [
+          "controller"
+        ],
+        "operationId": "patch",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file/get-all": {
+      "get": {
+        "tags": [
+          "file-controller"
+        ],
+        "operationId": "getAllFiles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/File"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get": {
+      "get": {
+        "tags": [
+          "controller"
+        ],
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get/{id}": {
+      "get": {
+        "tags": [
+          "controller"
+        ],
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/homepage/banner/all": {
+      "get": {
+        "tags": [
+          "home-page-banner-controller"
+        ],
+        "operationId": "getAllBanners",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BannerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/search": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/recent": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "recent",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/featured": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "featured",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/category/{category}": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "category",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/all": {
+      "get": {
+        "tags": [
+          "blog-controller"
+        ],
+        "operationId": "getAllArticles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/{id}": {
+      "get": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "getBien",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bien"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/type/avendre": {
+      "get": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "getBiensAvendre",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bien"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/type/alouer": {
+      "get": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "getBienAlouer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bien"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/recherche": {
+      "get": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "rechercheRapide",
+        "parameters": [
+          {
+            "name": "motCle",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bien"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/all": {
+      "get": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "getAllBiens",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bien"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/users": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/user/:id": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biens/delete/{id}": {
+      "delete": {
+        "tags": [
+          "bien-controller"
+        ],
+        "operationId": "deleteBien",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BannerDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "buttonText": {
+            "type": "string"
+          },
+          "buttonLink": {
+            "type": "string"
+          },
+          "secondaryButtonText": {
+            "type": "string"
+          },
+          "secondaryButtonLink": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Article": {
+        "type": "object",
+        "properties": {
+          "idArticle": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "readingTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "BienDto": {
+        "type": "object",
+        "properties": {
+          "idBien": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "typeDeBien": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "prix": {
+            "type": "number",
+            "format": "double"
+          },
+          "superficie": {
+            "type": "number",
+            "format": "double"
+          },
+          "chambres": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peb": {
+            "type": "string"
+          },
+          "energieTotale": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "energieSpecifique": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "emissionCO2": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rue": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code_postal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "commune": {
+            "type": "string"
+          },
+          "facades": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "annee_construction": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type_chauffage": {
+            "type": "string"
+          },
+          "disponibilite": {
+            "type": "string",
+            "format": "date"
+          },
+          "etat": {
+            "type": "string"
+          },
+          "etages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parking": {
+            "type": "boolean"
+          },
+          "garage": {
+            "type": "boolean"
+          },
+          "ascenceur": {
+            "type": "boolean"
+          },
+          "jardin": {
+            "type": "boolean"
+          },
+          "terrasse": {
+            "type": "boolean"
+          },
+          "cave": {
+            "type": "boolean"
+          },
+          "surfaceHabitable": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "surfaceJardinTerrasse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disponible": {
+            "type": "boolean"
+          },
+          "proprietaire": {
+            "$ref": "#/components/schemas/User"
+          },
+          "locataire": {
+            "$ref": "#/components/schemas/User"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/File"
+            }
+          }
+        }
+      },
+      "File": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "fileUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "CLIENT",
+              "EMPLOYE"
+            ]
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          },
+          "noGsm": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "ArticleDto": {
+        "type": "object",
+        "properties": {
+          "idArticle": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "image": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "readingTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "CritereRechercheDto": {
+        "type": "object",
+        "properties": {
+          "commune": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "typeDeBien": {
+            "type": "string"
+          },
+          "minPrix": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxPrix": {
+            "type": "number",
+            "format": "double"
+          },
+          "minSuperficie": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxSuperficie": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chambres": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salleDeBain": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "etages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disponible": {
+            "type": "boolean"
+          },
+          "meuble": {
+            "type": "boolean"
+          },
+          "terrasse": {
+            "type": "boolean"
+          },
+          "jardin": {
+            "type": "boolean"
+          },
+          "parking": {
+            "type": "boolean"
+          },
+          "garage": {
+            "type": "boolean"
+          },
+          "cave": {
+            "type": "boolean"
+          },
+          "ascenseur": {
+            "type": "boolean"
+          },
+          "surfaceJarTerrasse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "anneeDeConstruction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "etat": {
+            "type": "string"
+          },
+          "peb": {
+            "type": "string"
+          }
+        }
+      },
+      "Bien": {
+        "type": "object",
+        "properties": {
+          "idBien": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "typeDeBien": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "prix": {
+            "type": "number",
+            "format": "double"
+          },
+          "superficie": {
+            "type": "number",
+            "format": "double"
+          },
+          "chambres": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salleDeBain": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peb": {
+            "type": "string"
+          },
+          "energieTotale": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "energieSpecifique": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type_chauffage": {
+            "type": "string"
+          },
+          "emissionCO2": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rue": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code_postal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "commune": {
+            "type": "string"
+          },
+          "facades": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "annee_construction": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "disponibilite": {
+            "type": "string",
+            "format": "date"
+          },
+          "etat": {
+            "type": "string"
+          },
+          "etages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parking": {
+            "type": "boolean"
+          },
+          "ascenseur": {
+            "type": "boolean"
+          },
+          "garage": {
+            "type": "boolean"
+          },
+          "jardin": {
+            "type": "boolean"
+          },
+          "terrasse": {
+            "type": "boolean"
+          },
+          "cave": {
+            "type": "boolean"
+          },
+          "meuble": {
+            "type": "boolean"
+          },
+          "surfaceHabitable": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "surfaceJardinTerrasse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disponible": {
+            "type": "boolean"
+          },
+          "proprietaire": {
+            "$ref": "#/components/schemas/User"
+          },
+          "locataire": {
+            "$ref": "#/components/schemas/User"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "disponibilité": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imageKey": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "primary": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "noGsm": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "CLIENT",
+              "EMPLOYE"
+            ]
+          },
+          "id_role": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "idRole": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "type": "string"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "noGsm": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "jwtToken": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDto"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "CLIENT",
+              "EMPLOYE"
+            ]
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "noGsm": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
