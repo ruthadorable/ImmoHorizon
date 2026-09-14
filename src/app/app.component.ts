@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 export class HomeComponent {}
 
 @Component({
@@ -38,9 +37,10 @@ export class HomeComponent {}
 export class AppComponent {
   title = 'ImmoHorizon-frontend';
   public loginService = inject(LoginService);
+  public dialog = inject(MatDialog);
   private platformId = inject(PLATFORM_ID);
   public role:any;
-  constructor(private translate: TranslateService,private dialog: MatDialog,private router:Router) {
+  constructor(private translate: TranslateService,private router:Router) {
     this.translate.addLangs(['en', 'fr', 'nl']);
     this.translate.use('en');
     
@@ -72,6 +72,11 @@ export class AppComponent {
   navToAdminDashboard(){
     this.router.navigate(['/admin']);
   }
+
+  navTo(path: string) {
+    this.router.navigate([`/${path}`]);
+  }
+
   public getRole(){
     const role=this.loginService.role.toString();
     return role || ''
@@ -90,6 +95,7 @@ export class AppComponent {
   logout(){
     this.loginService.logout();
   }
+  
 
 }
 

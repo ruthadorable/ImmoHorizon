@@ -40,11 +40,11 @@ isRecent(){
   }
 
   const disponibilite = new Date(this.property.disponibilite);
-  const oneMonthAgo = new Date();
+  const threeMonthAgo = new Date();
 
-  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+  threeMonthAgo.setMonth(threeMonthAgo.getMonth() - 3);
 
-  return disponibilite >= oneMonthAgo
+  return disponibilite >= threeMonthAgo
 }
  ;
 }

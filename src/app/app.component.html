@@ -127,7 +127,7 @@
 
     <a
       mat-button
-      routerLink="/new"
+      routerLink="new"
       class="nav-link">
       <mat-icon>apartment</mat-icon>
       <span>Neuf</span>
@@ -135,10 +135,10 @@
 
     <a
       mat-button
-      routerLink="/professionnels"
+      routerLink="professionnels"
       class="nav-link">
       <mat-icon>business_center</mat-icon>
-      <span>Professionnels</span>
+      <span>Estimation gratuite</span>
     </a>
 
   </nav>
@@ -147,7 +147,8 @@
   <button
     mat-raised-button
     color="primary"
-    class="publish-btn">
+    class="publish-btn"
+    (click)="navTo('publierannonce')">
 
     <mat-icon>add</mat-icon>
     Publier une annonce

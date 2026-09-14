@@ -24,8 +24,11 @@ export class BienService {
   getBiensAvendre(): Observable<Bien>{
     return this.http.get<Bien>(this.apiUrl+'/type/avendre');
   }
- getBiensAlouer(): Observable<Bien>{
+  getBiensAlouer(): Observable<Bien>{
     return this.http.get<Bien>(this.apiUrl+'/type/alouer');
+  }
+  getNewProperties(): Observable<Bien[]> {
+    return this.http.get<Bien[]>(this.apiUrl+'/new');
   }
 
 

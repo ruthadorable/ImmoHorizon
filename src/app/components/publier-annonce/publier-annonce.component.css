@@ -1,0 +1,596 @@
+/* =========================================================
+   PAGE PRINCIPALE
+   ========================================================= */
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.property-form-container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 40px 30px 60px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.form-header {
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+
+.form-header h1 {
+  margin: 0 0 12px;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  color: #111111;
+}
+
+.form-header p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #777777;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+form {
+  width: 100%;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.form-section {
+  width: 100%;
+
+  margin-bottom: 25px;
+
+  padding: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e3e3e3;
+
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER DES SECTIONS
+   ========================================================= */
+
+.form-section mat-card-header {
+  padding: 22px 25px 10px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.form-section mat-card-title {
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #111111;
+}
+
+.form-section mat-card-subtitle {
+  margin-top: 5px;
+
+  color: #777777;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CONTENU DES SECTIONS
+   ========================================================= */
+
+.form-section mat-card-content {
+  padding: 25px;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   FULL WIDTH
+   ========================================================= */
+
+.full-width {
+  width: 100%;
+
+  margin-top: 18px;
+}
+
+
+/* =========================================================
+   FORM FIELDS
+   ========================================================= */
+
+mat-form-field {
+  width: 100%;
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+textarea {
+  resize: vertical;
+
+  min-height: 130px;
+}
+
+
+/* =========================================================
+   TITRES
+   ========================================================= */
+
+.form-section h3 {
+  margin: 25px 0 15px;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  color: #222222;
+}
+
+
+/* =========================================================
+   ÉQUIPEMENTS
+   ========================================================= */
+
+.features {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+}
+
+.features mat-checkbox {
+  padding: 10px 12px;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  transition: all 0.2s ease;
+}
+
+.features mat-checkbox:hover {
+  border-color: #c9a227;
+
+  background: #fffdf5;
+}
+
+
+/* =========================================================
+   ZONE UPLOAD
+   ========================================================= */
+
+.upload-zone {
+  min-height: 190px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px;
+
+  border: 2px dashed #c9a227;
+
+  border-radius: 12px;
+
+  background: #fffef9;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+.upload-zone:hover {
+  background: #fffbea;
+
+  border-color: #a88715;
+}
+
+.upload-zone mat-icon {
+  width: 48px;
+
+  height: 48px;
+
+  font-size: 48px;
+
+  color: #c9a227;
+
+  margin-bottom: 10px;
+}
+
+.upload-zone h3 {
+  margin: 5px 0;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: #222222;
+}
+
+.upload-zone p {
+  margin: 5px 0;
+
+  color: #666666;
+}
+
+.upload-zone small {
+  margin-top: 5px;
+
+  color: #999999;
+}
+
+
+/* =========================================================
+   GRILLE DES IMAGES
+   ========================================================= */
+
+.image-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-top: 25px;
+}
+
+
+/* =========================================================
+   PREVIEW IMAGE
+   ========================================================= */
+
+.image-preview {
+  position: relative;
+
+  height: 190px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  border: 1px solid #dddddd;
+
+  background: #f5f5f5;
+}
+
+.image-preview img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   BOUTON SUPPRIMER
+   ========================================================= */
+
+.remove-image {
+  position: absolute !important;
+
+  top: 8px;
+
+  right: 8px;
+
+  width: 35px !important;
+
+  height: 35px !important;
+
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  border-radius: 50%;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   PHOTO PRINCIPALE
+   ========================================================= */
+
+.primary-label {
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  padding: 9px;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BOUTON "PRINCIPALE"
+   ========================================================= */
+
+.image-preview button:not(.remove-image) {
+  margin-top: 8px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.form-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 35px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #eeeeee;
+}
+
+.form-actions button {
+  min-height: 44px;
+
+  min-width: 140px;
+
+  padding: 0 22px;
+
+  border-radius: 6px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   BOUTON PRINCIPAL
+   ========================================================= */
+
+.form-actions button[color="primary"] {
+  background: #c9a227;
+
+  color: #ffffff;
+}
+
+.form-actions button[color="primary"]:hover {
+  background: #ad8918;
+}
+
+.form-actions button[color="primary"]:disabled {
+  background: #dddddd;
+
+  color: #999999;
+}
+
+
+/* =========================================================
+   FOCUS MATERIAL
+   ========================================================= */
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__leading,
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__notch,
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__trailing {
+  border-color: #c9a227 !important;
+}
+
+
+/* =========================================================
+   CHECKBOX MATERIAL
+   ========================================================= */
+
+::ng-deep
+.mat-mdc-checkbox.mat-accent {
+  --mdc-checkbox-selected-icon-color: #c9a227;
+  --mdc-checkbox-selected-hover-icon-color: #c9a227;
+  --mdc-checkbox-selected-focus-icon-color: #c9a227;
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLETTE
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+  .property-form-container {
+    padding: 30px 20px 50px;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .property-form-container {
+    padding: 25px 15px 40px;
+  }
+
+  .form-header h1 {
+    font-size: 25px;
+  }
+
+  .form-header p {
+    font-size: 14px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section mat-card-content {
+    padding: 20px 15px;
+  }
+
+  .form-section mat-card-header {
+    padding: 20px 15px 10px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   PETIT MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .property-form-container {
+    padding: 20px 10px 30px;
+  }
+
+  .form-header {
+    margin-bottom: 25px;
+  }
+
+  .form-header h1 {
+    font-size: 22px;
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-preview {
+    height: 220px;
+  }
+
+  .upload-zone {
+    min-height: 160px;
+
+    padding: 20px;
+  }
+}
