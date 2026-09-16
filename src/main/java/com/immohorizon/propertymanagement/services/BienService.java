@@ -164,6 +164,17 @@ public class BienService {
         return bienRepository.findByTypeIgnoreCase("A vendre");
     }
 
+    public List<Bien> getBiensRecents() {
+
+        LocalDate futur = LocalDate.now().plusMonths(3);
+        LocalDate passe = LocalDate.now().minusMonths(3);
+
+        return bienRepository.findByDisponibiliteBetween(
+                passe,
+                futur
+        );
+    }
+
 
         /**
          * Recherche rapide par mot-clé

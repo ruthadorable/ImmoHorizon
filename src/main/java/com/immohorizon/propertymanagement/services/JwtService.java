@@ -40,15 +40,15 @@ public class JwtService {
 
     public String extractEmail(String token){
 
-        return Jwts.parserBuilder()
-                .setSigningKey(
+        return Jwts.parser()
+                .verifyWith(
                         Keys.hmacShaKeyFor(
-                                secret.getBytes()
+                                secret.getBytes(StandardCharsets.UTF_8)
                         )
                 )
                 .build()
-                .parseClaimsJws(token)
-                .getBody()
+                .parseSignedClaims(token)
+                .getPayload()
                 .getSubject();
     }
 

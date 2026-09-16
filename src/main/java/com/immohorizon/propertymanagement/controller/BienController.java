@@ -42,6 +42,10 @@ public class BienController
                 bienService.getAllBiens()
         );
     }
+    @GetMapping("/new")
+    public List<Bien> getBiensRecents() {
+        return bienService.getBiensRecents();
+    }
     @GetMapping("/{id}")
     public Bien getBien(@PathVariable long id){
 

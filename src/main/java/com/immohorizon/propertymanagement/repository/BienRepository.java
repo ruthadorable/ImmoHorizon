@@ -3,6 +3,7 @@ package com.immohorizon.propertymanagement.repository;
 import com.immohorizon.propertymanagement.model.Bien;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BienRepository extends JpaRepository<Bien,Long> {
@@ -12,5 +13,8 @@ public interface BienRepository extends JpaRepository<Bien,Long> {
     );
 
     List<Bien> findByTypeIgnoreCase(String type);
-
+    List<Bien> findByDisponibiliteBetween(
+            LocalDate dateDebut,
+            LocalDate dateFin
+    );
 }

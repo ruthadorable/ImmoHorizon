@@ -10,8 +10,7 @@ public class LoginRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUser;
-    @Column
-    private int idRole;
+
     @Column
     private String role;
     @Column
@@ -74,15 +73,7 @@ public class LoginRequest {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    public int getIdRole() {
-        return idRole;
-    }
-
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
-    }
-
+    
     public long getIdUser() {
         return idUser;
     }

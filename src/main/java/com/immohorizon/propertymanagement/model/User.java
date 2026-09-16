@@ -22,6 +22,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column
+    private int idRole;
+    @Column
     private String nom;
     @Column
     private String prenom;
@@ -33,6 +35,8 @@ public class User {
     private String password;
     @Column
     private String noGsm;
+    @Transient
+    private String token;
 
     public String getNoGsm() {
         return noGsm;
