@@ -10,6 +10,7 @@ import { HomepageBanner } from '../../models/banner.model';
 import { HomepageService } from '../../services/homepage/homepage.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { banners } from '../../mock/banner.sample';
 
 @Component({
   selector: 'app-home',
@@ -30,14 +31,14 @@ export class HomeComponent {
   
 
 ngOnInit(): void {
+  this.banner = banners[0];
+    // this.homePageService
+    //     .getActiveBanner()
+    //     .subscribe(banner => {
 
-    this.homePageService
-        .getActiveBanner()
-        .subscribe(banner => {
+    //         this.banner = banner;
 
-            this.banner = banner;
-
-        });
+    //     });
 
 }
    

@@ -257,5 +257,26 @@
         "NewArticle":"New Article",
         "EditArticle":"Edit Article",
         "Title": "Article Title"
+    },
+    "CATEGORIES":{
+        "Title":"Categories",
+        "AddCategory":"Add Category",
+        "EditCategory":"Edit Category",
+        "DeleteCategory":"Delete Category",
+        "CategoryName":"Category Name",
+        "CategoryDescription":"Category Description",
+        "Buying":"Buying",
+        "Selling":"Selling",
+        "Renting":"Renting",
+        "Investment":"Investment",
+        "Taxes":"Taxes",
+        "ECONOMY":"ECONOMY",    
+        "MARKETING":"MARKETING",
+        "TECHNOLOGY":"TECHNOLOGY",
+        "Finance":"Finance",
+        "Real Estate":"Real Estate",
+        "Lifestyle":"Lifestyle",
+        "Charity":"Charity",
+        "Legal Advice":"Legal Advice"   
     }
 }

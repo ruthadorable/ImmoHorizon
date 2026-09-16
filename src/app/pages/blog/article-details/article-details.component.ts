@@ -16,13 +16,11 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './article-details.component.css'
 })
 export class ArticleDetailsComponent {
-public article!:Article;
-  public selectedImage!: Image;
-  public adresse!:string;
+  public article!:Article;
   private blogService=inject(BlogService);
   private route=inject(ActivatedRoute);
   private articleId!:number;
-  private translateService=inject(TranslateService);
+  
   
 
 
