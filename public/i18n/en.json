@@ -6,9 +6,22 @@
         "FEATURED_PROPERTIES": "Recent Properties",
         "VIEW_DETAILS": "View Details",
         "All_PROPERTIES": "All Properties",
+        "Estimation": "Free Estimation",
+        "Latest": "Latest Properties",
         "Publish":"List a property"
     },
-    "MENU":{
+    "ABOUT":{
+        "Title": "About ImmoHorizon",
+        "Description": "Helping buyers,sellers and investors fint the perfect property with innovation and professional guidance.",
+        "Title2": "Our Story",
+        "Description2": "ImmoHorizon was founded with a simple mission: make buying, selling and renting property easier for everyone. Our team combines real estate expertise with modern technology to provide a seamless experience from the first search until the final signature.",
+        "Title3": "Our Mission",
+        "Description3": "To provide a comprehensive and user-friendly platform for real estate transactions, ensuring that every client finds their ideal property with ease and confidence.",
+        "Title4": "Our Vision",
+        "Description4": "To be the leading real estate platform in Belgium, known for our commitment to customer satisfaction, innovation, and integrity in every transaction.",
+        "Final_Description": "Whether you are looking for your dream home, selling your property, or investing in real estate, our specialists are here to guide you every step of the way."
+    },
+        "MENU":{
         "HOME": "Home",
         "ABOUT_US": "About us",
         "PROPERTIES": "Properties",

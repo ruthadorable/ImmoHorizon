@@ -5,8 +5,11 @@
         "FEATURED_PROPERTIES": "Uitgelichte Eigendommen",
         "VIEW_DETAILS": "Bekijk Details",
         "All_PROPERTIES": "Alle Eigendommen",
+        "Latest": "Laatste Eigendommen",
+        "Estimation": "Gratis Schatting",
         "Publish":"Woning aanbieden"
     },
+    "ABOUT": { "Title": "Over ImmoHorizon", "Description": "Wij helpen kopers, verkopers en investeerders om de ideale woning te vinden dankzij innovatie en professionele begeleiding.", "Title2": "Ons verhaal", "Description2": "ImmoHorizon werd opgericht met een eenvoudige missie: het kopen, verkopen en huren van vastgoed voor iedereen eenvoudiger maken. Ons team combineert vastgoedexpertise met moderne technologie om een vlotte ervaring te bieden, van de eerste zoektocht tot de uiteindelijke ondertekening.", "Title3": "Onze missie", "Description3": "Een uitgebreid en gebruiksvriendelijk platform aanbieden voor vastgoedtransacties, zodat elke klant gemakkelijk en met vertrouwen de ideale woning kan vinden.", "Title4": "Onze visie", "Description4": "Het toonaangevende vastgoedplatform in België worden, bekend om onze inzet voor klanttevredenheid, innovatie en integriteit bij elke vastgoedtransactie.","Final_Description": "Of u nu op zoek bent naar uw droomwoning, uw vastgoed wilt verkopen of wilt investeren in vastgoed, onze specialisten staan klaar om u bij elke stap van uw project te begeleiden." },
     "MENU":{
         "HOME": "Home",
         "ABOUT_US": "Over ons",

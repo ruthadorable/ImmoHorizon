@@ -130,7 +130,7 @@
       routerLink="new"
       class="nav-link">
       <mat-icon>apartment</mat-icon>
-      <span>Neuf</span>
+      <span>{{'HOME.Latest' | translate}}</span>
     </a>
 
     <a
@@ -138,7 +138,7 @@
       routerLink="professionnels"
       class="nav-link">
       <mat-icon>business_center</mat-icon>
-      <span>Estimation gratuite</span>
+      <span> {{'HOME.Estimation' | translate}} </span>
     </a>
 
   </nav>
@@ -151,7 +151,7 @@
     (click)="navTo('publierannonce')">
 
     <mat-icon>add</mat-icon>
-    Publier une annonce
+    {{'HOME.Publish' | translate }}
 
   </button>
 

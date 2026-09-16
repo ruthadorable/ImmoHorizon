@@ -5,8 +5,12 @@
         "FEATURED_PROPERTIES": "Propriétés en vedette",
         "VIEW_DETAILS": "Voir les détails",
         "All_PROPERTIES": "Toutes les propriétés",
+        "Latest": "Propriétés Récentes",
+        "Estimation": "Estimation Gratuite",
         "Publish":"Publier une annonce"
     },
+    "ABOUT": { "Title": "À propos d’ImmoHorizon", "Description": "Nous aidons les acheteurs, les vendeurs et les investisseurs à trouver le bien immobilier idéal grâce à l’innovation et à un accompagnement professionnel.", "Title2": "Notre histoire", "Description2": "ImmoHorizon a été fondée avec une mission simple : rendre l’achat, la vente et la location de biens immobiliers plus simples pour tous. Notre équipe combine expertise immobilière et technologies modernes afin d’offrir une expérience fluide, de la première recherche jusqu’à la signature finale.", "Title3": "Notre mission", "Description3": "Proposer une plateforme complète et intuitive pour les transactions immobilières, afin que chaque client puisse trouver facilement et en toute confiance le bien qui lui correspond.", "Title4": "Notre vision", "Description4": "Devenir la plateforme immobilière de référence en Belgique, reconnue pour son engagement envers la satisfaction de ses clients, son innovation et son intégrité dans chaque transaction.",
+"Final_Description": "Que vous soyez à la recherche de la maison de vos rêves, que vous souhaitiez vendre votre bien ou investir dans l’immobilier, nos spécialistes sont là pour vous accompagner à chaque étape de votre projet." },
     "MENU":{
         "HOME": "Accueil",
         "ABOUT_US": "À propos",
