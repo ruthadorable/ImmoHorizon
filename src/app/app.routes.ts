@@ -18,6 +18,8 @@ import { GererBlogComponent } from './pages/blog/gerer-blog/gerer-blog.component
 import { CreerBlogComponent } from './pages/blog/creer-blog/creer-blog.component';
 import { ModifierBlogComponent } from './pages/blog/modifier-blog/modifier-blog.component';
 import { ArticleDetailsComponent } from './pages/blog/article-details/article-details.component';
+import { PublierAnnonceComponent } from './components/publier-annonce/publier-annonce.component';
+import { NewpropertiesComponent } from './pages/properties/newproperties/newproperties.component';
 export const routes: Routes = [
     {
         path:'',
@@ -45,6 +47,18 @@ export const routes: Routes = [
         path:'alouer',
         component: AlouerComponent,
         data: { breadcrumb: 'A LOUER' },
+        children:[]
+    },
+      {
+        path:'new',
+        component: NewpropertiesComponent,
+        data: { breadcrumb: 'NEW' },
+        children:[]
+    },
+       {
+        path:'publierannonce',
+        component: PublierAnnonceComponent,
+        data: { breadcrumb: 'Publier une annonce' },
         children:[]
     },
     {

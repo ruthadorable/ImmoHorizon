@@ -8,6 +8,8 @@ export class Image {
 
     url: string; // optional (can be generated instead)
 
+    file?: File;
+
     constructor(isPrimary: boolean, imageKey: string, url: string) {
         this.primary = isPrimary;
         this.imageKey = imageKey;

@@ -14,7 +14,7 @@
   >
 
     <!-- Main Image -->
-     @if(selectedImage){
+     @if(selectedImage  || selectedImage == undefined){
       <img 
       [src]="getImageUrl(selectedImage.url)"
       class="w-full h-full object-cover transition-all duration-500"
