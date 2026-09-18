@@ -7,8 +7,11 @@ import { CriteresRecherche } from '../../models/criteresRecherche.model';
   providedIn: 'root'
 })
 export class BienService {
+  //local endpoint
+  //private apiUrl='http://localhost:8080/api/biens'
 
-   private apiUrl = 'http://localhost:8080/api/biens';
+  //aws endpoint
+  private apiUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/biens';
 
   constructor(private http: HttpClient) {}
 

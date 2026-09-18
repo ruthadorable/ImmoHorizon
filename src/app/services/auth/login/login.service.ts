@@ -12,7 +12,11 @@ import { signal } from '@angular/core';
 })
 export class LoginService {
 
-  private url='http://localhost:8080/api/auth'
+  //local endpoint
+  //private url='http://localhost:8080/api/auth';
+  //aws backend endpoint
+  private url = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/auth';
+
   private http=inject(HttpClient);
   private route= inject(Router);
   public  role = signal<string | null>(null);

@@ -7,8 +7,11 @@ import { Article } from '../../models/article.model';
   providedIn: 'root'
 })
 export class BlogService {
+  //local endpoint
+  //private apiUrl = 'http://localhost:8080/api/blog';
+  //aws backend endpoint
+  private apiUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/blog';
 
-  private apiUrl = 'http://localhost:8080/api/blog';
   private http= inject(HttpClient);
 
   constructor() { }

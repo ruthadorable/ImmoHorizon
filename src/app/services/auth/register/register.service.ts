@@ -7,7 +7,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegisterService {
-  private authUrl='http://localhost:8080/api/auth';
+  //local endpoint
+  //private authUrl='http://localhost:8080/api/auth';
+  //aws backend endpoint
+  private authUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/auth';
+
   private http=inject(HttpClient);
   constructor(http: HttpClient) { }
 

@@ -14,7 +14,11 @@ export class UserService{
   private getUserUrl!:string;
   private updateUserUrl!:string;
   private deleteUserUrl!:string;
-  private PATH_OF_API = 'http://localhost:8080';
+  //local endpoint
+  //private PATH_OF_API = 'http://localhost:8080';
+  //aws backend endpoint
+  private PATH_OF_API = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030';
+
   private authService = inject(AuthService);
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
   headers = new HttpHeaders()
