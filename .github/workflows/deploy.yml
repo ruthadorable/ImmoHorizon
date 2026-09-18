@@ -1,28 +1,41 @@
-  name: Deploy to EC2
-  uses: appleboy/ssh-action@v1.2.2
-  with:
-    host: ${{ secrets.EC2_HOST }}
-    username: ${{ secrets.EC2_USERNAME }}
-    key: ${{ secrets.EC2_SSH_KEY }}
-    script: |
-      cd ~/immohorizon
+name: Deploy to EC2
 
-      cat > .env << EOF
-      AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}
-      AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}
-      AWS_REGION=${{ secrets.AWS_REGION }}
-      AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}
-      SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}
-      SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}
-      SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-      JWT_SECRET=${{ secrets.JWT_SECRET }}
-      STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
-      STRIPE_WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }}
-      EOF
+on:
+  push:
+    branches:
+      - main
 
-      docker pull ruthann33/immohorizon-backend:latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-      docker compose down
-      docker compose up -d
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
 
-      docker image prune -f
+          script: |
+            cd ~/immohorizon
+
+            cat > .env << EOF
+            AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}
+            AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}
+            AWS_REGION=${{ secrets.AWS_REGION }}
+            AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}
+            SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}
+            SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}
+            SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
+            STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}
+            EOF
+
+            docker pull ruthann33/immohorizon-backend:latest
+
+            docker compose down
+            docker compose up -d
+
+            docker image prune -f
