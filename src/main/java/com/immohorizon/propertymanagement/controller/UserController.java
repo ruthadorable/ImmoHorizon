@@ -14,7 +14,7 @@ import com.immohorizon.propertymanagement.services.UserService;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins="http://immohorizon-demo.s3-website-us-east-1.amazonaws.com/")
+@CrossOrigin(origins="http://immohorizon-demo.s3-website-us-east-1.amazonaws.com")
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
