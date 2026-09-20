@@ -21,8 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/biens")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins="http://immohorizon-demo.s3-website-us-east-1.amazonaws.com")
+@CrossOrigin(origins="${FRONTEND_URL}")
 public class BienController
 {
     private final BienService bienService;

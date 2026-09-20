@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/file")
+@CrossOrigin(origins="${FRONTEND_URL}")
 public class FileController {
     @Autowired
     private FileService fileService;

@@ -2,10 +2,14 @@ package com.immohorizon.propertymanagement.dto;
 
 import com.immohorizon.propertymanagement.model.File;
 import com.immohorizon.propertymanagement.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BienDto {
 
         private long idBien;

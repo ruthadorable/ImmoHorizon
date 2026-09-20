@@ -12,8 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/homepage/banner")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins="http://immohorizon-demo.s3-website-us-east-1.amazonaws.com")
+@CrossOrigin(origins="${FRONTEND_URL}")
 @RequiredArgsConstructor
 public class HomePageBannerController {
 

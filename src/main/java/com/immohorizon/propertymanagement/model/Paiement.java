@@ -20,5 +20,5 @@ public class Paiement{
     @Enumerated(EnumType.STRING)
     private PaiementTitle intitule;
     @Column
-    private double montant;
+    private long montant;
 }

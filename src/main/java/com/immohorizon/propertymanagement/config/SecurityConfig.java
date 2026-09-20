@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 "/api/biens/search",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
+                                "/payment/v1/checkout",
                                 "/api/v1/**")
                         .permitAll()
                         // Public access to Swagger/OpenAPI documentation
