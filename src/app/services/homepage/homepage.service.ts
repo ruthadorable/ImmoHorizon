@@ -7,8 +7,15 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class HomepageService {
+<<<<<<< HEAD
 
    private readonly apiUrl = `${environment.apiUrl}/api/homepage/banner`;
+=======
+    //local endpoint
+   //private readonly apiUrl = 'http://localhost:8080/api/homepage/banner';
+   //aws backend endpoint
+     private apiUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/homepage/banner';
+>>>>>>> ea44efe56abb81482fb45ab79a6b302d8a2da318
 
   constructor(private http: HttpClient) {}
 
