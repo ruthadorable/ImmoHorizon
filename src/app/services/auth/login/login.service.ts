@@ -6,13 +6,13 @@ import { LoginResponse } from '../../../models/login-response';
 import { isPlatformBrowser } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { signal } from '@angular/core';
-
+import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private url='http://localhost:8080/api/auth'
+  private url=`${environment.apiUrl}/api/auth`;
   private http=inject(HttpClient);
   private route= inject(Router);
   public  role = signal<string | null>(null);

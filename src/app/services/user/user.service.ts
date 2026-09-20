@@ -3,6 +3,7 @@ import { User } from '../../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class UserService{
   private getUserUrl!:string;
   private updateUserUrl!:string;
   private deleteUserUrl!:string;
-  private PATH_OF_API = 'http://localhost:8080';
+  private PATH_OF_API = `${environment.apiUrl}`;
   private authService = inject(AuthService);
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
   headers = new HttpHeaders()
@@ -24,11 +25,11 @@ export class UserService{
 
   constructor(private httpclient: HttpClient) 
   {    
-    this.baseUrl="http://localhost:8080/api/user";
-    this.addUserUrl="http://localhost:8080/api/user/add";
-    this.getUserUrl="http://localhost:8080/api/user/all";
-    this.updateUserUrl="http://localhost:8080/api/user/update/";
-    this.deleteUserUrl="http://localhost:8080/api/user/delete/";
+    this.baseUrl=`${this.PATH_OF_API}/api/user`;
+    this.addUserUrl=`${this.PATH_OF_API}/api/user/add`;
+    this.getUserUrl=`${this.PATH_OF_API}/api/user/all`;
+    this.updateUserUrl=`${this.PATH_OF_API}/api/user/update/`;
+    this.deleteUserUrl=`${this.PATH_OF_API}/api/user/delete/`;
   }
 
 

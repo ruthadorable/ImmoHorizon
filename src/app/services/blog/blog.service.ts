@@ -2,13 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable ,inject} from '@angular/core';
 import { Observable,  } from 'rxjs';
 import { Article } from '../../models/article.model';
-
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  private apiUrl = 'http://localhost:8080/api/blog';
+  private apiUrl = `${environment.apiUrl}/api/blog`;
   private http= inject(HttpClient);
 
   constructor() { }
