@@ -7,15 +7,8 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class BlogService {
-  //local endpoint
-  //private apiUrl = 'http://localhost:8080/api/blog';
-  //aws backend endpoint
-  private apiUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/blog';
-
-<<<<<<< HEAD
+  
   private apiUrl = `${environment.apiUrl}/api/blog`;
-=======
->>>>>>> ea44efe56abb81482fb45ab79a6b302d8a2da318
   private http= inject(HttpClient);
 
   constructor() { }
