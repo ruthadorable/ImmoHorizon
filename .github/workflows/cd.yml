@@ -1,17 +1,62 @@
 name: CD WORKFLOW - Deploy Angular to S3
+
 on:
   workflow_run:
     workflows: ["Docker CI"]
     types:
       - completed
+
 jobs:
-  build:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     runs-on: self-hosted
+
     steps:
-    - name: Pull Docker image
-      run: sudo docker pull ruthann33/immohorizon-frontend:latest
-    - name: Delete old container
-      run: sudo docker rm -f immohorizon-frontend || true
-    - name: Run Docker Container
-      run: sudo docker run -d -p 80:80 --name immohorizon-frontend ruthann33/immohorizon-frontend:latest
-  
+
+      - name: Pull latest Docker image
+        run: |
+          sudo docker pull ruthann33/immohorizon-frontend:latest
+
+      - name: Remove old container
+        run: |
+          sudo docker rm -f immohorizon-frontend || true
+
+      - name: Create temporary container
+        run: |
+          sudo docker create \
+            --name immohorizon-frontend \
+            ruthann33/immohorizon-frontend:latest
+
+      - name: Copy Angular files from Docker image
+        run: |
+          sudo rm -rf ./angular-dist
+          sudo mkdir -p ./angular-dist
+
+          sudo docker cp \
+            immohorizon-frontend:/usr/share/nginx/html/. \
+            ./angular-dist/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy Angular to S3
+        run: |
+          aws s3 sync \
+            ./angular-dist/ \
+            s3://immohorizon-demo/ \
+            --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+
+      - name: Remove temporary container
+        run: |
+          sudo docker rm -f immohorizon-frontend || true
