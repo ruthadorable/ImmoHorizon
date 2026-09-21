@@ -6,6 +6,11 @@ on:
     types:
       - completed
 
+# Required for GitHub OIDC
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -16,33 +21,37 @@ jobs:
 
       - name: Pull latest Docker image
         run: |
-          sudo docker pull ruthann33/immohorizon-frontend:latest
+          docker pull ruthann33/immohorizon-frontend:latest
 
       - name: Remove old container
         run: |
-          sudo docker rm -f immohorizon-frontend || true
+          docker rm -f immohorizon-frontend || true
 
       - name: Create temporary container
         run: |
-          sudo docker create \
+          docker create \
             --name immohorizon-frontend \
             ruthann33/immohorizon-frontend:latest
 
       - name: Copy Angular files from Docker image
         run: |
-          sudo rm -rf ./angular-dist
-          sudo mkdir -p ./angular-dist
+          rm -rf ./angular-dist
+          mkdir -p ./angular-dist
 
-          sudo docker cp \
+          docker cp \
             immohorizon-frontend:/usr/share/nginx/html/. \
             ./angular-dist/
 
+      # Authenticate to AWS using GitHub OIDC
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::654452332313:role/ImmoHorizonGitHubActions
           aws-region: us-east-1
+
+      - name: Verify AWS identity
+        run: |
+          aws sts get-caller-identity
 
       - name: Deploy Angular to S3
         run: |
@@ -59,4 +68,4 @@ jobs:
 
       - name: Remove temporary container
         run: |
-          sudo docker rm -f immohorizon-frontend || true
+          docker rm -f immohorizon-frontend || true
