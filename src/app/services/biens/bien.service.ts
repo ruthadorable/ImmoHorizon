@@ -3,15 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Bien } from '../../models/bien.model';
 import { CriteresRecherche } from '../../models/criteresRecherche.model';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class BienService {
-  //local endpoint
-  //private apiUrl='http://localhost:8080/api/biens'
 
-  //aws endpoint
-  private apiUrl = 'http://ec2-44-192-116-114.compute-1.amazonaws.com:3030/api/biens';
+   private apiUrl = `${environment.apiUrl}/api/biens`;
 
   constructor(private http: HttpClient) {}
 

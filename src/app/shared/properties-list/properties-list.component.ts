@@ -16,50 +16,53 @@ import { PropertyCardComponent } from '../card/property-card/property-card.compo
 export class PropertiesListComponent {
   @Input()
   criteria!: CriteresRecherche;
-  properties?: Bien[] = [];
 
-  constructor(private propertyService: BienService, private translate: TranslateService
+  @Input()
+  showAll = false;
+
+  properties: Bien[] = [];
+
+  constructor(
+    private propertyService: BienService,
+    private translate: TranslateService
   ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
 
-  ngOnInit(): void {
-    this.propertyService.searchProperties(this.criteria).subscribe(
-      {
-        next: (data:any) =>{
-          this.properties=data;
-          console.log(data);
-          console.log("Resultats de la recherche", this.properties)
-        },
-        error: (err)=>{
-          console.error('Error loading properties',err);
-        }
+    if (changes['showAll']) {
+      if (this.showAll) {
+        this.loadAllProperties();
+      } else {
+        this.loadProperties();
       }
-    )
+    }
+
+    if (changes['criteria'] && this.criteria && !this.showAll) {
+      this.loadProperties();
+    }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-
-  if (changes['criteria'] && this.criteria) {
-    this.loadProperties();
+  loadAllProperties(): void {
+    this.propertyService.getAllProperties().subscribe({
+      next: (data: Bien[]) => {
+        this.properties = data;
+        console.log('All properties:', this.properties);
+      },
+      error: (err) => {
+        console.error('Error loading all properties:', err);
+      }
+    });
   }
 
-}
-
-loadProperties() {
-  console.log(this.criteria);
-
-  this.propertyService.searchProperties(this.criteria)
-    .subscribe({
-        next: (data:any) =>{
-          this.properties=data;
-          console.log(data);
-          console.log("On change:", this.properties)
-        },
-        error: (err)=>{
-          console.error('Error loading properties',err);
-        }
-      });
-}
-
-
+  loadProperties(): void {
+    this.propertyService.searchProperties(this.criteria).subscribe({
+      next: (data: Bien[]) => {
+        this.properties = data;
+        console.log('Search results:', this.properties);
+      },
+      error: (err) => {
+        console.error('Error loading properties:', err);
+      }
+    });
+  }
 }

@@ -18,6 +18,8 @@ import { RouterLink } from '@angular/router';
 export class PropertiesComponent {
   @Input()
   criteria!: CriteresRecherche;
+ 
+  showAll!: boolean;
 
   constructor(private translate: TranslateService) { }
 
@@ -31,6 +33,7 @@ export class PropertiesComponent {
     console.log("on search clicked");
     // Optional: Call your API
     this.loadProperties();
+    this.showAll = false; // Reset showAll when new search is performed
   }
 
   loadProperties() {
@@ -40,7 +43,8 @@ export class PropertiesComponent {
   {
 
   } 
-  
-  
-  } 
+  showAllProperties() {
+    this.showAll = true;
+    } 
+   } 
   

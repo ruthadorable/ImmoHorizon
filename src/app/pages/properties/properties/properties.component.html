@@ -26,25 +26,17 @@
 <main>
     
       <app-properties-list
-            [criteria]="criteria">
+            [criteria]="criteria"
+            [showAll]="showAll">
         </app-properties-list>
-        <div class="flex items-center justify-between mb-8">
-
-  <div>
-    <h2 class="text-3xl text-center font-bold text-slate-900">
-      Dernières annonces
-    </h2>
-
-    <p class="text-center text-slate-500 mt-1">
-      Les biens récemment ajoutés
-    </p>
-  </div>
-
-  <button class="text-center" mat-button color="primary">
-    Voir tout
-  </button>
-
-</div>  
+        <div class="flex justify-center mb-8">
+          <div class="text-center font-bold text-slate-900">
+          <button (click)="showAllProperties()"
+          class="text-center" mat-button color="primary">
+            Voir tout les biens
+          </button>
+          </div>
+        </div>  
   </main>
 
 
