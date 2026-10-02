@@ -2,23 +2,42 @@ name: Docker CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v7 
-    - name: Login Dockerhub
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-    - name: Build the Docker image
-      run: docker build -t ruthann33/immohorizon-frontend:latest .
-    - name: Push to Dockerhub
-      run: docker push ruthann33/immohorizon-frontend:latest
-      
-    
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Login DockerHub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login \
+            -u "$DOCKER_USERNAME" \
+            --password-stdin
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --no-cache \
+            -t ruthann33/immohorizon-frontend:latest .
+
+      - name: Verify Angular build
+        run: |
+          echo "===== OLD ALB ====="
+          docker run --rm ruthann33/immohorizon-frontend:latest \
+            sh -c 'grep -R -n "ALB-2045351442" /usr/share/nginx/html || true'
+
+          echo "===== CLOUDFRONT ====="
+          docker run --rm ruthann33/immohorizon-frontend:latest \
+            sh -c 'grep -R -n "d329gtcspf1xxc.cloudfront.net" /usr/share/nginx/html || true'
+
+      - name: Push Docker image
+        run: |
+          docker push ruthann33/immohorizon-frontend:latest
