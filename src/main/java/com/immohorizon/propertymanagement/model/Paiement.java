@@ -2,8 +2,11 @@ package com.immohorizon.propertymanagement.model;
 
 
 import com.immohorizon.propertymanagement.Enum.PaiementTitle;
+import com.immohorizon.propertymanagement.Enum.StatutPaiement;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,8 +20,23 @@ public class Paiement{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     private long idTransaction;
+    @Column
+    private Long IdUser;
+    @Column
+    private Long IdBien;
     @Enumerated(EnumType.STRING)
     private PaiementTitle intitule;
     @Column
     private long montant;
+    @Column
+    private String currency;
+    @Column
+    private String stripePaymentIntentId;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private StatutPaiement status;
+    @Column
+    private LocalDateTime createdAt;
+    @Column
+    private LocalDateTime paidAt;
 }
