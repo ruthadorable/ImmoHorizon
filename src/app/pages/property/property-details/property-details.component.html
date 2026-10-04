@@ -1,245 +1,405 @@
-<div class="bg-[#f8f8f8] min-h-screen">
-  <button mat-button (click)="navBack()"><mat-icon><img src="./images/arrow_back_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" /></mat-icon>Back</button>
+<div class="min-h-screen bg-[#f8f8f8]">
+
+  <!-- Back button -->
+  <div class="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+    <button
+      mat-button
+      (click)="navBack()"
+      class="flex items-center gap-1"
+    >
+      <mat-icon>
+        <img
+          src="./images/arrow_back_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png"
+          alt="Back"
+        />
+      </mat-icon>
+      <span>Back</span>
+    </button>
+  </div>
+
   <!-- Breadcrumb -->
-  <div class="max-w-7xl mx-auto px-6 py-4 text-sm text-gray-500">
+  <div class="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
     <app-breadcrumb></app-breadcrumb>
   </div>
 
-  <!-- Gallery -->
- <!-- Gallery -->
-<section class="max-w-7xl mx-auto px-6">
 
-  <div
-    class="relative group overflow-hidden rounded-xl bg-gray-100 h-[600px]"
+  <!-- ====================================================== -->
+  <!-- GALLERY -->
+  <!-- ====================================================== -->
+
+  <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- Main image -->
+    <div
+      class="group relative h-[280px] overflow-hidden rounded-xl bg-gray-100
+             sm:h-[400px]
+             md:h-[500px]
+             lg:h-[600px]"
+    >
+
+      @if (selectedImage || selectedImage == undefined) {
+
+        <img
+          [src]="getImageUrl(selectedImage.url)"
+          alt="Property image"
+          class="h-full w-full object-cover transition-all duration-500"
+        />
+
+      }
+
+      <!-- Previous -->
+      <button
+        (click)="previousImage()"
+        aria-label="Previous image"
+        class="absolute left-2 top-1/2 flex h-10 w-10
+               -translate-y-1/2 items-center justify-center
+               rounded-full bg-white/80 shadow-lg
+               transition duration-300
+               hover:bg-white
+               sm:left-4 sm:h-12 sm:w-12"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <!-- Next -->
+      <button
+        (click)="nextImage()"
+        aria-label="Next image"
+        class="absolute right-2 top-1/2 flex h-10 w-10
+               -translate-y-1/2 items-center justify-center
+               rounded-full bg-white/80 shadow-lg
+               transition duration-300
+               hover:bg-white
+               sm:right-4 sm:h-12 sm:w-12"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+
+    </div>
+
+
+    <!-- Thumbnails -->
+    <div
+      class="mt-3 flex gap-2 overflow-x-auto pb-2
+             sm:mt-4 sm:gap-3"
+    >
+
+      @for (img of property.images ?? []; track img.id) {
+
+        <img
+          [src]="getImageUrl(img.url)"
+          [alt]="'Property image ' + img.id"
+          (click)="selectImage(img)"
+          class="h-16 w-20 flex-shrink-0 cursor-pointer rounded-lg
+                 object-cover border-2 transition
+                 sm:h-20 sm:w-28"
+          [class.border-blue-600]="selectedImage.id === img.id"
+          [class.border-transparent]="selectedImage.id !== img.id"
+        />
+
+      }
+
+    </div>
+
+  </section>
+
+
+  <!-- ====================================================== -->
+  <!-- PROPERTY CONTENT -->
+  <!-- ====================================================== -->
+
+  <section
+    class="mx-auto w-full max-w-7xl px-4 py-8
+           sm:px-6 sm:py-10
+           lg:px-8 lg:py-12"
   >
 
-    <!-- Main Image -->
-     @if(selectedImage  || selectedImage == undefined){
-      <img 
-      [src]="getImageUrl(selectedImage.url)"
-      class="w-full h-full object-cover transition-all duration-500"
-      >
-     }
-    <!-- Previous -->
-    <button
-      (click)="previousImage()"
-      class="absolute left-4 top-1/2 -translate-y-1/2
-             opacity-0 group-hover:opacity-100
-             transition duration-300
-             bg-white/80 hover:bg-white
-             rounded-full w-12 h-12 shadow-lg
-             flex items-center justify-center"
+    <!--
+      Mobile:
+      1 column
+
+      Desktop:
+      8 / 4 columns
+    -->
+    <div
+      class="grid grid-cols-1 gap-8 text-center
+             lg:grid-cols-12 lg:gap-10"
     >
-      <mat-icon>chevron_left</mat-icon>
-    </button>
 
-    <!-- Next -->
-    <button
-      (click)="nextImage()"
-      class="absolute right-4 top-1/2 -translate-y-1/2
-             opacity-0 group-hover:opacity-100
-             transition duration-300
-             bg-white/80 hover:bg-white
-             rounded-full w-12 h-12 shadow-lg
-             flex items-center justify-center"
-    >
-      <mat-icon>chevron_right</mat-icon>
-    </button>
-
-  </div>
-
-  <!-- Thumbnails -->
-  <div class="flex gap-3 mt-4 overflow-x-auto">
-
-    @for(img of property.images ?? []; track img.id){
-
-      <img
-        [src]="getImageUrl(img.url)"
-        (click)="selectImage(img)"
-        class="w-28 h-20 object-cover rounded-lg cursor-pointer
-               border-2 transition"
-
-        [class.border-blue-600]="selectedImage.id === img.id"
-        [class.border-transparent]="selectedImage.id !== img?.id"
-      />
-
-    }
-
-  </div>
-
-</section>
-
-  <section class="max-w-7xl mx-auto px-6 py-8">
-
-    <div class="grid grid-cols-12 gap-8" style="text-align: center;min-height: 600px;">
-
+      <!-- ================================================== -->
       <!-- LEFT CONTENT -->
-      <div class="col-span-8">
-          @if(isRecent()){
-            <!-- Status -->
-        <span
-          class="inline-block bg-[#f8b400] text-white px-4 py-1 text-sm font-semibold uppercase"
-        >
-          New
-        </span>
+      <!-- ================================================== -->
 
-          }
-        
+      <div class="lg:col-span-8">
+
+        <!-- Status -->
+        @if (isRecent()) {
+
+          <span
+            class="inline-block bg-[#f8b400]
+                   px-4 py-1 text-xs font-semibold
+                   uppercase text-white
+                   sm:text-sm"
+          >
+            New
+          </span>
+
+        }
+
+
         <!-- Title -->
-        <h1 class="text-4xl font-light mt-4">
+        <h1
+          class="mt-4 text-3xl font-light
+                 sm:text-4xl"
+        >
           {{ property.typeDeBien }}
         </h1>
 
+
         <!-- Address -->
-        <p class="text-lg text-gray-600 mt-2">
+        <p
+          class="mt-2 text-base text-gray-600
+                 sm:text-lg"
+        >
           {{ adresse }}
         </p>
 
+
         <!-- Price -->
-        <div class="mt-6">
-          <h2 class="text-5xl font-bold text-[#1c1c1c]">
+        <div class="mt-5 sm:mt-6">
+
+          <h2
+            class="text-3xl font-bold text-[#1c1c1c]
+                   sm:text-4xl
+                   md:text-5xl"
+          >
             {{ property.prix | number:'1.0-0':'fr' }} €
           </h2>
+
         </div>
+
 
         <!-- Actions -->
-        <div class="flex gap-6 mt-6 border-b pb-6">
+        <div
+          class="mt-5 flex justify-center gap-3
+                 border-b pb-5
+                 sm:mt-6 sm:gap-6 sm:pb-6"
+        >
 
           <button
             mat-button
             class="icon-button"
+            aria-label="Favorite"
           >
             <mat-icon>favorite_border</mat-icon>
-            
           </button>
 
           <button
             mat-button
             class="icon-button"
+            aria-label="Print"
           >
             <mat-icon>print</mat-icon>
-            
           </button>
 
           <button
             mat-button
             class="icon-button"
+            aria-label="Share"
           >
             <mat-icon>share</mat-icon>
-            
           </button>
 
         </div>
 
-        <!-- Stats -->
+
+        <!-- ================================================== -->
+        <!-- STATS -->
+        <!-- ================================================== -->
+
         <div
-          class="grid grid-cols-4 gap-6 py-8 border-b"
+          class="grid grid-cols-2 gap-y-8
+                 border-b py-8
+                 sm:grid-cols-4 sm:gap-6"
         >
 
           <div>
-            <p class="text-gray-500 text-sm">
-              {{'BIEN.Chambres'| translate}}
+            <p class="text-sm text-gray-500">
+              {{ 'BIEN.Chambres' | translate }}
             </p>
-            <p class="text-3xl font-bold">
+
+            <p class="text-2xl font-bold sm:text-3xl">
               {{ property.chambres }}
             </p>
           </div>
 
+
           <div>
-            <p class="text-gray-500 text-sm">
-              {{'BIEN.Salle_de_bains'| translate}}
+            <p class="text-sm text-gray-500">
+              {{ 'BIEN.Salle_de_bains' | translate }}
             </p>
-            <p class="text-3xl font-bold">
+
+            <p class="text-2xl font-bold sm:text-3xl">
               {{ property.salleDeBain }}
             </p>
           </div>
 
+
           <div>
-            <p class="text-gray-500 text-sm">
-              {{'BIEN.SurfaceHabitable'| translate}}
+            <p class="text-sm text-gray-500">
+              {{ 'BIEN.SurfaceHabitable' | translate }}
             </p>
-            <p class="text-3xl font-bold">
+
+            <p class="text-2xl font-bold sm:text-3xl">
               {{ property.superficie }} m²
             </p>
           </div>
 
+
           <div>
-            <p class="text-gray-500 text-sm">
-              {{'BIEN.SurfaceJardin' | translate }}
+            <p class="text-sm text-gray-500">
+              {{ 'BIEN.SurfaceJardin' | translate }}
             </p>
-            <p class="text-3xl font-bold">
+
+            <p class="text-2xl font-bold sm:text-3xl">
               {{ property.surfaceJardinTerrasse }} m²
             </p>
           </div>
 
         </div>
 
-        <!-- Description -->
-        <section class="py-10 border-b">
 
-          <h3 class="text-3xl font-light mb-6">
-            {{'BIEN.Description'| translate}}
+        <!-- ================================================== -->
+        <!-- DESCRIPTION -->
+        <!-- ================================================== -->
+
+        <section class="border-b py-8 sm:py-10">
+
+          <h3
+            class="mb-5 text-2xl font-light
+                   sm:mb-6 sm:text-3xl"
+          >
+            {{ 'BIEN.Description' | translate }}
           </h3>
 
-          <p class="leading-8 text-gray-700">
+          <p
+            class="text-left leading-7 text-gray-700
+                   sm:leading-8"
+          >
             {{ property.description }}
           </p>
 
         </section>
 
-        <!-- Property Details -->
-        <section class="py-10 border-b">
 
-          <h3 class="text-3xl font-light mb-6">
+        <!-- ================================================== -->
+        <!-- PROPERTY INFORMATION -->
+        <!-- ================================================== -->
+
+        <section class="border-b py-8 sm:py-10">
+
+          <h3
+            class="mb-5 text-2xl font-light
+                   sm:mb-6 sm:text-3xl"
+          >
             Property Information
           </h3>
 
-          <div class="grid grid-cols-2 gap-x-20 gap-y-4">
 
-            <div class="flex justify-between">
+          <div
+            class="grid grid-cols-1 gap-4
+                   text-left
+                   sm:grid-cols-2 sm:gap-x-10 sm:gap-y-4"
+          >
+
+            <div
+              class="flex justify-between gap-4
+                     border-b border-gray-100 pb-2
+                     sm:border-0 sm:pb-0"
+            >
               <span>Reference</span>
-              <span>{{ property.proprietaireId ? 'Yes' : 'No' }}</span>
+
+              <span class="font-medium">
+                {{ property.proprietaireId ? 'Yes' : 'No' }}
+              </span>
             </div>
 
-            <div class="flex justify-between">
-              <span>{{'BIEN.Disponibilité'| translate}}</span>
-              <span>{{ property.disponibilite | date:'dd/MM/yyyy'}}</span>
+
+            <div
+              class="flex justify-between gap-4
+                     border-b border-gray-100 pb-2
+                     sm:border-0 sm:pb-0"
+            >
+              <span>
+                {{ 'BIEN.Disponibilité' | translate }}
+              </span>
+
+              <span class="font-medium">
+                {{ property.disponibilite | date:'dd/MM/yyyy' }}
+              </span>
             </div>
 
 
-            <div class="flex justify-between">
-              <span>{{'BIEN.Jardin'| translate}}</span>
-              <span>{{ property.jardin ? 'Yes' : 'No' }}</span>
+            <div
+              class="flex justify-between gap-4
+                     border-b border-gray-100 pb-2
+                     sm:border-0 sm:pb-0"
+            >
+              <span>
+                {{ 'BIEN.Jardin' | translate }}
+              </span>
+
+              <span class="font-medium">
+                {{ property.jardin ? 'Yes' : 'No' }}
+              </span>
             </div>
 
-            <div class="flex justify-between">
-              <span>{{'BIEN.Parking'| translate}}</span>
-              <span>{{ property.parking ? 'Yes' : 'No' }}</span>
+
+            <div
+              class="flex justify-between gap-4
+                     border-b border-gray-100 pb-2
+                     sm:border-0 sm:pb-0"
+            >
+              <span>
+                {{ 'BIEN.Parking' | translate }}
+              </span>
+
+              <span class="font-medium">
+                {{ property.parking ? 'Yes' : 'No' }}
+              </span>
             </div>
 
           </div>
 
         </section>
 
-        <!-- Energy -->
-        <section class="py-10">
 
-          <h3 class="text-3xl font-light mb-6">
-            {{'BIEN.EnergieSpécifique' | translate }}
+        <!-- ================================================== -->
+        <!-- ENERGY -->
+        <!-- ================================================== -->
+
+        <section class="py-8 sm:py-10">
+
+          <h3
+            class="mb-5 text-2xl font-light
+                   sm:mb-6 sm:text-3xl"
+          >
+            {{ 'BIEN.EnergieSpécifique' | translate }}
           </h3>
 
-          <div class="grid grid-cols-2 gap-10">
+          <div class="grid grid-cols-1 gap-8">
 
             <div>
+
               <p class="text-gray-500">
                 PEB
               </p>
 
-              <p class="text-4xl font-bold">
+              <p class="text-3xl font-bold sm:text-4xl">
                 {{ property.peb }}
               </p>
-            </div>
 
+            </div>
 
           </div>
 
@@ -247,48 +407,74 @@
 
       </div>
 
+
+      <!-- ================================================== -->
       <!-- SIDEBAR -->
-      <div class="col-span-4">
+      <!-- ================================================== -->
+
+      <div class="lg:col-span-4">
 
         <div
-          class="sticky top-6 bg-white shadow-md p-8"
+          class="bg-white p-6 shadow-md
+                 sm:p-8
+                 lg:sticky lg:top-6"
         >
 
-          <h3 class="text-2xl font-light mb-6">
-            {{'CONTACT.ContacterAgence'| translate}}
+          <h3
+            class="mb-5 text-2xl font-light
+                   sm:mb-6"
+          >
+            {{ 'CONTACT.ContacterAgence' | translate }}
           </h3>
 
+
           <img
-            
-            class="h-16 object-contain mb-6"
+            alt="ImmoHorizon"
+            class="mx-auto mb-6 h-16 object-contain"
           />
 
-          <h4 class="font-semibold text-lg text-center">
+
+          <h4
+            class="text-center text-lg font-semibold"
+          >
             ImmoHorizon
           </h4>
 
-          <p class="text-gray-600 text-center">
+
+          <p class="text-center text-gray-600">
             Rue Léon Lepage 57,
-            <br> 1000 Bruxelles
+            <br />
+            1000 Bruxelles
           </p>
 
-          <button
-            mat-stroked-button
-        class="saved-search-btn text-center m-3"
-          >
-            {{'CONTACT.DemandeInfos' | translate }}
-          </button>
 
-          <button
-            mat-stroked-button
-        class="saved-search-btn text-center m-3"
+          <!-- Buttons -->
+          <div
+            class="mt-6 flex flex-col gap-3
+                   sm:flex-row sm:justify-center
+                   lg:flex-col"
           >
-            {{'CONTACT.ContacterAgence' | translate }}
-          </button>
+
+            <button
+              mat-stroked-button
+              class="saved-search-btn w-full"
+            >
+              {{ 'CONTACT.DemandeInfos' | translate }}
+            </button>
+
+
+            <button
+              mat-stroked-button
+              class="saved-search-btn w-full"
+            >
+              {{ 'CONTACT.ContacterAgence' | translate }}
+            </button>
+
+          </div>
 
         </div>
 
-    </div>
+      </div>
 
     </div>
 
