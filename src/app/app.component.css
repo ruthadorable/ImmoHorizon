@@ -109,3 +109,264 @@ a:hover{
   }
 
 }
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu {
+  background-color: #0f2a44;
+  color: white;
+
+  width: 100%;
+
+  padding: 20px 16px 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   MAIN LINKS
+   ========================================================= */
+
+.mobile-main-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+
+.mobile-main-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 12px 16px;
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.mobile-main-links a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+
+/* =========================================================
+   PROPERTY LINKS
+   ========================================================= */
+
+.mobile-property-links {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mobile-property-links a {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  min-height: 75px;
+
+  padding: 10px;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-property-links a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.mobile-property-links mat-icon {
+  color: white;
+
+  width: 24px;
+  height: 24px;
+
+  font-size: 24px;
+}
+
+
+/* =========================================================
+   PUBLISH BUTTON
+   ========================================================= */
+
+.mobile-publish {
+  width: 100%;
+
+  padding: 16px 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  margin-top: 12px;
+}
+
+.mobile-publish button {
+  width: 100%;
+
+  min-height: 48px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+.mobile-language {
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+
+  padding: 16px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   USER SECTION
+   ========================================================= */
+
+.mobile-user-section {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+
+  padding-top: 16px;
+}
+
+.mobile-user-name {
+  width: 100%;
+
+  margin-bottom: 8px;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mobile-user-section button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 44px;
+
+  color: white !important;
+
+  text-align: center;
+}
+
+.mobile-user-section button mat-icon {
+  margin-right: 6px;
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.mobile-login-section {
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+
+  padding-top: 16px;
+}
+
+.mobile-login-section button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 48px;
+
+  color: white !important;
+}
+
+.mobile-login-section mat-icon {
+  margin-right: 6px;
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .mobile-menu {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .mobile-main-links a {
+    font-size: 15px;
+  }
+
+  .mobile-property-links a {
+    font-size: 13px;
+  }
+
+}
