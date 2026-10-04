@@ -27,3 +27,85 @@ a:hover{
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
 }
+/* =====================================================
+   MOBILE NAVIGATION
+   Does not modify desktop styles
+   ===================================================== */
+
+.mobile-menu {
+  padding: 12px 16px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu a {
+  display: block;
+  width: 100%;
+
+  padding: 12px 14px;
+  margin-bottom: 4px;
+
+  border-radius: 6px;
+
+  color: #d1d5db;
+  font-size: 15px;
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+.mobile-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.mobile-menu-language {
+  padding: 12px 14px;
+  margin-top: 8px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* =====================================================
+   SECOND NAVBAR - MOBILE ONLY
+   ===================================================== */
+
+@media (max-width: 767px) {
+
+  /*
+   * Keep your existing toolbar styling,
+   * but allow it to wrap on small screens.
+   */
+  mat-toolbar {
+    height: auto !important;
+    min-height: 80px;
+
+    padding: 12px 16px !important;
+
+    flex-wrap: wrap;
+  }
+
+  /*
+   * Keep your existing ImmoHorizon logo style,
+   * just make it slightly smaller on phones.
+   */
+  mat-toolbar .text-4xl {
+    font-size: 1.75rem;
+  }
+
+  /*
+   * Your existing desktop navigation is already
+   * hidden with "hidden md:flex", so we don't
+   * modify it.
+   */
+
+  /*
+   * Make the existing Publish button fit
+   * on a small screen.
+   */
+  .publish-btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+}

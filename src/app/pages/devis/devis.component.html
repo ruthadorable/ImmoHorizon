@@ -1,0 +1,465 @@
+<div class="min-h-screen bg-gray-50">
+
+  <!-- Header -->
+  <section class="bg-[#1f2937] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-14 justify-center text-center flex flex-col gap-6 items-center">
+      <div class="max-w-3xl">
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          Demande de devis
+        </h1>
+
+        <p class="text-gray-300 text-lg leading-relaxed">
+          Vous avez un projet immobilier ? Décrivez-nous votre besoin
+          et recevez une estimation personnalisée de nos services.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+      <!-- LEFT SIDE -->
+      <div class="lg:col-span-1">
+
+        <!-- Intro card -->
+        <div class="bg-white rounded-2xl shadow-sm p-7 mb-6">
+
+          <div
+            class="w-12 h-12 rounded-full bg-[#c9a227]/10 flex items-center justify-center mb-5">
+            <mat-icon class="text-[#c9a227]">
+              real_estate_agent
+            </mat-icon>
+          </div>
+
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+            Parlons de votre projet
+          </h2>
+
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Que vous souhaitiez vendre, louer, acheter ou faire estimer
+            un bien, notre équipe est à votre disposition pour vous
+            accompagner.
+          </p>
+
+          <!-- Benefits -->
+          <div class="space-y-5">
+
+            <div class="flex gap-4">
+              <mat-icon class="text-[#c9a227]">check_circle</mat-icon>
+
+              <div>
+                <h3 class="font-semibold text-gray-800">
+                  Estimation personnalisée
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+                  Une évaluation adaptée à votre bien et à votre projet.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <mat-icon class="text-[#c9a227]">schedule</mat-icon>
+
+              <div>
+                <h3 class="font-semibold text-gray-800">
+                  Réponse rapide
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+                  Nous vous recontactons dans les meilleurs délais.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <mat-icon class="text-[#c9a227]">support_agent</mat-icon>
+
+              <div>
+                <h3 class="font-semibold text-gray-800">
+                  Accompagnement professionnel
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+                  Un conseiller vous accompagne à chaque étape.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Contact card -->
+        <div class="bg-[#f8f6ef] rounded-2xl p-7">
+
+          <h3 class="text-xl font-semibold text-gray-800 mb-5">
+            Besoin d'aide ?
+          </h3>
+
+          <div class="space-y-4">
+
+            <div class="flex items-center gap-3">
+              <mat-icon class="text-[#c9a227]">phone</mat-icon>
+
+              <span class="text-gray-700">
+                +32 2 123 45 67
+              </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <mat-icon class="text-[#c9a227]">email</mat-icon>
+
+              <span class="text-gray-700">
+                contactimmohorizon.be
+              </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <mat-icon class="text-[#c9a227]">location_on</mat-icon>
+
+              <span class="text-gray-700">
+                Belgique
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE / FORM -->
+      <div class="lg:col-span-2">
+
+        <div class="bg-white rounded-2xl shadow-sm p-7 md:p-10">
+
+          <div class="mb-8">
+
+            <h2 class="text-2xl font-semibold text-gray-800">
+              Votre demande
+            </h2>
+
+            <p class="text-gray-500 mt-2">
+              Remplissez le formulaire ci-dessous afin que nous puissions
+              comprendre votre projet.
+            </p>
+
+          </div>
+
+          <form
+            [formGroup]="devisForm"
+            (ngSubmit)="submitForm()"
+            class="space-y-7">
+
+            <!-- Project type -->
+            <div>
+
+              <label class="block text-sm font-semibold text-gray-700 mb-3">
+                Type de projet
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <button
+                  type="button"
+                  (click)="selectProjectType('VENTE')"
+                  >
+
+                  <mat-icon class="text-[#c9a227]">
+                    sell
+                  </mat-icon>
+
+                  <div class="font-semibold mt-2">
+                    Vente
+                  </div>
+
+                  <div class="text-sm text-gray-500">
+                    Je souhaite vendre un bien
+                  </div>
+
+                </button>
+
+                <button
+                  type="button"
+                  (click)="selectProjectType('LOCATION')"
+                  >
+
+                  <mat-icon class="text-[#c9a227]">
+                    key
+                  </mat-icon>
+
+                  <div class="font-semibold mt-2">
+                    Location
+                  </div>
+
+                  <div class="text-sm text-gray-500">
+                    Je souhaite louer un bien
+                  </div>
+
+                </button>
+
+                <button
+                    type="button"
+                  [class.selected-project]="projectType === 'ACHAT'"
+                  (click)="selectProjectType('ACHAT')"
+                  >
+
+                  <mat-icon class="text-[#c9a227]">
+                    home
+                  </mat-icon>
+
+                  <div class="font-semibold mt-2">
+                    Achat
+                  </div>
+
+                  <div class="text-sm text-gray-500">
+                    Je recherche un bien
+                  </div>
+
+                </button>
+
+                <button
+                  (click)="selectProjectType('ESTIMATION')"
+                  >
+                    <mat-icon class="text-[#c9a227]">
+                        price_check
+                    </mat-icon>
+
+                    <div class="font-semibold mt-2">
+                        Estimation
+                    </div>
+
+                    <div class="text-sm text-gray-500">
+                        Je souhaite estimer mon bien
+                    </div>
+
+                </button>
+
+              </div>
+
+            </div>
+
+            <!-- Personal information -->
+            <div>
+
+              <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                Vos coordonnées
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Prénom</mat-label>
+                  <input
+                    matInput
+                    formControlName="firstName">
+
+                  <mat-error>
+                    Le prénom est obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Nom</mat-label>
+                  <input
+                    matInput
+                    formControlName="lastName">
+
+                  <mat-error>
+                    Le nom est obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    type="email"
+                    formControlName="email">
+
+                  <mat-error>
+                    Veuillez introduire une adresse email valide
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Téléphone</mat-label>
+                  <input
+                    matInput
+                    formControlName="phone">
+                </mat-form-field>
+
+              </div>
+
+            </div>
+
+            <!-- Property information -->
+            <div>
+
+              <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                Informations sur le bien
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Type de bien</mat-label>
+
+                  <mat-select formControlName="propertyType">
+
+                    <mat-option value="MAISON">
+                      Maison
+                    </mat-option>
+
+                    <mat-option value="APPARTEMENT">
+                      Appartement
+                    </mat-option>
+
+                    <mat-option value="TERRAIN">
+                      Terrain
+                    </mat-option>
+
+                    <mat-option value="BUREAU">
+                      Bureau
+                    </mat-option>
+
+                    <mat-option value="COMMERCE">
+                      Commerce
+                    </mat-option>
+
+                    <mat-option value="AUTRE">
+                      Autre
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Localité</mat-label>
+
+                  <input
+                    matInput
+                    formControlName="location"
+                    placeholder="Ex. Bruxelles">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Budget / valeur estimée</mat-label>
+
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="budget">
+
+                  <span matSuffix>€</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Superficie</mat-label>
+
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="surface">
+
+                  <span matSuffix>m²</span>
+                </mat-form-field>
+
+              </div>
+
+            </div>
+
+            <!-- Message -->
+            <div>
+
+              <mat-form-field
+                appearance="outline"
+                class="w-full">
+
+                <mat-label>
+                  Décrivez votre projet
+                </mat-label>
+
+                <textarea
+                  matInput
+                  rows="6"
+                  formControlName="message"
+                  placeholder="Expliquez-nous votre projet, vos besoins ou vos questions...">
+                </textarea>
+
+              </mat-form-field>
+
+            </div>
+
+            <!-- Contact preference -->
+            <div>
+
+              <label class="block text-sm font-semibold text-gray-700 mb-3">
+                Comment souhaitez-vous être contacté ?
+              </label>
+
+              <mat-radio-group
+                formControlName="contactPreference"
+                class="flex flex-wrap gap-5">
+
+                <mat-radio-button value="EMAIL">
+                  Email
+                </mat-radio-button>
+
+                <mat-radio-button value="PHONE">
+                  Téléphone
+                </mat-radio-button>
+
+                <mat-radio-button value="BOTH">
+                  Les deux
+                </mat-radio-button>
+
+              </mat-radio-group>
+
+            </div>
+
+            <!-- Privacy -->
+            <div class="border-t pt-6">
+
+              <mat-checkbox formControlName="privacy">
+                J'accepte que mes données soient utilisées afin
+                de traiter ma demande de devis.
+              </mat-checkbox>
+
+            </div>
+
+            <!-- Submit -->
+            <div class="flex justify-end pt-2">
+
+              <button
+                mat-raised-button
+                type="submit"
+                [disabled]="devisForm.invalid"
+                class="!bg-[#c9a227] !text-white !px-8 !py-6 !rounded-xl">
+
+                <mat-icon class="mr-2">
+                  send
+                </mat-icon>
+
+                Envoyer ma demande
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

@@ -20,6 +20,7 @@ import { ModifierBlogComponent } from './pages/blog/modifier-blog/modifier-blog.
 import { ArticleDetailsComponent } from './pages/blog/article-details/article-details.component';
 import { PublierAnnonceComponent } from './components/publier-annonce/publier-annonce.component';
 import { NewpropertiesComponent } from './pages/properties/newproperties/newproperties.component';
+import { DevisComponent } from './pages/devis/devis.component';
 export const routes: Routes = [
     {
         path:'',
@@ -59,6 +60,13 @@ export const routes: Routes = [
         path:'publierannonce',
         component: PublierAnnonceComponent,
         data: { breadcrumb: 'Publier une annonce' },
+        children:[]
+    },
+    
+      {
+        path:'devis',
+        component: DevisComponent,
+        data: { breadcrumb: 'Devis' },
         children:[]
     },
     {

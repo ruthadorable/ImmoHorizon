@@ -13,7 +13,7 @@ import {MatMenuModule } from '@angular/material/menu';
 import { LoginService } from './services/auth/login/login.service';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink,RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 export class HomeComponent {}
 
@@ -40,6 +40,7 @@ export class AppComponent {
   public dialog = inject(MatDialog);
   private platformId = inject(PLATFORM_ID);
   public role:any;
+  mobileMenuOpen = false;
   constructor(private translate: TranslateService,private router:Router) {
     this.translate.addLangs(['en', 'fr', 'nl']);
     this.translate.use('en');
