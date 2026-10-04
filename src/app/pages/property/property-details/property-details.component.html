@@ -1,9 +1,14 @@
 <div class="min-h-screen bg-[#f8f8f8]">
 
-  <!-- Back button -->
+  <!-- ====================================================== -->
+  <!-- BACK BUTTON -->
+  <!-- ====================================================== -->
+
   <div class="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+
     <button
       mat-button
+      type="button"
       (click)="navBack()"
       class="flex items-center gap-1"
     >
@@ -13,12 +18,22 @@
           alt="Back"
         />
       </mat-icon>
+
       <span>Back</span>
     </button>
+
   </div>
 
-  <!-- Breadcrumb -->
-  <div class="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
+
+  <!-- ====================================================== -->
+  <!-- BREADCRUMB -->
+  <!-- ====================================================== -->
+
+  <div
+    class="mx-auto w-full max-w-7xl px-4 py-3
+           sm:px-6 sm:py-4
+           lg:px-8"
+  >
     <app-breadcrumb></app-breadcrumb>
   </div>
 
@@ -27,7 +42,11 @@
   <!-- GALLERY -->
   <!-- ====================================================== -->
 
-  <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+  <section
+    class="mx-auto w-full max-w-7xl px-4
+           sm:px-6
+           lg:px-8"
+  >
 
     <!-- Main image -->
     <div
@@ -37,7 +56,8 @@
              lg:h-[600px]"
     >
 
-      @if (selectedImage || selectedImage == undefined) {
+      <!-- Property image -->
+      @if (selectedImage) {
 
         <img
           [src]="getImageUrl(selectedImage.url)"
@@ -45,10 +65,21 @@
           class="h-full w-full object-cover transition-all duration-500"
         />
 
+      } @else {
+
+        <!-- Fallback image -->
+        <img
+          [src]="getImageUrl('./images/properties/penthouse1.jpg')"
+          alt="Default property image"
+          class="h-full w-full object-cover transition-all duration-500"
+        />
+
       }
 
-      <!-- Previous -->
+
+      <!-- Previous button -->
       <button
+        type="button"
         (click)="previousImage()"
         aria-label="Previous image"
         class="absolute left-2 top-1/2 flex h-10 w-10
@@ -61,8 +92,10 @@
         <mat-icon>chevron_left</mat-icon>
       </button>
 
-      <!-- Next -->
+
+      <!-- Next button -->
       <button
+        type="button"
         (click)="nextImage()"
         aria-label="Next image"
         class="absolute right-2 top-1/2 flex h-10 w-10
@@ -78,28 +111,35 @@
     </div>
 
 
-    <!-- Thumbnails -->
-    <div
-      class="mt-3 flex gap-2 overflow-x-auto pb-2
-             sm:mt-4 sm:gap-3"
-    >
+    <!-- ==================================================== -->
+    <!-- THUMBNAILS -->
+    <!-- ==================================================== -->
 
-      @for (img of property.images ?? []; track img.id) {
+    @if (property.images?.length) {
 
-        <img
-          [src]="getImageUrl(img.url)"
-          [alt]="'Property image ' + img.id"
-          (click)="selectImage(img)"
-          class="h-16 w-20 flex-shrink-0 cursor-pointer rounded-lg
-                 object-cover border-2 transition
-                 sm:h-20 sm:w-28"
-          [class.border-blue-600]="selectedImage.id === img.id"
-          [class.border-transparent]="selectedImage.id !== img.id"
-        />
+      <div
+        class="mt-3 flex gap-2 overflow-x-auto pb-2
+               sm:mt-4 sm:gap-3"
+      >
 
-      }
+        @for (img of property.images ?? []; track img.id) {
 
-    </div>
+          <img
+            [src]="getImageUrl(img.url)"
+            [alt]="'Property image ' + img.id"
+            (click)="selectImage(img)"
+            class="h-16 w-20 flex-shrink-0 cursor-pointer
+                   rounded-lg border-2 object-cover transition
+                   sm:h-20 sm:w-28"
+            [class.border-blue-600]="selectedImage?.id === img.id"
+            [class.border-transparent]="selectedImage?.id !== img.id"
+          />
+
+        }
+
+      </div>
+
+    }
 
   </section>
 
@@ -114,13 +154,6 @@
            lg:px-8 lg:py-12"
   >
 
-    <!--
-      Mobile:
-      1 column
-
-      Desktop:
-      8 / 4 columns
-    -->
     <div
       class="grid grid-cols-1 gap-8 text-center
              lg:grid-cols-12 lg:gap-10"
@@ -179,7 +212,10 @@
         </div>
 
 
-        <!-- Actions -->
+        <!-- ================================================== -->
+        <!-- ACTIONS -->
+        <!-- ================================================== -->
+
         <div
           class="mt-5 flex justify-center gap-3
                  border-b pb-5
@@ -188,22 +224,27 @@
 
           <button
             mat-button
+            type="button"
             class="icon-button"
             aria-label="Favorite"
           >
             <mat-icon>favorite_border</mat-icon>
           </button>
 
+
           <button
             mat-button
+            type="button"
             class="icon-button"
             aria-label="Print"
           >
             <mat-icon>print</mat-icon>
           </button>
 
+
           <button
             mat-button
+            type="button"
             class="icon-button"
             aria-label="Share"
           >
@@ -223,7 +264,9 @@
                  sm:grid-cols-4 sm:gap-6"
         >
 
+          <!-- Bedrooms -->
           <div>
+
             <p class="text-sm text-gray-500">
               {{ 'BIEN.Chambres' | translate }}
             </p>
@@ -231,10 +274,13 @@
             <p class="text-2xl font-bold sm:text-3xl">
               {{ property.chambres }}
             </p>
+
           </div>
 
 
+          <!-- Bathrooms -->
           <div>
+
             <p class="text-sm text-gray-500">
               {{ 'BIEN.Salle_de_bains' | translate }}
             </p>
@@ -242,10 +288,13 @@
             <p class="text-2xl font-bold sm:text-3xl">
               {{ property.salleDeBain }}
             </p>
+
           </div>
 
 
+          <!-- Living area -->
           <div>
+
             <p class="text-sm text-gray-500">
               {{ 'BIEN.SurfaceHabitable' | translate }}
             </p>
@@ -253,10 +302,13 @@
             <p class="text-2xl font-bold sm:text-3xl">
               {{ property.superficie }} m²
             </p>
+
           </div>
 
 
+          <!-- Garden / terrace -->
           <div>
+
             <p class="text-sm text-gray-500">
               {{ 'BIEN.SurfaceJardin' | translate }}
             </p>
@@ -264,6 +316,7 @@
             <p class="text-2xl font-bold sm:text-3xl">
               {{ property.surfaceJardinTerrasse }} m²
             </p>
+
           </div>
 
         </div>
@@ -309,9 +362,12 @@
           <div
             class="grid grid-cols-1 gap-4
                    text-left
-                   sm:grid-cols-2 sm:gap-x-10 sm:gap-y-4"
+                   sm:grid-cols-2
+                   sm:gap-x-10
+                   sm:gap-y-4"
           >
 
+            <!-- Reference -->
             <div
               class="flex justify-between gap-4
                      border-b border-gray-100 pb-2
@@ -325,6 +381,7 @@
             </div>
 
 
+            <!-- Availability -->
             <div
               class="flex justify-between gap-4
                      border-b border-gray-100 pb-2
@@ -340,6 +397,7 @@
             </div>
 
 
+            <!-- Garden -->
             <div
               class="flex justify-between gap-4
                      border-b border-gray-100 pb-2
@@ -355,6 +413,7 @@
             </div>
 
 
+            <!-- Parking -->
             <div
               class="flex justify-between gap-4
                      border-b border-gray-100 pb-2
@@ -386,6 +445,7 @@
           >
             {{ 'BIEN.EnergieSpécifique' | translate }}
           </h3>
+
 
           <div class="grid grid-cols-1 gap-8">
 
@@ -429,14 +489,13 @@
 
 
           <img
+            src="./images/properties/src_BZPAAP12042_301662_V0_892D.jpg"
             alt="ImmoHorizon"
             class="mx-auto mb-6 h-16 object-contain"
           />
 
 
-          <h4
-            class="text-center text-lg font-semibold"
-          >
+          <h4 class="text-center text-lg font-semibold">
             ImmoHorizon
           </h4>
 
@@ -457,6 +516,7 @@
 
             <button
               mat-stroked-button
+              type="button"
               class="saved-search-btn w-full"
             >
               {{ 'CONTACT.DemandeInfos' | translate }}
@@ -465,6 +525,7 @@
 
             <button
               mat-stroked-button
+              type="button"
               class="saved-search-btn w-full"
             >
               {{ 'CONTACT.ContacterAgence' | translate }}

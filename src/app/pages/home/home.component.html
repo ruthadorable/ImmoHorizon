@@ -1,225 +1,195 @@
 <div class="bg-gray-50 min-h-screen">
 
-    <!-- HERO BANNER -->
+  <!-- HERO BANNER -->
+  <section class="relative h-[500px] sm:h-[600px] lg:h-[650px] overflow-hidden">
 
-    <section
-        class="relative h-[650px] overflow-hidden">
+    <img
+      class="absolute inset-0 w-full h-full object-cover"
+      [src]="banner.image"
+      alt="Homepage Banner">
 
-        <img
-            class="absolute inset-0 w-full h-full object-cover"
-            [src]="banner.image"
-            alt="Homepage Banner">
+    <div class="absolute inset-0 bg-black/60"></div>
 
-        <div
-            class="absolute inset-0 bg-black/60">
-        </div>
+    <div class="relative z-10 h-full flex items-center">
 
-        <div
-            class="relative z-10 h-full flex items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full">
 
-            <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-3xl text-white">
 
-                <div class="max-w-3xl text-white">
+          <span
+            class="uppercase tracking-widest text-orange-400 font-semibold text-sm sm:text-base">
+            Welcome to ImmoHorizon
+          </span>
 
-                    <span
-                        class="uppercase tracking-widest text-orange-400 font-semibold">
+          <h1
+            class="text-3xl sm:text-5xl lg:text-7xl font-bold mt-4 leading-tight">
+            {{banner.title}}
+          </h1>
 
-                        Welcome to ImmoHorizon
+          <p
+            class="mt-6 text-base sm:text-lg lg:text-xl text-gray-200 leading-7 sm:leading-8">
+            {{banner.subtitle}}
+          </p>
 
-                    </span>
+          <p
+            class="mt-4 text-sm sm:text-base lg:text-lg text-gray-300">
+            {{banner.description}}
+          </p>
 
-                    <h1
-                        class="text-5xl lg:text-7xl font-bold mt-4 leading-tight">
+          <div
+            class="mt-8 flex flex-col sm:flex-row gap-4">
 
-                        {{banner.title}}
+            <button
+              mat-raised-button
+              color="primary"
+              class="w-full sm:w-auto"
+              [routerLink]="banner.buttonLink">
 
-                    </h1>
+              {{banner.buttonText}}
 
-                    <p
-                        class="mt-8 text-xl text-gray-200 leading-8">
+            </button>
 
-                        {{banner.subtitle}}
+            <button
+              mat-stroked-button
+              class="w-full sm:w-auto !border-white !text-white"
+              [routerLink]="banner.secondaryButtonLink">
 
-                    </p>
+              {{banner.secondaryButtonText}}
 
-                    <p
-                        class="mt-6 text-lg text-gray-300">
+            </button>
 
-                        {{banner.description}}
-
-                    </p>
-
-                    <div
-                        class="mt-10 flex gap-4 flex-wrap">
-
-                        <button
-                            mat-raised-button
-                            color="primary"
-                            [routerLink]="banner.buttonLink">
-
-                            {{banner.buttonText}}
-
-                        </button>
-
-                        <button
-                            mat-stroked-button
-                            class="!border-white !text-white"
-                            [routerLink]="banner.secondaryButtonLink">
-
-                            {{banner.secondaryButtonText}}
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+          </div>
 
         </div>
 
-    </section>
+      </div>
 
-    <!-- FEATURES -->
+    </div>
 
-    <section class="py-20">
+  </section>
 
-        <div class="max-w-7xl mx-auto px-6">
+  <!-- FEATURES -->
+  <section class="py-12 sm:py-20">
 
-            <div
-                class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-                <mat-card class="text-center p-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                    <mat-icon
-                        class="!text-5xl text-orange-500">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none hover:shadow-xl transition-all duration-300">
 
-                        home
+          <div class="flex justify-center">
 
-                    </mat-icon>
+            <mat-icon
+              class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+              home
+            </mat-icon>
 
-                    <h3
-                        class="font-bold text-xl mt-6">
+          </div>
 
-                        Buy
+          <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
+            Buy
+          </h3>
 
-                    </h3>
+          <p class="mt-3 sm:mt-4 text-gray-600">
+            Thousands of verified homes.
+          </p>
 
-                    <p class="mt-4 text-gray-600">
+        </mat-card>
 
-                        Thousands of verified homes.
+        <mat-card class="text-center p-6 sm:p-8 rounded-none hover:shadow-xl transition-all duration-300">
 
-                    </p>
+          <div class="flex justify-center">
 
-                </mat-card>
+            <mat-icon
+              class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+              apartment
+            </mat-icon>
 
-                <mat-card class="text-center p-8">
+          </div>
 
-                    <mat-icon
-                        class="!text-5xl text-orange-500">
+          <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
+            Rent
+          </h3>
 
-                        apartment
+          <p class="mt-3 sm:mt-4 text-gray-600">
+            Apartments, houses and offices.
+          </p>
 
-                    </mat-icon>
+        </mat-card>
 
-                    <h3
-                        class="font-bold text-xl mt-6">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none hover:shadow-xl transition-all duration-300">
 
-                        Rent
+          <div class="flex justify-center">
 
-                    </h3>
+            <mat-icon
+              class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+              trending_up
+            </mat-icon>
 
-                    <p class="mt-4 text-gray-600">
+          </div>
 
-                        Apartments, houses and offices.
+          <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
+            Invest
+          </h3>
 
-                    </p>
+          <p class="mt-3 sm:mt-4 text-gray-600">
+            Find investment opportunities.
+          </p>
 
-                </mat-card>
+        </mat-card>
 
-                <mat-card class="text-center p-8">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none hover:shadow-xl transition-all duration-300">
 
-                    <mat-icon
-                        class="!text-5xl text-orange-500">
+          <div class="flex justify-center">
 
-                        trending_up
+            <mat-icon
+              class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+              support_agent
+            </mat-icon>
 
-                    </mat-icon>
+          </div>
 
-                    <h3
-                        class="font-bold text-xl mt-6">
+          <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
+            Advice
+          </h3>
 
-                        Invest
+          <p class="mt-3 sm:mt-4 text-gray-600">
+            Professional real estate experts.
+          </p>
 
-                    </h3>
+        </mat-card>
 
-                    <p class="mt-4 text-gray-600">
+      </div>
 
-                        Find investment opportunities.
+    </div>
 
-                    </p>
+  </section>
 
-                </mat-card>
+  <!-- LATEST PROPERTIES -->
+  <section class="pb-12 sm:pb-20">
 
-                <mat-card class="text-center p-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-                    <mat-icon
-                        class="!text-5xl text-orange-500">
+      <div
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8 sm:mb-10">
 
-                        support_agent
+        <h2
+          class="text-3xl sm:text-4xl font-bold">
+          Latest Properties
+        </h2>
 
-                    </mat-icon>
+        <button
+          mat-button
+          routerLink="/properties">
+          View All
+        </button>
 
-                    <h3
-                        class="font-bold text-xl mt-6">
+      </div>
 
-                        Advice
+      <!-- Property cards -->
 
-                    </h3>
+    </div>
 
-                    <p class="mt-4 text-gray-600">
-
-                        Professional real estate experts.
-
-                    </p>
-
-                </mat-card>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- LATEST PROPERTIES -->
-
-    <section class="pb-20">
-
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="flex justify-between items-center mb-10">
-
-                <h2
-                    class="text-4xl font-bold">
-
-                    Latest Properties
-
-                </h2>
-
-                <button
-                    mat-button
-                    routerLink="/properties">
-
-                    View All
-
-                </button>
-
-            </div>
-
-            <!-- Property cards -->
-
-        </div>
-
-    </section>
+  </section>
 
 </div>

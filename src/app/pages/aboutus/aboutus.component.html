@@ -3,15 +3,15 @@
   <!-- Hero -->
   <section class="relative bg-gradient-to-r from-slate-900 to-slate-700 text-white">
 
-    <div class="max-w-7xl mx-auto px-6 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
 
       <div class="max-w-3xl">
 
-        <h1 class="text-5xl font-bold leading-tight">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
           {{ 'ABOUT.Title' | translate }}
         </h1>
 
-        <p class="mt-6 text-xl text-gray-200 leading-8">
+        <p class="mt-6 text-lg sm:text-xl text-gray-200 leading-8">
           {{ 'ABOUT.Description' | translate }}
         </p>
 
@@ -22,8 +22,7 @@
   </section>
 
   <!-- Company -->
-
-  <section class="max-w-7xl mx-auto px-6 py-20">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
 
     <div class="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -31,14 +30,14 @@
 
         <img
           src="../../images/properties/src_BZPAAP12042_301662_V0_892D.jpg"
-          class="rounded-2xl shadow-xl object-cover w-full h-[450px]"
+          class="rounded-2xl shadow-xl object-cover w-full h-64 sm:h-80 lg:h-[450px]"
           alt="ImmoHorizon">
 
       </div>
 
       <div>
 
-        <h2 class="text-4xl font-bold mb-6">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
           {{ 'ABOUT.Title2' | translate }}
         </h2>
 
@@ -46,7 +45,7 @@
           {{ 'ABOUT.Description2' | translate }}
         </p>
 
-        <h2 class="text-4xl font-bold mb-6">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
           {{ 'ABOUT.Title3' | translate }}
         </h2>
 
@@ -54,7 +53,7 @@
           {{ 'ABOUT.Description3' | translate }}
         </p>
 
-        <h2 class="text-4xl font-bold mb-6">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
           {{ 'ABOUT.Title4' | translate }}
         </h2>
 
@@ -63,9 +62,7 @@
         </p>
 
         <p class="text-gray-600 leading-8">
-
           {{ 'ABOUT.Final_Description' | translate }}
-
         </p>
 
       </div>
@@ -75,16 +72,15 @@
   </section>
 
   <!-- Statistics -->
+  <section class="bg-white py-12 sm:py-20">
 
-  <section class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
-        <mat-card class="text-center p-8">
-
-          <h3 class="text-4xl font-bold text-orange-500">
+          <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
             1200+
           </h3>
 
@@ -94,9 +90,9 @@
 
         </mat-card>
 
-        <mat-card class="text-center p-8">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
-          <h3 class="text-4xl font-bold text-orange-500">
+          <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
             850+
           </h3>
 
@@ -106,9 +102,9 @@
 
         </mat-card>
 
-        <mat-card class="text-center p-8">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
-          <h3 class="text-4xl font-bold text-orange-500">
+          <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
             15+
           </h3>
 
@@ -118,9 +114,9 @@
 
         </mat-card>
 
-        <mat-card class="text-center p-8">
+        <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
-          <h3 class="text-4xl font-bold text-orange-500">
+          <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
             98%
           </h3>
 
@@ -137,107 +133,102 @@
   </section>
 
   <!-- Values -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
 
-  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-10 sm:mb-16">
 
-    <div class="text-center mb-16">
-
-      <h2 class="text-4xl font-bold">
-
+      <h2 class="text-3xl sm:text-4xl font-bold">
         Our Values
-
       </h2>
 
-      <p class="mt-4 text-gray-600">
-
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
         Everything we do is built around trust and excellence.
-
       </p>
 
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <mat-card class="p-8 text-center">
+      <mat-card class="p-6 sm:p-8 text-center rounded-none hover:shadow-xl transition-all duration-300">
 
-        <mat-icon
-          class="!text-5xl text-orange-500">
-          verified
-        </mat-icon>
+        <div class="flex justify-center">
 
-        <h3 class="text-xl font-semibold mt-6">
+          <mat-icon
+            class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+            verified
+          </mat-icon>
 
+        </div>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
           Trust
-
         </h3>
 
-        <p class="mt-4 text-gray-600">
-
+        <p class="mt-3 sm:mt-4 text-gray-600">
           Honest advice and transparent communication.
-
         </p>
 
       </mat-card>
 
-      <mat-card class="p-8 text-center">
+      <mat-card class="p-6 sm:p-8 text-center rounded-none hover:shadow-xl transition-all duration-300">
 
-        <mat-icon
-          class="!text-5xl text-orange-500">
-          groups
-        </mat-icon>
+        <div class="flex justify-center">
 
-        <h3 class="text-xl font-semibold mt-6">
+          <mat-icon
+            class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+            groups
+          </mat-icon>
 
+        </div>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
           Customer First
-
         </h3>
 
-        <p class="mt-4 text-gray-600">
-
+        <p class="mt-3 sm:mt-4 text-gray-600">
           Every client receives personalized support.
-
         </p>
 
       </mat-card>
 
-      <mat-card class="p-8 text-center">
+      <mat-card class="p-6 sm:p-8 text-center rounded-none hover:shadow-xl transition-all duration-300">
 
-        <mat-icon
-          class="!text-5xl text-orange-500">
-          apartment
-        </mat-icon>
+        <div class="flex justify-center">
 
-        <h3 class="text-xl font-semibold mt-6">
+          <mat-icon
+            class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+            apartment
+          </mat-icon>
 
+        </div>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
           Expertise
-
         </h3>
 
-        <p class="mt-4 text-gray-600">
-
+        <p class="mt-3 sm:mt-4 text-gray-600">
           Extensive knowledge of the real estate market.
-
         </p>
 
       </mat-card>
 
-      <mat-card class="p-8 text-center">
+      <mat-card class="p-6 sm:p-8 text-center rounded-none hover:shadow-xl transition-all duration-300">
 
-        <mat-icon
-          class="!text-5xl text-orange-500">
-          rocket_launch
-        </mat-icon>
+        <div class="flex justify-center">
 
-        <h3 class="text-xl font-semibold mt-6">
+          <mat-icon
+            class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
+            rocket_launch
+          </mat-icon>
 
+        </div>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
           Innovation
-
         </h3>
 
-        <p class="mt-4 text-gray-600">
-
+        <p class="mt-3 sm:mt-4 text-gray-600">
           Modern digital solutions for a better experience.
-
         </p>
 
       </mat-card>
@@ -246,40 +237,33 @@
 
   </section>
 
-  <!-- Call to Action -->
+  <!-- CTA -->
+  <section class="bg-slate-900 text-white py-12 sm:py-20">
 
-  <section class="bg-slate-900 text-white py-20">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6">
 
-    <div class="max-w-4xl mx-auto text-center px-6">
-
-      <h2 class="text-4xl font-bold">
-
+      <h2 class="text-3xl sm:text-4xl font-bold">
         Ready to Find Your Dream Property?
-
       </h2>
 
-      <p class="mt-6 text-gray-300 text-lg">
-
+      <p class="mt-6 text-gray-300 text-base sm:text-lg">
         Browse hundreds of verified properties or contact our experienced
         real estate advisors today.
-
       </p>
 
-      <div class="mt-10 flex justify-center gap-4 flex-wrap">
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 
         <button
           mat-raised-button
-          color="primary">
-
+          color="primary"
+          class="w-full sm:w-auto">
           Browse Properties
-
         </button>
 
         <button
-          mat-stroked-button>
-
+          mat-stroked-button
+          class="w-full sm:w-auto">
           Contact Us
-
         </button>
 
       </div>

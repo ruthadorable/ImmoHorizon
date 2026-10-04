@@ -2,22 +2,25 @@
 
     <div class="hero-overlay">
 
-        <h1>Real Estate Blog</h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl">
+            Real Estate Blog
+        </h1>
 
-        <p>
+        <p class="text-sm sm:text-base md:text-lg">
             Buying • Selling • Renting • Investment • Advice
         </p>
 
-        <mat-form-field appearance="outline" class="search">
+        <mat-form-field
+            appearance="outline"
+            class="search w-full max-w-xl">
 
             <mat-icon matPrefix>search</mat-icon>
 
             <input
-                    matInput
-                    type="text"
-                    placeholder="Search article"
-                    [(ngModel)]="searchText"
-                    (input)="filterArticles()">
+                matInput
+                placeholder="Search article"
+                [(ngModel)]="searchText"
+                (input)="filterArticles()">
 
         </mat-form-field>
 
@@ -26,81 +29,96 @@
 </section>
 
 
-<div class="container">
+<div class="container w-full">
 
+    <!-- Categories -->
     <div class="categories">
 
-        <button mat-stroked-button color="primary">
+        <button
+            mat-stroked-button
+            color="primary"
+            class="shrink-0">
             All
         </button>
 
-        <button mat-button>
+        <button
+            mat-button
+            class="shrink-0">
             Buying
         </button>
 
-        <button mat-button>
+        <button
+            mat-button
+            class="shrink-0">
             Selling
         </button>
 
-        <button mat-button>
+        <button
+            mat-button
+            class="shrink-0">
             Renting
         </button>
 
-        <button mat-button>
+        <button
+            mat-button
+            class="shrink-0">
             Investment
         </button>
 
-        <button mat-button>
+        <button
+            mat-button
+            class="shrink-0">
             Taxes
         </button>
 
     </div>
 
 
-
+    <!-- Articles -->
     <section class="articles-grid">
-        @for(article of filteredArticles|search:searchText; track $index){
-            @if(article.image){
 
-        <mat-card
-                class="article-card">
+        @for (article of filteredArticles | search:searchText; track $index) {
 
-            <img
-                    mat-card-image
-                    [src]="article.image">
+            @if (article.image) {
 
-            <mat-card-content>
+                <mat-card class="article-card">
 
-                <span class="category my-4">
-                    {{article.category.split(" ")[0]}}
-                </span>
+                    <img
+                        mat-card-image
+                        [src]="article.image"
+                        [alt]="article.title">
 
-                <h3>
+                    <mat-card-content>
 
-                    {{article.title}}
+                        <span class="category my-4">
+                            {{ article.category.split(" ")[0] }}
+                        </span>
 
-                </h3>
+                        <h3>
+                            {{ article.title }}
+                        </h3>
 
-                <p>
+                        <p>
+                            {{ article.description }}
+                        </p>
 
-                    {{article.description}}
+                        <button
+                            mat-button
+                            color="primary"
+                            class="read-button"
+                            (click)="goTo(article.link)">
 
-                </p>
+                            Read article
 
-                <button
-                    mat-button
-                    color="primary"
-                    (click)="goTo(article.link)"
-                    >
+                        </button>
 
-                    Read article
+                    </mat-card-content>
 
-            </button>
+                </mat-card>
 
-            </mat-card-content>
+            }
 
-        </mat-card>}
-    }
+        }
 
     </section>
 
