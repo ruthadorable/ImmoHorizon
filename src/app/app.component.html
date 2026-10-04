@@ -26,6 +26,220 @@
               
             </div>
           </div>
+          <!-- Mobile menu button -->
+                    @if (mobileMenuOpen) {
+
+            <div class="mobile-menu md:hidden">
+
+              <!-- Main navigation -->
+              <div class="mobile-main-links">
+
+                <a
+                  routerLink="/home"
+                  (click)="mobileMenuOpen = false">
+                  Home
+                </a>
+
+                <a
+                  routerLink="/about"
+                  (click)="mobileMenuOpen = false">
+                  {{ 'MENU.ABOUT_US' | translate }}
+                </a>
+
+                <a
+                  routerLink="/properties"
+                  (click)="mobileMenuOpen = false">
+                  {{ 'MENU.PROPERTIES' | translate }}
+                </a>
+
+                <a
+                  routerLink="/blog"
+                  (click)="mobileMenuOpen = false">
+                  {{ 'MENU.BLOG' | translate }}
+                </a>
+
+                @if (getRole() === "Employe" || getRole() === "Admin") {
+
+                  <a
+                    routerLink="/dashboard"
+                    (click)="mobileMenuOpen = false">
+                    Dashboard
+                  </a>
+
+                }
+
+              </div>
+
+
+              <!-- Property navigation -->
+              <div class="mobile-property-links">
+
+                <a
+                  routerLink="avendre"
+                  (click)="mobileMenuOpen = false">
+
+                  <mat-icon>home</mat-icon>
+
+                  <span>
+                    {{ 'BIEN.FORSALE' | translate }}
+                  </span>
+
+                </a>
+
+                <a
+                  routerLink="alouer"
+                  (click)="mobileMenuOpen = false">
+
+                  <mat-icon>key</mat-icon>
+
+                  <span>
+                    {{ 'BIEN.FORRENT' | translate }}
+                  </span>
+
+                </a>
+
+                <a
+                  routerLink="new"
+                  (click)="mobileMenuOpen = false">
+
+                  <mat-icon>apartment</mat-icon>
+
+                  <span>
+                    {{ 'HOME.Latest' | translate }}
+                  </span>
+
+                </a>
+
+                <a
+                  routerLink="devis"
+                  (click)="mobileMenuOpen = false">
+
+                  <mat-icon>business_center</mat-icon>
+
+                  <span>
+                    {{ 'HOME.Estimation' | translate }}
+                  </span>
+
+                </a>
+
+              </div>
+
+
+              <!-- Publish -->
+              <div class="mobile-publish">
+
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="navTo('publierannonce'); mobileMenuOpen = false">
+
+                  <mat-icon>add</mat-icon>
+
+                  {{ 'HOME.Publish' | translate }}
+
+                </button>
+
+              </div>
+
+
+              <!-- Language -->
+              <div class="mobile-language">
+
+                <app-language-selector></app-language-selector>
+
+              </div>
+
+
+              <!-- User -->
+              @if (loginService.isLoggedIn()) {
+
+                <div class="mobile-user-section">
+
+                  <div class="mobile-user-name">
+                    {{ 'GREETING.Welcome' | translate }}
+                    {{ getUsername() }}
+                  </div>
+
+                  <button
+                    mat-button
+                    (click)="navToProfile(); mobileMenuOpen = false">
+
+                    <mat-icon>person</mat-icon>
+                    Profile
+
+                  </button>
+
+                  @if (role === "Client") {
+
+                    <button
+                      mat-button
+                      (click)="navToSauvegarde(); mobileMenuOpen = false">
+
+                      <mat-icon>favorite</mat-icon>
+                      Biens sauvegardés
+
+                    </button>
+
+                    <button
+                      mat-button
+                      (click)="navToSauvegarde(); mobileMenuOpen = false">
+
+                      <mat-icon>event</mat-icon>
+                      Mes visites
+
+                    </button>
+
+                    <button
+                      mat-button
+                      (click)="navToSauvegarde(); mobileMenuOpen = false">
+
+                      <mat-icon>description</mat-icon>
+                      Mes candidatures
+
+                    </button>
+
+                    <button
+                      mat-button
+                      (click)="navToSauvegarde(); mobileMenuOpen = false">
+
+                      <mat-icon>mail</mat-icon>
+                      Messagerie
+
+                    </button>
+
+                  }
+
+                  <button
+                    mat-button
+                    (click)="logout(); mobileMenuOpen = false">
+
+                    <mat-icon>power_settings_new</mat-icon>
+                    {{ 'MENU.LOGOUT' | translate }}
+
+                  </button>
+
+                </div>
+
+              } @else {
+
+                <div class="mobile-login-section">
+
+                  <button
+                    mat-button
+                    (click)="openLogin(); mobileMenuOpen = false">
+
+                    <mat-icon>person</mat-icon>
+                    Login
+
+                  </button>
+
+                </div>
+
+              }
+
+            </div>
+
+          }
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6 items-baseline space-x-4">
@@ -127,222 +341,10 @@
           </button>
 
         </div>
+        
       </div>
     </div>
-    <!--Mobile menu, show/hide based on menu state.-->
-          @if (mobileMenuOpen) {
 
-      <div class="mobile-menu md:hidden">
-
-        <!-- Main navigation -->
-        <div class="mobile-main-links">
-
-          <a
-            routerLink="/home"
-            (click)="mobileMenuOpen = false">
-            Home
-          </a>
-
-          <a
-            routerLink="/about"
-            (click)="mobileMenuOpen = false">
-            {{ 'MENU.ABOUT_US' | translate }}
-          </a>
-
-          <a
-            routerLink="/properties"
-            (click)="mobileMenuOpen = false">
-            {{ 'MENU.PROPERTIES' | translate }}
-          </a>
-
-          <a
-            routerLink="/blog"
-            (click)="mobileMenuOpen = false">
-            {{ 'MENU.BLOG' | translate }}
-          </a>
-
-          @if (getRole() === "Employe" || getRole() === "Admin") {
-
-            <a
-              routerLink="/dashboard"
-              (click)="mobileMenuOpen = false">
-              Dashboard
-            </a>
-
-          }
-
-        </div>
-
-
-        <!-- Property navigation -->
-        <div class="mobile-property-links">
-
-          <a
-            routerLink="avendre"
-            (click)="mobileMenuOpen = false">
-
-            <mat-icon>home</mat-icon>
-
-            <span>
-              {{ 'BIEN.FORSALE' | translate }}
-            </span>
-
-          </a>
-
-          <a
-            routerLink="alouer"
-            (click)="mobileMenuOpen = false">
-
-            <mat-icon>key</mat-icon>
-
-            <span>
-              {{ 'BIEN.FORRENT' | translate }}
-            </span>
-
-          </a>
-
-          <a
-            routerLink="new"
-            (click)="mobileMenuOpen = false">
-
-            <mat-icon>apartment</mat-icon>
-
-            <span>
-              {{ 'HOME.Latest' | translate }}
-            </span>
-
-          </a>
-
-          <a
-            routerLink="devis"
-            (click)="mobileMenuOpen = false">
-
-            <mat-icon>business_center</mat-icon>
-
-            <span>
-              {{ 'HOME.Estimation' | translate }}
-            </span>
-
-          </a>
-
-        </div>
-
-
-        <!-- Publish -->
-        <div class="mobile-publish">
-
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="navTo('publierannonce'); mobileMenuOpen = false">
-
-            <mat-icon>add</mat-icon>
-
-            {{ 'HOME.Publish' | translate }}
-
-          </button>
-
-        </div>
-
-
-        <!-- Language -->
-        <div class="mobile-language">
-
-          <app-language-selector></app-language-selector>
-
-        </div>
-
-
-        <!-- User -->
-        @if (loginService.isLoggedIn()) {
-
-          <div class="mobile-user-section">
-
-            <div class="mobile-user-name">
-              {{ 'GREETING.Welcome' | translate }}
-              {{ getUsername() }}
-            </div>
-
-            <button
-              mat-button
-              (click)="navToProfile(); mobileMenuOpen = false">
-
-              <mat-icon>person</mat-icon>
-              Profile
-
-            </button>
-
-            @if (role === "Client") {
-
-              <button
-                mat-button
-                (click)="navToSauvegarde(); mobileMenuOpen = false">
-
-                <mat-icon>favorite</mat-icon>
-                Biens sauvegardés
-
-              </button>
-
-              <button
-                mat-button
-                (click)="navToSauvegarde(); mobileMenuOpen = false">
-
-                <mat-icon>event</mat-icon>
-                Mes visites
-
-              </button>
-
-              <button
-                mat-button
-                (click)="navToSauvegarde(); mobileMenuOpen = false">
-
-                <mat-icon>description</mat-icon>
-                Mes candidatures
-
-              </button>
-
-              <button
-                mat-button
-                (click)="navToSauvegarde(); mobileMenuOpen = false">
-
-                <mat-icon>mail</mat-icon>
-                Messagerie
-
-              </button>
-
-            }
-
-            <button
-              mat-button
-              (click)="logout(); mobileMenuOpen = false">
-
-              <mat-icon>power_settings_new</mat-icon>
-              {{ 'MENU.LOGOUT' | translate }}
-
-            </button>
-
-          </div>
-
-        } @else {
-
-          <div class="mobile-login-section">
-
-            <button
-              mat-button
-              (click)="openLogin(); mobileMenuOpen = false">
-
-              <mat-icon>person</mat-icon>
-              Login
-
-            </button>
-
-          </div>
-
-        }
-
-      </div>
-
-    }
     
   </nav>
   
