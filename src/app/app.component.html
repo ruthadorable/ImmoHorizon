@@ -26,7 +26,108 @@
               
             </div>
           </div>
-          <!-- Mobile menu button -->
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6 items-baseline space-x-4">
+            <app-language-selector></app-language-selector>
+             <!-- <button matButton [matMenuTriggerFor]="menu" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Language</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="setLanguage('fr')">FR</button>
+                <button mat-menu-item (click)="setLanguage('en')">EN</button>
+                <button mat-menu-item (click)="setLanguage('nl')">NL</button>
+              </mat-menu> -->
+              @if(this.loginService.isLoggedIn()==true ) {
+                @if(role==="Client"){
+                  <button [matMenuTriggerFor]="user" class="ml-4 text-white text-center invert brightness-0" mat-button>Bienvenue {{getUsername()}}</button>
+                  <mat-menu #user="matMenu">
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Biens sauvegardés</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Mes visites</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Mes candidatures</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">Messagerie</button>
+
+                    </mat-menu>
+                }
+                  @if(role==="Employe"){
+                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
+                    <mat-menu #dashboard="matMenu">
+                      <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                    </mat-menu>
+                  } 
+                  @if(role==="Admin"){
+                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
+                    <mat-menu #dashboard="matMenu">
+                      <button mat-menu-item (click)="navToAdminDashboard()">Dashboard</button>
+                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                    </mat-menu>
+                  } 
+                
+                
+                <button mat-button (click)="logout()" class="text-white px-4 invert brightness-0 py-2 rounded-md hover:bg-slate-700">
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>{{ 'MENU.LOGOUT' | translate }}</span>
+                </button>
+              } @else {
+                <button type="button" (click)="openLogin()" class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 [#c9a227]">
+                <span class="absolute -inset-1.5"></span>
+                <span class="material-icons">person</span>
+                </button>
+                 } 
+              
+            
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+
+          <button
+            type="button"
+            (click)="mobileMenuOpen = !mobileMenuOpen"
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
+            aria-label="Toggle menu">
+
+            <span class="absolute -inset-0.5"></span>
+
+            @if (!mobileMenuOpen) {
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                class="size-6">
+
+                <path
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                </path>
+
+              </svg>
+
+            } @else {
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                class="size-6">
+
+                <path
+                  d="M6 18 18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                </path>
+
+              </svg>
+
+            }
+
+          </button>
+        </div>
+      </div>
+        <!-- Mobile menu button -->
                     @if (mobileMenuOpen) {
 
             <div class="mobile-menu md:hidden">
@@ -240,112 +341,7 @@
             </div>
 
           }
-        </div>
-        <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6 items-baseline space-x-4">
-            <app-language-selector></app-language-selector>
-             <!-- <button matButton [matMenuTriggerFor]="menu" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Language</button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="setLanguage('fr')">FR</button>
-                <button mat-menu-item (click)="setLanguage('en')">EN</button>
-                <button mat-menu-item (click)="setLanguage('nl')">NL</button>
-              </mat-menu> -->
-              @if(this.loginService.isLoggedIn()==true ) {
-                @if(role==="Client"){
-                  <button [matMenuTriggerFor]="user" class="ml-4 text-white text-center invert brightness-0" mat-button>Bienvenue {{getUsername()}}</button>
-                  <mat-menu #user="matMenu">
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Biens sauvegardés</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Mes visites</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Mes candidatures</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Messagerie</button>
-
-                    </mat-menu>
-                }
-                  @if(role==="Employe"){
-                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
-                    <mat-menu #dashboard="matMenu">
-                      <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
-                    </mat-menu>
-                  } 
-                  @if(role==="Admin"){
-                  <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
-                    <mat-menu #dashboard="matMenu">
-                      <button mat-menu-item (click)="navToAdminDashboard()">Dashboard</button>
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
-                    </mat-menu>
-                  } 
-                
-                
-                <button mat-button (click)="logout()" class="text-white px-4 invert brightness-0 py-2 rounded-md hover:bg-slate-700">
-                  <mat-icon>power_settings_new</mat-icon>
-                  <span>{{ 'MENU.LOGOUT' | translate }}</span>
-                </button>
-              } @else {
-                <button type="button" (click)="openLogin()" class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 [#c9a227]">
-                <span class="absolute -inset-1.5"></span>
-                <span class="material-icons">person</span>
-                </button>
-                 } 
-              
-            
-          </div>
-        </div>
-        <div class="-mr-2 flex md:hidden">
-
-          <button
-            type="button"
-            (click)="mobileMenuOpen = !mobileMenuOpen"
-            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
-            aria-label="Toggle menu">
-
-            <span class="absolute -inset-0.5"></span>
-
-            @if (!mobileMenuOpen) {
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                class="size-6">
-
-                <path
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                </path>
-
-              </svg>
-
-            } @else {
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                class="size-6">
-
-                <path
-                  d="M6 18 18 6M6 6l12 12"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                </path>
-
-              </svg>
-
-            }
-
-          </button>
-
-        </div>
-        
-      </div>
-    </div>
-
-    
+    </div>    
   </nav>
   
   <mat-toolbar class="bg-white shadow-sm px-8 h-20 flex justify-between">
@@ -386,7 +382,7 @@
 
     <a
       mat-button
-      routerLink="professionnels"
+      routerLink="devis"
       class="nav-link">
       <mat-icon>business_center</mat-icon>
       <span> {{'HOME.Estimation' | translate}} </span>
