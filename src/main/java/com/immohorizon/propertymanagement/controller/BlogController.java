@@ -23,7 +23,7 @@ public class BlogController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Article>> getAllArticles() throws Exception{
-        serviceScraper.scrape();
+        //serviceScraper.scrape();
 
         return ResponseEntity.ok(service.getAllArticles());
 
@@ -49,8 +49,7 @@ public class BlogController {
     @GetMapping("/recent")
     public ResponseEntity<List<Article>> recent(){
 
-        return ResponseEntity.ok(
-                service.getRecentArticles());
+        return ResponseEntity.ok(service.getAllArticles());
 
     }
 
