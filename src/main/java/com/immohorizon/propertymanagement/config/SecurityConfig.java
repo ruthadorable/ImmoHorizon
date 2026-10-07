@@ -46,7 +46,7 @@ public class SecurityConfig {
 
                         // Public endpoints
                         .requestMatchers("/api/auth/**",
-                                "api/blog/all",
+                                "/api/blog/all",
                                 "/api/biens/**",
                                 "/api/biens/search",
                                 "/api/biens/type/avendre",
@@ -59,13 +59,6 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         )
-                        .permitAll()
-
-                        // Visitors can see properties a,d articles
-                        .requestMatchers(HttpMethod.GET, "/api/bien/**","/api/blog/**")
-                        .permitAll()
-                        //Visitor can publish a property
-                        .requestMatchers(HttpMethod.POST, "/api/bien/create")
                         .permitAll()
 
                         // Agents and admins can create properties
