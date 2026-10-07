@@ -48,8 +48,6 @@ public class SecurityConfig {
                                 "/api/auth/**",
                                 "/api/blog/**",
                                 "/api/biens/search",
-                                "/api/biens/publishlisting",
-                                "/api/biens/publish",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
                                 "/api/biens/new",
@@ -62,6 +60,12 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         ).permitAll()
+                        //Client can publish a property
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/biens/publishlisting",
+                                "/api/biens/publish"
+                        ).hasAnyRole("CLIENT")
 
                         // =========================
                         // PROPERTY CREATION
