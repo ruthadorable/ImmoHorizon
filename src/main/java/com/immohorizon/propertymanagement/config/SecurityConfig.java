@@ -48,15 +48,12 @@ public class SecurityConfig {
                                 "/api/auth/**",
                                 "/api/blog/**",
                                 "/api/biens/search",
+                                "/api/biens/publishlisting",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
                                 "/api/biens/new",
                                 "/payment/v1/checkout",
                                 "/api/v1/**"
-                        ).permitAll()
-                        .requestMatchers(
-                                HttpMethod.POST,
-                                "/api/biens/publishlisting"
                         ).permitAll()
 
                         // Swagger
