@@ -53,6 +53,10 @@ public class SecurityConfig {
                                 "/payment/v1/checkout",
                                 "/api/v1/**"
                         ).permitAll()
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/biens/publishlisting"
+                        ).permitAll()
 
                         // Swagger
                         .requestMatchers(
