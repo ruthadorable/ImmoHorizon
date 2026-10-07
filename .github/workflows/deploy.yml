@@ -128,7 +128,7 @@ jobs:
               --name immohorizon-backend \
               --restart unless-stopped \
               -p 3030:3030 \
-              --env-file ~/immohorizon/.env \
+              --env-file .env \
               ruthann33/immohorizon-backend:latest
 
             echo "Waiting for application to start..."
