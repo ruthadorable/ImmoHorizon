@@ -61,10 +61,12 @@ public class SecurityConfig {
                         )
                         .permitAll()
 
-                        // Visitors can see properties
-                        .requestMatchers(HttpMethod.GET, "/api/bien/**")
+                        // Visitors can see properties a,d articles
+                        .requestMatchers(HttpMethod.GET, "/api/bien/**","/api/blog/**")
                         .permitAll()
-
+                        //Visitor can publish a property
+                        .requestMatchers(HttpMethod.POST, "/api/bien/create")
+                        .permitAll()
 
                         // Agents and admins can create properties
                         .requestMatchers(HttpMethod.POST, "/api/bien/**","/api/blog/**")
