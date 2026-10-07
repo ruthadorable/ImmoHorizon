@@ -23,6 +23,7 @@ public class BlogController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Article>> getAllArticles() throws Exception{
+        //Pas authorisé en production
         //serviceScraper.scrape();
 
         return ResponseEntity.ok(service.getAllArticles());

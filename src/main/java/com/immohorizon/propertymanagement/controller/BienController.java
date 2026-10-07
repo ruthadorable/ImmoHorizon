@@ -96,6 +96,29 @@ public class BienController
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
     }
+    @PostMapping(
+            value = "/publishlisting",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public ResponseEntity<?> publishListing(
+            @RequestPart("property") BienDto request,
+            @RequestPart(value = "images", required = false)
+            List<MultipartFile> images
+    ) throws Exception {
+
+        List<String> imageKeys = new ArrayList<>();
+
+        if (images != null) {
+            for (MultipartFile image : images) {
+                imageKeys.add(s3Service.uploadFile(image));
+
+
+            }
+        }
+        Bien createdBien=bienService.creerBien(request,images);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
+    }
 
 
 
