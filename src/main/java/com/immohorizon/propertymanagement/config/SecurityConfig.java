@@ -50,6 +50,7 @@ public class SecurityConfig {
                                 "/api/biens/search",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
+                                "/api/biens/new",
                                 "/payment/v1/checkout",
                                 "/api/v1/**"
                         ).permitAll()
