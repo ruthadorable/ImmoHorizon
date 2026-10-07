@@ -1,5 +1,6 @@
 package com.immohorizon.propertymanagement.model;
 
+import com.immohorizon.propertymanagement.Enum.PropertyStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -80,6 +81,9 @@ public class Bien {
     private int surfaceHabitable;
     @Column
     private int surfaceJardinTerrasse;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private PropertyStatus status;
     @Column
     private boolean disponible;
     @OneToOne

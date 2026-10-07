@@ -17,21 +17,21 @@ public class S3Config {
 
         String region = EnvConfig.get("AWS_REGION");
         //For Local only
-        //String accessKey = EnvConfig.get("AWS_ACCESS_KEY");
-        //String secretKey = EnvConfig.get("AWS_SECRET_KEY");
+//        String accessKey = EnvConfig.get("AWS_ACCESS_KEY");
+//        String secretKey = EnvConfig.get("AWS_SECRET_KEY");
+//
+//        AwsBasicCredentials credentials =
+//                AwsBasicCredentials.create(accessKey, secretKey);
+//
+//        return S3Client.builder()
+//                .region(Region.of(region))
+//                .credentialsProvider(
+//                        StaticCredentialsProvider.create(credentials))
+//                .build();
 
-        //AwsBasicCredentials credentials =
-        //        AwsBasicCredentials.create(accessKey, secretKey);
 
-        /*return S3Client.builder()
-                .region(Region.of(region))
-                .credentialsProvider(
-                        StaticCredentialsProvider.create(credentials))
-                .build();
 
-          */
-
-            return S3Client.builder().region(Region.of(region))
+           return S3Client.builder().region(Region.of(region))
                     .build();
 
     }

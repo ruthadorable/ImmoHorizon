@@ -21,9 +21,13 @@ public class Paiement{
     @Column(unique = true)
     private long idTransaction;
     @Column
-    private Long IdUser;
+    String sessionId;
     @Column
-    private Long IdBien;
+    String checkoutUrl;
+    @Column
+    private Long idUser;
+    @Column
+    private Long idBien;
     @Enumerated(EnumType.STRING)
     private PaiementTitle intitule;
     @Column
@@ -32,6 +36,9 @@ public class Paiement{
     private String currency;
     @Column
     private String stripePaymentIntentId;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private PaiementTitle paymentType;
     @Column
     @Enumerated(EnumType.STRING)
     private StatutPaiement status;

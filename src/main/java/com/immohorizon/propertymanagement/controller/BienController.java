@@ -6,10 +6,14 @@ import com.immohorizon.propertymanagement.dto.BienDto;
 import com.immohorizon.propertymanagement.dto.CritereRechercheDto;
 import com.immohorizon.propertymanagement.dto.PropertyRequest;
 import com.immohorizon.propertymanagement.model.Bien;
+import com.immohorizon.propertymanagement.model.Paiement;
 import com.immohorizon.propertymanagement.repository.BienRepository;
 import com.immohorizon.propertymanagement.services.BienService;
 import com.immohorizon.propertymanagement.services.S3Service;
+import com.immohorizon.propertymanagement.services.impl.PublicationPropertyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +32,15 @@ public class BienController
     private final S3Service s3Service;
     private final ObjectMapper objectMapper;
     private final BienRepository repository;
+    private final PublicationPropertyService publicationService;
     @Autowired
-    public BienController(BienService bienService , S3Service s3Service, ObjectMapper objectMapper, BienRepository repository) {
+    public BienController(BienService bienService , S3Service s3Service, ObjectMapper objectMapper, BienRepository repository, PublicationPropertyService publicationService) {
         this.bienService = bienService;
         this.s3Service=s3Service;
         this.repository = repository;
         this.bienService.generateDummyBien(20);
         this.objectMapper=objectMapper;
+        this.publicationService=publicationService;
     }
     @GetMapping("/all")
     public ResponseEntity<List<Bien>> getAllBiens() {
@@ -86,9 +92,9 @@ public class BienController
 
             }
         }
-        bienService.creerBien(request,images);
+        Bien createdBien=bienService.creerBien(request,images);
 
-        return ResponseEntity.ok(imageKeys);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
     }
 
 
@@ -175,6 +181,15 @@ public class BienController
         bienService.deleteBien(id);
 
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/publish")
+    public ResponseEntity<Paiement> publishProperty(
+            @Valid @RequestBody BienDto request) {
 
+        Paiement response =
+                publicationService
+                        .preparePublicationPayment(request);
+
+        return ResponseEntity.ok(response);
     }
 }
