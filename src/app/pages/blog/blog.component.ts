@@ -69,11 +69,11 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loadArticles();
+     this.loadArticles();
 
-    this.loadFeaturedArticles();
+    // this.loadFeaturedArticles();
 
-    this.loadRecentArticles();
+    //this.loadRecentArticles();
 
   }
 
@@ -88,11 +88,8 @@ export class BlogComponent implements OnInit {
         console.log(this.articles);
 
       },
-
       error: err => console.error(err)
-
     });
-
   }
 
   loadFeaturedArticles(): void {

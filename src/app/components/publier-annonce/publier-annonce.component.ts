@@ -413,7 +413,7 @@ export class PublierAnnonceComponent {
     ICI : appel à ton backend Spring Boot
     ==========================================================
     */
-    this.bienService.creerBien(propertyData, this.imagePreviews.map(img => img.file))
+    this.bienService.publierBien(propertyData, this.imagePreviews.map(img => img.file))
       .subscribe({
 
         next: (property: Bien) => {

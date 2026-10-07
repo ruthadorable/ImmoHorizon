@@ -43,6 +43,28 @@ export class BienService {
     return this.http.get<Bien[]>(this.apiUrl+'/all');
   }
 
+  publierBien(data: any, files: File[]) {
+
+  const formData = new FormData();
+
+  formData.append(
+    'property',
+    new Blob(
+      [JSON.stringify(data)],
+      { type: 'application/json' }
+    )
+  );
+
+  files.forEach(file => {
+    formData.append('images', file);
+  });
+
+  return this.http.post(
+    `${this.apiUrl}/publishlisting`,
+    formData
+  );
+}
+
   creerBien(data: any, files: File[]) {
 
   const formData = new FormData();
