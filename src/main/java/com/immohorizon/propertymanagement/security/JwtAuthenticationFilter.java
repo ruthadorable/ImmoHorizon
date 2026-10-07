@@ -2,8 +2,10 @@ package com.immohorizon.propertymanagement.security;
 
 import com.immohorizon.propertymanagement.model.User;
 import com.immohorizon.propertymanagement.repository.UserRepository;
-
 import com.immohorizon.propertymanagement.services.JwtService;
+
+import io.jsonwebtoken.JwtException;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,22 +15,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.stereotype.Component;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
 
-
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-
     private final JwtService jwtService;
     private final UserRepository userRepository;
-
 
     public JwtAuthenticationFilter(
             JwtService jwtService,
@@ -38,72 +35,71 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.userRepository = userRepository;
     }
 
-
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain
-    )
-            throws ServletException, IOException {
+    ) throws ServletException, IOException {
 
-
-        String authHeader =
-                request.getHeader("Authorization");
-
+        String authHeader = request.getHeader("Authorization");
 
         // No JWT provided
-        if(authHeader == null ||
+        if (authHeader == null ||
                 !authHeader.startsWith("Bearer ")) {
 
-            filterChain.doFilter(request,response);
+            filterChain.doFilter(request, response);
             return;
         }
 
+        String token = authHeader.substring(7);
 
-        String token =
-                authHeader.substring(7);
+        try {
 
+            String email = jwtService.extractEmail(token);
 
-        String email =
-                jwtService.extractEmail(token);
+            if (email != null &&
+                    SecurityContextHolder
+                            .getContext()
+                            .getAuthentication() == null) {
 
+                User user = userRepository
+                        .findByEmail(email)
+                        .orElse(null);
 
-        if(email != null &&
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication() == null) {
+                if (user != null) {
 
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(
+                                    user,
+                                    null,
+                                    List.of(
+                                            new SimpleGrantedAuthority(
+                                                    "ROLE_" + user.getRole()
+                                            )
+                                    )
+                            );
 
-            User user =
-                    userRepository
-                            .findByEmail(email)
-                            .orElse(null);
-
-
-            if(user != null) {
-
-
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                                user,
-                                null,
-                                List.of(
-                                        new SimpleGrantedAuthority(
-                                                "ROLE_" + user.getRole()
-                                        )
-                                )
-                        );
-
-
-                SecurityContextHolder
-                        .getContext()
-                        .setAuthentication(authentication);
+                    SecurityContextHolder
+                            .getContext()
+                            .setAuthentication(authentication);
+                }
             }
 
+        } catch (JwtException | IllegalArgumentException e) {
+
+            /*
+             * Invalid/expired JWT.
+             *
+             * Do not return 403 here.
+             * Simply leave the SecurityContext unauthenticated
+             * and let Spring Security decide whether the endpoint
+             * requires authentication.
+             */
+
+            SecurityContextHolder.clearContext();
         }
 
-
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }

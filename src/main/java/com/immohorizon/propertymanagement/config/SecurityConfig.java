@@ -15,27 +15,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
-    public SecurityConfig(
-            JwtAuthenticationFilter jwtAuthenticationFilter
-    ){
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
-
-
     @Bean
-    SecurityFilterChain securityFilterChain(
-            HttpSecurity http
-    ) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
+
                 .cors(Customizer.withDefaults())
 
                 .sessionManagement(session ->
@@ -44,51 +40,84 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // Public endpoints
-                        .requestMatchers("/api/auth/**",
-                                "/api/blog/all",
-                                "/api/biens/**",
+                        // =========================
+                        // PUBLIC
+                        // =========================
+
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/blog/**",
                                 "/api/biens/search",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
                                 "/payment/v1/checkout",
-                                "/api/v1/**")
-                        .permitAll()
-                        // Public access to Swagger/OpenAPI documentation
+                                "/api/v1/**"
+                        ).permitAll()
+
+                        // Swagger
                         .requestMatchers(
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
-                        )
-                        .permitAll()
+                        ).permitAll()
 
-                        // Agents and admins can create properties
-                        .requestMatchers(HttpMethod.POST, "/api/bien/**","/api/blog/**")
-                        .hasAnyRole("EMPLOYE", "ADMIN")
+                        // =========================
+                        // PROPERTY CREATION
+                        // =========================
 
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/biens/create"
+                        ).hasAnyRole("EMPLOYE", "ADMIN")
 
-                        // Agents and admins can update properties
-                        .requestMatchers(HttpMethod.PUT, "/api/bien/**","/api/blog/**")
-                        .hasAnyRole("EMPLOYE", "ADMIN")
+                        // =========================
+                        // PROPERTY UPDATE
+                        // =========================
 
+                        .requestMatchers(
+                                HttpMethod.PUT,
+                                "/api/biens/**"
+                        ).hasAnyRole("EMPLOYE", "ADMIN")
 
-                        // Agents and admins can delete properties
-                        .requestMatchers(HttpMethod.DELETE, "/api/bien/delete/**")
-                        .hasAnyRole("EMPLOYE", "ADMIN")
-                        // Agents and admins can delete properties
-                        .requestMatchers(HttpMethod.DELETE, "/api/blog/**")
-                        .hasAnyRole("EMPLOYE")
+                        // =========================
+                        // PROPERTY DELETE
+                        // =========================
 
+                        .requestMatchers(
+                                HttpMethod.DELETE,
+                                "/api/biens/delete/**"
+                        ).hasAnyRole("EMPLOYE", "ADMIN")
 
-                        // Everything else requires authentication
-                        .anyRequest()
-                        .authenticated()
+                        // =========================
+                        // BLOG ADMINISTRATION
+                        // =========================
 
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/blog/**"
+                        ).hasAnyRole("EMPLOYE", "ADMIN")
+
+                        .requestMatchers(
+                                HttpMethod.PUT,
+                                "/api/blog/**"
+                        ).hasAnyRole("EMPLOYE", "ADMIN")
+
+                        .requestMatchers(
+                                HttpMethod.DELETE,
+                                "/api/blog/**"
+                        ).hasRole("EMPLOYE")
+
+                        // =========================
+                        // EVERYTHING ELSE
+                        // =========================
+
+                        .anyRequest().authenticated()
+                )
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
                 );
 
-
-        return http.addFilterBefore(
-                jwtAuthenticationFilter,
-                UsernamePasswordAuthenticationFilter.class
-        ).build();
+        return http.build();
     }
 }
