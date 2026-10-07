@@ -21,6 +21,7 @@ import { ArticleDetailsComponent } from './pages/blog/article-details/article-de
 import { PublierAnnonceComponent } from './components/publier-annonce/publier-annonce.component';
 import { NewpropertiesComponent } from './pages/properties/newproperties/newproperties.component';
 import { DevisComponent } from './pages/devis/devis.component';
+import { PublicationPaymentComponent } from './pages/publication-payment/publication-payment.component';
 export const routes: Routes = [
     {
         path:'',
@@ -62,7 +63,12 @@ export const routes: Routes = [
         data: { breadcrumb: 'Publier une annonce' },
         children:[]
     },
-    
+     {
+        path:'publication-payment/:id',
+        component: PublicationPaymentComponent,
+        data: { breadcrumb: 'Publication Payment' },
+        children:[]
+    },
       {
         path:'devis',
         component: DevisComponent,

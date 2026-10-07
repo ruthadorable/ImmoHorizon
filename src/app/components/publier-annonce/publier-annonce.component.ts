@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BienService } from '../../services/biens/bien.service';
+import { Bien } from '../../models/bien.model';
 
 
 interface ImagePreview {
@@ -82,7 +84,8 @@ export class PublierAnnonceComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private bienService: BienService
   ) {
 
     this.propertyForm = this.fb.group({
@@ -160,11 +163,11 @@ export class PublierAnnonceComponent {
         Validators.min(0)
       ],
 
-      etage: [
+      etages: [
         0
       ],
 
-      anneeConstruction: [
+      annee_construction: [
         null,
         Validators.min(1800)
       ],
@@ -199,7 +202,7 @@ export class PublierAnnonceComponent {
 
       numero: [''],
 
-      codePostal: [''],
+      code_postal: [''],
 
       commune: [
         '',
@@ -409,23 +412,30 @@ export class PublierAnnonceComponent {
     ==========================================================
     ICI : appel à ton backend Spring Boot
     ==========================================================
-
-    this.propertyService.createProperty(propertyData)
+    */
+    this.bienService.creerBien(propertyData, this.imagePreviews.map(img => img.file))
       .subscribe({
 
-        next: (property) => {
+        next: (property: Bien) => {
 
           console.log(
             'Bien créé :',
             property
           );
 
-          // Ensuite upload des images vers S3
-          this.uploadImages(property.id);
+          // Rediriger vers la page de paiement
+          this.router.navigate([
+            '/publication-payment',
+            property.idBien
+          ]);
+          console.log(
+            'Redirection vers la page de paiement pour le bien ID :',
+            property.idBien
+          );
 
         },
 
-        error: (error) => {
+        error: (error: any) => {
 
           console.error(
             'Erreur lors de la création :',
@@ -437,18 +447,7 @@ export class PublierAnnonceComponent {
         }
 
       });
-    */
-
-
-    // TEMPORAIRE POUR TESTER L'INTERFACE
-
-    setTimeout(() => {
-
-      console.log('Annonce publiée !');
-
-      this.submitting = false;
-
-    }, 1000);
+    
   }
 
 

@@ -11,6 +11,7 @@ import { TopToolbarComponent } from '../shared/top-toolbar/top-toolbar.component
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterOutlet } from '@angular/router';
 import {MatBadgeModule} from '@angular/material/badge'
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +24,17 @@ import {MatBadgeModule} from '@angular/material/badge'
 export class DashboardComponent {
 
 badgevisible = false;
+isMobile = false;
+
+constructor(
+  private breakpointObserver: BreakpointObserver
+) {
+  this.breakpointObserver
+    .observe([Breakpoints.Handset])
+    .subscribe(result => {
+      this.isMobile = result.matches;
+    });
+}
   badgevisibility() {
     this.badgevisible = true;
   }

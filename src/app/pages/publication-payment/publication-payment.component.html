@@ -1,0 +1,167 @@
+<div class="payment-page">
+
+  <div class="payment-container">
+
+    <!-- Header -->
+    <div class="payment-header">
+      <div class="payment-icon">
+        <mat-icon>payments</mat-icon>
+      </div>
+
+      <h1>Publication Fee</h1>
+
+      <p>
+        Pay the agency fee required to publish your property
+        on ImmoHorizon.
+      </p>
+    </div>
+
+    <!-- Payment Card -->
+    <div class="payment-card">
+
+      <!-- Property Information -->
+      <section class="property-section">
+
+        <h2>Property publication</h2>
+
+        <div class="property-info">
+
+          <div class="property-row">
+            <span class="label">Property</span>
+            <span class="value">
+              {{ property?.title || 'Property publication' }}
+            </span>
+          </div>
+
+          <div class="property-row">
+            <span class="label">Publication type</span>
+            <span class="value">
+              Agency publication
+            </span>
+          </div>
+
+          <div class="property-row">
+            <span class="label">Property reference</span>
+            <span class="value">
+              {{ property?.id || '-' }}
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <!-- Price -->
+      <section class="price-section">
+
+        <div class="price-row">
+
+          <div>
+            <span class="price-label">
+              Publication fee
+            </span>
+
+            <span class="price-description">
+              One-time agency publication fee
+            </span>
+          </div>
+
+          <span class="price">
+            {{ publicationFee | currency:'EUR':'symbol':'1.2-2':'fr' }}
+          </span>
+
+        </div>
+
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <!-- Secure Payment -->
+      <section class="secure-payment">
+
+        <div class="secure-icon">
+          <mat-icon>lock</mat-icon>
+        </div>
+
+        <div>
+          <h3>Secure payment</h3>
+
+          <p>
+            Your payment is securely processed by Stripe.
+            ImmoHorizon does not store your card details.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- Error -->
+      @if (paymentError) {
+        <div class="payment-error">
+
+          <mat-icon>error_outline</mat-icon>
+
+          <span>
+            {{ paymentError }}
+          </span>
+
+        </div>
+      }
+
+      <!-- Payment Button -->
+      <button
+        mat-raised-button
+        class="pay-button"
+        type="button"
+        [disabled]="isProcessing"
+        (click)="payPublicationFee()">
+
+        @if (isProcessing) {
+
+          <mat-spinner
+            diameter="22">
+          </mat-spinner>
+
+          <span>
+            Redirecting to Stripe...
+          </span>
+
+        } @else {
+        <ng-container>    
+          <mat-icon>lock</mat-icon>
+
+          <span>
+            Pay {{ publicationFee | currency:'EUR':'symbol':'1.2-2':'fr' }}
+          </span>
+        </ng-container> 
+        }
+
+      </button>
+
+      <!-- Stripe information -->
+      <div class="stripe-info">
+
+        <span>Secure payment powered by</span>
+
+        <strong>Stripe</strong>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="payment-footer">
+
+      <mat-icon>verified_user</mat-icon>
+
+      <span>
+        Your payment is protected by Stripe's secure payment
+        infrastructure.
+      </span>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,51 +1,112 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-    <button (click)="drawer.toggle()" mat-icon-button>
-        <mat-icon>menu</mat-icon>
+<mat-toolbar
+    color="primary"
+    class="mat-elevation-z8 flex w-full items-center">
+
+    <!-- Menu -->
+    <button
+        mat-icon-button
+        (click)="drawer.toggle()"
+        aria-label="Open navigation menu">
+
+        <mat-icon>
+            menu
+        </mat-icon>
+
     </button>
-    <span>Real Estate Agent Dashboard</span>
-    <span class="example-spacer"></span>
-    
-     <div class="flex items-center gap-4">
 
-        <button mat-icon-button>
-          <mat-icon>notifications</mat-icon>
+
+    <!-- Title -->
+    <span class="ml-2 truncate text-base font-medium sm:text-lg md:text-xl">
+        Real Estate Agent Dashboard
+    </span>
+
+
+    <!-- Spacer -->
+    <span class="flex-1"></span>
+
+
+    <!-- Right side -->
+    <div class="flex items-center gap-1 sm:gap-2 md:gap-4">
+
+        <!-- Notifications -->
+        <button
+            mat-icon-button
+            aria-label="Notifications">
+
+            <mat-icon>
+                notifications
+            </mat-icon>
+
         </button>
 
-        <button mat-icon-button>
-          <mat-icon>mail</mat-icon>
+
+        <!-- Messages -->
+        <button
+            mat-icon-button
+            aria-label="Messages">
+
+            <mat-icon>
+                mail
+            </mat-icon>
+
         </button>
 
-        <div class="flex items-center gap-3">
 
-          <img
-            src="https://i.pravatar.cc/150?img=5"
-            class="h-10 w-10 rounded-full border-2 border-white"
-            alt="Employee">
+        <!-- Employee -->
+        <div class="flex items-center gap-2 sm:gap-3">
 
-          <div class="hidden md:block">
+            <img
+                src="https://i.pravatar.cc/150?img=5"
+                class="h-8 w-8 rounded-full border-2 border-white sm:h-10 sm:w-10"
+                alt="Employee">
 
-            <p class="font-medium">
-              {{getUsername()}}
-            </p>
 
-            <p class="text-xs opacity-80">
-              Real Estate Agent
-            </p>
+            <!-- Employee information -->
+            <div class="hidden md:block">
 
-          </div>
+                <p class="truncate font-medium">
+                    {{ getUsername() }}
+                </p>
+
+                <p class="text-xs opacity-80">
+                    Real Estate Agent
+                </p>
+
+            </div>
 
         </div>
 
-      </div>
+    </div>
+
 </mat-toolbar>
-<mat-drawer-container autosize>
-    <mat-drawer #drawer opened="true" mode="side" position="start">
-    <app-sidenav></app-sidenav>
+
+
+<!-- Drawer -->
+<mat-drawer-container
+    autosize
+    class="min-h-[calc(100vh-64px)]">
+
+
+    <mat-drawer
+         #drawer
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
+    position="start">
+
+        <app-sidenav></app-sidenav>
+
     </mat-drawer>
-    <mat-drawer-content>
-        <div style="text-align: center;min-height: 600px;">
+
+
+    <!-- Main content -->
+    <mat-drawer-content class="w-full">
+
+        <div class="min-h-[600px] w-full">
 
             <router-outlet></router-outlet>
-            </div>
+
+        </div>
+
     </mat-drawer-content>
+
 </mat-drawer-container>
