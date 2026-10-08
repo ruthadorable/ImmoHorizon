@@ -121,8 +121,8 @@ export class LoginDialogComponent {
         }
         if(role=="CLIENT"){
           localStorage.setItem('role',"User")
-          alert("Vous êtes connecté en tant qu'utilisateur. Vous serez redirigé vers la page d'accueil.");
-          this.router.navigate(['/home']);
+          // alert("Vous êtes connecté en tant qu'utilisateur. Vous serez redirigé vers la page d'accueil.");
+          // this.router.navigate(['/home']);
   
         }
         this.dialogRef.close(this.form.value);
@@ -156,10 +156,6 @@ export class LoginDialogComponent {
     console.log(this.mode, this.form2.value);
     this.dialogRef.close(this.form2.value);
   }
-
-  
-
-  
 }
 
   

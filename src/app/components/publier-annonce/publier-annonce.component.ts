@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BienService } from '../../services/biens/bien.service';
 import { Bien } from '../../models/bien.model';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginDialogComponent } from '../../dialog/login-dialog/login-dialog.component';
 
 
 interface ImagePreview {
@@ -76,6 +78,7 @@ export class PublierAnnonceComponent {
     'Immeuble',
     'Autre'
   ];
+  public dialog = inject(MatDialog);
 
 
   // ==========================================================
@@ -85,7 +88,8 @@ export class PublierAnnonceComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private bienService: BienService
+    private bienService: BienService,
+    private loginService: LoginService
   ) {
 
     this.propertyForm = this.fb.group({
@@ -247,6 +251,20 @@ export class PublierAnnonceComponent {
 
     });
   }
+
+  ngOnInit(): void {
+      if(localStorage.getItem('roles') === null){
+        alert("Vous devez être connecté pour publier une annonce.");
+        this.openLogin();
+      }
+  }
+
+    openLogin() {
+      this.dialog.open(LoginDialogComponent, {
+        width: '600px',
+        disableClose: true
+      });
+    }
 
 
   // ==========================================================

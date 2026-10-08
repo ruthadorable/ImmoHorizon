@@ -11,7 +11,7 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-              <a aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" routerLink="/home">Home</a>
+              <a aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" routerLink="/home">{{ 'MENU.HOME' | translate }}</a>
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/about">{{ 'MENU.ABOUT_US' | translate }}</a>
               <a  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/blog">{{ 'MENU.BLOG' | translate }}</a>
@@ -37,14 +37,14 @@
                 <button mat-menu-item (click)="setLanguage('nl')">NL</button>
               </mat-menu> -->
               @if(this.loginService.isLoggedIn()==true ) {
-                @if(role==="Client"){
+                @if(role==="User"){
                   <button [matMenuTriggerFor]="user" class="ml-4 text-white text-center invert brightness-0" mat-button>Bienvenue {{getUsername()}}</button>
                   <mat-menu #user="matMenu">
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Biens sauvegardés</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Mes visites</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Mes candidatures</button>
-                      <button mat-menu-item (click)="navToSauvegarde()">Messagerie</button>
+                      <button mat-menu-item (click)="navToProfile()">{{ 'MENU.Profile' | translate }}</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">{{ 'MENU.SAVED_PROPERTIES' | translate }}</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">{{ 'MENU.Visit_Schedule' | translate }}</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">{{ 'MENU.Candidatures' | translate }}</button>
+                      <button mat-menu-item (click)="navToSauvegarde()">{{ 'MENU.Messages' | translate }}</button>
 
                     </mat-menu>
                 }
@@ -138,7 +138,7 @@
                 <a
                   routerLink="/home"
                   (click)="mobileMenuOpen = false">
-                  Home
+                  {{ 'MENU.HOME' | translate }}
                 </a>
 
                 <a
@@ -164,7 +164,7 @@
                   <a
                     routerLink="/dashboard"
                     (click)="mobileMenuOpen = false">
-                    Dashboard
+                    {{ 'MENU.DASHBOARD' | translate }}
                   </a>
 
                 }
@@ -266,18 +266,18 @@
                     (click)="navToProfile(); mobileMenuOpen = false">
 
                     <mat-icon>person</mat-icon>
-                    Profile
+                    {{ 'MENU.Profile' | translate }}
 
                   </button>
 
-                  @if (role === "Client") {
+                  @if (role === "CLIENT") {
 
                     <button
                       mat-button
                       (click)="navToSauvegarde(); mobileMenuOpen = false">
 
                       <mat-icon>favorite</mat-icon>
-                      Biens sauvegardés
+                      {{ 'MENU.SAVED_PROPERTIES' | translate }}
 
                     </button>
 
@@ -286,7 +286,7 @@
                       (click)="navToSauvegarde(); mobileMenuOpen = false">
 
                       <mat-icon>event</mat-icon>
-                      Mes visites
+                      {{ 'MENU.Visit_Schedule' | translate }}
 
                     </button>
 
@@ -295,7 +295,7 @@
                       (click)="navToSauvegarde(); mobileMenuOpen = false">
 
                       <mat-icon>description</mat-icon>
-                      Mes candidatures
+                      {{ 'MENU.Candidatures' | translate }}
 
                     </button>
 
@@ -304,7 +304,7 @@
                       (click)="navToSauvegarde(); mobileMenuOpen = false">
 
                       <mat-icon>mail</mat-icon>
-                      Messagerie
+                      {{ 'MENU.Messages' | translate }}
 
                     </button>
 

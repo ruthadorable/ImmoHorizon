@@ -38,6 +38,10 @@ export class LoginService {
    public setRoles(roles: []) {
     localStorage.setItem('roles', JSON.stringify(roles));
   }
+  public getRoles(): [] | null {
+    const roles = localStorage.getItem('roles');
+    return roles ? JSON.parse(roles) : null;
+  }
 
   public setToken(jwtToken: string){
     localStorage.setItem('jwtToken',`${jwtToken.slice(7)}`);

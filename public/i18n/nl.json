@@ -17,7 +17,14 @@
         "BLOG": "Blog",
         "LOGIN": "Inloggen",
         "REGISTER": "Registreren",
-        "LOGOUT": "Uitloggen"
+        "LOGOUT": "Uitloggen",
+        "DASHBOARD": "Dashboard",
+        "Profile": "Profiel",
+        "Settings": "Instellingen",
+        "SAVED_PROPERTIES": "Opgeslagen Eigendommen",
+        "Visit_Schedule": "Bezichtigen",
+        "Messages": "Berichten",
+        "Candidatures": "Mijn sollicitaties"
     },
  "SERVICES":{
         "Title": "Onze Diensten",
@@ -270,5 +277,17 @@
     "Lifestyle": "Levensstijl",
     "Charity": "Goede doelen",
     "Legal Advice": "Juridisch advies"
-}
+},
+ "Blog": {
+    "Title": "Vastgoedblog",
+    "Buying": "Kopen",
+    "Selling": "Verkopen",
+    "Renting": "Huren",
+    "Investment": "Investering",
+    "Advice": "Advies",
+    "Search": "Zoeken",
+    "All": "Alle",
+    "Taxes": "Belastingen",
+    "ReadMore": "Lees meer"
+  }
 }

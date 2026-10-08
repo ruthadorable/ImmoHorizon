@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Article } from '../../models/article.model';
 import { BlogService } from '../../services/blog/blog.service';
 import { SearchPipe } from '../../pipes/search.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -24,7 +25,8 @@ import { SearchPipe } from '../../pipes/search.pipe';
     MatInputModule,
     MatIconModule,
     FormsModule,
-    SearchPipe
+    SearchPipe,
+    TranslateModule
   ],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']

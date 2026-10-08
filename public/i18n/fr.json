@@ -1,5 +1,6 @@
 {"Slogan": "Trouvez votre maison de rêve avec ImmoHorizon - Votre partenaire immobilier de confiance!",
  "HOME": {
+    "Home": "Accueil",
         "WELCOME": "Bienvenue chez ImmoHorizon",
         "DESCRIPTION": "Votre solution tout-en-un pour tous vos besoins immobiliers. Que vous cherchiez à acheter, vendre ou louer, nous avons ce qu'il vous faut avec nos annonces étendues et nos conseils d'experts.",
         "FEATURED_PROPERTIES": "Propriétés en vedette",
@@ -18,7 +19,14 @@
         "BLOG": "Blog",
         "LOGIN": "Connexion",
         "REGISTER": "Inscription",
-        "LOGOUT": "Déconnexion"
+        "LOGOUT": "Déconnexion",
+        "DASHBOARD": "Tableau de bord",
+        "Profile": "Profil",
+        "Settings": "Paramètres",
+        "SAVED_PROPERTIES": "Biens Sauvegardées",
+        "Visit_Schedule": "Mes visites",
+        "Messages": "Messagerie",
+        "Candidatures": "Mes candidatures"
     },
     "LOGIN":{
         "PASSWORD":"Mot de passe",
@@ -284,5 +292,17 @@
     "Lifestyle": "Style de vie",
     "Charity": "Œuvres caritatives",
     "Legal Advice": "Conseils juridiques"
-}
+},
+"Blog": {
+    "Title": "Blog Immobilier",
+    "Buying": "Acheter",
+    "Selling": "Vendre",
+    "Renting": "Louer",
+    "Investment": "Investissement",
+    "Advice": "Conseils",
+    "Search": "Rechercher",
+    "All": "Tous",
+    "Taxes": "Fiscalité",
+    "ReadMore": "Lire l'article"
+  }
 }

@@ -60,14 +60,14 @@ export const routes: Routes = [
        {
         path:'publierannonce',
         component: PublierAnnonceComponent,
-        data: { breadcrumb: 'Publier une annonce' },
-        children:[]
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['CLIENT'] }
     },
      {
         path:'publication-payment/:id',
         component: PublicationPaymentComponent,
-        data: { breadcrumb: 'Publication Payment' },
-        children:[]
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['CLIENT'] }
     },
       {
         path:'devis',

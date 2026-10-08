@@ -3,11 +3,11 @@
     <div class="hero-overlay">
 
         <h1 class="text-3xl sm:text-4xl md:text-5xl">
-            Real Estate Blog
+            {{ 'Blog.Title' | translate }}
         </h1>
 
         <p class="text-sm sm:text-base md:text-lg">
-            Buying • Selling • Renting • Investment • Advice
+            {{ 'Blog.Buying' | translate }} • {{ 'Blog.Selling' | translate }} • {{ 'Blog.Renting' | translate }} • {{ 'Blog.Investment' | translate }} • {{ 'Blog.Advice' | translate }}
         </p>
 
         <mat-form-field
@@ -18,7 +18,7 @@
 
             <input
                 matInput
-                placeholder="Search article"
+                placeholder="{{ 'Blog.Search' | translate }}"
                 [(ngModel)]="searchText"
                 (input)="filterArticles()">
 
@@ -38,37 +38,37 @@
             mat-stroked-button
             color="primary"
             class="shrink-0">
-            All
+            {{ 'Blog.All' | translate }}
         </button>
 
         <button
             mat-button
             class="shrink-0">
-            Buying
+            {{ 'Blog.Buying' | translate }}
         </button>
 
         <button
             mat-button
             class="shrink-0">
-            Selling
+            {{ 'Blog.Selling' | translate }}
         </button>
 
         <button
             mat-button
             class="shrink-0">
-            Renting
+            {{ 'Blog.Renting' | translate }}
         </button>
 
         <button
             mat-button
             class="shrink-0">
-            Investment
+            {{ 'Blog.Investment' | translate }}
         </button>
 
         <button
             mat-button
             class="shrink-0">
-            Taxes
+            {{ 'Blog.Advice' | translate }}
         </button>
 
     </div>
@@ -108,7 +108,7 @@
                             class="read-button"
                             (click)="goTo(article.link)">
 
-                            Read article
+                            {{ 'Blog.ReadMore' | translate }}
 
                         </button>
 
