@@ -48,14 +48,14 @@
 
                     </mat-menu>
                 }
-                  @if(role==="Employe"){
+                  @else if(role==="Employe"){
                   <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
                     <mat-menu #dashboard="matMenu">
                       <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
                       <button mat-menu-item (click)="navToProfile()">Profile</button>
                     </mat-menu>
                   } 
-                  @if(role==="Admin"){
+                  @else if(role==="Admin"){
                   <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
                     <mat-menu #dashboard="matMenu">
                       <button mat-menu-item (click)="navToAdminDashboard()">Dashboard</button>
