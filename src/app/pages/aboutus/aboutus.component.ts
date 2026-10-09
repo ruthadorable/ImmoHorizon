@@ -16,4 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class AboutusComponent {
 
+  navTo(path: string): void {
+    window.location.href = path;
+  }
+
 }

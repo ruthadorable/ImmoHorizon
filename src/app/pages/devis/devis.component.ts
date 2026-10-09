@@ -8,12 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-devis',
   imports: [CommonModule,
     ReactiveFormsModule,
-
+    TranslateModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,

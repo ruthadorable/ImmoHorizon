@@ -6,13 +6,11 @@
       <div class="max-w-3xl">
 
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          Demande de devis
+          {{ 'DEVIS.Title' | translate }}
         </h1>
 
         <p class="text-gray-300 text-lg leading-relaxed">
-          Vous avez un projet immobilier ? Décrivez-nous votre besoin
-          et recevez une estimation personnalisée de nos services.
-        </p>
+          {{ 'DEVIS.Description' | translate }}
       </div>
     </div>
   </section>
@@ -36,13 +34,11 @@
           </div>
 
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">
-            Parlons de votre projet
+            {{ 'DEVIS.Subtitle' | translate }}
           </h2>
 
           <p class="text-gray-600 leading-relaxed mb-6">
-            Que vous souhaitiez vendre, louer, acheter ou faire estimer
-            un bien, notre équipe est à votre disposition pour vous
-            accompagner.
+            {{ 'DEVIS.Subtitle2' | translate }}
           </p>
 
           <!-- Benefits -->
@@ -53,11 +49,11 @@
 
               <div>
                 <h3 class="font-semibold text-gray-800">
-                  Estimation personnalisée
+                  {{ 'DEVIS.Subtitle3' | translate }}
                 </h3>
 
                 <p class="text-sm text-gray-500 mt-1">
-                  Une évaluation adaptée à votre bien et à votre projet.
+                  {{ 'DEVIS.Subtitle4' | translate }}
                 </p>
               </div>
             </div>
@@ -67,11 +63,11 @@
 
               <div>
                 <h3 class="font-semibold text-gray-800">
-                  Réponse rapide
+                  {{ 'DEVIS.Subtitle5' | translate }}
                 </h3>
 
                 <p class="text-sm text-gray-500 mt-1">
-                  Nous vous recontactons dans les meilleurs délais.
+                  {{ 'DEVIS.Subtitle6' | translate }}
                 </p>
               </div>
             </div>
@@ -81,11 +77,11 @@
 
               <div>
                 <h3 class="font-semibold text-gray-800">
-                  Accompagnement professionnel
+                  {{ 'DEVIS.Subtitle7' | translate }}
                 </h3>
 
                 <p class="text-sm text-gray-500 mt-1">
-                  Un conseiller vous accompagne à chaque étape.
+                  {{ 'DEVIS.Subtitle8' | translate }}
                 </p>
               </div>
             </div>
@@ -98,7 +94,7 @@
         <div class="bg-[#f8f6ef] rounded-2xl p-7">
 
           <h3 class="text-xl font-semibold text-gray-800 mb-5">
-            Besoin d'aide ?
+            {{ 'DEVIS.Contact' | translate }}
           </h3>
 
           <div class="space-y-4">
@@ -115,7 +111,7 @@
               <mat-icon class="text-[#c9a227]">email</mat-icon>
 
               <span class="text-gray-700">
-                contactimmohorizon.be
+                contact&#64;immohorizon.be
               </span>
             </div>
 
@@ -141,12 +137,11 @@
           <div class="mb-8">
 
             <h2 class="text-2xl font-semibold text-gray-800">
-              Votre demande
+              {{ 'DEVIS.Form' | translate }}
             </h2>
 
             <p class="text-gray-500 mt-2">
-              Remplissez le formulaire ci-dessous afin que nous puissions
-              comprendre votre projet.
+              {{ 'DEVIS.FormDescription' | translate }}
             </p>
 
           </div>
@@ -160,7 +155,7 @@
             <div>
 
               <label class="block text-sm font-semibold text-gray-700 mb-3">
-                Type de projet
+                {{ 'DEVIS.Type' | translate }}
               </label>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -175,11 +170,11 @@
                   </mat-icon>
 
                   <div class="font-semibold mt-2">
-                    Vente
+                    {{ 'DEVIS.Vente' | translate }}
                   </div>
 
                   <div class="text-sm text-gray-500">
-                    Je souhaite vendre un bien
+                    {{ 'DEVIS.VenteDescription' | translate }}
                   </div>
 
                 </button>
@@ -194,11 +189,11 @@
                   </mat-icon>
 
                   <div class="font-semibold mt-2">
-                    Location
+                    {{ 'DEVIS.Location' | translate }}
                   </div>
 
                   <div class="text-sm text-gray-500">
-                    Je souhaite louer un bien
+                    {{ 'DEVIS.LocationDescription' | translate }}
                   </div>
 
                 </button>
@@ -214,11 +209,11 @@
                   </mat-icon>
 
                   <div class="font-semibold mt-2">
-                    Achat
+                    {{ 'DEVIS.Achat' | translate }}
                   </div>
 
                   <div class="text-sm text-gray-500">
-                    Je recherche un bien
+                    {{ 'DEVIS.AchatDescription' | translate }}
                   </div>
 
                 </button>
@@ -231,11 +226,11 @@
                     </mat-icon>
 
                     <div class="font-semibold mt-2">
-                        Estimation
+                        {{ 'DEVIS.Estimation' | translate }}
                     </div>
 
                     <div class="text-sm text-gray-500">
-                        Je souhaite estimer mon bien
+                        {{ 'DEVIS.EstimationDescription' | translate }}
                     </div>
 
                 </button>
@@ -248,30 +243,30 @@
             <div>
 
               <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Vos coordonnées
+                {{ 'DEVIS.Coordonnees' | translate }}
               </h3>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Prénom</mat-label>
+                  <mat-label>{{ 'DEVIS.FirstName' | translate }}</mat-label>
                   <input
                     matInput
                     formControlName="firstName">
 
                   <mat-error>
-                    Le prénom est obligatoire
+                    {{ 'DEVIS.errorFirstName' | translate }}
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Nom</mat-label>
+                  <mat-label>{{ 'DEVIS.LastName' | translate }}</mat-label>
                   <input
                     matInput
                     formControlName="lastName">
 
                   <mat-error>
-                    Le nom est obligatoire
+                    {{ 'DEVIS.errorLastName' | translate }}
                   </mat-error>
                 </mat-form-field>
 
@@ -283,12 +278,12 @@
                     formControlName="email">
 
                   <mat-error>
-                    Veuillez introduire une adresse email valide
+                    {{ 'DEVIS.errorEmail' | translate }}
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Téléphone</mat-label>
+                  <mat-label>{{ 'DEVIS.Phone' | translate }}</mat-label>
                   <input
                     matInput
                     formControlName="phone">
@@ -302,45 +297,45 @@
             <div>
 
               <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Informations sur le bien
+                {{ 'DEVIS.PropertyInfo' | translate }}
               </h3>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Type de bien</mat-label>
+                  <mat-label>{{ 'DEVIS.PropertyType' | translate }}</mat-label>
 
                   <mat-select formControlName="propertyType">
 
                     <mat-option value="MAISON">
-                      Maison
+                      {{ 'DEVIS.House' | translate }}
                     </mat-option>
 
                     <mat-option value="APPARTEMENT">
-                      Appartement
+                      {{ 'DEVIS.Apartment' | translate }}
                     </mat-option>
 
                     <mat-option value="TERRAIN">
-                      Terrain
+                      {{ 'DEVIS.Terrain' | translate }}
                     </mat-option>
 
                     <mat-option value="BUREAU">
-                      Bureau
+                      {{ 'DEVIS.Bureau' | translate }}
                     </mat-option>
 
                     <mat-option value="COMMERCE">
-                      Commerce
+                      {{ 'DEVIS.Commerce' | translate }}
                     </mat-option>
 
                     <mat-option value="AUTRE">
-                      Autre
+                      {{ 'DEVIS.Autre' | translate }}
                     </mat-option>
 
                   </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Localité</mat-label>
+                  <mat-label>{{ 'DEVIS.Localisation' | translate }}</mat-label>
 
                   <input
                     matInput
@@ -349,7 +344,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Budget / valeur estimée</mat-label>
+                  <mat-label>{{ 'DEVIS.BudgetEstimation' | translate }}</mat-label>
 
                   <input
                     matInput
@@ -360,7 +355,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Superficie</mat-label>
+                  <mat-label>{{ 'DEVIS.Surface' | translate }}</mat-label>
 
                   <input
                     matInput
@@ -382,7 +377,7 @@
                 class="w-full">
 
                 <mat-label>
-                  Décrivez votre projet
+                  {{ 'DEVIS.ProjectDescription' | translate }}
                 </mat-label>
 
                 <textarea
@@ -400,7 +395,7 @@
             <div>
 
               <label class="block text-sm font-semibold text-gray-700 mb-3">
-                Comment souhaitez-vous être contacté ?
+                {{'DEVIS.ContactPreference' | translate}}
               </label>
 
               <mat-radio-group
@@ -412,11 +407,11 @@
                 </mat-radio-button>
 
                 <mat-radio-button value="PHONE">
-                  Téléphone
+                  {{'DEVIS.Phone' | translate }}
                 </mat-radio-button>
 
                 <mat-radio-button value="BOTH">
-                  Les deux
+                  {{'DEVIS.Both' | translate }}
                 </mat-radio-button>
 
               </mat-radio-group>
@@ -427,8 +422,7 @@
             <div class="border-t pt-6">
 
               <mat-checkbox formControlName="privacy">
-                J'accepte que mes données soient utilisées afin
-                de traiter ma demande de devis.
+                {{'DEVIS.PrivacyDescription'| translate}}
               </mat-checkbox>
 
             </div>
@@ -446,7 +440,7 @@
                   send
                 </mat-icon>
 
-                Envoyer ma demande
+                {{'DEVIS.Submit'| translate }}
 
               </button>
 

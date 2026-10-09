@@ -18,7 +18,7 @@
 
           <span
             class="uppercase tracking-widest text-orange-400 font-semibold text-sm sm:text-base">
-            Welcome to ImmoHorizon
+            {{'HOME.WELCOME' | translate}}
           </span>
 
           <h1
@@ -81,17 +81,17 @@
 
             <mat-icon
               class="!text-4xl sm:!text-5xl !w-12 !h-12 sm:!w-14 sm:!h-14 text-orange-500">
-              home
+              {{ 'MENU.Home' | translate }}
             </mat-icon>
 
           </div>
 
           <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
-            Buy
+            {{ 'HOME.Buy' | translate }}
           </h3>
 
           <p class="mt-3 sm:mt-4 text-gray-600">
-            Thousands of verified homes.
+            {{ 'HOME.BuyDescription' | translate }}
           </p>
 
         </mat-card>
@@ -108,11 +108,11 @@
           </div>
 
           <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
-            Rent
+            {{ 'HOME.Rent' | translate }}
           </h3>
 
           <p class="mt-3 sm:mt-4 text-gray-600">
-            Apartments, houses and offices.
+            {{ 'HOME.RentDescription' | translate }}
           </p>
 
         </mat-card>
@@ -129,11 +129,11 @@
           </div>
 
           <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
-            Invest
+            {{ 'HOME.Invest' | translate }}
           </h3>
 
           <p class="mt-3 sm:mt-4 text-gray-600">
-            Find investment opportunities.
+            {{ 'HOME.InvestDescription' | translate }}
           </p>
 
         </mat-card>
@@ -150,11 +150,11 @@
           </div>
 
           <h3 class="font-bold text-lg sm:text-xl mt-4 sm:mt-6">
-            Advice
+            {{ 'HOME.Advice' | translate }}
           </h3>
 
           <p class="mt-3 sm:mt-4 text-gray-600">
-            Professional real estate experts.
+            {{ 'HOME.AdviceDescription' | translate }}
           </p>
 
         </mat-card>
@@ -175,13 +175,13 @@
 
         <h2
           class="text-3xl sm:text-4xl font-bold">
-          Latest Properties
+          {{ 'HOME.LatestProperties' | translate }}
         </h2>
 
         <button
           mat-button
           routerLink="/properties">
-          View All
+          {{ 'HOME.ViewAll' | translate }}
         </button>
 
       </div>

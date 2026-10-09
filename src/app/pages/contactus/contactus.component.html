@@ -1,0 +1,400 @@
+<div class="contact-page">
+
+  <!-- HERO -->
+  <section class="contact-hero bg-gray-800">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <h1>
+        {{ 'CONTACTUS.Title' | translate }}
+      </h1>
+
+      <p>
+        {{ 'CONTACTUS.Description' | translate }}
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+
+    <div class="contact-container">
+
+      <!-- LEFT SIDE -->
+      <div class="contact-information">
+
+        <span class="section-label">
+          {{ 'CONTACTUS.Title' | translate }}
+        </span>
+
+        <h2>
+          {{'CONTACTUS.Subtitle' | translate }}
+        </h2>
+
+        <p class="intro-text">
+          {{ 'CONTACTUS.Description' | translate }}
+        </p>
+
+
+        <!-- PHONE -->
+        <div class="contact-item">
+
+          <div class="contact-icon">
+            <span>☎</span>
+          </div>
+
+          <div class="contact-item-content">
+
+            <h3>
+              {{ 'Phone' | translate }}
+            </h3>
+
+            <a href="tel:+3221234567">
+              +32 2 123 45 67
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="contact-item">
+
+          <div class="contact-icon">
+            <span>✉</span>
+          </div>
+
+          <div class="contact-item-content">
+
+            <h3>
+              {{ 'Email' | translate }}
+            </h3>
+
+            <a href="mailto:info@immohorizon.be">
+              info&#64;immohorizon.be
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- ADDRESS -->
+        <div class="contact-item">
+
+          <div class="contact-icon">
+            <span>⌖</span>
+          </div>
+
+          <div class="contact-item-content">
+
+            <h3>
+              {{ 'Address' | translate }}
+            </h3>
+
+            <p>
+              Avenue de l'Horizon 25<br>
+              1000 Bruxelles<br>
+              Belgique
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- HOURS -->
+        <div class="contact-item">
+
+          <div class="contact-icon">
+            <span>◷</span>
+          </div>
+
+          <div class="contact-item-content">
+
+            <h3>
+              {{ 'OpeningHours' | translate }}
+            </h3>
+
+            <p>
+              {{ 'MondayFriday' | translate }}:
+              09:00 – 18:00
+            </p>
+
+            <p>
+              {{ 'Saturday' | translate }}:
+              10:00 – 16:00
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT SIDE FORM -->
+      <div class="contact-form-wrapper">
+
+        <div class="form-header">
+
+          <h2>
+            {{ 'SendUsAMessage' | translate }}
+          </h2>
+
+          <p>
+            {{ 'ContactFormDescription' | translate }}
+          </p>
+
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+        @if (messageSent) {
+
+          <div class="success-message">
+
+            <div class="success-icon">
+              ✓
+            </div>
+
+            <div>
+              <h3>
+                {{ 'MessageSent' | translate }}
+              </h3>
+
+              <p>
+                {{ 'MessageSentDescription' | translate }}
+              </p>
+            </div>
+
+          </div>
+
+        }
+
+
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+          novalidate
+        >
+
+          <!-- NAME + EMAIL -->
+          <div class="form-row">
+
+            <div class="form-group">
+
+              <label for="name">
+                {{ 'FullName' | translate }}
+                <span>*</span>
+              </label>
+
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [class.input-error]="
+                  f['name'].invalid &&
+                  f['name'].touched
+                "
+                placeholder="{{ 'YourName' | translate }}"
+              >
+
+              @if (f['name'].invalid && f['name'].touched) {
+                <small class="error-message">
+                  {{ getError('name') }}
+                </small>
+              }
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="email">
+                {{ 'Email' | translate }}
+                <span>*</span>
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                [class.input-error]="
+                  f['email'].invalid &&
+                  f['email'].touched
+                "
+                placeholder="{{ 'YourEmail' | translate }}"
+              >
+
+              @if (f['email'].invalid && f['email'].touched) {
+                <small class="error-message">
+                  {{ getError('email') }}
+                </small>
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- PHONE + SUBJECT -->
+          <div class="form-row">
+
+            <div class="form-group">
+
+              <label for="phone">
+                {{ 'Phone' | translate }}
+              </label>
+
+              <input
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                placeholder="{{ 'YourPhone' | translate }}"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="subject">
+                {{ 'Subject' | translate }}
+                <span>*</span>
+              </label>
+
+              <select
+                id="subject"
+                formControlName="subject"
+                [class.input-error]="
+                  f['subject'].invalid &&
+                  f['subject'].touched
+                "
+              >
+
+                <option value="">
+                  {{ 'SelectSubject' | translate }}
+                </option>
+
+                <option value="buy">
+                  {{ 'BuyingProperty' | translate }}
+                </option>
+
+                <option value="rent">
+                  {{ 'RentingProperty' | translate }}
+                </option>
+
+                <option value="sell">
+                  {{ 'SellingProperty' | translate }}
+                </option>
+
+                <option value="visit">
+                  {{ 'PropertyVisit' | translate }}
+                </option>
+
+                <option value="other">
+                  {{ 'Other' | translate }}
+                </option>
+
+              </select>
+
+              @if (f['subject'].invalid && f['subject'].touched) {
+                <small class="error-message">
+                  {{ getError('subject') }}
+                </small>
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- MESSAGE -->
+          <div class="form-group">
+
+            <label for="message">
+              {{ 'Message' | translate }}
+              <span>*</span>
+            </label>
+
+            <textarea
+              id="message"
+              rows="7"
+              formControlName="message"
+              [class.input-error]="
+                f['message'].invalid &&
+                f['message'].touched
+              "
+              placeholder="{{ 'WriteYourMessage' | translate }}"
+            ></textarea>
+
+            @if (f['message'].invalid && f['message'].touched) {
+              <small class="error-message">
+                {{ getError('message') }}
+              </small>
+            }
+
+          </div>
+
+
+          <!-- SUBMIT -->
+          <button
+            type="submit"
+            class="submit-button"
+          >
+
+            <span>
+              {{ 'SendMessage' | translate }}
+            </span>
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MAP -->
+  <section class="location-section">
+
+    <div class="location-header">
+
+      <span class="section-label">
+        {{ 'FindUs' | translate }}
+      </span>
+
+      <h2>
+        {{ 'VisitOurOffice' | translate }}
+      </h2>
+
+    </div>
+
+    <div class="map-container">
+
+      <iframe
+        title="ImmoHorizon location"
+        src="https://www.google.com/maps?q=Brussels,Belgium&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </div>
+
+  </section>
+
+</div>

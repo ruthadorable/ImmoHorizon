@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import { Route, Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
@@ -9,10 +10,16 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  constructor(private translate: TranslateService) { }
+  private router=inject(Router);
+
+  constructor(private translate: TranslateService, private route:Router) { }
   
     setLanguage(lang: string) {
       this.translate.use(lang)
+    }
+
+    navTo(url:string){
+      this.router.navigate([url]);
     }
 
 }

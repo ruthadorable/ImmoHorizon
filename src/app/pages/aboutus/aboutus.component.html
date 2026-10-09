@@ -29,7 +29,7 @@
       <div>
 
         <img
-          src="../../images/properties/src_BZPAAP12042_301662_V0_892D.jpg"
+          src="../../images/properties/istockphoto-2170446117-2048x2048.jpg"
           class="rounded-2xl shadow-xl object-cover w-full h-64 sm:h-80 lg:h-[450px]"
           alt="ImmoHorizon">
 
@@ -81,11 +81,11 @@
         <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
           <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
-            1200+
+            {{ 'ABOUT.Card1' | translate }}
           </h3>
 
           <p class="mt-3 text-gray-600">
-            Properties Sold
+            {{ 'ABOUT.Card1Description' | translate }}
           </p>
 
         </mat-card>
@@ -93,11 +93,11 @@
         <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
           <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
-            850+
+            {{ 'ABOUT.Card2' | translate }}
           </h3>
 
           <p class="mt-3 text-gray-600">
-            Happy Clients
+            {{ 'ABOUT.Card2Description' | translate }}
           </p>
 
         </mat-card>
@@ -109,7 +109,7 @@
           </h3>
 
           <p class="mt-3 text-gray-600">
-            Years Experience
+            {{ 'ABOUT.Card3Description' | translate }}
           </p>
 
         </mat-card>
@@ -117,11 +117,11 @@
         <mat-card class="text-center p-6 sm:p-8 rounded-none">
 
           <h3 class="text-3xl sm:text-4xl font-bold text-orange-500">
-            98%
+            {{ 'ABOUT.Card4' | translate }}
           </h3>
 
           <p class="mt-3 text-gray-600">
-            Customer Satisfaction
+            {{ 'ABOUT.Card4Description' | translate }}
           </p>
 
         </mat-card>
@@ -138,11 +138,11 @@
     <div class="text-center mb-10 sm:mb-16">
 
       <h2 class="text-3xl sm:text-4xl font-bold">
-        Our Values
+        {{ 'ABOUT.Values' | translate }}
       </h2>
 
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
-        Everything we do is built around trust and excellence.
+        {{ 'ABOUT.ValuesDescription' | translate }}
       </p>
 
     </div>
@@ -161,11 +161,11 @@
         </div>
 
         <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
-          Trust
+          {{ 'ABOUT.Trust' | translate }}
         </h3>
 
         <p class="mt-3 sm:mt-4 text-gray-600">
-          Honest advice and transparent communication.
+          {{ 'ABOUT.TrustDescription' | translate }}
         </p>
 
       </mat-card>
@@ -182,11 +182,11 @@
         </div>
 
         <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
-          Customer First
+          {{'ABOUT.CustomerFirst' | translate }}
         </h3>
 
         <p class="mt-3 sm:mt-4 text-gray-600">
-          Every client receives personalized support.
+          {{ 'ABOUT.CustomerFirstDescription' | translate }}
         </p>
 
       </mat-card>
@@ -203,11 +203,11 @@
         </div>
 
         <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
-          Expertise
+          {{ 'ABOUT.Expertise' | translate }}
         </h3>
 
         <p class="mt-3 sm:mt-4 text-gray-600">
-          Extensive knowledge of the real estate market.
+          {{ 'ABOUT.ExpertiseDescription' | translate }}
         </p>
 
       </mat-card>
@@ -224,11 +224,11 @@
         </div>
 
         <h3 class="text-lg sm:text-xl font-semibold mt-4 sm:mt-6">
-          Innovation
+          {{ 'ABOUT.Innovation' | translate }}
         </h3>
 
         <p class="mt-3 sm:mt-4 text-gray-600">
-          Modern digital solutions for a better experience.
+          {{ 'ABOUT.InnovationDescription' | translate }}
         </p>
 
       </mat-card>
@@ -243,27 +243,29 @@
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6">
 
       <h2 class="text-3xl sm:text-4xl font-bold">
-        Ready to Find Your Dream Property?
+        {{ 'ABOUT.EndWord' | translate }}
       </h2>
 
       <p class="mt-6 text-gray-300 text-base sm:text-lg">
-        Browse hundreds of verified properties or contact our experienced
-        real estate advisors today.
+        {{ 'ABOUT.EndDescription' | translate }}
       </p>
 
       <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 
         <button
           mat-raised-button
+          (click)="navTo('/properties');"
           color="primary"
           class="w-full sm:w-auto">
-          Browse Properties
+          {{ 'ABOUT.BrowseProperties' | translate }}
         </button>
 
         <button
           mat-stroked-button
+          (click)="navTo('/contact');"
           class="w-full sm:w-auto">
-          Contact Us
+          
+          {{ 'ABOUT.ContactUs' | translate }}
         </button>
 
       </div>

@@ -22,6 +22,7 @@ import { PublierAnnonceComponent } from './components/publier-annonce/publier-an
 import { NewpropertiesComponent } from './pages/properties/newproperties/newproperties.component';
 import { DevisComponent } from './pages/devis/devis.component';
 import { PublicationPaymentComponent } from './pages/publication-payment/publication-payment.component';
+import { ContactusComponent } from './pages/contactus/contactus.component';
 export const routes: Routes = [
     {
         path:'',
@@ -62,6 +63,12 @@ export const routes: Routes = [
         component: PublierAnnonceComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['CLIENT'] }
+    },
+       {
+        path:'contact',
+        component: ContactusComponent,
+        data: { breadcrumb: 'Contact' },
+        children:[]
     },
      {
         path:'publication-payment/:id',

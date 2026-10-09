@@ -176,7 +176,7 @@ addImage(file: File) {
         next: res => {
           console.log(res);
         },
-        error: err => {
+        error: err  => {
           console.error(err);
            console.log(err.status);
             console.log(err.error);
