@@ -1,6 +1,7 @@
 package com.immohorizon.propertymanagement.services;
 
 
+import com.immohorizon.propertymanagement.dto.UpdateUserRequest;
 import com.immohorizon.propertymanagement.dto.UserDto;
 import com.immohorizon.propertymanagement.mapper.UserMapper;
 import com.immohorizon.propertymanagement.model.LoginRequest;
@@ -9,11 +10,16 @@ import com.immohorizon.propertymanagement.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.immohorizon.propertymanagement.repository.UserRepository;
 import com.immohorizon.propertymanagement.request.RegisterRequest;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
+import java.util.Locale;
 
 
 @Service
@@ -117,4 +123,74 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.password));
         return userRepo.save(user);
     }
+    @Transactional(readOnly = true)
+    public List<UserDto> getAllUsers() {
+        return userRepo.findAll()
+                .stream()
+                .map(this.mapper::toDto)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto getUserById(int id) {
+        return mapper.toDto(userRepo.getReferenceById(id));
+    }
+    public UserDto updateUser(
+            int id,
+            UpdateUserRequest request
+    ) {
+        User user = findUser(id);
+        String email = normalizeEmail(request.email());
+
+        userRepo.findAll().stream()
+                .filter(existing -> existing.getIdUser() != id)
+                .filter(existing -> existing.getEmail().equalsIgnoreCase(email))
+                .findFirst()
+                .ifPresent(existing -> {
+                    throw new ResponseStatusException(
+                            HttpStatus.CONFLICT,
+                            "A user with this email already exists"
+                    );
+                });
+
+        user.setPrenom(request.firstName().trim());
+        user.setNom(request.lastName().trim());
+        user.setEmail(email);
+        //user.setRole(validateRole(request.role()));
+
+
+        return mapper.toDto(userRepo.save(user));
+    }
+
+    public void deleteUser(int id) {
+        User user = findUser(id);
+        userRepo.delete(user);
+    }
+
+    private User findUser(int id) {
+        return userRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "User not found"
+                ));
+    }
+
+    private String normalizeEmail(String email) {
+        return email.trim().toLowerCase(Locale.ROOT);
+    }
+
+    private String validateRole(String role) {
+        String normalized = role.trim().toUpperCase(Locale.ROOT);
+
+        // Adapt these values to the roles defined in your application.
+        if (!List.of("USER", "EMPLOYE", "ADMIN").contains(normalized)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Invalid user role"
+            );
+        }
+
+        return normalized;
+    }
+
 }

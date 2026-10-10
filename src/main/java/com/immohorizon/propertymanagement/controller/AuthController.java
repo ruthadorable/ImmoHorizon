@@ -1,23 +1,23 @@
 package com.immohorizon.propertymanagement.controller;
 
+
 import com.immohorizon.propertymanagement.model.LoginRequest;
 import com.immohorizon.propertymanagement.model.LoginResponse;
 import com.immohorizon.propertymanagement.model.User;
-import com.immohorizon.propertymanagement.request.RegisterRequest;
-import com.immohorizon.propertymanagement.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.immohorizon.propertymanagement.request.RegisterRequest;
+import com.immohorizon.propertymanagement.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/auth")
 @CrossOrigin(origins="${FRONTEND_URL}")
-public class UserController {
-    public UserController(){
+public class AuthController {
+    public AuthController(){
 
     }
     @Autowired
@@ -31,7 +31,7 @@ public class UserController {
         logger.info("Creating user");
         return  userService.createUser(user);
     }
-    @GetMapping(path="/all")
+    @GetMapping(path="/users")
     public List<User> getUsers()
     {
         logger.info("Get all users");
@@ -42,6 +42,21 @@ public class UserController {
     public User getUser(int id){
         logger.info("Get user by id", id);
         return userService.getUser(id);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+
+        LoginResponse response = userService.login(
+                request.getEmail(),
+                request.getPassword()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(path="/register")
+    public User registerUser(@RequestBody RegisterRequest request) {
+        return userService.registerUser(request);
     }
 
 }

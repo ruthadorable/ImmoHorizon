@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -76,6 +77,10 @@ public class BienDto {
         private User proprietaire;
 
         private User locataire;
+
+        private boolean archive = false;
+
+        private LocalDateTime dateArchivage;
 
         private List<File> images;
 }

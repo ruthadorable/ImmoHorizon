@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +87,10 @@ public class Bien {
     private PropertyStatus status;
     @Column
     private boolean disponible;
+    @Column(nullable = false)
+    private boolean archive = false;
+    @Column
+    private LocalDateTime dateArchivage;
     @OneToOne
     private User proprietaire;
     @OneToOne

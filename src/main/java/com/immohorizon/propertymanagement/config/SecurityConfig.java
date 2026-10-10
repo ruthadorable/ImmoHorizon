@@ -47,6 +47,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/blog/**",
+                                "/api/biens/all",
                                 "/api/biens/search",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
@@ -112,6 +113,9 @@ public class SecurityConfig {
                                 HttpMethod.DELETE,
                                 "/api/blog/**"
                         ).hasRole("EMPLOYE")
+                        .requestMatchers(
+                                "/api/users/**"
+                        ).hasRole("ADMIN")
 
                         // =========================
                         // EVERYTHING ELSE
