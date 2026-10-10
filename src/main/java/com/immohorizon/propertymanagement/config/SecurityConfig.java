@@ -115,7 +115,7 @@ public class SecurityConfig {
                         ).hasRole("EMPLOYE")
                         .requestMatchers(
                                 HttpMethod.GET,
-                                "/api/users/all"
+                                "/api/user/all"
                         ).hasRole("ADMIN")
 
                         // =========================
