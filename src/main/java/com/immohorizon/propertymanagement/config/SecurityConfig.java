@@ -114,7 +114,8 @@ public class SecurityConfig {
                                 "/api/blog/**"
                         ).hasRole("EMPLOYE")
                         .requestMatchers(
-                                "/api/users/**"
+                                HttpMethod.GET,
+                                "/api/users/all"
                         ).hasRole("ADMIN")
 
                         // =========================
