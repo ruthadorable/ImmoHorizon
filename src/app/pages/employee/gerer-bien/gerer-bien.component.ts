@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BienService } from '../../../services/biens/bien.service';
 import { Bien } from '../../../models/bien.model';
 import {CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -33,11 +33,10 @@ export function frenchPaginator() {
 }
 @Component({
   selector: 'app-gerer-bien',
-  imports: [CommonModule,MatCardModule,MatButtonModule,MatToolbarModule,
-    MatSidenavModule, MatListModule,MatButtonModule,MatTableModule,MatIcon,
-    MatIconModule,MatTooltipModule,TopToolbarComponent,TranslateModule,DatePipe,MatPaginatorModule,
-    MatDialogModule
-  ],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule,
+    MatSidenavModule, MatListModule, MatButtonModule, MatTableModule, MatIcon,
+    MatIconModule, MatTooltipModule, TopToolbarComponent, TranslateModule, DatePipe, MatPaginatorModule,
+    MatDialogModule],
   templateUrl: './gerer-bien.component.html',
   styleUrl: './gerer-bien.component.css'
 })
@@ -46,7 +45,8 @@ export class GererBienComponent {
    paginator!: MatPaginator;
 
    bienService=inject(BienService);
-   route=inject(Router)
+   router=inject(Router)
+   route=inject(ActivatedRoute)
    properties!:Bien[];
    dataSource:any;
    dialog= inject(MatDialog);
@@ -91,15 +91,21 @@ export class GererBienComponent {
 
   }
   createProperty() {
-    this.route.navigate(['employee/dashboard/creer-bien']);
+     this.router.navigate(['creer-bien'], {
+    relativeTo: this.route
+  });
   }
 
   viewProperty(id: number) {
-    this.route.navigate(['employee/dashboard/property/'+id])
+    this.router.navigate(['property',id], {
+    relativeTo: this.route
+  })
   }
 
   editProperty(id: number) {
-     this.route.navigate(['employee/dashboard/modifier-bien/'+id]);
+     this.router.navigate(['modifier-bien',id], {
+    relativeTo: this.route
+  });
   }
 
   deleteDialog(id: number) {

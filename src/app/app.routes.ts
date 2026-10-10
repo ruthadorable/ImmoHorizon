@@ -23,6 +23,11 @@ import { NewpropertiesComponent } from './pages/properties/newproperties/newprop
 import { DevisComponent } from './pages/devis/devis.component';
 import { PublicationPaymentComponent } from './pages/publication-payment/publication-payment.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
+import { AdminContentComponent } from './pages/admin/admin-content/admin-content.component';
+import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
+import { CreateUserComponent } from './pages/admin/create-user/create-user.component';
+import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
+import { ViewUserComponent } from './pages/admin/view-user/view-user.component';
 export const routes: Routes = [
     {
         path:'',
@@ -98,7 +103,7 @@ export const routes: Routes = [
 
     },
     {
-        path:'employee/dashboard',
+        path:'employee',
         component: DashboardComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['EMPLOYE'] },
@@ -120,38 +125,93 @@ export const routes: Routes = [
         path:'property/:id',
         component: PropertyDetailsComponent
     },{
-        path:'content',
+        path:'dashboard',
         component: DashboardContentComponent
     },
     {
         path: 'gerer-blog',
         component: GererBlogComponent
-      },{
-        path:'creer-blog',
-        component: CreerBlogComponent,
-        canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE'] }
-    },{
-        path:'modifier-blog/:id',
-        component: ModifierBlogComponent,
-        canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE'] }
-    },{
-        path:'blog/:id',
-        component: ArticleDetailsComponent
-    }
-    ]
-    },
-    {
-        path:'employee/creation-bien',
-        component: CreerBienComponent,
-        canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE'] }
-    },
+      }
+    
+    ]},
     {
         path:'admin',
         component: AdminDashboardComponent,
         canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] },
+        children: [
+      {
+        path: 'properties',
+        component: GererBienComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }},
+        {
+        path:'properties/creer-bien',
+        component: CreerBienComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['ADMIN'] }
-    }
-];
+    },{
+        path:'properties/modifier-bien/:id',
+        component: ModifierBienComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },{
+        path:'properties/property/:id',
+        component: PropertyDetailsComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },{
+        path:'dashboard',
+        component: AdminContentComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },
+    {
+        path: 'blog',
+        component: GererBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+     },{
+        path:'blog/creer-blog',
+        component: CreerBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE','ADMIN'] }
+    },{
+        path:'blog/modifier-blog/:id',
+        component: ModifierBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE','ADMIN'] }
+    },{
+        path:'blog/blog/:id',
+        component: ArticleDetailsComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE','ADMIN'] }
+    },
+    {
+        path: 'users',
+        component: ManageUsersComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },
+      {
+        path: 'users/create',
+        component: CreateUserComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },
+     {
+        path: 'users/update/:id',
+        component: UpdateUserComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },  
+    {
+        path: 'users/user/:id',
+        component: ViewUserComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['ADMIN'] }
+    },  
+]
+}
+
+]

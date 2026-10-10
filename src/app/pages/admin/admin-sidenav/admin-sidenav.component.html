@@ -14,10 +14,10 @@
 
       <div>
         <h2 class="text-lg font-bold text-gray-800">
-          Immo Horizon
+          ImmoHorizon
         </h2>
         <p class="text-sm text-gray-500">
-          Employee Portal
+          Admin Portal
         </p>
       </div>
     </div>
@@ -27,7 +27,7 @@
 
       <a
         mat-list-item
-        routerLink="/employee/dashboard/content"
+        routerLink="/admin/dashboard"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>dashboard</mat-icon>
@@ -40,7 +40,7 @@
 
       <a
         mat-list-item
-        routerLink="/employee/dashboard/properties"
+        routerLink="/admin/properties"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>apartment</mat-icon>
@@ -53,20 +53,20 @@
 
       <a
         mat-list-item
-        routerLink="/employees"
+        routerLink="/admin/users"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>groups</mat-icon>
 
         <span matListItemTitle>
-          Employees
+          Utilisateurs
         </span>
 
       </a>
 
       <a
         mat-list-item
-        routerLink="/clients"
+        routerLink="admin/candidatures"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>person</mat-icon>
@@ -78,7 +78,7 @@
       </a>
       <a
         mat-list-item
-        routerLink="/clients"
+        routerLink="admin/calendrier"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>date_range</mat-icon>
@@ -90,19 +90,31 @@
       </a>
       <a
         mat-list-item
-        routerLink="/employee/dashboard/blog"
+        routerLink="/admin/gerer-site"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>subject</mat-icon>
 
         <span matListItemTitle>
-          Blog
+          Homepage Banner
+        </span>
+
+      </a>
+        <a
+        mat-list-item
+        routerLink="/admin/blog"
+        routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
+
+        <mat-icon matListItemIcon>subject</mat-icon>
+
+        <span matListItemTitle>
+          Articles
         </span>
 
       </a>
       <a
         mat-list-item
-        routerLink="/clients"
+        routerLink="admin/contrats"
         routerLinkActive="bg-blue-50 text-blue-600 rounded-lg mx-2">
 
         <mat-icon matListItemIcon>description</mat-icon>

@@ -5,5 +5,6 @@ export class User{
     nom?: string;
     prenom?: string;
     roles?: string[];
+    role?: string;
     noGSM?: string;
 }

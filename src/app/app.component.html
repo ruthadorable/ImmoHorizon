@@ -15,7 +15,7 @@
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/about">{{ 'MENU.ABOUT_US' | translate }}</a>
               <a  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/blog">{{ 'MENU.BLOG' | translate }}</a>
-              @if(getRole()=="Employe" || getRole()=="Admin"){
+              @if(role==="Employe" || role==="Admin"){
                 <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
               }
             </div>

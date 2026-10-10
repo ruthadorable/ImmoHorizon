@@ -1,35 +1,33 @@
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import { UserService } from '../../../services/user/user.service';
+import { BienService } from '../../../services/biens/bien.service';
 import { BlogService } from '../../../services/blog/blog.service';
 import { HomepageService } from '../../../services/homepage/homepage.service';
-import { BienService } from '../../../services/biens/bien.service';
+import { UserService } from '../../../services/user/user.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AdminPanelComponent } from '../admin-panel/admin-panel.component';
-import { AdminContentComponent } from '../admin-content/admin-content.component';
-@Component({
-  selector: 'app-admin-dashboard',
-  imports: [TranslateModule, MatButtonModule, MatIconModule, MatButtonModule,
-    MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
-    MatButtonModule, MatCardModule, MatIconModule, MatAutocompleteModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, AdminPanelComponent],
-  templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.css'
-})
-export class AdminDashboardComponent {
- 
 
-    usersCount = 0;
+@Component({
+  selector: 'app-admin-content',
+  imports: [RouterLink, TranslateModule, MatButtonModule, MatIconModule, MatButtonModule,
+    MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
+    MatButtonModule, MatCardModule, MatIconModule, MatAutocompleteModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, AdminPanelComponent, AdminContentComponent],
+  templateUrl: './admin-content.component.html',
+  styleUrl: './admin-content.component.css'
+})
+export class AdminContentComponent {
+usersCount = 0;
 
     bannersCount = 0;
 
@@ -71,4 +69,3 @@ export class AdminDashboardComponent {
     }
 
 }
-

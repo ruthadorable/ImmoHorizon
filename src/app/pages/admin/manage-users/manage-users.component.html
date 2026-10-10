@@ -1,1 +1,137 @@
-<p>manage-users works!</p>
+<div class="min-h-full">
+  <main>
+    <mat-sidenav-container class="h-screen bg-gray-100">
+
+      <mat-sidenav-content>
+        
+        <!-- Main Content -->
+        <main class="p-8">
+
+          <div class="dashboard-container">
+
+            <div class="header-section">
+              <div>
+                <h1>Gestion des utilisateurs</h1>
+                
+              </div>
+
+              <button mat-raised-button color="primary" (click)="createUser()">
+
+                <mat-icon>add</mat-icon>
+                {{ 'USER.New' | translate }}
+              </button>
+            </div>
+
+            <mat-card class="table-card">
+              <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons>
+              </mat-paginator>
+
+              <table mat-table [dataSource]="dataSource" class="user-table">
+
+
+                <!-- EMAIL -->
+                <ng-container matColumnDef="image">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'USER.EMAIL'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let user">
+                    {{ user.email }}
+                  </td>
+                </ng-container>
+
+                <!-- Nom -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'USER.NOM'| translate}} 
+                  </th>
+
+                  <td mat-cell *matCellDef="let user">
+                    <div class="user-info">
+                      <span class="user-title">
+                        {{user.nom}}
+                      </span>
+
+                      
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- PRENOM -->
+                <ng-container matColumnDef="category">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'USER.PRENOM'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let user">
+                    {{ user.prenom }}
+                  </td>
+                </ng-container>
+
+                <!-- ROLE -->
+                <ng-container matColumnDef="url">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'USER.ROLE'| translate}}
+                  </th>
+                  <td mat-cell *matCellDef="let user">
+                    {{ user.role }}
+                  </td>
+                </ng-container>
+
+                <!-- GSM -->
+                <ng-container matColumnDef="content">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{'USER.GSM'| translate}}
+                  </th>
+
+                  <td mat-cell *matCellDef="let user">
+                    {{ user.noGSM }}
+                  </td>
+                </ng-container>
+
+
+
+                <!-- Actions -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Actions
+                  </th>
+
+                  <td mat-cell *matCellDef="let user">
+
+                    <button mat-icon-button color="primary" matTooltip="View" (click)="viewUser(user.idArticle)">
+
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent" matTooltip="Edit" (click)="editUser(user.idArticle)">
+
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteUser(user.idArticle)">
+
+                      <mat-icon>delete</mat-icon>
+                    </button>
+
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+
+              </table>
+
+
+            </mat-card>
+
+          </div>
+        </main>
+
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
+  </main>
+</div>

@@ -13,7 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { TopToolbarComponent } from '../../employee/shared/top-toolbar/top-toolbar.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteConfirmDialogComponent } from '../../../shared/delete-confirm-dialog/delete-confirm-dialog.component';
 import { Article } from '../../../models/article.model';
 
@@ -33,7 +33,8 @@ export class GererBlogComponent {
    paginator!: MatPaginator;
 
    
-   route=inject(Router)
+   router=inject(Router)
+   route=inject(ActivatedRoute)
    articles!:Article[];
    dataSource:any;
    dialog= inject(MatDialog);
@@ -71,15 +72,22 @@ export class GererBlogComponent {
   }
 
   createBlog() {
-    this.route.navigate(['employee/dashboard/creer-blog']);
+    this.router.navigate(['creer-blog'],{
+    relativeTo: this.route
+    }
+    );
   }
 
   viewBlog(id: number) {
-    this.route.navigate(['employee/dashboard/blog/'+id])
+    this.router.navigate(['blog',id],{
+    relativeTo: this.route
+  })
   }
 
   editBlog(id: number) {
-     this.route.navigate(['employee/dashboard/modifier-blog/'+id]);
+     this.router.navigate(['modifier-blog',id],{
+    relativeTo: this.route
+  });
   }
 
 

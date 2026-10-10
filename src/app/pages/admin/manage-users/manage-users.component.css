@@ -1,0 +1,95 @@
+.dashboard-container {
+  padding: 2rem;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-section h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.table-card {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.property-table {
+  width: 100%;
+}
+
+.property-image {
+  width: 80px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.property-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.property-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.property-address {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.available {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.sold {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.rented {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.mat-mdc-row:hover {
+  background: #f8fafc;
+  transition: 0.2s;
+}
+mat-paginator {
+  border-top: 1px solid #e5e7eb;
+  background: white;
+}
+
+.table-card {
+  overflow: hidden;
+  border-radius: 16px;
+}
+mat-paginator {
+  display: block !important;
+  min-height: 56px;
+}
