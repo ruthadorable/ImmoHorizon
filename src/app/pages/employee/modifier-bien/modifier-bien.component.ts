@@ -14,7 +14,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Bien } from '../../../models/bien.model';
 import { Image } from '../../../models/image.model';
 import { TopToolbarComponent } from '../shared/top-toolbar/top-toolbar.component';
@@ -46,6 +46,8 @@ import {MatChipsModule} from '@angular/material/chips';
 export class ModifierBienComponent {
   newImages: Image[] = [];
   private fb = inject(FormBuilder);
+  private router=inject(Router);
+  private route=inject(ActivatedRoute)
   deletedImages: number[] = [];
   public etats = ["DISPONIBLE",
     "VENDU",
@@ -60,7 +62,6 @@ export class ModifierBienComponent {
   public selectedImage?: Image;
   public adresse!: string;
   private bienService =inject(BienService);
-  private route = inject(ActivatedRoute);
   private propertyId!: number;
 propertyForm = this.fb.group({
   title: this.fb.control<string | null>(null),
@@ -154,7 +155,9 @@ propertyForm = this.fb.group({
     ).subscribe({
       next: response => {
         console.log('Bien updated successfully', response);
-      },
+        this.router.navigate(['/properties'],{
+    relativeTo: this.route
+      }) },
       error: err => {
         console.error('Update failed', err);
       }

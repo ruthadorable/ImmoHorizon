@@ -21,6 +21,7 @@ import { pebs } from '../../../enum/pebs.enum';
 import { TypeChauffage } from '../../../enum/typeDeChauffage.enum';
 import {MatNativeDateModule} from '@angular/material/core';
 import { Image } from '../../../models/image.model';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-creer-bien',
   imports: [TranslateModule,
@@ -41,6 +42,8 @@ MatNativeDateModule],
 export class CreerBienComponent implements OnInit{
 
   private fb = inject(FormBuilder);
+  router= inject(Router);
+  route=inject(ActivatedRoute);
   readonly pebs = Object.values(pebs);
   readonly typeChauffage= Object.values(TypeChauffage);
   belgianCities=belgianCities;
@@ -199,6 +202,9 @@ submit(): void {
   this.bienService.creerBien(property, files).subscribe({
     next: res => {
       console.log('Property created successfully:', res);
+      this.router.navigate(['/properties'],{
+    relativeTo: this.route
+  })
     },
     error: err => {
       console.error('Property creation failed:', err);
