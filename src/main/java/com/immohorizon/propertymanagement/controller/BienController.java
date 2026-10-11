@@ -96,6 +96,8 @@ public class BienController
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
     }
+
+
     @PostMapping(
             value = "/publishlisting",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
