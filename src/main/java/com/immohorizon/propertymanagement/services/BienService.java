@@ -6,6 +6,7 @@ import com.immohorizon.propertymanagement.model.Bien;
 import com.immohorizon.propertymanagement.model.Image;
 import com.immohorizon.propertymanagement.repository.BienRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 import com.immohorizon.propertymanagement.Enum.TypeBien;
 
+@Slf4j
 @Service
 public class BienService {
 
@@ -63,17 +65,58 @@ public class BienService {
         bien.setDisponible(bienDto.isDisponible());
         bien.setSurfaceHabitable(bienDto.getSurfaceHabitable());
         bien.setSurfaceJardinTerrasse(bienDto.getSurfaceJardinTerrasse());
-        if (images != null && !images.isEmpty()) {
-        for (MultipartFile file : images) {
+        try {
+            if (images != null && !images.isEmpty()) {
+                boolean firstImage = true;
 
-            String key = s3Service.uploadFile(file);
+                for (MultipartFile file : images) {
+                    if (file == null || file.isEmpty()) {
+                        continue;
+                    }
 
-            Image img = new Image();
-            img.setImageKey(key);
-            img.setBien(bien);
+                    // Upload the file to AWS S3
+                    String key = s3Service.uploadFile(file);
 
-            bien.getImages().add(img);
-        }}
+                    log.info("Image uploaded successfully to S3: {}", key);
+
+                    // Create the database image entity
+                    Image img = new Image();
+                    img.setImageKey(key);
+
+                    img.setUrl(s3Service.generateUrl(key));
+                    // First uploaded image becomes the primary image
+                    img.setPrimary(firstImage);
+                    img.setBien(bien);
+                    bien.getImages().add(img);
+
+                    firstImage = false;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Failed to upload property images to S3", e);
+            throw e;
+        }
+        /*
+         * Ensure one primary image
+         */
+
+        boolean hasPrimary =
+                bien.getImages()
+                        .stream()
+                        .anyMatch(
+                                Image::isPrimary
+                        );
+
+
+        if(!hasPrimary &&
+                !bien.getImages().isEmpty()){
+
+
+            bien.getImages()
+                    .get(0)
+                    .setPrimary(true);
+
+        }
 
         return bienRepository.save(bien);
     }

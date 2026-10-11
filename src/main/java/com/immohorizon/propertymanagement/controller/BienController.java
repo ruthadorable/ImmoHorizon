@@ -38,7 +38,7 @@ public class BienController
         this.bienService = bienService;
         this.s3Service=s3Service;
         this.repository = repository;
-        this.bienService.generateDummyBien(20);
+       // this.bienService.generateDummyBien(20);
         this.objectMapper=objectMapper;
         this.publicationService=publicationService;
     }
