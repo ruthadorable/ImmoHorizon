@@ -77,7 +77,7 @@ public class BienController
             value = "/create",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public ResponseEntity<?> createProperty(
+    public ResponseEntity<Bien> createProperty(
             @RequestPart("property") BienDto request,
             @RequestPart(value = "images", required = false)
             List<MultipartFile> images
@@ -85,15 +85,7 @@ public class BienController
 
         List<String> imageKeys = new ArrayList<>();
 
-        if (images != null) {
-            for (MultipartFile image : images) {
-                imageKeys.add(s3Service.uploadFile(image));
-
-
-            }
-        }
         Bien createdBien=bienService.creerBien(request,images);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
     }
 
@@ -109,17 +101,9 @@ public class BienController
     ) throws Exception {
 
         List<String> imageKeys = new ArrayList<>();
-
-        if (images != null) {
-            for (MultipartFile image : images) {
-                imageKeys.add(s3Service.uploadFile(image));
-
-
-            }
-        }
         Bien createdBien=bienService.creerBien(request,images);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBien);
+        return ResponseEntity.ok(createdBien);
     }
 
 
