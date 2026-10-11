@@ -83,7 +83,7 @@ public class SecurityConfig {
 
                         .requestMatchers(
                                 HttpMethod.PUT,
-                                "/api/biens/**"
+                                "/api/biens/update/{id}"
                         ).hasAnyRole("EMPLOYE", "ADMIN")
 
                         // =========================

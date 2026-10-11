@@ -153,8 +153,9 @@ public class BienController
     public List<Bien> getBienAlouer() {
         return bienService.getBiensALouer();
     }
+
     @PutMapping(
-            value="/{id}/update",
+            value="/update/{id}",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     public ResponseEntity<?> updateProperty(
