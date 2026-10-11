@@ -129,7 +129,7 @@ export class BienService {
 
 
     return this.http.put(
-      `${this.apiUrl}/${id}/update`,
+      `${this.apiUrl}/update/${id}`,
       formData
     );
 
