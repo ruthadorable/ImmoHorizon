@@ -208,6 +208,18 @@
   "DETAILS": {
     "FAVORITE": "Favorieten"
   },
+
+  "USER": {
+    "TITLE": "Gebruikersbeheer",
+    "EMAIL": "E-mailadres",
+    "GSM": "Telefoonnummer",
+    "Password": "Wachtwoord",
+    "NOM": "Achternaam",
+    "PRENOM": "Voornaam",
+    "ROLE": "Rol",
+    "New": "Gebruiker toevoegen",
+    "Actions":"Acties"
+  },
     "EMPLOYEE":{
         "Dashboard": "Dashboard",
   "Properties": "Eigendommen",

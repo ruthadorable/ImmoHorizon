@@ -1,1 +1,424 @@
-<p>profile works!</p>
+<div class="profile-app min-h-screen bg-white text-slate-800">
+
+        <!-- Sidebar
+  <aside class="sidebar">
+    <a class="brand" routerLink="/">
+      <mat-icon class="brand-icon">home</mat-icon>
+      <span>Immo<span class="brand-yellow">Horizon</span></span>
+    </a>
+
+    <nav class="side-nav">
+      <a class="nav-link" routerLink="/dashboard">
+        <mat-icon>space_dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+
+      <a class="nav-link" routerLink="/properties">
+        <mat-icon>home</mat-icon>
+        <span>Properties</span>
+      </a>
+
+      <button class="nav-link" (click)="selectTab('saved')"
+              [class.active]="activeTab === 'saved'">
+        <mat-icon>favorite_border</mat-icon>
+        <span>Saved Properties</span>
+      </button>
+
+      <button class="nav-link" (click)="selectTab('visits')"
+              [class.active]="activeTab === 'visits'">
+        <mat-icon>event_note</mat-icon>
+        <span>Visits</span>
+      </button>
+
+      <button class="nav-link" (click)="selectTab('candidacies')"
+              [class.active]="activeTab === 'candidacies'">
+        <mat-icon>description</mat-icon>
+        <span>Candidacies</span>
+      </button>
+
+      <button class="nav-link" (click)="selectTab('messages')"
+              [class.active]="activeTab === 'messages'">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        <span>Messages</span>
+      </button>
+
+      <button class="nav-link" [class.active]="true">
+        <mat-icon>person_outline</mat-icon>
+        <span>My Profile</span>
+      </button>
+    </nav>
+  </aside> -->
+  
+  <!-- Main content -->
+  <main class="main-area">
+
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input
+          type="search"
+          placeholder="Search for a property, city, or keyword..."
+          [(ngModel)]="searchText"
+        />
+      </div>
+
+      <div class="topbar-right">
+        <button class="notification-button" aria-label="Notifications"
+                (click)="openItem('notifications')">
+          <mat-icon>notifications_none</mat-icon>
+          <span class="notification-count">{{ notificationCount }}</span>
+        </button>
+
+        <button class="account-button" (click)="editProfile()">
+          <img [src]="user?.avatar" [alt]="user?.nom" />
+          <span>{{ user?.nom }}</span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <!-- Profile banner -->
+      <section class="profile-banner">
+        <div class="banner-photo"></div>
+        <div class="banner-content">
+          <div class="avatar-wrapper">
+            <img class="profile-avatar" [src]="user?.avatar" [alt]="user?.nom" />
+            <button class="camera-button" aria-label="Change profile photo"
+                    (click)="editProfile()">
+              <mat-icon>photo_camera</mat-icon>
+            </button>
+          </div>
+
+          <div class="profile-info">
+            <h1>{{ user?.nom }}</h1>
+
+            <p class="email-line">
+              <mat-icon>person_outline</mat-icon>
+              {{ user?.email }}
+            </p>
+
+            <div class="profile-meta">
+              <span><mat-icon>person_outline</mat-icon>{{ user?.role }}</span>
+              <span><mat-icon>place</mat-icon>{{ user?.location }}</span>
+              <span><mat-icon>calendar_today</mat-icon>Member since {{ user?.memberSince }}</span>
+            </div>
+
+            <!-- <p class="profile-description">{{ user?.description }}</p> -->
+          </div>
+
+          <button class="edit-profile-button" (click)="editProfile()">
+            <mat-icon>edit</mat-icon>
+            Edit Profile
+          </button>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <nav class="profile-tabs" aria-label="Profile sections">
+        <button class="profile-tab" [class.selected]="activeTab === 'saved'"
+                (click)="selectTab('saved')">
+          <mat-icon>favorite_border</mat-icon>
+          <span>Saved Properties</span>
+        </button>
+
+        <button class="profile-tab" [class.selected]="activeTab === 'visits'"
+                (click)="selectTab('visits')">
+          <mat-icon>calendar_month</mat-icon>
+          <span>My Visits</span>
+        </button>
+
+        <button class="profile-tab" [class.selected]="activeTab === 'candidacies'"
+                (click)="selectTab('candidacies')">
+          <mat-icon>description</mat-icon>
+          <span>My Candidacies</span>
+        </button>
+
+        <button class="profile-tab" [class.selected]="activeTab === 'messages'"
+                (click)="selectTab('messages')">
+          <mat-icon>chat_bubble_outline</mat-icon>
+          <span>Messages</span>
+        </button>
+      </nav>
+
+      <!-- Saved properties -->
+      @if (activeTab === 'saved') {
+        <section class="content-panel saved-panel">
+          <div class="section-heading">
+            <div class="heading-copy">
+              <mat-icon>favorite_border</mat-icon>
+              <div>
+                <h2>Saved Properties</h2>
+                <p>Properties you have saved for later</p>
+              </div>
+            </div>
+            <span class="count-pill">{{ filteredProperties.length }} properties</span>
+          </div>
+
+          @if (filteredProperties.length > 0) {
+            <div class="property-grid">
+              @for (property of filteredProperties; track property.id) {
+                <article class="property-card">
+                  <div class="property-image-wrap"
+                       (click)="openItem('property', property.id)">
+                    <img class="property-image"
+                         [src]="property.image"
+                         [alt]="property.title" />
+
+                    <span class="purpose-pill">{{ property.purpose }}</span>
+
+                    <button class="heart-button"
+                            [class.is-saved]="property.saved"
+                            aria-label="Remove saved property"
+                            (click)="$event.stopPropagation(); toggleSaved(property)">
+                      <mat-icon>{{ property.saved ? 'favorite' : 'favorite_border' }}</mat-icon>
+                    </button>
+                  </div>
+
+                  <div class="property-info">
+                    <p class="property-price">
+                      {{ property.price | currency:'EUR':'symbol':'1.0-0' }}
+                    </p>
+                    <h3>{{ property.title }}</h3>
+
+                    <p class="property-address">
+                      <mat-icon>place</mat-icon>
+                      <span>{{ property.address }}, {{ property.city }}</span>
+                    </p>
+
+                    <div class="property-features">
+                      <span><mat-icon>bed</mat-icon>{{ property.beds }} beds</span>
+                      <span><mat-icon>bathtub</mat-icon>{{ property.baths }} bath</span>
+                      <span><mat-icon>square_foot</mat-icon>{{ property.area }} sq.ft</span>
+                    </div>
+                  </div>
+                </article>
+              }
+            </div>
+          } @else {
+            <div class="empty-state">
+              <mat-icon>favorite_border</mat-icon>
+              <h3>No saved properties found</h3>
+              <p>Save a property or try a different search.</p>
+            </div>
+          }
+        </section>
+      }
+
+      <!-- Visits -->
+      @if (activeTab === 'visits') {
+        <section class="content-panel">
+          <div class="section-heading">
+            <div class="heading-copy">
+              <mat-icon>calendar_month</mat-icon>
+              <div>
+                <h2>My Visits</h2>
+                <p>Your upcoming and past property visits</p>
+              </div>
+            </div>
+            <span class="count-pill">{{ visits.length }} visits</span>
+          </div>
+
+          <div class="activity-list">
+            @for (visit of visits; track visit.id) {
+              <button class="activity-row" (click)="openItem('visit', visit.id)">
+                <img [src]="visit.image" [alt]="visit.title" />
+                <div class="activity-copy">
+                  <h3>{{ visit.title }}</h3>
+                  <p>{{ visit.date }}</p>
+                  <span class="activity-address">{{ visit.address }}</span>
+                </div>
+                <span class="status-pill"
+                      [class.status-green]="visit.status === 'Confirmed'"
+                      [class.status-orange]="visit.status === 'Pending'">
+                  {{ visit.status }}
+                </span>
+                <mat-icon class="row-chevron">chevron_right</mat-icon>
+              </button>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Candidacies -->
+      @if (activeTab === 'candidacies') {
+        <section class="content-panel">
+          <div class="section-heading">
+            <div class="heading-copy">
+              <mat-icon>description</mat-icon>
+              <div>
+                <h2>My Candidacies</h2>
+                <p>Applications you have submitted</p>
+              </div>
+            </div>
+            <span class="count-pill">{{ candidacies.length }} applications</span>
+          </div>
+
+          <div class="activity-list">
+            @for (application of candidacies; track application.id) {
+              <button class="activity-row"
+                      (click)="openItem('candidacy', application.id)">
+                <img [src]="application.image" [alt]="application.title" />
+                <div class="activity-copy">
+                  <h3>{{ application.title }}</h3>
+                  <p>{{ application.address }}</p>
+                  <span class="activity-address">{{ application.date }}</span>
+                </div>
+                <span class="status-pill"
+                      [class.status-blue]="application.status === 'Under review'"
+                      [class.status-green]="application.status === 'Accepted'"
+                      [class.status-red]="application.status === 'Rejected'">
+                  {{ application.status }}
+                </span>
+                <mat-icon class="row-chevron">chevron_right</mat-icon>
+              </button>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Messages -->
+      @if (activeTab === 'messages') {
+        <section class="content-panel">
+          <div class="section-heading">
+            <div class="heading-copy">
+              <mat-icon>chat_bubble_outline</mat-icon>
+              <div>
+                <h2>Messages</h2>
+                <p>Your conversations with agents and the ImmoHorizon team</p>
+              </div>
+            </div>
+            <span class="count-pill">
+              {{ messages.length }} conversations
+            </span>
+          </div>
+
+          <div class="message-list">
+            @for (message of messages; track message.id) {
+              <button class="message-row" (click)="openItem('message', message.id)">
+                @if (message.avatar) {
+                  <img class="message-avatar" [src]="message.avatar" [alt]="message.name" />
+                } @else {
+                  <span class="admin-avatar">A</span>
+                }
+
+                <span class="message-copy">
+                  <span class="message-name">{{ message.name }}</span>
+                  <span class="message-preview">{{ message.preview }}</span>
+                </span>
+
+                <span class="message-meta">
+                  <span>{{ message.time }}</span>
+                  @if (message.unread > 0) {
+                    <span class="unread-badge">{{ message.unread }}</span>
+                  }
+                </span>
+              </button>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Dashboard summary: visible on saved tab -->
+      @if (activeTab === 'saved') {
+        <div class="bottom-grid">
+
+          <section class="content-panel mini-panel">
+            <div class="mini-heading">
+              <div class="heading-copy">
+                <mat-icon>calendar_month</mat-icon>
+                <div>
+                  <h2>My Visits</h2>
+                  <p>Upcoming and past visits</p>
+                </div>
+              </div>
+              <button class="view-all" (click)="selectTab('visits')">View all</button>
+            </div>
+
+            @for (visit of visits; track visit.id) {
+              <button class="mini-row" (click)="openItem('visit', visit.id)">
+                <img [src]="visit.image" [alt]="visit.title" />
+                <span class="mini-copy">
+                  <strong>{{ visit.title }}</strong>
+                  <small>{{ visit.date }}</small>
+                </span>
+                <span class="status-pill mini-status"
+                      [class.status-green]="visit.status === 'Confirmed'"
+                      [class.status-orange]="visit.status === 'Pending'">
+                  {{ visit.status }}
+                </span>
+              </button>
+            }
+          </section>
+
+          <section class="content-panel mini-panel">
+            <div class="mini-heading">
+              <div class="heading-copy">
+                <mat-icon>description</mat-icon>
+                <div>
+                  <h2>My Candidacies</h2>
+                  <p>Applications you have submitted</p>
+                </div>
+              </div>
+              <button class="view-all" (click)="selectTab('candidacies')">View all</button>
+            </div>
+
+            @for (application of candidacies; track application.id) {
+              <button class="mini-row" (click)="openItem('candidacy', application.id)">
+                <img [src]="application.image" [alt]="application.title" />
+                <span class="mini-copy">
+                  <strong>{{ application.title }}</strong>
+                  <small>{{ application.date }}</small>
+                </span>
+                <span class="status-pill mini-status"
+                      [class.status-blue]="application.status === 'Under review'"
+                      [class.status-green]="application.status === 'Accepted'"
+                      [class.status-red]="application.status === 'Rejected'">
+                  {{ application.status }}
+                </span>
+              </button>
+            }
+          </section>
+
+          <section class="content-panel mini-panel messages-panel">
+            <div class="mini-heading">
+              <div class="heading-copy">
+                <mat-icon>chat_bubble_outline</mat-icon>
+                <div>
+                  <h2>Messages</h2>
+                  <p>Your conversations</p>
+                </div>
+              </div>
+              <button class="view-all" (click)="selectTab('messages')">View all</button>
+            </div>
+
+            @for (message of messages; track message.id) {
+              <button class="mini-message-row"
+                      (click)="openItem('message', message.id)">
+                @if (message.avatar) {
+                  <img [src]="message.avatar" [alt]="message.name" />
+                } @else {
+                  <span class="admin-avatar small-admin">A</span>
+                }
+                <span class="mini-message-copy">
+                  <strong>{{ message.name }}</strong>
+                  <small>{{ message.preview }}</small>
+                </span>
+                <span class="mini-message-meta">
+                  <small>{{ message.time }}</small>
+                  @if (message.unread > 0) {
+                    <span class="unread-badge">{{ message.unread }}</span>
+                  }
+                </span>
+              </button>
+            }
+          </section>
+
+        </div>
+      }
+
+    </div>
+  </main>
+</div>

@@ -216,6 +216,17 @@
     ,"DETAILS":{
         "FAVORITE":"Préférés"
     },
+    "USER": {
+    "TITLE": "Gestion des utilisateurs",
+    "EMAIL": "E-mail",
+    "GSM": "Numéro de téléphone",
+    "Password": "Mot de passe",
+    "NOM": "Nom",
+    "PRENOM": "Prénom",
+    "ROLE": "Rôle",
+    "New": "Ajouter un utilisateur",
+    "Actions":"Actions"
+  },
     "EMPLOYEE":{
         "Dashboard":"Tableau de bord",
         "Properties":"Propriétés",

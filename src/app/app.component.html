@@ -15,9 +15,9 @@
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/about">{{ 'MENU.ABOUT_US' | translate }}</a>
               <a  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/properties">{{ 'MENU.PROPERTIES' | translate }}</a>
               <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" routerLink="/blog">{{ 'MENU.BLOG' | translate }}</a>
-              @if(role==="Employe" || role==="Admin"){
+              <!-- @if(role==="Employe" || role==="Admin"){
                 <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
-              }
+              } -->
             </div>
           </div>
           <div class="hidden md:block">
@@ -37,7 +37,7 @@
                 <button mat-menu-item (click)="setLanguage('nl')">NL</button>
               </mat-menu> -->
               @if(this.loginService.isLoggedIn()==true ) {
-                @if(role==="User"){
+                @if(role==="User" || role ==="CLIENT"){
                   <button [matMenuTriggerFor]="user" class="ml-4 text-white text-center invert brightness-0" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
                   <mat-menu #user="matMenu">
                       <button mat-menu-item (click)="navToProfile()">{{ 'MENU.Profile' | translate }}</button>
@@ -52,14 +52,14 @@
                   <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>{{'GREETING.Welcome' | translate}} {{getUsername()}}</button>
                     <mat-menu #dashboard="matMenu">
                       <button mat-menu-item (click)="navToEmployeeDashboard()">Dashboard</button>
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                      <!-- <button mat-menu-item (click)="navToProfile()">Profile</button> -->
                     </mat-menu>
                   } 
                   @else if(role==="Admin"){
                   <button class="ml-4 text-white invert brightness-0" [matMenuTriggerFor]="dashboard" mat-button>Bienvenue {{getUsername()}}</button>
                     <mat-menu #dashboard="matMenu">
                       <button mat-menu-item (click)="navToAdminDashboard()">Dashboard</button>
-                      <button mat-menu-item (click)="navToProfile()">Profile</button>
+                      <!-- <button mat-menu-item (click)="navToProfile()">Profile</button> -->
                     </mat-menu>
                   } 
                 

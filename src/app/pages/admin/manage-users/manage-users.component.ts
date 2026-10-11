@@ -11,9 +11,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { UsersService } from '../../../services/users/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Article } from '../../../models/article.model';
 import { DeleteConfirmDialogComponent } from '../../../shared/delete-confirm-dialog/delete-confirm-dialog.component';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user/user.service';
@@ -79,7 +77,7 @@ service=inject(UserService);
   }
 
   viewUser(id: number) {
-    this.router.navigate(['user',id],{
+    this.router.navigate(['profile',id],{
     relativeTo: this.route
   })
   }
@@ -93,35 +91,35 @@ service=inject(UserService);
 
  deleteUser(id: number): void {
 
-//   const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-//     width: '400px',
-//     disableClose: true,
-//     data: {
-//       title: 'Delete Property',
-//       message: 'Are you sure you want to permanently delete this article?'
-//     }
-//   });
+  const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
+    width: '400px',
+    disableClose: true,
+    data: {
+      title: 'Delete Property',
+      message: 'Are you sure you want to permanently delete this article?'
+    }
+  });
 
-//   dialogRef.afterClosed().subscribe(result => {
+  dialogRef.afterClosed().subscribe(result => {
 
-//     if (result) {
+    if (result) {
 
-//       this.service.deleteUser(id).subscribe({
+      this.service.deleteUser(id).subscribe({
 
-//         next: () => {
+        next: () => {
 
-//           this.loadusers();
-//           console.log(`Article with ID ${id} deleted successfully.`);
+          this.loadUsers();
+          console.log(`Article with ID ${id} deleted successfully.`);
 
-//         },
+        },
 
-//         error: (err) => console.error(err)
+        error: (err) => console.error(err)
 
-//       });
+      });
 
-//     }
+    }
 
-//   });
+  });
 
 }
 }

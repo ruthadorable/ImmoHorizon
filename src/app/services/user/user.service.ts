@@ -115,7 +115,7 @@ export class UserService{
     return this.httpclient.get<User>(`${this.baseUrl}/id`);
   }
   
-  public deleteUser(id:number,user:User): Observable<User>{
+  public deleteUser(id:number): Observable<User>{
     return this.httpclient.delete<User>(`${this.deleteUserUrl}`+id);
   }
     

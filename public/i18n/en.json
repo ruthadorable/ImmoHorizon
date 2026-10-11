@@ -253,6 +253,19 @@
         "ConfirmationMsg":"Are you sure to publish listing ?",
         "Cancel":"Cancel"
     },
+    "USER":
+    {
+        "TITLE": "User management",
+        "EMAIL": "Email",
+        "GSM": "Phone number",
+        "Password": "Password",
+        "NOM":"Last Name",
+        "PRENOM":"First Name",
+        "ROLE":"Role",
+        "New":"Add user",
+        "Actions":"Actions"
+    },
+
      "TYPEOFPROPERTY": {
   "APPARTEMENT": "Apartment",
   "MAISON": "House",

@@ -41,6 +41,7 @@ export class AppComponent {
   private platformId = inject(PLATFORM_ID);
   public role:any;
   mobileMenuOpen = false;
+  user=null;
   constructor(private translate: TranslateService,private router:Router) {
     this.translate.addLangs(['en', 'fr', 'nl']);
     this.translate.use('en');
@@ -65,7 +66,8 @@ export class AppComponent {
   }
   navToProfile()
   {
-    this.router.navigate(['/profile']);
+        this.router.navigate(['profile']);
+     
   } 
   navToEmployeeDashboard(){
     this.router.navigate(['/employee/dashboard']);

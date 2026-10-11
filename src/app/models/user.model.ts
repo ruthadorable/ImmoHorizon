@@ -7,4 +7,8 @@ export class User{
     roles?: string[];
     role?: string;
     noGSM?: string;
+    location?: string;
+    memberSince?: string;
+    description?: string ;
+    avatar?:string;
 }

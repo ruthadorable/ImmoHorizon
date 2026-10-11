@@ -1,116 +1,124 @@
-<div class="bg-white shadow-sm w-[310px] overflow-hidden" >
+<div class="property-card">
 
-  <!-- Image Section -->
-  <div class="relative">
+  <!-- Property Image -->
+  <div class="property-card-image">
     <img
       [src]="getImageUrl(property.images?.[0]?.url)"
       [alt]="property.title"
-      class="w-full h-[210px] object-cover"
+      class="property-image"
+      loading="lazy"
     />
 
-    <!-- New Badge -->
-     @if(isRecent()){
-      <div
-      
-      class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-semibold px-3 py-1"
-      >
-      ✨ NIEUW
-      </div>
-     }
-    
+    <!-- Property Type Badge -->
+    <div class="property-type-badge">
+      {{ property.typeDeBien?.replace("_", " ") }}
+    </div>
 
-    <!-- Prev Button -->
+    <!-- New Badge -->
+    @if (isRecent()) {
+      <div class="new-badge">
+        ✨ NIEUW
+      </div>
+    }
+
+    <!-- Favorite Button -->
     <button
-      class="absolute left-0 top-1/2 -translate-y-1/2 bg-white w-8 h-8 flex items-center justify-center shadow"
+      type="button"
+      mat-icon-button
+      class="favorite-button"
+      aria-label="Ajouter aux favoris"
+    >
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+
+    <!-- Image Navigation -->
+    <button
+      type="button"
+      class="image-nav-button image-nav-previous"
+      aria-label="Vorige afbeelding"
     >
       <mat-icon>chevron_left</mat-icon>
     </button>
 
-    <!-- Next Button -->
     <button
-      class="absolute right-0 top-1/2 -translate-y-1/2 bg-white w-8 h-8 flex items-center justify-center shadow"
+      type="button"
+      class="image-nav-button image-nav-next"
+      aria-label="Volgende afbeelding"
     >
       <mat-icon>chevron_right</mat-icon>
     </button>
 
-    <!-- Counter -->
-    <div
-      class="absolute bottom-3 right-3 bg-white px-2 py-1 text-xs"
-    >
-      <!-- {{ property.currentImage }}/{{ property.totalImages }} -->
-    </div>
+    <!-- Image Counter -->
+    <div class="image-counter"></div>
   </div>
 
-  <!-- Content -->
-  <div class="p-3">
-
-    <div class="flex justify-between items-start">
-      <div>
-        <p class="text-sm text-gray-800">
-          {{ property.typeDeBien?.replace("_"," ") }}
-        </p>
-
-        <p class="text-[20px] font-light text-gray-700">
-          {{ property.code_postal }} {{ property.commune }}
-        </p>
-      </div>
-
-      <button mat-icon-button>
-        <mat-icon class="text-gray-500">
-          favorite_border
-        </mat-icon>
-      </button>
-    </div>
+  <!-- Property Information -->
+  <div class="property-card-content">
 
     <!-- Price -->
-    <div class="mt-4">
-      <span class="text-[30px] font-bold text-gray-800">
+    <div class="property-price-container">
+      <span class="property-price">
         {{ property.prix | number:'1.0-0':'fr' }} €
       </span>
     </div>
-    <div class="mt-4">
-      <span class="text-[15px] font-bold text-gray-800">
-         <button
-        mat-button
-        color="primary" (click)="navigateToProperty(property.idBien!)">Voir détails</button>
+
+    <!-- Property Title -->
+    <h3 class="property-title" [title]="property.title">
+      {{ property.title }}
+    </h3>
+
+    <!-- Location -->
+    <div class="property-address">
+      <mat-icon>location_on</mat-icon>
+      <span>
+        {{ property.code_postal }} {{ property.commune }}
       </span>
     </div>
 
-    <!-- Features -->
-    <div
-      class="mt-4 flex items-center gap-6 text-gray-700 text-sm"
-    >
-      <div class="flex items-center gap-1">
-        <mat-icon class="!text-[18px]">
-          bed
-        </mat-icon>
+    <!-- Property Features -->
+    <div class="property-features">
+
+      <div class="property-feature" title="Chambres">
+        <mat-icon>bed</mat-icon>
         <span>{{ property.chambres }}</span>
       </div>
 
-      <div class="flex items-center gap-1">
-        <mat-icon class="!text-[18px]">
-          bathtub
-        </mat-icon>
+      <div class="property-feature" title="Salles de bain">
+        <mat-icon>bathtub</mat-icon>
         <span>{{ property.salleDeBain }}</span>
       </div>
 
-      <div class="flex items-center gap-1">
-        <mat-icon>
-          square_foot
-        </mat-icon>
+      <div class="property-feature" title="Superficie">
+        <mat-icon>square_foot</mat-icon>
         <span>{{ property.superficie }} m²</span>
       </div>
 
-      <div class="ml-auto">
-        <span
-          class="bg-sky-700 text-white text-xs px-2 py-1"
-        >
-          PEB {{property.peb}}
-        </span>
-      </div>
+      @if (property.peb) {
+        <div class="property-energy">
+          <span class="energy-badge">
+            PEB {{ property.peb }}
+          </span>
+        </div>
+      }
+
     </div>
+
+    <!-- Details Link -->
+    <div class="property-details-container">
+      <button
+        type="button"
+        mat-button
+        class="property-details-button"
+        (click)="navigateToProperty(property.idBien!)"
+      >
+        Voir détails
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
   </div>
 
-  <!-- Bottom Line -->
-  <div class="h-[4px] bg-yellow-700"></div>
+  <!-- Bottom Accent -->
+  <div class="property-card-accent"></div>
+
 </div>

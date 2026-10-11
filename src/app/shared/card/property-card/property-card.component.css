@@ -1,5 +1,565 @@
-.relative{
-transition:duration-300;
-hover:scale-[1.02];
-hover:shadow-2xl
+/* ========================================
+   PREMIUM PROPERTY CARD
+======================================== */
+
+.property-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e9edf3;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(22, 43, 77, 0.045);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  border-color: #d9e5f4;
+  box-shadow: 0 12px 30px rgba(22, 43, 77, 0.11);
+}
+
+/* ========================================
+   IMAGE
+======================================== */
+
+.property-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.25 / 1;
+  overflow: hidden;
+  background: #edf1f6;
+}
+
+.property-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.045);
+}
+
+/* Soft gradient for image contrast */
+
+.property-card-image::after {
+  position: absolute;
+  inset: 45% 0 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10, 23, 42, 0.12) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+/* ========================================
+   FLOATING BADGES
+======================================== */
+
+.property-type-badge,
+.new-badge {
+  position: absolute;
+  top: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: calc(100% - 76px);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.property-type-badge {
+  left: 12px;
+  color: #173d6a;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 8px rgba(15, 34, 60, 0.08);
+}
+
+.new-badge {
+  top: 43px;
+  left: 12px;
+  color: #ffffff;
+  background: #1769d2;
+  box-shadow: 0 2px 8px rgba(23, 105, 210, 0.2);
+}
+
+/* ========================================
+   FAVORITE
+======================================== */
+
+.property-card .favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: #26364a;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(231, 236, 243, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(15, 34, 60, 0.08);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.property-card .favorite-button:hover {
+  color: #e34c65;
+  background: #fff0f2;
+  transform: scale(1.06);
+}
+
+.property-card .favorite-button mat-icon {
+  width: 19px;
+  height: 19px;
+  font-size: 19px;
+  line-height: 19px;
+}
+
+/* ========================================
+   IMAGE NAVIGATION
+======================================== */
+
+.image-nav-button {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: #1c2d43;
+  background: rgba(255, 255, 255, 0.94);
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.property-card:hover .image-nav-button,
+.image-nav-button:focus-visible {
+  opacity: 1;
+}
+
+.image-nav-button:hover {
+  background: #ffffff;
+}
+
+.image-nav-button mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.image-nav-previous {
+  left: 10px;
+}
+
+.image-nav-next {
+  right: 10px;
+}
+
+.image-counter {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 11px;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.property-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 13px 13px 10px;
+}
+
+/* ========================================
+   PRICE
+======================================== */
+
+.property-price-container {
+  margin: 0 0 4px;
+}
+
+.property-price {
+  display: block;
+  color: #172a43;
+  font-size: clamp(17px, 1.25vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.property-title {
+  display: -webkit-box;
+  min-width: 0;
+  margin: 0 0 7px;
+  overflow: hidden;
+  color: #30435c;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* ========================================
+   LOCATION
+======================================== */
+
+.property-card .property-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+  margin: 0 0 12px;
+  color: #7b899b;
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.property-address mat-icon {
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  margin-top: 1px;
+  color: #8295ad;
+  font-size: 13px;
+  line-height: 13px;
+}
+
+.property-address span {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.property-features {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-width: 0;
+  margin-top: auto;
+  padding: 10px 0 11px;
+  border-top: 1px solid #eff2f6;
+}
+
+.property-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #66768b;
+  font-size: 10.5px;
+  font-weight: 550;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.property-feature mat-icon {
+  width: 14px;
+  height: 14px;
+  color: #8596ab;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.property-energy {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.energy-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  color: #536779;
+  background: #f1f5f8;
+  border: 1px solid #e5ebf0;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ========================================
+   DETAILS LINK
+======================================== */
+
+.property-details-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.property-card .property-details-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 30px;
+  padding: 0 2px 0 8px;
+  color: #2369c9;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.property-card .property-details-button:hover {
+  background: #eff6ff;
+}
+
+.property-card .property-details-button mat-icon {
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+  font-size: 15px;
+  line-height: 15px;
+  transition: transform 0.2s ease;
+}
+
+.property-card .property-details-button:hover mat-icon {
+  transform: translateX(3px);
+}
+
+/* ========================================
+   BOTTOM ACCENT
+======================================== */
+
+.property-card-accent {
+  position: absolute;
+  right: 18%;
+  bottom: 0;
+  left: 18%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #8db8f0,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.property-card:hover .property-card-accent {
+  opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .property-card {
+    border-radius: 13px;
+  }
+
+  .property-card-image {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .property-card-content {
+    padding: 11px 10px 8px;
+  }
+
+  .property-price {
+    font-size: 17px;
+  }
+
+  .property-features {
+    gap: 8px;
+  }
+
+  .image-nav-button {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .property-card,
+  .property-image,
+  .image-nav-button,
+  .favorite-button,
+  .property-card-accent,
+  .property-details-button mat-icon {
+    transition: none;
+  }
+}
+
+/* Wider property cards */
+.property-card {
+  width: 100%;
+  min-width: 0;
+  border-radius: 16px;
+}
+
+/* Wider, less square image */
+.property-card-image {
+  width: 100%;
+  aspect-ratio: 1.45 / 1;
+}
+
+/* Give the content a little more breathing room */
+.property-card-content {
+  padding: 14px 15px 11px;
+}
+
+/* Global card typography */
+.property-card {
+  font-family: 'Inter', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Price: prominent and crisp */
+.property-card .property-price {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.4;
+  color: #14253d;
+}
+
+/* Property title */
+.property-card .property-title {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: -0.15px;
+  color: #243852;
+}
+
+/* Location */
+.property-card .property-address {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #596b82;
+}
+
+/* Features */
+.property-card .property-feature {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #40536b;
+}
+
+.property-card .property-feature mat-icon {
+  color: #647b96;
+}
+
+/* PEB badge */
+.property-card .energy-badge {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Image badge */
+.property-card .property-type-badge,
+.property-card .new-badge {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Details button */
+.property-card .property-details-button {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Improve legibility on smaller screens */
+@media (max-width: 640px) {
+  .property-card .property-price {
+    font-size: 20px;
+  }
+
+  .property-card .property-title {
+    font-size: 14px;
+  }
+
+  .property-card .property-address,
+  .property-card .property-feature {
+    font-size: 12px;
+  }
+}
+/* If cards are inside a CSS Grid */
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 900px) {
+  .properties-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .properties-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

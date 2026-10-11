@@ -16,13 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { AdminPanelComponent } from '../admin-panel/admin-panel.component';
 
 @Component({
   selector: 'app-admin-content',
   imports: [RouterLink, TranslateModule, MatButtonModule, MatIconModule, MatButtonModule,
     MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
-    MatButtonModule, MatCardModule, MatIconModule, MatAutocompleteModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, AdminPanelComponent, AdminContentComponent],
+    MatButtonModule, MatCardModule, MatIconModule, MatAutocompleteModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule],
   templateUrl: './admin-content.component.html',
   styleUrl: './admin-content.component.css'
 })

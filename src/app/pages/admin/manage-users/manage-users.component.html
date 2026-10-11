@@ -11,7 +11,7 @@
 
             <div class="header-section">
               <div>
-                <h1>Gestion des utilisateurs</h1>
+                <h1>{{ 'USER.TITLE' | translate }}</h1>
                 
               </div>
 
@@ -85,7 +85,7 @@
                   </th>
 
                   <td mat-cell *matCellDef="let user">
-                    {{ user.noGSM }}
+                    {{ user.noGsm }}
                   </td>
                 </ng-container>
 
@@ -94,22 +94,22 @@
                 <!-- Actions -->
                 <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef>
-                    Actions
+                    {{ 'USER.Actions' | translate }}
                   </th>
 
                   <td mat-cell *matCellDef="let user">
 
-                    <button mat-icon-button color="primary" matTooltip="View" (click)="viewUser(user.idArticle)">
+                    <button mat-icon-button color="primary" matTooltip="View" (click)="viewUser(user.idUser)">
 
                       <mat-icon>visibility</mat-icon>
                     </button>
 
-                    <button mat-icon-button color="accent" matTooltip="Edit" (click)="editUser(user.idArticle)">
+                    <button mat-icon-button color="accent" matTooltip="Edit" (click)="editUser(user.idUser)">
 
                       <mat-icon>edit</mat-icon>
                     </button>
 
-                    <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteUser(user.idArticle)">
+                    <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteUser(user.idUser)">
 
                       <mat-icon>delete</mat-icon>
                     </button>

@@ -28,6 +28,7 @@ import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.co
 import { CreateUserComponent } from './pages/admin/create-user/create-user.component';
 import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
 import { ViewUserComponent } from './pages/admin/view-user/view-user.component';
+import { ProfileComponent } from './pages/client/profile/profile.component';
 export const routes: Routes = [
     {
         path:'',
@@ -210,8 +211,12 @@ export const routes: Routes = [
         component: ViewUserComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['ADMIN'] }
-    },  
+    }
 ]
-}
+},{
+    path: 'profile',
+    component: ProfileComponent,
+    data: { roles: ['CLIENT'] }
+  }
 
 ]

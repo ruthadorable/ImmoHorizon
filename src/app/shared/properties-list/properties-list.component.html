@@ -4,20 +4,16 @@
     Results: {{ properties.length }}
   </p>
 
-  <div
-    class="grid w-full grid-cols-1 gap-20
-           sm:grid-cols-2
-           lg:grid-cols-3
-           xl:grid-cols-4">
+<div class="property-grid">
 
-    @for (property of properties; track property.idBien) {
-      <div class="w-full xl:mx-10">
-        <app-property-card
-          [property]="property">
-        </app-property-card>
-      </div>
-    }
+  @for (property of properties; track property.idBien) {
+    <div class="property-grid-item">
+      <app-property-card
+        [property]="property">
+      </app-property-card>
+    </div>
+  }
 
-  </div>
+</div>
 
 </section>
