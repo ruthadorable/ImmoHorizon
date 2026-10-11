@@ -20,7 +20,7 @@ import { etats } from '../../../enum/etats.enum';
 import { pebs } from '../../../enum/pebs.enum';
 import { TypeChauffage } from '../../../enum/typeDeChauffage.enum';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { Image } from '../../../models/image.model';
 @Component({
   selector: 'app-creer-bien',
   imports: [TranslateModule,
@@ -45,7 +45,8 @@ export class CreerBienComponent implements OnInit{
   readonly typeChauffage= Object.values(TypeChauffage);
   belgianCities=belgianCities;
   readonly etats=Object.values(etats);
-  selectedFiles: File[] = [];
+  selectedFiles: Image[] = [];
+  images: Image[] = [];
   readonly typesDeBien = Object.values(typesDeBien);
   filteredCities!:Observable<any[]>;
   cityControl = new FormControl('');
@@ -105,84 +106,106 @@ selectedCity(city: any) {
   });
 }
 
-onFilesSelected(event: Event) {
-  const input =
-      event.target as HTMLInputElement;
+onFilesSelected(event: Event): void {
+  const input = event.target as HTMLInputElement;
+
   if (!input.files) {
     return;
   }
-  this.selectedFiles =
-      Array.from(input.files);
-}
 
-onFileChange(event: any) {
-  this.selectedFiles = Array.from(event.target.files);
-}
-images: any[] = [];
-
-onFileSelected(event: any) {
-  const files = event.target.files;
-
-  for (let file of files) {
+  Array.from(input.files).forEach(file => {
     this.addImage(file);
-  }
+  });
+
+  input.value = '';
 }
-setPrimary(index: number) {
+
+onFileChange(event: Event): void {
+  this.onFilesSelected(event);
+}
+
+onFileSelected(event: Event): void {
+  this.onFilesSelected(event);
+}
+
+setPrimary(index: number): void {
   this.images.forEach((img, i) => {
-    img.isPrimary = i === index;
+    img.primary = i === index;
   });
 }
 
-removeImage(index: number) {
+removeImage(index: number): void {
   this.images.splice(index, 1);
+
+  // Keep a primary image when images remain
+  if (
+    this.images.length > 0 &&
+    !this.images.some(img => img.primary)
+  ) {
+    this.images[0].primary = true;
+  }
+
+  this.selectedFiles = [...this.images];
 }
 
-onDrop(event: any) {
-  const files = event.item.data?.files || event.item.element.nativeElement.files;
+onDrop(event: any): void {
+  const files: File[] =
+    Array.from(event.dataTransfer?.files ?? []);
+
+  files.forEach(file => this.addImage(file));
 }
-addImage(file: File) {
+
+addImage(file: File): void {
   const reader = new FileReader();
 
   reader.onload = () => {
-    this.images.push({
-      file: file,
-      url: reader.result,
-      isPrimary: this.images.length === 0 // first image = primary
-    });
+    const image = new Image(
+      this.images.length === 0,
+      '', // S3 imageKey assigned after upload
+      reader.result as string
+    );
+
+    image.file = file;
+
+    this.images.push(image);
+    this.selectedFiles = [...this.images];
   };
 
   reader.readAsDataURL(file);
 }
 
+submit(): void {
+  if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    return;
+  }
 
-  submit() {
-   const property = {
+  const property = {
     title: this.form.value.title,
     description: this.form.value.description,
     prix: this.form.value.prix,
     commune: this.form.value.commune
   };
-  console.log(this.form.value);
-  console.log(this.selectedFiles);
-  console.log(this.selectedFiles.length);
-  
 
-  this.bienService
-      .creerBien(
-          property,
-          this.selectedFiles
-      )
-      .subscribe({
-        next: res => {
-          console.log(res);
-        },
-        error: err  => {
-          console.error(err);
-           console.log(err.status);
-            console.log(err.error);
-            console.log(err.message);
-        }
-      });
+  // Extract actual files for the upload
+  const files: File[] = this.images
+    .map(img => img.file)
+    .filter((file): file is File => file !== undefined);
+
+  console.log('Property:', property);
+  console.log('Images:', this.images);
+  console.log('Files to upload:', files);
+
+  this.bienService.creerBien(property, files).subscribe({
+    next: res => {
+      console.log('Property created successfully:', res);
+    },
+    error: err => {
+      console.error('Property creation failed:', err);
+      console.log('Status:', err.status);
+      console.log('Response:', err.error);
+      console.log('Message:', err.message);
+    }
+  });
 }
-
 }
