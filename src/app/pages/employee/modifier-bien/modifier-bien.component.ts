@@ -155,13 +155,12 @@ propertyForm = this.fb.group({
     ).subscribe({
       next: response => {
         console.log('Bien updated successfully', response);
-        this.router.navigate(['/properties'],{
-    relativeTo: this.route
-      }) },
+        },
       error: err => {
         console.error('Update failed', err);
       }
     });
+     this.navBack();
   }
 
   //images

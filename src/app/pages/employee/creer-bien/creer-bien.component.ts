@@ -151,6 +151,11 @@ removeImage(index: number): void {
   this.selectedFiles = [...this.images];
 }
 
+ navBack(){
+    window.history.back();
+  }
+
+  
 onDrop(event: any): void {
   const files: File[] =
     Array.from(event.dataTransfer?.files ?? []);
@@ -202,9 +207,6 @@ submit(): void {
   this.bienService.creerBien(property, files).subscribe({
     next: res => {
       console.log('Property created successfully:', res);
-      this.router.navigate(['/properties'],{
-    relativeTo: this.route
-  })
     },
     error: err => {
       console.error('Property creation failed:', err);
@@ -213,5 +215,6 @@ submit(): void {
       console.log('Message:', err.message);
     }
   });
+  this.navBack();
 }
 }
