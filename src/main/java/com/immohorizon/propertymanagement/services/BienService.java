@@ -82,7 +82,6 @@ public class BienService {
                     // Create the database image entity
                     Image img = new Image();
                     img.setImageKey(key);
-
                     img.setUrl(s3Service.generateUrl(key));
                     // First uploaded image becomes the primary image
                     img.setPrimary(firstImage);
