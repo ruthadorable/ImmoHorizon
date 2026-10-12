@@ -14,17 +14,14 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Bien } from '../../../models/bien.model';
 import { Image } from '../../../models/image.model';
 import { TopToolbarComponent } from '../shared/top-toolbar/top-toolbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatChipsModule} from '@angular/material/chips';
 
-export interface NewImage {
-  file: File;
-  preview: string;
-}
+
 @Component({
   selector: 'app-modifier-bien',
   imports: [ReactiveFormsModule, MatButtonModule,
@@ -47,8 +44,10 @@ export interface NewImage {
   styleUrl: './modifier-bien.component.css'
 })
 export class ModifierBienComponent {
-
+  newImages: Image[] = [];
   private fb = inject(FormBuilder);
+  private router=inject(Router);
+  private route=inject(ActivatedRoute)
   deletedImages: number[] = [];
   public etats = ["DISPONIBLE",
     "VENDU",
@@ -63,7 +62,6 @@ export class ModifierBienComponent {
   public selectedImage?: Image;
   public adresse!: string;
   private bienService =inject(BienService);
-  private route = inject(ActivatedRoute);
   private propertyId!: number;
 propertyForm = this.fb.group({
   title: this.fb.control<string | null>(null),
@@ -132,58 +130,67 @@ propertyForm = this.fb.group({
     return `https://immohorizon-images.s3.us-east-1.amazonaws.com/${imageKey}`;
   }
 
-  onSubmit(){
-    const updatedBien = this.propertyForm.getRawValue() ;
-      console.log(updatedBien);
-     this.bienService.updateBien(this.propertyId,updatedBien,this.newImages.map(img => img.file),this.deletedImages)
-  .subscribe({
-    next: response => {
-      console.log(
-        "Bien updated successfully",
-        response
-      );
-    },
-    error: err => {
-      console.error(
-        "Update failed",
-        err
-      );
+  onSubmit(): void {
+    if (this.propertyForm.invalid) {
+      this.propertyForm.markAllAsTouched();
+      return;
     }
 
-  });
+    const updatedBien = this.propertyForm.getRawValue();
 
+    // Keep only newly added images that contain a File
+    const files: File[] = this.newImages
+      .map(img => img.file)
+      .filter((file): file is File => file !== undefined);
+
+    console.log('Updated property:', updatedBien);
+    console.log('New images:', files);
+    console.log('Deleted images:', this.deletedImages);
+
+    this.bienService.updateBien(
+      this.propertyId,
+      updatedBien,
+      files,
+      this.deletedImages
+    ).subscribe({
+      next: response => {
+        console.log('Bien updated successfully', response);
+        },
+      error: err => {
+        console.error('Update failed', err);
+      }
+    });
   }
 
-  //images 
+  //images
 
-
-
-newImages: NewImage[] = [];
-
-
-onImagesSelected(event: Event) {
-
+onImagesSelected(event: Event): void {
   const input = event.target as HTMLInputElement;
 
-  if (!input.files) return;
-
+  if (!input.files) {
+    return;
+  }
 
   Array.from(input.files).forEach(file => {
+    const image = new Image(
+      false,
+      '',
+      URL.createObjectURL(file)
+    );
 
-    this.newImages.push({
-      file: file,
-      preview: URL.createObjectURL(file)
-    });
+    image.file = file;
 
+    this.newImages.push(image);
   });
 
+  // Allow selecting the same file again
+  input.value = '';
 }
-
 
 removeNewImage(index: number) {
 
   URL.revokeObjectURL(
-    this.newImages[index].preview
+    this.newImages[index].url
   );
 
   this.newImages.splice(index, 1);
@@ -217,10 +224,8 @@ setPrimaryImage(selected: Image) {
 }
 
 
-saveImages() {
-
+saveImages(): FormData {
   const formData = new FormData();
-
 
   // Existing images metadata
   formData.append(
@@ -228,16 +233,18 @@ saveImages() {
     JSON.stringify(this.property.images)
   );
 
-
-  // New uploads
+  // New uploads: append only images containing a File
   this.newImages.forEach(img => {
-
-    formData.append(
-      'files',
-      img.file
-    );
-
+    if (img.file) {
+      formData.append(
+        'files',
+        img.file,
+        img.url
+      );
+    }
   });
+
+  return formData;
 }
 
 

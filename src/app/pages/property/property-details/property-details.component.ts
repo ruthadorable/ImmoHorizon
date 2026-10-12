@@ -1,7 +1,7 @@
 import { Component,inject} from '@angular/core';
 import { BienService } from '../../../services/biens/bien.service';
 import { Bien } from '../../../models/bien.model';
-import { ActivatedRoute, Router, RouterOutlet, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet, RouterStateSnapshot, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Image } from '../../../models/image.model';
@@ -13,7 +13,7 @@ import { BreadcrumbComponent } from '../../../shared/breadcrumb/breadcrumb.compo
 
 @Component({
   selector: 'app-property-details',
-  imports: [CommonModule,TranslateModule,MatIconModule,MatButtonModule,MatIconModule,DatePipe,BreadcrumbComponent],
+  imports: [CommonModule, TranslateModule, MatIconModule, MatButtonModule, MatIconModule, DatePipe, BreadcrumbComponent],
   templateUrl: './property-details.component.html',
   styleUrl: './property-details.component.css'
 })
@@ -24,6 +24,7 @@ export class PropertyDetailsComponent {
   public adresse!:string;
   private bienService=inject(BienService);
   private route=inject(ActivatedRoute);
+  private router=inject(Router);
   private propertyId!:number;
   private translateService=inject(TranslateService);
   
@@ -100,6 +101,10 @@ previousImage() {
   threeMonthAgo.setMonth(threeMonthAgo.getMonth() - 3);
 
   return disponibilite >= threeMonthAgo
+}
+
+navToContact(){
+  this.router.navigate(['/contact']);
 }
  
 }
