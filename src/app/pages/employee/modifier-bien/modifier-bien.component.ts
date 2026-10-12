@@ -160,7 +160,6 @@ propertyForm = this.fb.group({
         console.error('Update failed', err);
       }
     });
-     this.navBack();
   }
 
   //images
