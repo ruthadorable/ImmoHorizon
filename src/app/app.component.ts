@@ -70,10 +70,10 @@ export class AppComponent {
      
   } 
   navToEmployeeDashboard(){
-    this.router.navigate(['/employee/dashboard']);
+    this.router.navigate(['/employee']);
   }
   navToAdminDashboard(){
-    this.router.navigate(['/admin/dashboard']);
+    this.router.navigate(['/admin']);
   }
 
   navTo(path: string) {
