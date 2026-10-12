@@ -117,7 +117,7 @@ export class LoginDialogComponent {
         if(role=="EMPLOYE"){
           localStorage.setItem('role',"Employe")
           console.log("should navigate to dashboard");
-          this.router.navigate(['/employee/dashboard']);
+          this.router.navigate(['/employee']);
         }
         if(role=="CLIENT"){
           localStorage.setItem('role',"User")
