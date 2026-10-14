@@ -113,18 +113,20 @@ export const routes: Routes = [
         path: 'properties',
         component: GererBienComponent
       },{
-        path:'creer-bien',
+        path:'properties/creer-bien',
         component: CreerBienComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['EMPLOYE'] }
     },{
-        path:'modifier-bien/:id',
+        path:'properties/modifier-bien/:id',
         component: ModifierBienComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['EMPLOYE'] }
     },{
-        path:'property/:id',
-        component: PropertyDetailsComponent
+        path:'properties/property/:id',
+        component: PropertyDetailsComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
     },{
         path:'content',
         component: DashboardContentComponent
@@ -132,8 +134,23 @@ export const routes: Routes = [
     {
         path: 'blog',
         component: GererBlogComponent
-      }
-    
+      },
+      {
+        path:'blog/creer-blog',
+        component: CreerBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
+    },{
+        path:'blog/modifier-blog/:id',
+        component: ModifierBlogComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
+    },{
+        path:'blog/blog/:id',
+        component: ArticleDetailsComponent,
+        canActivate: [AuthGuard, HasRoleGuard],
+        data: { roles: ['EMPLOYE'] }
+    }
     ]},
     {
         path:'admin',
@@ -176,17 +193,17 @@ export const routes: Routes = [
         path:'blog/creer-blog',
         component: CreerBlogComponent,
         canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE','ADMIN'] }
+        data: { roles: ['ADMIN'] }
     },{
         path:'blog/modifier-blog/:id',
         component: ModifierBlogComponent,
         canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE','ADMIN'] }
+        data: { roles: ['ADMIN'] }
     },{
         path:'blog/blog/:id',
         component: ArticleDetailsComponent,
         canActivate: [AuthGuard, HasRoleGuard],
-        data: { roles: ['EMPLOYE','ADMIN'] }
+        data: { roles: ['ADMIN'] }
     },
     {
         path: 'users',
