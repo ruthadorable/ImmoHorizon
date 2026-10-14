@@ -104,7 +104,7 @@ export const routes: Routes = [
 
     },
     {
-        path:'employee',
+        path:'employee/dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuard, HasRoleGuard],
         data: { roles: ['EMPLOYE'] },
@@ -126,11 +126,11 @@ export const routes: Routes = [
         path:'property/:id',
         component: PropertyDetailsComponent
     },{
-        path:'dashboard',
+        path:'content',
         component: DashboardContentComponent
     },
     {
-        path: 'gerer-blog',
+        path: 'blog',
         component: GererBlogComponent
       }
     
