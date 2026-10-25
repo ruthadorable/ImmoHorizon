@@ -241,8 +241,16 @@ public class BienService {
 
             List<Bien> result =  bienRepository.findAll()
                     .stream()
-                    .filter(b -> critere.getCommune() == null ||
-                            b.getCommune().equalsIgnoreCase(critere.getCommune()))
+                    .filter(bien ->
+                            critere.getCommune() == null
+                                    || critere.getCommune().isBlank()
+                                    || (
+                                    bien.getCommune() != null
+                                            && bien.getCommune().equalsIgnoreCase(
+                                            critere.getCommune().trim()
+                                    )
+                            )
+                    )
 
                     .filter(b -> critere.getType() == null ||
                             b.getType().equalsIgnoreCase(critere.getType()))
