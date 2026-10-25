@@ -48,6 +48,7 @@ public class SecurityConfig {
                                 "/api/auth/**",
                                 "/api/blog/**",
                                 "/api/biens/**",
+                                "/api/biens/search",
                                 "/api/biens/type/avendre",
                                 "/api/biens/type/alouer",
                                 "/api/biens/new",
