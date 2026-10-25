@@ -233,74 +233,158 @@ public class BienService {
         /**
          * Recherche détaillée
          */
+
         public List<Bien> rechercheDetaillee(CritereRechercheDto critere) {
+
+            if (critere == null) {
+                throw new IllegalArgumentException(
+                        "Les critères de recherche ne peuvent pas être null."
+                );
+            }
+
             List<Bien> biens = bienRepository.findAll();
 
-            System.out.println("Total biens: " + biens.size());
-            System.out.println("Criteria: " + critere);
+            System.out.println("Total biens : " + biens.size());
+            System.out.println("Critères : " + critere);
 
-            List<Bien> result =  bienRepository.findAll()
-                    .stream()
-                    .filter(bien ->
-                            critere.getCommune() == null
-                                    || critere.getCommune().isBlank()
-                                    || (
-                                    bien.getCommune() != null
-                                            && bien.getCommune().equalsIgnoreCase(
-                                            critere.getCommune().trim()
-                                    )
+            List<Bien> result = biens.stream()
+
+                    // Commune
+                    .filter(b -> matchesIgnoreCase(
+                            b.getCommune(), critere.getCommune()
+                    ))
+
+                    // Type et type de bien
+                    .filter(b -> matchesIgnoreCase(
+                            b.getType(), critere.getType()
+                    ))
+                    .filter(b -> matchesIgnoreCase(
+                            b.getTypeDeBien(), critere.getTypeDeBien()
+                    ))
+
+                    // Prix minimum et maximum
+                    .filter(b -> matchesMin(
+                            b.getPrix(), critere.getMinPrix()
+                    ))
+                    .filter(b -> matchesMax(
+                            b.getPrix(), critere.getMaxPrix()
+                    ))
+
+                    // Superficie minimum et maximum
+                    .filter(b -> matchesMin(
+                            b.getSurfaceHabitable(), critere.getMinSuperficie()
+                    ))
+                    .filter(b -> matchesMax(
+                            b.getSurfaceHabitable(), critere.getMaxSuperficie()
+                    ))
+
+                    // Nombre de chambres et salles de bain
+                    .filter(b -> matchesNumber(
+                            b.getChambres(), critere.getChambres()
+                    ))
+                    .filter(b -> matchesNumber(
+                            b.getSalleDeBain(), critere.getSalleDeBain()
+                    ))
+
+                    // PEB
+                    .filter(b -> matchesIgnoreCase(
+                            b.getPeb(), critere.getPeb()
+                    ))
+
+                    // Équipements et caractéristiques booléennes
+                    .filter(b -> matchesValue(
+                            b.getJardin(), critere.getJardin()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.getGarage(), critere.getGarage()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.getParking(), critere.getParking()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.getTerrasse(), critere.getTerrasse()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.getMeuble(), critere.getMeuble()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.getAscenseur(), critere.getAscenseur()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.isDisponible(), critere.getDisponible()
+                    ))
+                    .filter(b -> matchesValue(
+                            b.isCave(), critere.getCave()
+                    ))
+
+                    // État
+                    .filter(b -> matchesValue(
+                            b.getEtat(), critere.getEtat()
+                    ))
+
+                    // Nombre d'étages
+                    .filter(b -> matchesNumber(
+                            b.getEtages(), critere.getEtages()
+                    ))
+
+                    // Surface jardin / terrasse
+                    .filter(b -> matchesNumber(
+                            b.getSurfaceJardinTerrasse(),
+                            critere.getSurfaceJarTerrasse()
+                    ))
+
+                    // Année de construction : 0 signifie aucun filtre
+                    .filter(b -> isUnsetYear(critere.getAnneeDeConstruction())
+                                    || matchesNumber(
+                                    b.getAnnee_construction(),
+                                    critere.getAnneeDeConstruction()
                             )
                     )
 
-                    .filter(b -> critere.getType() == null ||
-                            b.getType().equalsIgnoreCase(critere.getType()))
-                    .filter(b -> critere.getTypeDeBien() == null ||
-                            b.getTypeDeBien().equalsIgnoreCase(critere.getTypeDeBien()))
-
-                    .filter(b -> critere.getMinPrix() == null ||
-                            b.getPrix() >= critere.getMinPrix())
-
-                    .filter(b -> critere.getMaxPrix() == null ||
-                            b.getPrix() <= critere.getMaxPrix())
-                    .filter(b -> critere.getMinSuperficie() == null ||
-                            b.getSurfaceHabitable() >= critere.getMinSuperficie())
-                    .filter(b -> critere.getMaxSuperficie() == null ||
-                            b.getSurfaceHabitable() >= critere.getMaxSuperficie())
-                    .filter(b -> critere.getChambres() == null ||
-                            b.getChambres() == critere.getChambres())
-                    .filter(b -> critere.getSalleDeBain() == null ||
-                            b.getSalleDeBain() == critere.getSalleDeBain())
-                    .filter(b -> critere.getPeb() == null ||
-                            b.getPeb().equals(critere.getPeb()))
-                    .filter(b -> critere.getJardin() == null ||
-                            b.getJardin().equals(critere.getJardin()))
-                    .filter(b -> critere.getGarage() == null ||
-                            b.getGarage().equals(critere.getGarage()))
-                    .filter(b -> critere.getParking() == null ||
-                            b.getParking().equals(critere.getParking()))
-                    .filter(b -> critere.getTerrasse() == null ||
-                            b.getTerrasse().equals(critere.getTerrasse()))
-                    .filter(b -> critere.getMeuble() == null ||
-                            b.getMeuble().equals(critere.getMeuble()))
-                    .filter(b -> critere.getAscenseur() == null ||
-                            b.getAscenseur().equals(critere.getAscenseur()))
-                    .filter(b -> critere.getDisponible() == null ||
-                            b.isDisponible() ==critere.getDisponible())
-                    .filter(b -> critere.getCave() == null ||
-                            b.isCave() == critere.getCave() )
-                    .filter(b -> critere.getEtat()==null ||
-                            b.getEtat().equals(critere.getEtat()))
-                    .filter(b -> critere.getEtages()==null ||
-                            b.getEtages() == critere.getEtages())
-                    .filter(b -> critere.getSurfaceJarTerrasse()==null ||
-                            b.getSurfaceJardinTerrasse() == critere.getSurfaceJarTerrasse())
-                    .filter(b -> critere.getAnneeDeConstruction()== 0 ||
-                                            b.getAnnee_construction() ==critere.getAnneeDeConstruction())
-
                     .collect(Collectors.toList());
-            System.out.println("Results: " + result.size());
+
+            System.out.println("Résultats : " + result.size());
+
             return result;
         }
+
+
+    private boolean matchesIgnoreCase(String actual, String requested) {
+        return requested == null
+                || requested.isBlank()
+                || (actual != null
+                && actual.equalsIgnoreCase(requested.trim()));
+    }
+
+    private boolean matchesMin(Number actual, Number minimum) {
+        return minimum == null
+                || (actual != null
+                && actual.doubleValue() >= minimum.doubleValue());
+    }
+
+    private boolean matchesMax(Number actual, Number maximum) {
+        return maximum == null
+                || (actual != null
+                && actual.doubleValue() <= maximum.doubleValue());
+    }
+
+    private boolean matchesNumber(Number actual, Number requested) {
+        return requested == null
+                || (actual != null
+                && Double.compare(
+                actual.doubleValue(),
+                requested.doubleValue()
+        ) == 0);
+    }
+
+    private boolean matchesValue(Object actual, Object requested) {
+        return requested == null || Objects.equals(actual, requested);
+    }
+
+    private boolean isUnsetYear(Number year) {
+        return year == null || year.doubleValue() == 0;
+    }
+
 
     @Transactional
     public Bien updateBien(
