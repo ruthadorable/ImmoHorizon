@@ -1,31 +1,37 @@
-name: CD WORKFLOW - Deploy Angular to S3
+
+name: CD WORKFLOW - Deploy ImmoHorizon Frontend and Backend
 
 on:
   workflow_run:
-    workflows: ["Docker CI"]
+    workflows:
+      - "Docker CI"
+      - "Push docker image"
     types:
       - completed
 
-# Required for GitHub OIDC
+# Required for AWS OIDC and read access
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
+  # ==========================================
+  # FRONTEND: Angular -> S3 -> CloudFront
+  # Runs after Docker CI succeeds
+  # ==========================================
+  deploy-frontend:
+    name: Deploy Angular to S3
+    if: >-
+      ${{
+        github.event.workflow_run.name == 'Docker CI' &&
+        github.event.workflow_run.conclusion == 'success'
+      }}
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Pull latest Docker image
-        run: |
-          docker pull ruthann33/immohorizon-frontend:latest
-
-      - name: Remove old container
-        run: |
-          docker rm -f immohorizon-frontend || true
+      - name: Pull latest frontend Docker image
+        run: docker pull ruthann33/immohorizon-frontend:latest
 
       - name: Create temporary container
         run: |
@@ -33,16 +39,13 @@ jobs:
             --name immohorizon-frontend \
             ruthann33/immohorizon-frontend:latest
 
-      - name: Copy Angular files from Docker image
+      - name: Copy Angular files
         run: |
-          rm -rf ./angular-dist
           mkdir -p ./angular-dist
-
           docker cp \
             immohorizon-frontend:/usr/share/nginx/html/. \
             ./angular-dist/
 
-      # Authenticate to AWS using GitHub OIDC
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -50,8 +53,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Verify AWS identity
-        run: |
-          aws sts get-caller-identity
+        run: aws sts get-caller-identity
 
       - name: Deploy Angular to S3
         run: |
@@ -63,9 +65,116 @@ jobs:
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
             --paths "/*"
 
       - name: Remove temporary container
-        run: |
-          docker rm -f immohorizon-frontend || true
+        if: always()
+        run: docker rm -f immohorizon-frontend || true
+
+
+  # ==========================================
+  # BACKEND EC2 #1
+  # Runs after Push docker image succeeds
+  # ==========================================
+  deploy-backend-ec2-1:
+    name: Deploy Backend to EC2 #1
+    if: >-
+      ${{
+        github.event.workflow_run.name == 'Push docker image' &&
+        github.event.workflow_run.conclusion == 'success'
+      }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy backend to EC2 #1
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_1_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          timeout: 30s
+          command_timeout: 10m
+          script: |
+            set -e
+            cd ~/immohorizon
+
+            echo "Pulling latest backend image..."
+            docker pull ruthann33/immohorizon-backend:latest
+
+            echo "Stopping existing container..."
+            docker stop immohorizon-backend || true
+            docker rm immohorizon-backend || true
+
+            echo "Starting new container..."
+            docker run -d \
+              --name immohorizon-backend \
+              --restart unless-stopped \
+              -p 3030:3030 \
+              --env-file ~/immohorizon/.env \
+              ruthann33/immohorizon-backend:latest
+
+            sleep 15
+
+            echo "Container status:"
+            docker ps --filter name=immohorizon-backend
+
+            echo "Recent application logs:"
+            docker logs --tail 50 immohorizon-backend
+
+            echo "EC2 #1 deployment completed."
+
+
+  # ==========================================
+  # BACKEND EC2 #2
+  # Runs only if EC2 #1 deployment succeeds
+  # ==========================================
+  deploy-backend-ec2-2:
+    name: Deploy Backend to EC2 #2
+    needs: deploy-backend-ec2-1
+    if: >-
+      ${{
+        github.event.workflow_run.name == 'Push docker image' &&
+        github.event.workflow_run.conclusion == 'success'
+      }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy backend to EC2 #2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          timeout: 30s
+          command_timeout: 10m
+          script: |
+            set -e
+            cd ~/immohorizon
+
+            echo "Pulling latest backend image..."
+            docker pull ruthann33/immohorizon-backend:latest
+
+            echo "Stopping existing container..."
+            docker stop immohorizon-backend || true
+            docker rm immohorizon-backend || true
+
+            echo "Starting new container..."
+            docker run -d \
+              --name immohorizon-backend \
+              --restart unless-stopped \
+              -p 3030:3030 \
+              --env-file ~/immohorizon/.env \
+              ruthann33/immohorizon-backend:latest
+
+            sleep 15
+
+            echo "Container status:"
+            docker ps --filter name=immohorizon-backend
+
+            echo "Recent application logs:"
+            docker logs --tail 50 immohorizon-backend
+
+            echo "EC2 #2 deployment completed."

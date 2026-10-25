@@ -55,13 +55,14 @@ export class PropertiesListComponent {
   }
 
   loadProperties(): void {
+    console.log(this.criteria);
     this.propertyService.searchProperties(this.criteria).subscribe({
       next: (data: Bien[]) => {
         this.properties = data;
         console.log('Search results:', this.properties);
       },
-      error: (err) => {
-        console.error('Error loading properties:', err);
+      error: (error) => {
+    console.error('Search failed:', error.status, error.error);
       }
     });
   }
