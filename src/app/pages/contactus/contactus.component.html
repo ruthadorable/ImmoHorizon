@@ -51,7 +51,7 @@
           <div class="contact-item-content">
 
             <h3>
-              {{ 'Phone' | translate }}
+              {{ 'CONTACTUS.Phone' | translate }}
             </h3>
 
             <a href="tel:+3221234567">
@@ -73,7 +73,7 @@
           <div class="contact-item-content">
 
             <h3>
-              {{ 'Email' | translate }}
+              {{ 'CONTACTUS.Email' | translate }}
             </h3>
 
             <a href="mailto:info@immohorizon.be">
@@ -95,7 +95,7 @@
           <div class="contact-item-content">
 
             <h3>
-              {{ 'Address' | translate }}
+              {{ 'CONTACTUS.Address' | translate }}
             </h3>
 
             <p>
@@ -119,16 +119,16 @@
           <div class="contact-item-content">
 
             <h3>
-              {{ 'OpeningHours' | translate }}
+              {{ 'CONTACTUS.OpeningHours' | translate }}
             </h3>
 
             <p>
-              {{ 'MondayFriday' | translate }}:
+              {{ 'CONTACTUS.MondayFriday' | translate }}:
               09:00 – 18:00
             </p>
 
             <p>
-              {{ 'Saturday' | translate }}:
+              {{ 'CONTACTUS.Saturday' | translate }}:
               10:00 – 16:00
             </p>
 
@@ -145,11 +145,11 @@
         <div class="form-header">
 
           <h2>
-            {{ 'SendUsAMessage' | translate }}
+            {{ 'CONTACTUS.Send' | translate }}
           </h2>
 
           <p>
-            {{ 'ContactFormDescription' | translate }}
+            {{ 'CONTACTUS.Description' | translate }}
           </p>
 
         </div>
@@ -166,11 +166,11 @@
 
             <div>
               <h3>
-                {{ 'MessageSent' | translate }}
+                {{ 'CONTACTUS.MessageSent' | translate }}
               </h3>
 
               <p>
-                {{ 'MessageSentDescription' | translate }}
+                {{ 'CONTACTUS.MessageSentDescription' | translate }}
               </p>
             </div>
 
@@ -191,7 +191,7 @@
             <div class="form-group">
 
               <label for="name">
-                {{ 'FullName' | translate }}
+                {{ 'CONTACTUS.Name' | translate }}
                 <span>*</span>
               </label>
 
@@ -203,7 +203,7 @@
                   f['name'].invalid &&
                   f['name'].touched
                 "
-                placeholder="{{ 'YourName' | translate }}"
+                placeholder="{{ 'CONTACTUS.YourName' | translate }}"
               >
 
               @if (f['name'].invalid && f['name'].touched) {
@@ -218,7 +218,7 @@
             <div class="form-group">
 
               <label for="email">
-                {{ 'Email' | translate }}
+                {{ 'CONTACTUS.Email' | translate }}
                 <span>*</span>
               </label>
 
@@ -230,7 +230,7 @@
                   f['email'].invalid &&
                   f['email'].touched
                 "
-                placeholder="{{ 'YourEmail' | translate }}"
+                placeholder="{{ 'CONTACTUS.YourEmail' | translate }}"
               >
 
               @if (f['email'].invalid && f['email'].touched) {
@@ -250,14 +250,14 @@
             <div class="form-group">
 
               <label for="phone">
-                {{ 'Phone' | translate }}
+                {{ 'CONTACTUS.Phone' | translate }}
               </label>
 
               <input
                 id="phone"
                 type="tel"
                 formControlName="phone"
-                placeholder="{{ 'YourPhone' | translate }}"
+                placeholder="{{ 'CONTACTUS.YourPhone' | translate }}"
               >
 
             </div>
@@ -266,7 +266,7 @@
             <div class="form-group">
 
               <label for="subject">
-                {{ 'Subject' | translate }}
+                {{ 'CONTACTUS.Subject' | translate }}
                 <span>*</span>
               </label>
 
@@ -280,27 +280,27 @@
               >
 
                 <option value="">
-                  {{ 'SelectSubject' | translate }}
+                  {{ 'CONTACTUS.SelectSubject' | translate }}
                 </option>
 
                 <option value="buy">
-                  {{ 'BuyingProperty' | translate }}
+                  {{ 'CONTACTUS.BuyingProperty' | translate }}
                 </option>
 
                 <option value="rent">
-                  {{ 'RentingProperty' | translate }}
+                  {{ 'CONTACTUS.RentingProperty' | translate }}
                 </option>
 
                 <option value="sell">
-                  {{ 'SellingProperty' | translate }}
+                  {{ 'CONTACTUS.SellingProperty' | translate }}
                 </option>
 
                 <option value="visit">
-                  {{ 'PropertyVisit' | translate }}
+                  {{ 'CONTACTUS.PropertyVisit' | translate }}
                 </option>
 
                 <option value="other">
-                  {{ 'Other' | translate }}
+                  {{ 'CONTACTUS.Other' | translate }}
                 </option>
 
               </select>
@@ -320,7 +320,7 @@
           <div class="form-group">
 
             <label for="message">
-              {{ 'Message' | translate }}
+              {{ 'CONTACTUS.Message' | translate }}
               <span>*</span>
             </label>
 
@@ -332,7 +332,7 @@
                 f['message'].invalid &&
                 f['message'].touched
               "
-              placeholder="{{ 'WriteYourMessage' | translate }}"
+              placeholder="{{ 'CONTACTUS.WriteYourMessage' | translate }}"
             ></textarea>
 
             @if (f['message'].invalid && f['message'].touched) {
@@ -351,7 +351,7 @@
           >
 
             <span>
-              {{ 'SendMessage' | translate }}
+              {{ 'CONTACTUS.Send' | translate }}
             </span>
 
             <span class="button-arrow">
@@ -375,11 +375,11 @@
     <div class="location-header">
 
       <span class="section-label">
-        {{ 'FindUs' | translate }}
+        {{ 'CONTACTUS.FindUs' | translate }}
       </span>
 
       <h2>
-        {{ 'VisitOurOffice' | translate }}
+        {{ 'CONTACTUS.VisitOurOffice' | translate }}
       </h2>
 
     </div>

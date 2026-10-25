@@ -140,6 +140,7 @@
         "Jardin": "Tuin",
         "Garage": "Garage",
         "Description": "Beschrijving",
+        "Information":"Informaties",
         "Type_de_bien": "Soort Eigendom",
         "Localisation": "Locatie",
         "Meublé": "Gemeubileerd",
@@ -203,7 +204,8 @@
     },
     "CONTACT": {
     "ContacterAgence": "Neem contact op met het kantoor",
-    "DemandeInfos": "Meer informatie aanvragen"
+    "DemandeInfos": "Meer informatie aanvragen",
+    "DemandeVisite":"Bezichtiging aanvragen"
   },
   "DETAILS": {
     "FAVORITE": "Favorieten"
@@ -353,6 +355,7 @@
   },
       "CONTACTUS":{
     "Title":"Contacteer Ons",
+    "Subtitle":"We zijn er om u te helpen",
     "Description":"Heeft u vragen of wilt u meer informatie over onze diensten? Vul het formulier hieronder in en wij reageren u zo spoedig mogelijk.",
     "Name":"Naam",
     "Email":"E-mail",
@@ -363,7 +366,24 @@
     "Phone":"Telefoon",
     "EmailUs":"Stuur een e-mail",
     "FollowUs":"Volg ons op sociale media",
-    "ContactForm":"Contactformulier"
+    "ContactForm":"Contactformulier",
+    "OpeningHours":"Openings uren",
+    "MondayFriday":"Maandag - Vrijdag",
+    "Saturday":"Zaterdag",
+    "MessageSent": "Bericht verzonden",
+    "MessageSentDescription": "Uw bericht is verzonden. We zullen uw bericht zo snel mogelijk beantwoorden.",
+    "YourName": "Uw naam",
+    "YourEmail": "Uw e-mailadres",
+    "YourPhone": "Uw telefoonnummer",
+    "SelectSubject": "Selecteer uw onderwerp",
+    "BuyingProperty": "Een woning kopen",
+    "RentingProperty": "Een woning huren",
+    "SellingProperty": "Een woning te koop aanbieden",
+    "PropertyVisit": "Een woning bezichtigen",
+    "Other": "Andere",
+    "WriteYourMessage": "Schrijf uw bericht",
+    "FindUs": "Waar vindt u ons?",
+    "VisitOurOffice": "Adres van ons kantoor"
 },
 "DEVIS": {
   "Title": "Offerteaanvraag",

@@ -210,7 +210,8 @@
     },
     "CONTACT":{
         "ContacterAgence":"Contact Agency",
-        "DemandeInfos": "Request information"
+        "DemandeInfos": "Request information",
+        "DemandeVisite":"Vieving request"
     }
     ,"DETAILS":{
         "FAVORITE":"Favorites"
@@ -374,11 +375,28 @@
         "Email":"Email",
         "Subject":"Subject",
         "Message":"Message",
-        "Send":"Send Message",
+        "Send":"Send us a message",
         "Address":"Address",
         "Phone":"Phone",
         "EmailUs":"Email Us",
-        "FollowUs":"Follow Us"
+        "FollowUs":"Follow Us",
+        "OpeningHours":"Opening hours",
+        "MondayFriday":"Monday - Friday",
+        "Saturday":"Saturday",
+        "MessageSent": "Message sent",
+        "MessageSentDescription": "Your message has been sent. We will respond to your message as soon as possible.",
+        "YourName": "Your name",
+        "YourEmail": "Your email address",
+        "YourPhone": "Your phone number",
+        "SelectSubject": "Select a subject",
+        "BuyingProperty": "Buying a property",
+        "RentingProperty": "Renting a property",
+        "SellingProperty": "Listing a property for sale",
+        "PropertyVisit": "Property viewing",
+        "Other": "Other",
+        "WriteYourMessage": "Write your message",
+        "FindUs": "Where to find us",
+        "VisitOurOffice": "Our office address"
     },
 "DEVIS": {
   "Title": "Estimation Request",

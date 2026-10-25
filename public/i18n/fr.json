@@ -148,6 +148,7 @@
         "Jardin": "Jardin",
         "Garage": "Garage",
         "Description": "Description",
+        "Information":"Informations sur le bien",
         "Type_de_bien": "Type de bien",
         "Localisation": "Localisation",
         "Meublé": "Meublé",
@@ -211,7 +212,8 @@
     },
     "CONTACT":{
         "ContacterAgence":"Contacter l'agence",
-        "DemandeInfos": "Demande d'informations"
+        "DemandeInfos": "Demande d'informations",
+        "DemandeVisite":"Demande de visite"
     }
     ,"DETAILS":{
         "FAVORITE":"Préférés"
@@ -366,17 +368,35 @@
   },
     "CONTACTUS":{
     "Title":"Contactez-nous",
+    "Subtitle":"Nous sommes à votre disposition pour tout conseils ou informations",
     "Description":"Vous avez des questions ou souhaitez en savoir plus sur nos services? Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.",
-    "Name":"NOM",
-    "Email":"EMAIL",
+    "Name":"Nom",
+    "Email":"Email",
     "Subject":"Sujet",
     "Message":"Message",
-    "Send":"Envoyer le message",
+    "Send":"Envoyer un message",
     "Address":"Adresse",
     "Phone":"Téléphone",
     "EmailUs":"Envoyez-nous un e-mail",
     "FollowUs":"Suivez-nous sur les réseaux sociaux",
-    "ContactForm":"Formulaire de contact"
+    "ContactForm":"Formulaire de contact",
+    "OpeningHours":"Heures d'ouvertures",
+    "MondayFriday":"Lundi - Vendredi",
+    "Saturday":"Samedi",
+    "MessageSent":"Message envoyé",
+    "MessageSentDescription":"Votre message a été envoyé. Nous nous occupons de répondre à votre message dans les plus brefs délais.",
+    "YourName":"Votre nom",
+    "YourEmail":"Votre email",
+    "YourPhone":"Votre téléphone",
+    "SelectSubject":"Selectionner votre sujet",
+    "BuyingProperty":"Achat d'un bien",
+    "RentingProperty":"Location d'un bien", 
+    "SellingProperty":"Mise en vente d'un bien",
+    "PropertyVisit":"Visite d'un bien",
+    "Other":"Autre",
+    "WriteYourMessage":"Rédiger votre message",
+    "FindUs":"Où nous trouvez?",
+    "VisitOurOffice": "Adresse de notre agence" 
 },
     "DEVIS":{
         "Title":"Demande de devis",
