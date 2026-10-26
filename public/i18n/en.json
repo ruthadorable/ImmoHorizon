@@ -146,6 +146,7 @@
         "Jardin": "Garden",
         "Garage": "Garage",
         "Description": "Description",
+        "Information":"Property information",
         "Type_de_bien": "Type of Property",
         "Localisation": "Location",
         "Meublé": "Furnished",

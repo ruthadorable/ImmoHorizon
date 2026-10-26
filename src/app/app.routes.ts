@@ -234,6 +234,10 @@ export const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     data: { roles: ['CLIENT'] }
-  }
+  },
+  {
+        path:'blog/:id',
+        component: ArticleDetailsComponent
+    }
 
 ]

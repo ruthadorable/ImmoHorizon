@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -56,8 +56,7 @@ export class BlogComponent implements OnInit {
     'Taxes'
   ];
   filteredArticles: Article[] = [];
-
-
+  router = inject(Router);
 
     filterArticles() {
 
@@ -125,6 +124,12 @@ export class BlogComponent implements OnInit {
     });
 
   }
+
+
+  navigateToArticle(id: number) {
+  console.log("Blog id :"+id)
+  this.router.navigate(['/blog',id]);
+}
   goTo(url: string) {
     
     if (!url) {

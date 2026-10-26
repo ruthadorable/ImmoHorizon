@@ -38,6 +38,15 @@ export class PropertiesComponent {
 
   loadProperties() {
     console.log(this.criteria);
+
+// this.bienService.searchProperties(criteria).subscribe({
+//   next: (properties) => {
+//     console.log('Properties:', properties);
+//   },
+//   error: (error) => {
+//     console.error('Search failed:', error.status, error.error);
+//   }
+// });
   }
   public getBiens()
   {
