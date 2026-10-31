@@ -1,3 +1,34 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+  :host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-drawer-container {
+  width: 100%;
+  height: calc(100vh - 64px);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dashboard-drawer {
+  width: 265px;
+  max-width: 85vw;
+}
+
+.dashboard-drawer-content {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-page-content {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  box-sizing: border-box;
+}

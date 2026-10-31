@@ -93,3 +93,21 @@ mat-paginator {
   display: block !important;
   min-height: 56px;
 }
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.property-management-container {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.property-table-wrapper {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}

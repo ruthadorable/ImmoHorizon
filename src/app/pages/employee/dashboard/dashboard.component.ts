@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCalendar } from '@angular/material/datepicker';
@@ -24,8 +24,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class DashboardComponent {
 
 badgevisible = false;
-isMobile = false;
-
+isMobile = window.innerWidth <= 768;
+drawerOpened = !this.isMobile;
 constructor(
   private breakpointObserver: BreakpointObserver
 ) {
@@ -35,6 +35,17 @@ constructor(
       this.isMobile = result.matches;
     });
 }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    const mobile = window.innerWidth <= 768;
+
+    if (mobile !== this.isMobile) {
+      this.isMobile = mobile;
+      this.drawerOpened = !mobile;
+    }
+  }
+
   badgevisibility() {
     this.badgevisible = true;
   }

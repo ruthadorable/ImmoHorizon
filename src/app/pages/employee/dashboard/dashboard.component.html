@@ -90,8 +90,9 @@
     <mat-drawer
          #drawer
     [mode]="isMobile ? 'over' : 'side'"
-    [opened]="!isMobile"
-    position="start">
+    [(opened)]="drawerOpened"
+    position="start"
+    class="dashboard-drawer">
 
         <app-sidenav></app-sidenav>
 
@@ -99,13 +100,11 @@
 
 
     <!-- Main content -->
-    <mat-drawer-content class="w-full">
+    <mat-drawer-content  class="dashboard-drawer-content">
 
-        <div class="min-h-[600px] w-full">
-
+        <main class="dashboard-page-content">
             <router-outlet></router-outlet>
-
-        </div>
+        </main>
 
     </mat-drawer-content>
 

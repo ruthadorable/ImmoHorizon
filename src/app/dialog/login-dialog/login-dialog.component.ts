@@ -125,6 +125,7 @@ export class LoginDialogComponent {
           // this.router.navigate(['/home']);
   
         }
+        window.location.reload();
         this.dialogRef.close(this.form.value);
       },
 
