@@ -93,7 +93,11 @@ export class LoginDialogComponent {
           return;
         }
 
-        
+          this.loginService.setSession(
+      response.token,
+      response.username,
+      response.roles
+    );
         console.log(response);
         this.loginService.setRoles(response.user?.role);
          localStorage.setItem(
@@ -125,7 +129,6 @@ export class LoginDialogComponent {
           // this.router.navigate(['/home']);
   
         }
-        window.location.reload();
         this.navTo('home');
         this.dialogRef.close(this.form.value);
       },
