@@ -126,6 +126,7 @@ export class LoginDialogComponent {
   
         }
         window.location.reload();
+        navTo('home');
         this.dialogRef.close(this.form.value);
       },
 
@@ -134,6 +135,9 @@ export class LoginDialogComponent {
       }
     });
 }
+navTo(path: string) {
+    this.router.navigate([`/${path}`]);
+  }
   submitRegister() {
 
     const registerRequest = {
