@@ -113,7 +113,10 @@
         "GARAGE": "Garage",
         "FURNISHED": "Gemeubileerd",
         "AVENDRE":"Te koop",
-        "ALOUER":"Te huur"
+        "ALOUER":"Te huur",
+        "RESET":"Terugzetten",
+        "MOREFILTERS":"Meer Filters",
+        "SEARCH_BUTTON":"Zoek Eigendommen"
     },
     "TYPES":{"APPARTEMENT": "Appartement",
     "MAISON": "Huis",

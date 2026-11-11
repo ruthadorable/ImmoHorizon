@@ -1,0 +1,313 @@
+
+<div class="visite-page">
+
+  <!-- EN-TÊTE -->
+  <header class="page-header">
+    <span class="page-eyebrow">IMMOHORIZON · SERVICE DE VISITE</span>
+    <h1 class="page-title">Vous souhaitez visiter ce bien ?</h1>
+    <p>
+      Découvrez les caractéristiques du logement et choisissez
+      le créneau qui vous convient.
+    </p>
+  </header>
+
+  <!-- CARTE DU BIEN -->
+  <section class="property-card" *ngIf="bien">
+
+    <div class="property-image">
+
+      <img
+        [src]="getImageUrl(bien?.images?.[0]?.url)"
+        [alt]="bien?.title || 'Bien immobilier'">
+
+      <span class="property-type">
+        {{ bien?.type === 'A louer' ? 'À louer' : 'À vendre' }}
+      </span>
+
+      @if (bien?.type === 'A louer' && bien?.disponibilite) {
+        <span class="availability-badge">
+          Disponible à partir du
+          {{ bien.disponibilite | date:'dd/MM/yyyy' }}
+        </span>
+      }
+
+    </div>
+
+    <div class="property-details">
+
+      <h2 class="property-title">{{ bien.title }}</h2>
+
+      <p class="property-address">
+        <mat-icon>location_on</mat-icon>
+        {{ adresseComplete }}
+      </p>
+
+      <div class="property-features">
+
+        <span *ngIf="bien.chambres">
+          <mat-icon>bed</mat-icon>
+          {{ bien.chambres }} chambre(s)
+        </span>
+
+        <span *ngIf="bien.superficie">
+          <mat-icon>square_foot</mat-icon>
+          {{ bien.superficie }} m²
+        </span>
+
+        <span *ngIf="bien.salleDeBain">
+          <mat-icon>bathtub</mat-icon>
+          {{ bien.salleDeBain }} salle(s) de bain
+        </span>
+
+      </div>
+
+      @if (bien.typeDeBien === 'Location') {
+        <div class="property-price">
+          {{ bien.prix | number:'1.0-0' }} €
+          <span>/ mois</span>
+        </div>
+      }
+
+      @if (bien.type === 'A vendre') {
+        <div class="property-price">
+          {{ bien.prix | number:'1.0-0' }} €
+          <span>Prix de vente</span>
+        </div>
+      }
+
+    </div>
+
+  </section>
+
+  <!-- DISPONIBILITÉ -->
+  @if (bien?.type === 'A louer') {
+
+    <section class="availability-info">
+
+      <mat-icon>event_available</mat-icon>
+
+      <div>
+        <h3>Disponibilité du logement</h3>
+
+        <p>
+          Ce bien sera disponible à partir du :
+          <strong>
+            {{ bien?.disponibilite | date:'dd/MM/yyyy' }}
+          </strong>
+        </p>
+
+        <p>
+          Merci de prendre vos renseignements quant au délai
+          de préavis de votre logement actuel.
+        </p>
+      </div>
+
+    </section>
+
+  }
+
+  <!-- AVERTISSEMENT -->
+  <div class="warning-message">
+
+    <mat-icon>info</mat-icon>
+
+    <div>
+      <strong>INFORMATION IMPORTANTE</strong>
+
+      <p>
+        Veuillez sélectionner un créneau de visite
+        parmi les disponibilités proposées ci-dessous.
+      </p>
+
+      <p>
+        Votre demande sera ensuite transmise à notre équipe.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- INFORMATIONS FINANCIÈRES LOCATION -->
+  @if (bien?.type === 'A louer') {
+
+    <section class="financial-section">
+
+      <h2>Informations financières</h2>
+
+      <p>
+        Le montant du loyer mensuel est de :
+        <strong>
+          {{ bien?.prix | number:'1.0-0' }} € / MOIS
+        </strong>
+      </p>
+
+      <p class="financial-warning">
+        Pour l'entrée dans le logement, prévoyez un montant
+        minimal estimé de :
+        <strong>
+          {{ montantEntree | number:'1.0-0' }} €
+        </strong>.
+      </p>
+
+      <table class="financial-table">
+        <tbody>
+          <tr>
+            <td>Loyer mensuel</td>
+            <td>
+              <strong>
+                {{ bien?.prix | number:'1.0-0' }} €
+              </strong>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Garantie locative</td>
+            <td>
+              <strong>
+                {{ bien?.prix | number:'1.0-0' }} €
+              </strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="financial-disclaimer">
+        Toutes les données reprises ci-dessus sont données
+        à titre informatif et ne sont en aucun cas contractuelles.
+      </p>
+
+    </section>
+
+  }
+
+  <!-- INFORMATIONS FINANCIÈRES VENTE -->
+  @if (bien?.type === 'A vendre') {
+
+    <section class="financial-section sale-section">
+
+      <h2>Informations relatives à l'acquisition</h2>
+
+      <div class="sale-price-card">
+        <span>Prix de vente du bien</span>
+
+        <strong>
+          {{ bien?.prix | number:'1.0-0' }} €
+        </strong>
+      </div>
+
+      <div class="sale-info">
+
+        <mat-icon>account_balance</mat-icon>
+
+        <div>
+          <strong>Préparez votre acquisition</strong>
+
+          <p>
+            Lors de votre projet d'achat, pensez à prendre
+            en considération les frais de notaire, les droits
+            d'enregistrement et les éventuels frais liés
+            au financement.
+          </p>
+        </div>
+
+      </div>
+
+      <p class="financial-disclaimer">
+        Le prix affiché est communiqué à titre informatif.
+        Les frais liés à l'acquisition dépendent notamment
+        de votre situation et des caractéristiques du bien.
+      </p>
+
+    </section>
+
+  }
+
+  <!-- SÉLECTION DES CRÉNEAUX -->
+  <section class="booking-section">
+
+    <div class="booking-heading">
+      <span class="booking-eyebrow">PRENEZ RENDEZ-VOUS</span>
+
+      <h2>Réservez votre visite</h2>
+
+      <p>
+        Choisissez l'une des disponibilités proposées
+        pour visiter ce bien.
+      </p>
+    </div>
+
+    <div class="slots-container">
+
+      @for (slot of creneauxVisite; track slot.id) {
+
+        <button
+          type="button"
+          class="slot-card"
+          [class.selected]="creneauSelectionne?.id === slot.id"
+          [disabled]="slot.indisponible"
+          (click)="selectionnerCreneau(slot)">
+
+          <span class="slot-day">
+            <mat-icon>calendar_month</mat-icon>
+            {{ slot.date | date:'EEEE dd MMMM':'':'fr' }}
+          </span>
+
+          <span class="slot-time">
+            <mat-icon>schedule</mat-icon>
+            {{ slot.heure }}
+          </span>
+
+          <span class="slot-status">
+            @if (slot.indisponible) {
+              Indisponible
+            } @else if (creneauSelectionne?.id === slot.id) {
+              <mat-icon>check_circle</mat-icon>
+              Sélectionné
+            } @else {
+              Choisir ce créneau
+            }
+          </span>
+
+        </button>
+
+      }
+
+    </div>
+
+    @if (!creneauSelectionne) {
+      <p class="selection-hint">
+        <mat-icon>info_outline</mat-icon>
+        Veuillez sélectionner une date et une heure.
+      </p>
+    } @else {
+      <div class="selected-summary">
+        <mat-icon>event_available</mat-icon>
+
+        <span>
+          Votre créneau :
+          <strong>
+            {{ creneauSelectionne.date | date:'EEEE dd MMMM yyyy':'':'fr' }}
+            à {{ creneauSelectionne.heure }}
+          </strong>
+        </span>
+      </div>
+    }
+
+    <button
+      type="button"
+      class="booking-button"
+      [disabled]="!creneauSelectionne"
+      (click)="planifierVisite()">
+
+      <mat-icon>event_available</mat-icon>
+      Planifier une visite
+      <mat-icon>arrow_forward</mat-icon>
+
+    </button>
+
+    <p class="booking-disclaimer">
+      La réservation sera soumise à confirmation par notre équipe.
+    </p>
+
+  </section>
+
+</div>

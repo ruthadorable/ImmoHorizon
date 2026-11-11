@@ -1,0 +1,556 @@
+
+:host {
+  display: block;
+  width: 100%;
+  color: #071b3b;
+}
+
+.visite-page {
+  width: min(100% - 32px, 1050px);
+  margin: 40px auto 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* EN-TÊTE */
+
+.page-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.page-eyebrow,
+.booking-eyebrow {
+  display: block;
+  color: #c9a227;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-size: clamp(25px, 4vw, 35px);
+  font-weight: 500;
+  color: #071b3b;
+  margin-bottom: 12px;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: #727b89;
+  line-height: 1.7;
+}
+
+/* CARTE DU BIEN */
+
+.property-card {
+  width: min(100%, 700px);
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.10);
+  border: 1px solid #eaeaea;
+}
+
+.property-image {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background: #f1f1f1;
+  overflow: hidden;
+}
+
+.property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.property-type {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: #071b3b;
+  color: white;
+  padding: 9px 16px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.availability-badge {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e77d20;
+  color: white;
+  padding: 9px 15px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.property-details {
+  padding: 25px;
+  text-align: center;
+}
+
+.property-title {
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #071b3b;
+}
+
+.property-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #647083;
+  margin-bottom: 20px;
+}
+
+.property-address mat-icon {
+  color: #c9a227;
+}
+
+.property-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.property-features span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #566174;
+}
+
+.property-features mat-icon {
+  color: #c9a227;
+}
+
+.property-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 12px 24px;
+  background: #071b3b;
+  color: white;
+  border-radius: 7px;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.property-price span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #e3e7ee;
+}
+
+/* DISPONIBILITÉ */
+
+.availability-info {
+  width: min(100%, 700px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  background: #f4f6f9;
+  border-radius: 9px;
+  padding: 22px;
+  text-align: left;
+}
+
+.availability-info > mat-icon {
+  color: #c9a227;
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+
+.availability-info h3 {
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.availability-info p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #657084;
+  margin: 5px 0;
+}
+
+.availability-info strong {
+  color: #071b3b;
+}
+
+/* AVERTISSEMENT */
+
+.warning-message {
+  width: min(100%, 700px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: #fff8ed;
+  border-left: 4px solid #e78d30;
+  border-radius: 5px;
+}
+
+.warning-message > mat-icon {
+  color: #e78d30;
+  flex-shrink: 0;
+}
+
+.warning-message strong {
+  font-size: 12px;
+  color: #bd6b19;
+}
+
+.warning-message p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #735b43;
+  margin: 5px 0;
+}
+
+/* FINANCES */
+
+.financial-section {
+  width: min(100%, 700px);
+  background: #071b3b;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.financial-section h2 {
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+
+.financial-section > p {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.financial-section strong {
+  color: #ff9a35;
+}
+
+.financial-warning {
+  margin: 20px 0;
+}
+
+.financial-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  color: #071b3b;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.financial-table td {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  font-size: 13px;
+}
+
+.financial-table td:last-child {
+  text-align: right;
+}
+
+.financial-table strong {
+  color: #071b3b;
+}
+
+.financial-disclaimer {
+  font-size: 11px !important;
+  color: #d5dbe5;
+}
+
+/* VENTE */
+
+.sale-price-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px;
+  background: rgba(255,255,255,.08);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.sale-price-card strong {
+  font-size: 27px;
+}
+
+.sale-info {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.sale-info mat-icon {
+  color: #c9a227;
+}
+
+.sale-info p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #d5dbe5;
+}
+
+/* RÉSERVATION */
+
+.booking-section {
+  width: min(100%, 700px);
+  box-sizing: border-box;
+  padding: 32px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 5px 22px rgba(0,0,0,.07);
+  background: white;
+  text-align: center;
+}
+
+.booking-heading h2 {
+  color: #071b3b;
+  font-size: 25px;
+  margin: 8px 0 12px;
+}
+
+.booking-heading p {
+  color: #727b89;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.slot-card {
+  min-width: 0;
+  padding: 18px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #dfe3e9;
+  border-radius: 9px;
+  background: white;
+  cursor: pointer;
+  color: #071b3b;
+  transition: all .2s ease;
+}
+
+.slot-card:hover:not(:disabled) {
+  border-color: #c9a227;
+  background: #fffdf6;
+  transform: translateY(-2px);
+}
+
+.slot-card.selected {
+  border: 2px solid #c9a227;
+  background: #fffaf0;
+  box-shadow: 0 3px 12px rgba(201,162,39,.15);
+}
+
+.slot-card:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: #f3f3f3;
+}
+
+.slot-day,
+.slot-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.slot-day mat-icon,
+.slot-time mat-icon {
+  color: #c9a227;
+  flex-shrink: 0;
+}
+
+.slot-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #777;
+}
+
+.slot-card.selected .slot-status {
+  color: #947217;
+  font-weight: 700;
+}
+
+.slot-card.selected .slot-status mat-icon {
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.selection-hint,
+.selected-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+.selection-hint {
+  color: #777;
+}
+
+.selected-summary {
+  padding: 13px;
+  background: #f5f7f9;
+  border-radius: 6px;
+  color: #071b3b;
+}
+
+.selected-summary mat-icon {
+  color: #c9a227;
+}
+
+.booking-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 350px);
+  min-height: 50px;
+  margin: 25px auto 12px;
+  border: none;
+  border-radius: 6px;
+  background: #c9a227;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.booking-button:hover:not(:disabled) {
+  background: #ad871b;
+  transform: translateY(-2px);
+}
+
+.booking-button:disabled {
+  background: #b9bdc5;
+  cursor: not-allowed;
+}
+
+.booking-disclaimer {
+  font-size: 11px;
+  color: #9299a5;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+  .visite-page {
+    width: min(100% - 20px, 1050px);
+    margin: 25px auto 45px;
+    gap: 20px;
+  }
+
+  .property-image {
+    height: 240px;
+  }
+
+  .property-details {
+    padding: 20px 12px;
+  }
+
+  .property-title {
+    font-size: 19px;
+  }
+
+  .property-features {
+    gap: 12px;
+  }
+
+  .availability-info {
+    padding: 15px;
+  }
+
+  .financial-section,
+  .booking-section {
+    padding: 20px 14px;
+  }
+
+  .slots-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .slot-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 14px;
+  }
+
+  .slot-day,
+  .slot-time {
+    font-size: 11px;
+  }
+
+  .slot-status {
+    font-size: 10px;
+  }
+
+  .financial-table td {
+    padding: 11px 8px;
+    font-size: 11px;
+  }
+
+  .availability-badge {
+    font-size: 10px;
+    max-width: 90%;
+    text-align: center;
+  }
+}

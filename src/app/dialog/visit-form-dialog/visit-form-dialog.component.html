@@ -1,0 +1,457 @@
+
+<div class="reservation-dialog">
+
+  <!-- HEADER -->
+  <header class="dialog-header">
+
+    <h2>Réservation</h2>
+
+    <button type="button"
+            class="close-button"
+            aria-label="Fermer"
+            (click)="fermer()">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/cross-close.613567b991e62c61e8853928dd28a136.svg"
+        alt="Fermer">
+
+    </button>
+
+  </header>
+
+  <!-- RÉCAPITULATIF DU RENDEZ-VOUS -->
+  <section class="reservation-summary">
+
+    <div class="summary-item">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/date-white-icon.56d2a4e6d1a504997a5f9d9e31562549.svg"
+        alt="Date">
+
+      <strong>
+        {{ data.dateVisite | date:'EEEE dd MMMM yyyy':'':'fr-BE' }}
+      </strong>
+
+    </div>
+
+    <div class="summary-item">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/time-white-icon.6a687bf60d6002ea4c35dcde2c14b167.svg"
+        alt="Heure">
+
+      <strong>{{ data.heureVisite }}</strong>
+
+    </div>
+
+  </section>
+
+  <mat-dialog-content>
+
+    <form [formGroup]="demandeForm">
+
+      <!-- INFORMATIONS PERSONNELLES -->
+      <section class="form-section">
+
+        <h3>Vos coordonnées</h3>
+
+        <div class="form-group">
+
+          <label for="titre">Titre <span>*</span></label>
+
+          <mat-form-field appearance="outline">
+            <mat-select
+              id="titre"
+              formControlName="titre"
+              placeholder="Sélectionnez le titre du contact">
+
+              <mat-option value="Monsieur">Monsieur</mat-option>
+              <mat-option value="Madame">Madame</mat-option>
+              <mat-option value="Mademoiselle">
+                Mademoiselle
+              </mat-option>
+
+            </mat-select>
+
+            <mat-error>Veuillez sélectionner un titre.</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="prenom">Prénom <span>*</span></label>
+
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="prenom"
+                     formControlName="prenom"
+                     placeholder="Votre prénom">
+
+              <mat-error>Prénom obligatoire.</mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="nom">Nom <span>*</span></label>
+
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="nom"
+                     formControlName="nom"
+                     placeholder="Votre nom">
+
+              <mat-error>Nom obligatoire.</mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="email">E-mail <span>*</span></label>
+
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="email"
+                     type="email"
+                     formControlName="email"
+                     placeholder="exemple@email.com">
+
+              <mat-error>Adresse e-mail invalide.</mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="telephone">Mobile <span>*</span></label>
+
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="telephone"
+                     type="tel"
+                     formControlName="telephone"
+                     placeholder="+32 ...">
+
+              <mat-error>Numéro obligatoire.</mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CONFIDENTIALITÉ -->
+      <div class="privacy-notice">
+
+        <mat-icon>info_outline</mat-icon>
+
+        <p>
+          Les informations demandées dans ce formulaire ont
+          pour seul but de faciliter le suivi de votre dossier
+          et de mieux préparer la visite.
+
+          Vos réponses n'auront aucun impact sur l'acceptation
+          ou non de votre demande de visite.
+
+          Si vous préférez ne pas répondre à certaines questions,
+          vous êtes libre de les passer ou de faire le choix
+          d'une réponse vide.
+        </p>
+
+      </div>
+
+      <!-- SITUATION DU CANDIDAT -->
+      <section class="form-section">
+
+        <h3>Votre situation</h3>
+
+        <!-- QUESTION 1 -->
+        <div class="form-group question-group">
+
+          <label>
+            1. Quand souhaitez-vous entrer dans le logement ?
+            <span>*</span>
+          </label>
+
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="date"
+                   formControlName="dateEntree">
+
+            <mat-error>Date d'entrée obligatoire.</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="form-group question-group">
+
+          <label>
+            2. Combien y aura-t-il d'occupants ?
+            <span>*</span>
+          </label>
+
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="number"
+                   min="1"
+                   formControlName="occupants"
+                   placeholder="Nombre d'occupants">
+
+            <mat-error>Veuillez indiquer le nombre d'occupants.</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="form-group question-group">
+
+          <label>
+            3. Combien d'enfant (-18 ans) ?
+          </label>
+
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="number"
+                   min="0"
+                   formControlName="enfants"
+                   placeholder="Nombre d'enfants">
+          </mat-form-field>
+
+        </div>
+
+        <!-- QUESTION 4 -->
+        <div class="form-group question-group">
+
+          <label>
+            4. Des animaux seront-ils présents dans le logement ?
+            <span>*</span>
+          </label>
+
+          <mat-radio-group
+            formControlName="animaux"
+            class="radio-options">
+
+            <mat-radio-button value="Oui">
+              Oui
+            </mat-radio-button>
+
+            <mat-radio-button value="Non">
+              Non
+            </mat-radio-button>
+
+            <mat-radio-button value="Sans réponse">
+              Je ne souhaite pas répondre
+            </mat-radio-button>
+
+          </mat-radio-group>
+
+          <small class="error-text"
+            *ngIf="demandeForm.get('animaux')?.touched &&
+                   demandeForm.get('animaux')?.invalid">
+            Veuillez sélectionner une réponse.
+          </small>
+
+        </div>
+
+        <!-- QUESTION 5 -->
+        <div class="form-group question-group">
+
+          <label>
+            5. Votre revenu est-il supérieur à 3 fois
+            le montant du loyer ?
+            <span>*</span>
+          </label>
+
+          <mat-radio-group
+            formControlName="revenuSuffisant"
+            class="radio-options">
+
+            <mat-radio-button value="Oui">
+              Oui
+            </mat-radio-button>
+
+            <mat-radio-button value="Non">
+              Non
+            </mat-radio-button>
+
+            <mat-radio-button value="Sans réponse">
+              Je ne souhaite pas répondre
+            </mat-radio-button>
+
+          </mat-radio-group>
+
+          <small class="error-text"
+            *ngIf="demandeForm.get('revenuSuffisant')?.touched &&
+                   demandeForm.get('revenuSuffisant')?.invalid">
+            Veuillez sélectionner une réponse.
+          </small>
+
+        </div>
+
+        <!-- QUESTION 6 -->
+        <div class="form-group question-group">
+
+          <label>
+            6. Avez-vous un garant avec des revenus suffisants ?
+            <span>*</span>
+          </label>
+
+          <p class="question-description">
+            Répondez que si vos revenus sont insuffisants.
+            Le garant doit gagner 3 fois le montant du loyer.
+          </p>
+
+          <mat-radio-group
+            formControlName="garant"
+            class="radio-options">
+
+            <mat-radio-button value="Oui">
+              Oui
+            </mat-radio-button>
+
+            <mat-radio-button value="Non">
+              Non
+            </mat-radio-button>
+
+            <mat-radio-button value="Non applicable">
+              Non applicable (mon salaire suffit)
+            </mat-radio-button>
+
+          </mat-radio-group>
+
+          <small class="error-text"
+            *ngIf="demandeForm.get('garant')?.touched &&
+                   demandeForm.get('garant')?.invalid">
+            Veuillez sélectionner une réponse.
+          </small>
+
+        </div>
+
+      </section>
+
+      <!-- COMMENTAIRES -->
+      <section class="form-section">
+
+        <h3>7. Commentaires</h3>
+
+        <div class="form-group">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Vos commentaires</mat-label>
+
+            <textarea
+              matInput
+              rows="4"
+              formControlName="commentaires"
+              placeholder="Vous souhaitez ajouter une information ?">
+            </textarea>
+
+          </mat-form-field>
+
+        </div>
+
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section class="form-section">
+
+        <h3>Documents</h3>
+
+        <div class="upload-container">
+
+          <div class="upload-icon">
+            <mat-icon>cloud_upload</mat-icon>
+          </div>
+
+          <h4>Document 01</h4>
+
+          <p>
+            Seulement PDF, DOC, TXT, JPG, JPEG, PNG
+            sont autorisés.
+          </p>
+
+          <p class="file-size">
+            Taille maximale : 5 Mo
+          </p>
+
+          <input
+            type="file"
+            id="documentInput"
+            hidden
+            accept=".pdf,.doc,.txt,.jpg,.jpeg,.png"
+            (change)="onFileSelected($event)">
+
+          <label
+            for="documentInput"
+            class="upload-button">
+
+            <mat-icon>attach_file</mat-icon>
+            Ajouter un document
+
+          </label>
+
+          <div class="selected-file" *ngIf="fichier">
+
+            <mat-icon>description</mat-icon>
+
+            <span>{{ fichier.name }}</span>
+
+            <button
+              type="button"
+              (click)="supprimerFichier()">
+
+              <mat-icon>delete</mat-icon>
+
+            </button>
+
+          </div>
+
+          <p class="error-text" *ngIf="erreurFichier">
+            {{ erreurFichier }}
+          </p>
+
+        </div>
+
+      </section>
+
+    </form>
+
+  </mat-dialog-content>
+
+  <!-- FOOTER -->
+  <footer class="dialog-footer">
+
+    <button
+      type="button"
+      class="cancel-button"
+      (click)="fermer()">
+
+      Annuler
+
+    </button>
+
+    <button
+      type="button"
+      class="next-button"
+      (click)="suivant()">
+
+      Suivante
+
+      <mat-icon>arrow_forward</mat-icon>
+
+    </button>
+
+  </footer>
+
+</div>

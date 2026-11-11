@@ -121,7 +121,10 @@
         "GARAGE": "Garage",
         "FURNISHED": "Meublé",
         "AVENDRE":"A vendre",
-        "ALOUER":"A louer"
+        "ALOUER":"A louer",
+        "RESET":"Initialiser",
+        "MOREFILTERS":"Plus de Filtres",
+        "SEARCH_BUTTON":"Rechercher des biens"
     },
     "TYPES":{"APPARTEMENT": "Appartement",
     "MAISON": "Maison",

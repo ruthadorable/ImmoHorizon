@@ -151,93 +151,7 @@
             (ngSubmit)="submitForm()"
             class="space-y-7">
 
-            <!-- Project type -->
-            <div>
-
-              <label class="block text-sm font-semibold text-gray-700 mb-3">
-                {{ 'DEVIS.Type' | translate }}
-              </label>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <button
-                  type="button"
-                  (click)="selectProjectType('VENTE')"
-                  >
-
-                  <mat-icon class="text-[#c9a227]">
-                    sell
-                  </mat-icon>
-
-                  <div class="font-semibold mt-2">
-                    {{ 'DEVIS.Vente' | translate }}
-                  </div>
-
-                  <div class="text-sm text-gray-500">
-                    {{ 'DEVIS.VenteDescription' | translate }}
-                  </div>
-
-                </button>
-
-                <button
-                  type="button"
-                  (click)="selectProjectType('LOCATION')"
-                  >
-
-                  <mat-icon class="text-[#c9a227]">
-                    key
-                  </mat-icon>
-
-                  <div class="font-semibold mt-2">
-                    {{ 'DEVIS.Location' | translate }}
-                  </div>
-
-                  <div class="text-sm text-gray-500">
-                    {{ 'DEVIS.LocationDescription' | translate }}
-                  </div>
-
-                </button>
-
-                <button
-                    type="button"
-                  [class.selected-project]="projectType === 'ACHAT'"
-                  (click)="selectProjectType('ACHAT')"
-                  >
-
-                  <mat-icon class="text-[#c9a227]">
-                    home
-                  </mat-icon>
-
-                  <div class="font-semibold mt-2">
-                    {{ 'DEVIS.Achat' | translate }}
-                  </div>
-
-                  <div class="text-sm text-gray-500">
-                    {{ 'DEVIS.AchatDescription' | translate }}
-                  </div>
-
-                </button>
-
-                <button
-                  (click)="selectProjectType('ESTIMATION')"
-                  >
-                    <mat-icon class="text-[#c9a227]">
-                        price_check
-                    </mat-icon>
-
-                    <div class="font-semibold mt-2">
-                        {{ 'DEVIS.Estimation' | translate }}
-                    </div>
-
-                    <div class="text-sm text-gray-500">
-                        {{ 'DEVIS.EstimationDescription' | translate }}
-                    </div>
-
-                </button>
-
-              </div>
-
-            </div>
+           
 
             <!-- Personal information -->
             <div>
@@ -249,10 +163,10 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.FirstName' | translate }}</mat-label>
                   <input
                     matInput
-                    formControlName="firstName">
+                    formControlName="firstName"
+                    placeholder="{{ 'DEVIS.FirstName' | translate }}">
 
                   <mat-error>
                     {{ 'DEVIS.errorFirstName' | translate }}
@@ -260,10 +174,10 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.LastName' | translate }}</mat-label>
                   <input
                     matInput
-                    formControlName="lastName">
+                    formControlName="lastName"
+                    placeholder="{{ 'DEVIS.LastName' | translate }}">
 
                   <mat-error>
                     {{ 'DEVIS.errorLastName' | translate }}
@@ -271,11 +185,12 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Email</mat-label>
+
                   <input
                     matInput
                     type="email"
-                    formControlName="email">
+                    formControlName="email"
+                    placeholder="{{ 'DEVIS.Email' | translate }}">
 
                   <mat-error>
                     {{ 'DEVIS.errorEmail' | translate }}
@@ -283,10 +198,10 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.Phone' | translate }}</mat-label>
                   <input
                     matInput
-                    formControlName="phone">
+                    formControlName="phone"
+                    placeholder="{{ 'DEVIS.Phone' | translate }}">
                 </mat-form-field>
 
               </div>
@@ -303,9 +218,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.PropertyType' | translate }}</mat-label>
-
-                  <mat-select formControlName="propertyType">
+                  <mat-select formControlName="propertyType" placeholder="{{ 'DEVIS.PropertyType' | translate }}">
 
                     <mat-option value="MAISON">
                       {{ 'DEVIS.House' | translate }}
@@ -334,33 +247,29 @@
                   </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.Localisation' | translate }}</mat-label>
-
+                <mat-form-field appearance="outline" input="">
                   <input
                     matInput
                     formControlName="location"
-                    placeholder="Ex. Bruxelles">
+                    placeholder="{{ 'DEVIS.Localisation' | translate }}">
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.BudgetEstimation' | translate }}</mat-label>
-
                   <input
                     matInput
                     type="number"
-                    formControlName="budget">
+                    formControlName="budget"
+                    placeholder="{{ 'DEVIS.BudgetEstimation' | translate }}">
 
                   <span matSuffix>€</span>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{ 'DEVIS.Surface' | translate }}</mat-label>
-
                   <input
                     matInput
                     type="number"
-                    formControlName="surface">
+                    formControlName="surface"
+                    placeholder="{{ 'DEVIS.Surface' | translate }}">
 
                   <span matSuffix>m²</span>
                 </mat-form-field>
@@ -376,15 +285,11 @@
                 appearance="outline"
                 class="w-full">
 
-                <mat-label>
-                  {{ 'DEVIS.ProjectDescription' | translate }}
-                </mat-label>
-
                 <textarea
                   matInput
                   rows="6"
                   formControlName="message"
-                  placeholder="Expliquez-nous votre projet, vos besoins ou vos questions...">
+                  placeholder=" {{ 'DEVIS.ProjectDescription' | translate }}. ">
                 </textarea>
 
               </mat-form-field>

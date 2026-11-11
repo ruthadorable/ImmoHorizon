@@ -29,6 +29,7 @@ import { CreateUserComponent } from './pages/admin/create-user/create-user.compo
 import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
 import { ViewUserComponent } from './pages/admin/view-user/view-user.component';
 import { ProfileComponent } from './pages/client/profile/profile.component';
+import { DemandeVisiteComponent } from './pages/demande-visite/demande-visite.component';
 export const routes: Routes = [
     {
         path:'',
@@ -102,6 +103,10 @@ export const routes: Routes = [
         component: BlogComponent,
         data: { breadcrumb: 'Blog' }
 
+    },
+    {   path:'visite/:id',
+        component: DemandeVisiteComponent,
+        data: { breadcrumb: 'Demande de Visite' }
     },
     {
         path:'employee/dashboard',

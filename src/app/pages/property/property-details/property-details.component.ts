@@ -106,5 +106,9 @@ previousImage() {
 navToContact(){
   this.router.navigate(['/contact']);
 }
+
+navToDemandeVisite(){
+  this.router.navigate(['/visite', this.propertyId]);
  
+}
 }

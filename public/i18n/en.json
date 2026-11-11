@@ -118,7 +118,9 @@
         "GARAGE": "Garage",
         "FURNISHED": "Furnished",
         "AVENDRE":"To Buy",
-        "ALOUER":"For Rent"
+        "ALOUER":"For Rent",
+        "RESET":"Reset",
+        "MOREFILTERS":"More Filters"
 
     },
     "TYPES":{"APPARTEMENT": "Apartment",
