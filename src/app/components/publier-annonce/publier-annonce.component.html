@@ -1,393 +1,218 @@
-<div class="property-form-container">
 
-  <div class="form-header">
-    <h1>Publier une annonce immobilière</h1>
-    <p>Complétez les informations du bien pour créer votre annonce.</p>
-  </div>
+<div class="property-dialog">
+
+  <!-- HEADER -->
+  <header class="dialog-header">
+    <div>
+      <h2>Publier une annonce immobilière</h2>
+      <p>Complétez les informations du bien pour créer votre annonce.</p>
+    </div>
+  </header>
 
   <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
 
-    <!-- ========================= -->
-    <!-- INFORMATIONS GÉNÉRALES -->
-    <!-- ========================= -->
+    <mat-dialog-content class="property-dialog-content">
 
-    <mat-card class="form-section">
-      <mat-card-header>
-        <mat-card-title>Informations générales</mat-card-title>
-        <mat-card-subtitle>
-          Présentation principale du bien
-        </mat-card-subtitle>
-      </mat-card-header>
+      <!-- INFORMATIONS GÉNÉRALES -->
+      <section class="form-section">
+        <h3>Informations générales</h3>
 
-      <mat-card-content>
-
-        <div class="form-grid">
-
-          <!-- Titre -->
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Titre de l'annonce</mat-label>
-            <input
-              matInput
-              formControlName="title"
-              placeholder="Ex. Bel appartement 2 chambres à Bruxelles"
-            />
-
-            <mat-error *ngIf="propertyForm.get('title')?.hasError('required')">
-              Le titre est obligatoire
-            </mat-error>
-          </mat-form-field>
-
-          <!-- Type de bien -->
+        <div class="form-group">
+          <label for="title">Titre de l'annonce <span>*</span></label>
           <mat-form-field appearance="outline">
-            <mat-label>Type de bien</mat-label>
-
-            <mat-select formControlName="typeDeBien">
-
-              <mat-option
-                *ngFor="let type of propertyTypes"
-                [value]="type">
-                {{ type }}
-              </mat-option>
-
-            </mat-select>
-
-            <mat-error>
-              Veuillez sélectionner un type de bien
-            </mat-error>
+            <input matInput id="title" formControlName="title"
+              placeholder="Ex. Bel appartement 2 chambres à Bruxelles">
+            <mat-error>Le titre est obligatoire.</mat-error>
           </mat-form-field>
-
-          <!-- Type de transaction -->
-          <mat-form-field appearance="outline">
-            <mat-label>Type de transaction</mat-label>
-
-            <mat-select formControlName="transactionType">
-              <mat-option value="VENTE">Vente</mat-option>
-              <mat-option value="LOCATION">Location</mat-option>
-            </mat-select>
-
-          </mat-form-field>
-
         </div>
 
-        <!-- Description -->
-        <mat-form-field appearance="outline" class="full-width">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="typeDeBien">Type de bien <span>*</span></label>
+            <mat-form-field appearance="outline">
+              <mat-select id="typeDeBien" formControlName="typeDeBien"
+                placeholder="Sélectionnez un type">
+                <mat-option *ngFor="let type of propertyTypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+              <mat-error>Veuillez sélectionner un type.</mat-error>
+            </mat-form-field>
+          </div>
 
-          <mat-label>Description</mat-label>
-
-          <textarea
-            matInput
-            formControlName="description"
-            rows="7"
-            placeholder="Décrivez le bien, son environnement, ses avantages..."
-          ></textarea>
-
-          <mat-hint align="end">
-            {{ propertyForm.get('description')?.value?.length || 0 }}/2000
-          </mat-hint>
-
-          <mat-error
-            *ngIf="propertyForm.get('description')?.hasError('required')">
-            La description est obligatoire
-          </mat-error>
-
-        </mat-form-field>
-
-      </mat-card-content>
-    </mat-card>
-
-
-    <!-- ========================= -->
-    <!-- PRIX -->
-    <!-- ========================= -->
-
-    <mat-card class="form-section">
-
-      <mat-card-header>
-        <mat-card-title>Prix et conditions</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <div class="form-grid">
-
-          <!-- Prix -->
-          <mat-form-field appearance="outline">
-
-            <mat-label>Prix</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="prix"
-              placeholder="250000"
-            />
-
-            <span matTextSuffix>€</span>
-
-            <mat-error
-              *ngIf="propertyForm.get('prix')?.hasError('required')">
-              Le prix est obligatoire
-            </mat-error>
-
-          </mat-form-field>
-
-          <!-- Charges -->
-          <mat-form-field appearance="outline">
-
-            <mat-label>Charges mensuelles</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="charges"
-            />
-
-            <span matTextSuffix>€/mois</span>
-
-          </mat-form-field>
-
+          <div class="form-group">
+            <label for="transactionType">Type de transaction <span>*</span></label>
+            <mat-form-field appearance="outline">
+              <mat-select id="transactionType" formControlName="transactionType">
+                <mat-option value="VENTE">Vente</mat-option>
+                <mat-option value="LOCATION">Location</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
 
-      </mat-card-content>
-    </mat-card>
-
-
-    <!-- ========================= -->
-    <!-- CARACTÉRISTIQUES -->
-    <!-- ========================= -->
-
-    <mat-card class="form-section">
-
-      <mat-card-header>
-        <mat-card-title>Caractéristiques du bien</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <div class="form-grid">
-
-          <!-- Superficie -->
+        <div class="form-group">
+          <label for="description">Description du bien <span>*</span></label>
           <mat-form-field appearance="outline">
-
-            <mat-label>Superficie</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="superficie"
-            />
-
-            <span matTextSuffix>m²</span>
-
+            <textarea matInput id="description" formControlName="description"
+              rows="5" maxlength="2000"
+              placeholder="Décrivez le bien, son environnement, ses avantages...">
+            </textarea>
+            <mat-hint align="end">
+              {{ propertyForm.get('description')?.value?.length || 0 }}/2000
+            </mat-hint>
+            <mat-error>La description est obligatoire.</mat-error>
           </mat-form-field>
+        </div>
+      </section>
 
-          <!-- Chambres -->
-          <mat-form-field appearance="outline">
+      <!-- PRIX -->
+      <section class="form-section">
+        <h3>Prix et conditions</h3>
 
-            <mat-label>Nombre de chambres</mat-label>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prix">Prix <span>*</span></label>
+            <mat-form-field appearance="outline">
+              <input matInput id="prix" type="number"
+                formControlName="prix" placeholder="250000">
+              <span matTextSuffix>€</span>
+              <mat-error>Le prix est obligatoire.</mat-error>
+            </mat-form-field>
+          </div>
 
-            <input
-              matInput
-              type="number"
-              formControlName="chambres"
-              min="0"
-            />
+          <div class="form-group">
+            <label for="charges">Charges mensuelles</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="charges" type="number"
+                formControlName="charges">
+              <span matTextSuffix>€/mois</span>
+            </mat-form-field>
+          </div>
+        </div>
+      </section>
 
-          </mat-form-field>
+      <!-- CARACTÉRISTIQUES -->
+      <section class="form-section">
+        <h3>Caractéristiques du bien</h3>
 
-          <!-- Salles de bain -->
-          <mat-form-field appearance="outline">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="superficie">Superficie</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="superficie" type="number"
+                formControlName="superficie">
+              <span matTextSuffix>m²</span>
+            </mat-form-field>
+          </div>
 
-            <mat-label>Salles de bain</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="salleDeBain"
-              min="0"
-            />
-
-          </mat-form-field>
-
-          <!-- Etage -->
-          <mat-form-field appearance="outline">
-
-            <mat-label>Étage</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="etages"
-            />
-
-          </mat-form-field>
-
-          <!-- Année construction -->
-          <mat-form-field appearance="outline">
-
-            <mat-label>Année de construction</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="annee_construction"
-            />
-
-          </mat-form-field>
-
+          <div class="form-group">
+            <label for="chambres">Nombre de chambres</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="chambres" type="number"
+                formControlName="chambres" min="0">
+            </mat-form-field>
+          </div>
         </div>
 
-        <!-- Équipements -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="salleDeBain">Nombre de salles de bain</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="salleDeBain" type="number"
+                formControlName="salleDeBain" min="0">
+            </mat-form-field>
+          </div>
 
-        <h3>Équipements</h3>
+          <div class="form-group">
+            <label for="etages">Étage</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="etages" type="number"
+                formControlName="etages">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="annee_construction">Année de construction</label>
+          <mat-form-field appearance="outline">
+            <input matInput id="annee_construction" type="number"
+              formControlName="annee_construction">
+          </mat-form-field>
+        </div>
+
+        <h4 class="subsection-title">Équipements et commodités</h4>
 
         <div class="features">
+          <mat-checkbox formControlName="garage">Garage</mat-checkbox>
+          <mat-checkbox formControlName="parking">Parking</mat-checkbox>
+          <mat-checkbox formControlName="jardin">Jardin</mat-checkbox>
+          <mat-checkbox formControlName="terrasse">Terrasse</mat-checkbox>
+          <mat-checkbox formControlName="balcon">Balcon</mat-checkbox>
+          <mat-checkbox formControlName="cave">Cave</mat-checkbox>
+          <mat-checkbox formControlName="ascenseur">Ascenseur</mat-checkbox>
+          <mat-checkbox formControlName="meuble">Meublé</mat-checkbox>
+        </div>
+      </section>
 
-          <mat-checkbox formControlName="garage">
-            Garage
-          </mat-checkbox>
+      <!-- LOCALISATION -->
+      <section class="form-section">
+        <h3>Localisation</h3>
 
-          <mat-checkbox formControlName="parking">
-            Parking
-          </mat-checkbox>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rue">Rue</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="rue" formControlName="rue">
+            </mat-form-field>
+          </div>
 
-          <mat-checkbox formControlName="jardin">
-            Jardin
-          </mat-checkbox>
-
-          <mat-checkbox formControlName="terrasse">
-            Terrasse
-          </mat-checkbox>
-
-          <mat-checkbox formControlName="balcon">
-            Balcon
-          </mat-checkbox>
-
-          <mat-checkbox formControlName="cave">
-            Cave
-          </mat-checkbox>
-
-          <mat-checkbox formControlName="ascenseur">
-            Ascenseur
-          </mat-checkbox>
-
-          <mat-checkbox formControlName="meuble">
-            Meublé
-          </mat-checkbox>
-
+          <div class="form-group">
+            <label for="numero">Numéro</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="numero" type="number"
+                formControlName="numero">
+              <mat-error>Format incorrect.</mat-error>
+            </mat-form-field>
+          </div>
         </div>
 
-      </mat-card-content>
-    </mat-card>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="code_postal">Code postal</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="code_postal" formControlName="code_postal">
+            </mat-form-field>
+          </div>
 
+          <div class="form-group">
+            <label for="commune">Commune</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="commune" formControlName="commune">
+            </mat-form-field>
+          </div>
+        </div>
 
-    <!-- ========================= -->
-    <!-- LOCALISATION -->
-    <!-- ========================= -->
-
-    <mat-card class="form-section">
-
-      <mat-card-header>
-        <mat-card-title>Localisation</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <div class="form-grid">
-
+        <div class="form-group">
+          <label for="pays">Pays</label>
           <mat-form-field appearance="outline">
-
-            <mat-label>Rue</mat-label>
-
-            <input
-              matInput
-              formControlName="rue"
-            />
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Numéro</mat-label>
-
-            <input type="number"
-              matInput
-              formControlName="numero"
-            />
-            <mat-error>Entrer le bon format</mat-error>
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Code postal</mat-label>
-
-            <input
-              matInput
-              formControlName="code_postal"
-            />
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Commune</mat-label>
-
-            <input
-              matInput
-              formControlName="commune"
-            />
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Pays</mat-label>
-
-            <mat-select formControlName="pays">
-
-              <mat-option value="Belgique">
-                Belgique
-              </mat-option>
-
-              <mat-option value="Luxembourg">
-                Luxembourg
-              </mat-option>
-
-              <mat-option value="France">
-                France
-              </mat-option>
-
+            <mat-select id="pays" formControlName="pays">
+              <mat-option value="Belgique">Belgique</mat-option>
+              <mat-option value="Luxembourg">Luxembourg</mat-option>
+              <mat-option value="France">France</mat-option>
             </mat-select>
-
           </mat-form-field>
-
         </div>
+      </section>
 
-      </mat-card-content>
-    </mat-card>
+      <!-- PERFORMANCE ÉNERGÉTIQUE -->
+      <section class="form-section">
+        <h3>Performance énergétique</h3>
 
-
-    <!-- ========================= -->
-    <!-- PEB -->
-    <!-- ========================= -->
-
-    <mat-card class="form-section">
-
-      <mat-card-header>
-        <mat-card-title>Performance énergétique</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <div class="form-grid">
-
+        <div class="form-group">
+          <label for="peb">Classe énergétique</label>
           <mat-form-field appearance="outline">
-
-            <mat-label>Classe PEB</mat-label>
-
-            <mat-select formControlName="peb">
-
+            <mat-select id="peb" formControlName="peb">
               <mat-option value="A++">A++</mat-option>
               <mat-option value="A+">A+</mat-option>
               <mat-option value="A">A</mat-option>
@@ -397,243 +222,140 @@
               <mat-option value="E">E</mat-option>
               <mat-option value="F">F</mat-option>
               <mat-option value="G">G</mat-option>
-
             </mat-select>
-
           </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Consommation énergétique</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="consommationEnergetique"
-            />
-
-            <span matTextSuffix>kWh/m²/an</span>
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Émissions CO₂</mat-label>
-
-            <input
-              matInput
-              type="number"
-              formControlName="emissionCo2"
-            />
-
-            <span matTextSuffix>kg CO₂/m²/an</span>
-
-          </mat-form-field>
-
         </div>
 
-      </mat-card-content>
-    </mat-card>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="consommationEnergetique">Consommation énergétique</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="consommationEnergetique" type="number"
+                formControlName="consommationEnergetique">
+              <span matTextSuffix>kWh/m²/an</span>
+            </mat-form-field>
+          </div>
 
-
-    <!-- ========================= -->
-    <!-- DISPONIBILITÉ -->
-    <!-- ========================= -->
-
-    <mat-card class="form-section">
-
-      <mat-card-header>
-        <mat-card-title>Disponibilité</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <div class="form-grid">
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>État du bien</mat-label>
-
-            <mat-select formControlName="etat">
-
-              <mat-option value="Disponible">
-                Disponible
-              </mat-option>
-
-              <mat-option value="En visite">
-                En visite
-              </mat-option>
-
-              <mat-option value="Sous-option">
-                Sous-option
-              </mat-option>
-
-              <mat-option value="Loué/Vendu">
-                Loué/Vendu
-              </mat-option>
-
-              <mat-option value="En maintenance">
-                En maintenance
-              </mat-option>
-
-              <mat-option value="Archivé">
-                Archivé
-              </mat-option>
-
-            </mat-select>
-
-          </mat-form-field>
-
-
-          <mat-form-field appearance="outline">
-
-            <mat-label>Date de disponibilité</mat-label>
-
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="disponibilite"
-            />
-
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker">
-            </mat-datepicker-toggle>
-
-            <mat-datepicker #picker></mat-datepicker>
-
-          </mat-form-field>
-
+          <div class="form-group">
+            <label for="emissionCo2">Émissions de CO₂</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="emissionCo2" type="number"
+                formControlName="emissionCo2">
+              <span matTextSuffix>kg CO₂/m²/an</span>
+            </mat-form-field>
+          </div>
         </div>
+      </section>
 
-      </mat-card-content>
-    </mat-card>
+      <!-- DISPONIBILITÉ -->
+      <section class="form-section">
+        <h3>Disponibilité</h3>
 
+        <div class="form-row">
+          <div class="form-group">
+            <label for="etat">État du bien</label>
+            <mat-form-field appearance="outline">
+              <mat-select id="etat" formControlName="etat">
+                <mat-option value="Disponible">Disponible</mat-option>
+                <mat-option value="En visite">En visite</mat-option>
+                <mat-option value="Sous-option">Sous-option</mat-option>
+                <mat-option value="Loué/Vendu">Loué/Vendu</mat-option>
+                <mat-option value="En maintenance">En maintenance</mat-option>
+                <mat-option value="Archivé">Archivé</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-    <!-- ========================= -->
-    <!-- IMAGES -->
-    <!-- ========================= -->
+          <div class="form-group">
+            <label for="disponibilite">Date de disponibilité</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="disponibilite"
+                [matDatepicker]="picker"
+                formControlName="disponibilite">
+              <mat-datepicker-toggle matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </section>
 
-    <mat-card class="form-section">
+      <!-- PHOTOS -->
+      <section class="form-section">
+        <h3>Photos du bien</h3>
 
-      <mat-card-header>
-        <mat-card-title>Photos du bien</mat-card-title>
-        <mat-card-subtitle>
-          Ajoutez les photos qui seront affichées dans l'annonce.
-        </mat-card-subtitle>
-      </mat-card-header>
+        <p class="section-description">
+          Ajoutez les photos qui seront affichées dans votre annonce.
+          La première photo pourra servir de photo principale.
+        </p>
 
-      <mat-card-content>
+        <div class="upload-container" (click)="fileInput.click()">
+          <div class="upload-icon">
+            <mat-icon>cloud_upload</mat-icon>
+          </div>
 
-        <div
-          class="upload-zone"
-          (click)="fileInput.click()">
-
-          <mat-icon>cloud_upload</mat-icon>
-
-          <h3>Ajouter des photos</h3>
+          <h4>Ajouter des photos</h4>
 
           <p>
-            Cliquez ici ou glissez-déposez vos images
+            Cliquez ici ou glissez-déposez vos images.
           </p>
 
-          <small>
-            JPG, JPEG ou PNG — maximum 10 MB par image
-          </small>
+          <p class="file-size">
+            JPG, JPEG, PNG ou WEBP — maximum 10 Mo par image.
+          </p>
 
+          <span class="upload-button">
+            <mat-icon>add_photo_alternate</mat-icon>
+            Sélectionner des photos
+          </span>
         </div>
 
-        <input
-          #fileInput
-          type="file"
-          hidden
-          multiple
+        <input #fileInput type="file" hidden multiple
           accept="image/jpeg,image/png,image/webp"
-          (change)="onFilesSelected($event)"
-        />
+          (change)="onFilesSelected($event)">
 
+        <div class="image-grid" *ngIf="imagePreviews.length > 0">
+          <div class="image-preview"
+            *ngFor="let image of imagePreviews; let i = index">
 
-        <!-- Preview -->
+            <img [src]="image.url" [alt]="'Photo ' + (i + 1)">
 
-       <div
-  class="image-grid"
-  *ngIf="imagePreviews.length > 0">
+            <button mat-icon-button type="button"
+              class="remove-image"
+              (click)="removeImage(i); $event.stopPropagation()">
+              <mat-icon>close</mat-icon>
+            </button>
 
-  <div
-    class="image-preview"
-    *ngFor="let image of imagePreviews; let i = index">
+            <span *ngIf="image.primary" class="primary-label">
+              Photo principale
+            </span>
+          </div>
+        </div>
+      </section>
 
-    <img
-      [src]="image.url"
-      [alt]="'Photo ' + (i + 1)"
-    />
+    </mat-dialog-content>
 
-    <button
-      mat-icon-button
-      type="button"
-      class="remove-image"
-      (click)="removeImage(i)">
+    <!-- FOOTER -->
+    <footer class="dialog-footer">
 
-      <mat-icon>close</mat-icon>
-
-    </button>
-
-    <span
-      *ngIf="image.primary"
-      class="primary-label">
-
-      Photo principale
-
-    </span>
-
-  </div>
-
-</div>
-
-      </mat-card-content>
-    </mat-card>
-
-
-    <!-- ========================= -->
-    <!-- ACTIONS -->
-    <!-- ========================= -->
-
-    <div class="form-actions">
-
-      <button
-        mat-stroked-button
-        type="button"
+      <button type="button" class="cancel-button"
         (click)="cancel()">
-
         Annuler
-
       </button>
 
-
-      <button
-        mat-stroked-button
-        type="button"
+      <button type="button" class="draft-button"
         (click)="saveDraft()">
-
+        <mat-icon>save</mat-icon>
         Enregistrer comme brouillon
-
       </button>
 
-
-      <button
-        mat-flat-button
-        color="primary"
-        type="submit"
+      <button type="submit" class="next-button"
         [disabled]="propertyForm.invalid || submitting">
-
         <mat-icon>publish</mat-icon>
-
         {{ submitting ? 'Publication...' : 'Publier l’annonce' }}
-
       </button>
 
-    </div>
+    </footer>
 
   </form>
-
 </div>

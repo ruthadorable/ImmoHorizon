@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BienService } from '../../services/biens/bien.service';
 import { Bien } from '../../models/bien.model';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../../dialog/login-dialog/login-dialog.component';
 
 
@@ -37,7 +37,8 @@ interface ImagePreview {
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule],
+    MatNativeDateModule,
+    MatDialogContent],
   templateUrl: './publier-annonce.component.html',
   styleUrl: './publier-annonce.component.css'
 })

@@ -1,596 +1,389 @@
-/* =========================================================
-   PAGE PRINCIPALE
-   ========================================================= */
 
-:host {
-  display: block;
+/* =========================
+   CONTENEUR PRINCIPAL
+========================= */
+
+.property-dialog {
   width: 100%;
-  min-height: 100vh;
-  background: #ffffff;
-  color: #1a1a1a;
-}
-
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
-.property-form-container {
-  width: 100%;
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 40px 30px 60px;
-
-  box-sizing: border-box;
-
-  background: #ffffff;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.form-header {
-  text-align: center;
-
-  margin-bottom: 40px;
-}
-
-.form-header h1 {
-  margin: 0 0 12px;
-
-  font-size: 32px;
-  font-weight: 700;
-
-  color: #111111;
-}
-
-.form-header p {
-  margin: 0;
-
-  font-size: 16px;
-
-  color: #777777;
-
-  line-height: 1.6;
-}
-
-
-/* =========================================================
-   FORMULAIRE
-   ========================================================= */
-
-form {
-  width: 100%;
-}
-
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
-
-.form-section {
-  width: 100%;
-
-  margin-bottom: 25px;
-
-  padding: 0;
-
-  background: #ffffff;
-
-  border: 1px solid #e3e3e3;
-
-  border-radius: 12px;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-
+  max-width: 1050px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+  color: #333;
 }
 
+/* =========================
+   HEADER
+========================= */
 
-/* =========================================================
-   HEADER DES SECTIONS
-   ========================================================= */
-
-.form-section mat-card-header {
-  padding: 22px 25px 10px;
-
-  border-bottom: 1px solid #eeeeee;
+.dialog-header {
+  padding: 28px 35px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
 }
 
-.form-section mat-card-title {
-  font-size: 20px;
-
-  font-weight: 600;
-
-  color: #111111;
+.dialog-header h2 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 700;
+  color: #292929;
 }
 
-.form-section mat-card-subtitle {
-  margin-top: 5px;
-
-  color: #777777;
-
+.dialog-header p {
+  margin: 8px 0 0;
+  color: #777;
   font-size: 14px;
 }
 
+/* =========================
+   CONTENU
+========================= */
 
-/* =========================================================
-   CONTENU DES SECTIONS
-   ========================================================= */
+.property-dialog-content {
+  padding: 25px 35px;
+  max-height: none;
+  overflow: visible;
+}
 
-.form-section mat-card-content {
+/* =========================
+   SECTIONS
+========================= */
+
+.form-section {
   padding: 25px;
+  margin-bottom: 22px;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  background: #fff;
 }
-
-
-/* =========================================================
-   GRID
-   ========================================================= */
-
-.form-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  gap: 18px;
-
-  width: 100%;
-}
-
-
-/* =========================================================
-   FULL WIDTH
-   ========================================================= */
-
-.full-width {
-  width: 100%;
-
-  margin-top: 18px;
-}
-
-
-/* =========================================================
-   FORM FIELDS
-   ========================================================= */
-
-mat-form-field {
-  width: 100%;
-}
-
-
-/* =========================================================
-   TEXTAREA
-   ========================================================= */
-
-textarea {
-  resize: vertical;
-
-  min-height: 130px;
-}
-
-
-/* =========================================================
-   TITRES
-   ========================================================= */
 
 .form-section h3 {
-  margin: 25px 0 15px;
-
-  font-size: 17px;
-
-  font-weight: 600;
-
-  color: #222222;
-}
-
-
-/* =========================================================
-   ÉQUIPEMENTS
-   ========================================================= */
-
-.features {
-  display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 12px;
-}
-
-.features mat-checkbox {
-  padding: 10px 12px;
-
-  border: 1px solid #e5e5e5;
-
-  border-radius: 8px;
-
-  background: #ffffff;
-
-  transition: all 0.2s ease;
-}
-
-.features mat-checkbox:hover {
-  border-color: #c9a227;
-
-  background: #fffdf5;
-}
-
-
-/* =========================================================
-   ZONE UPLOAD
-   ========================================================= */
-
-.upload-zone {
-  min-height: 190px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 30px;
-
-  border: 2px dashed #c9a227;
-
-  border-radius: 12px;
-
-  background: #fffef9;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-
-  box-sizing: border-box;
-}
-
-.upload-zone:hover {
-  background: #fffbea;
-
-  border-color: #a88715;
-}
-
-.upload-zone mat-icon {
-  width: 48px;
-
-  height: 48px;
-
-  font-size: 48px;
-
-  color: #c9a227;
-
-  margin-bottom: 10px;
-}
-
-.upload-zone h3 {
-  margin: 5px 0;
-
   font-size: 18px;
+  font-weight: 650;
+  color: #333;
+  margin: 0 0 24px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #eee;
+}
 
+.form-section h4 {
+  font-size: 15px;
   font-weight: 600;
-
-  color: #222222;
+  margin: 25px 0 15px;
 }
 
-.upload-zone p {
-  margin: 5px 0;
-
-  color: #666666;
+.section-description {
+  color: #777;
+  font-size: 13px;
+  margin: -10px 0 20px;
 }
 
-.upload-zone small {
-  margin-top: 5px;
+/* =========================
+   FORMULAIRES
+========================= */
 
-  color: #999999;
-}
-
-
-/* =========================================================
-   GRILLE DES IMAGES
-   ========================================================= */
-
-.image-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  gap: 16px;
-
-  margin-top: 25px;
-}
-
-
-/* =========================================================
-   PREVIEW IMAGE
-   ========================================================= */
-
-.image-preview {
-  position: relative;
-
-  height: 190px;
-
-  overflow: hidden;
-
-  border-radius: 10px;
-
-  border: 1px solid #dddddd;
-
-  background: #f5f5f5;
-}
-
-.image-preview img {
-  width: 100%;
-
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-}
-
-
-/* =========================================================
-   BOUTON SUPPRIMER
-   ========================================================= */
-
-.remove-image {
-  position: absolute !important;
-
-  top: 8px;
-
-  right: 8px;
-
-  width: 35px !important;
-
-  height: 35px !important;
-
-  display: flex !important;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.95);
-
-  border-radius: 50%;
-
-  z-index: 5;
-}
-
-
-/* =========================================================
-   PHOTO PRINCIPALE
-   ========================================================= */
-
-.primary-label {
-  position: absolute;
-
-  left: 0;
-
-  right: 0;
-
-  bottom: 0;
-
-  padding: 9px;
-
-  text-align: center;
-
-  font-size: 12px;
-
-  font-weight: 600;
-
-  color: #ffffff;
-
-  background: rgba(0, 0, 0, 0.75);
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   BOUTON "PRINCIPALE"
-   ========================================================= */
-
-.image-preview button:not(.remove-image) {
-  margin-top: 8px;
-
-  font-size: 12px;
-}
-
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
-
-.form-actions {
+.form-group {
   display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 15px;
-
-  margin-top: 35px;
-
-  padding: 20px;
-
-  background: #ffffff;
-
-  border-top: 1px solid #eeeeee;
+  flex-direction: column;
+  min-width: 0;
+  margin-bottom: 17px;
 }
 
-.form-actions button {
-  min-height: 44px;
-
-  min-width: 140px;
-
-  padding: 0 22px;
-
-  border-radius: 6px;
-
-  font-weight: 500;
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
 }
 
-
-/* =========================================================
-   BOUTON PRINCIPAL
-   ========================================================= */
-
-.form-actions button[color="primary"] {
-  background: #c9a227;
-
-  color: #ffffff;
+.form-group label span {
+  color: #c9a227;
 }
 
-.form-actions button[color="primary"]:hover {
-  background: #ad8918;
+.form-group mat-form-field {
+  width: 100%;
 }
 
-.form-actions button[color="primary"]:disabled {
-  background: #dddddd;
-
-  color: #999999;
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
+/* =========================
+   ANGULAR MATERIAL
+========================= */
 
-/* =========================================================
-   FOCUS MATERIAL
-   ========================================================= */
+.property-dialog .mat-mdc-form-field {
+  font-size: 14px;
+}
 
-::ng-deep
-.mat-mdc-form-field.mat-focused
+.property-dialog .mat-mdc-form-field-subscript-wrapper {
+  font-size: 11px;
+}
+
+.property-dialog .mdc-notched-outline__leading,
+.property-dialog .mdc-notched-outline__notch,
+.property-dialog .mdc-notched-outline__trailing {
+  border-color: #ddd !important;
+}
+
+.property-dialog .mat-mdc-form-field.mat-focused
 .mdc-notched-outline__leading,
-
-::ng-deep
-.mat-mdc-form-field.mat-focused
+.property-dialog .mat-mdc-form-field.mat-focused
 .mdc-notched-outline__notch,
-
-::ng-deep
-.mat-mdc-form-field.mat-focused
+.property-dialog .mat-mdc-form-field.mat-focused
 .mdc-notched-outline__trailing {
   border-color: #c9a227 !important;
 }
 
-
-/* =========================================================
-   CHECKBOX MATERIAL
-   ========================================================= */
-
-::ng-deep
-.mat-mdc-checkbox.mat-accent {
-  --mdc-checkbox-selected-icon-color: #c9a227;
-  --mdc-checkbox-selected-hover-icon-color: #c9a227;
-  --mdc-checkbox-selected-focus-icon-color: #c9a227;
+.property-dialog .mat-mdc-select-arrow {
+  color: #777;
 }
 
+/* =========================
+   ÉQUIPEMENTS
+========================= */
 
-/* =========================================================
-   RESPONSIVE TABLETTE
-   ========================================================= */
-
-@media (max-width: 992px) {
-
-  .property-form-container {
-    padding: 30px 20px 50px;
-  }
-
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 20px;
+  padding: 5px 0;
 }
 
+.features mat-checkbox {
+  font-size: 13px;
+  color: #555;
+}
 
-/* =========================================================
-   RESPONSIVE MOBILE
-   ========================================================= */
+.features .mdc-checkbox--selected .mdc-checkbox__background {
+  background-color: #c9a227 !important;
+  border-color: #c9a227 !important;
+}
+
+/* =========================
+   UPLOAD PHOTOS
+========================= */
+
+.upload-container {
+  border: 2px dashed #dedede;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.upload-container:hover {
+  border-color: #c9a227;
+  background: #fffdf6;
+}
+
+.upload-container h4 {
+  font-size: 16px;
+  margin: 12px 0 8px;
+  color: #333;
+}
+
+.upload-container p {
+  font-size: 13px;
+  color: #777;
+  margin: 7px 0;
+}
+
+.upload-container .file-size {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 18px;
+}
+
+.upload-icon mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: #c9a227;
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: #c9a227;
+  color: white;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upload-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* =========================
+   APERÇU DES IMAGES
+========================= */
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.image-preview {
+  position: relative;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview .remove-image {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+}
+
+.primary-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(201, 162, 39, 0.95);
+  color: white;
+  text-align: center;
+  padding: 7px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================
+   FOOTER / BOUTONS
+========================= */
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 35px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.dialog-footer button {
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.2s ease;
+}
+
+.dialog-footer button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.cancel-button {
+  background: white;
+  border: 1px solid #ddd;
+  color: #555;
+}
+
+.cancel-button:hover {
+  background: #f5f5f5;
+}
+
+.draft-button {
+  background: white;
+  border: 1px solid #c9a227;
+  color: #a78316;
+}
+
+.draft-button:hover {
+  background: #fffaf0;
+}
+
+.next-button {
+  background: #c9a227;
+  border: 1px solid #c9a227;
+  color: white;
+}
+
+.next-button:hover:not(:disabled) {
+  background: #ad891b;
+}
+
+.next-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 768px) {
 
-  .property-form-container {
-    padding: 25px 15px 40px;
+  .property-dialog {
+    margin: 10px auto;
+    border-radius: 8px;
   }
 
-  .form-header h1 {
-    font-size: 25px;
+  .dialog-header,
+  .property-dialog-content {
+    padding: 20px;
   }
 
-  .form-header p {
-    font-size: 14px;
+  .form-section {
+    padding: 18px;
   }
 
-  .form-grid {
+  .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .form-section mat-card-content {
-    padding: 20px 15px;
-  }
-
-  .form-section mat-card-header {
-    padding: 20px 15px 10px;
+    gap: 0;
   }
 
   .features {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .image-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .form-actions {
-    flex-direction: column;
-
-    align-items: stretch;
+  .dialog-footer {
+    padding: 15px;
+    flex-wrap: wrap;
   }
 
-  .form-actions button {
-    width: 100%;
-  }
-}
-
-
-/* =========================================================
-   PETIT MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-  .property-form-container {
-    padding: 20px 10px 30px;
-  }
-
-  .form-header {
-    margin-bottom: 25px;
-  }
-
-  .form-header h1 {
-    font-size: 22px;
-  }
-
-  .image-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .image-preview {
-    height: 220px;
-  }
-
-  .upload-zone {
-    min-height: 160px;
-
-    padding: 20px;
+  .dialog-footer button {
+    flex: 1 1 100%;
   }
 }
