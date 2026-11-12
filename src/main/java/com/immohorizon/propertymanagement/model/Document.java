@@ -39,6 +39,10 @@ public class Document {
     @JoinColumn(name = "candidature_id")
     private Candidature candidature;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id")
+    private ReservationVisite reservation;
+
     @PrePersist
     public void prePersist() {
         uploadedAt = LocalDateTime.now();
