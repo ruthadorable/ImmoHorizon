@@ -23,6 +23,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { DemandeVisiteComponent } from '../../pages/demande-visite/demande-visite.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { BienService } from '../../services/biens/bien.service';
+import { Bien } from '../../models/bien.model';
+import { ReservationService } from '../../services/reservation/reservation.service';
 
 export interface DemandeVisiteDialogData {
   idBien: number;
@@ -36,6 +40,7 @@ export interface DemandeVisiteDialogData {
     ReactiveFormsModule,
     MatDialogModule,
     MatInputModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatButtonModule,
@@ -45,10 +50,16 @@ export interface DemandeVisiteDialogData {
   styleUrl: './visit-form-dialog.component.css'
 })
 export class VisitFormDialogComponent {
-demandeForm: FormGroup;
-
-  fichier: File | null = null;
+  demandeForm: FormGroup;
+  etape=1;
+  fichiers: File[] = [];
   erreurFichier: string | null = null;
+  bien: Bien | null = null;
+  agent= {
+    nom: 'Dupont',
+    prenom: 'Emilie',
+    email: 'emilie.dupont@immo-horizon.be'
+  }
 
   readonly tailleMaxFichier = 5 * 1024 * 1024;
 
@@ -61,19 +72,22 @@ demandeForm: FormGroup;
     'jpeg',
     'png'
   ];
+ 
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<DemandeVisiteComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: DemandeVisiteDialogData
+    public data: DemandeVisiteDialogData,
+    private bienService: BienService,
+    private reservationService: ReservationService
   ) {
 
     this.demandeForm = this.fb.group({
 
       titre: ['', Validators.required],
 
-      prenom: ['', [
+      prénom: ['', [
         Validators.required,
         Validators.minLength(2)
       ]],
@@ -100,69 +114,76 @@ demandeForm: FormGroup;
         Validators.min(1)
       ]],
 
-      enfants: ['non', Validators.required],
+      enfants: [false, Validators.required],
 
-      animaux: ['', Validators.required],
+      animaux: [false, Validators.required],
 
-      revenuSuffisant: ['', Validators.required],
+      revenuSuffisant: [false, Validators.required],
 
-      garant: ['', Validators.required],
+      garant: [false, Validators.required],
 
       commentaires: ['']
 
     });
+
+    this.bienService.getPropertyById(this.data.idBien).subscribe((bien) => {
+      this.bien = bien;
+    });
   }
 
-  /**
-   * Sélection d'un document justificatif.
-   */
-  onFileSelected(event: Event): void {
 
-    const input = event.target as HTMLInputElement;
+onFileSelected(event: Event): void {
 
-    this.erreurFichier = null;
+  const input = event.target as HTMLInputElement;
 
-    if (!input.files || input.files.length === 0) {
-      return;
-    }
+  if (!input.files || input.files.length === 0) {
+    return;
+  }
 
-    const fichierSelectionne = input.files[0];
+  const fichiersSelectionnes = Array.from(input.files);
 
-    const extension = fichierSelectionne.name
+  const extensionsAutorisees = [
+    'pdf', 'doc', 'txt', 'jpg', 'jpeg', 'png'
+  ];
+
+  this.erreurFichier = '';
+
+  for (const fichier of fichiersSelectionnes) {
+
+    const extension = fichier.name
       .split('.')
       .pop()
       ?.toLowerCase();
 
-    if (!extension || !this.formatsAutorises.includes(extension)) {
-      this.erreurFichier =
-        'Format non autorisé. Formats acceptés : PDF, DOC, DOCX, TXT, JPG, JPEG et PNG.';
-
-      input.value = '';
-      return;
+    if (!extension || !extensionsAutorisees.includes(extension)) {
+      this.erreurFichier = `Le fichier ${fichier.name} possède un format non autorisé.`;
+      continue;
     }
 
-    if (fichierSelectionne.size > this.tailleMaxFichier) {
-      this.erreurFichier =
-        'Le document ne peut pas dépasser 5 Mo.';
-
-      input.value = '';
-      return;
+    if (fichier.size > 5 * 1024 * 1024) {
+      this.erreurFichier = `Le fichier ${fichier.name} dépasse la taille maximale de 5 Mo.`;
+      continue;
     }
 
-    this.fichier = fichierSelectionne;
+    // Éviter les doublons
+    const existe = this.fichiers.some(
+      f => f.name === fichier.name && f.size === fichier.size
+    );
+
+    if (!existe) {
+      this.fichiers.push(fichier);
+    }
   }
+
+  // Permet de sélectionner à nouveau le même fichier
+  input.value = '';
+}
 
   /**
    * Supprimer le document sélectionné.
    */
-  supprimerFichier(input?: HTMLInputElement): void {
-
-    this.fichier = null;
-    this.erreurFichier = null;
-
-    if (input) {
-      input.value = '';
-    }
+  supprimerFichier(index: number): void {
+    this.fichiers.splice(index, 1);
   }
 
   /**
@@ -175,16 +196,9 @@ demandeForm: FormGroup;
     if (this.demandeForm.invalid) {
       return;
     }
+    this.etape +=1;
 
-    // Les données sont transmises au composant parent.
-    // Le parent pourra ensuite afficher l'étape suivante.
-    this.dialogRef.close({
-      ...this.demandeForm.value,
-      idBien: this.data.idBien,
-      dateVisite: this.data.dateVisite,
-      heureVisite: this.data.heureVisite,
-      document: this.fichier
-    });
+    
   }
 
   /**
@@ -204,5 +218,47 @@ demandeForm: FormGroup;
     return !!champ && champ.invalid &&
       (champ.touched || champ.dirty);
   }
+
+
+retour(): void {
+  this.etape = 1;
+}
+
+confirmerReservation(): void {
+  this.etape+=1;
+  const resultat = {
+    ...this.demandeForm.value,
+    idBien: this.data.idBien,
+    dateVisite: this.data.dateVisite,
+    heureVisite: this.data.heureVisite,
+    document: this.fichiers
+  };
+  console.log('Données de réservation à envoyer :', resultat);
+   this.reservationService
+    .creerReservation(resultat, this.fichiers)
+    .subscribe({
+      next: () => {
+        this.etape += 1;
+        console.log('Réservation créée avec succès');
+      },
+      error: (error) => {
+        console.error(
+          'Erreur lors de la réservation',
+          error
+        );
+      }
+    });
+
+  // Les données sont transmises au composant parent.
+    // Le parent pourra ensuite afficher l'étape suivante.
+    if(this.etape === 4) {
+    this.dialogRef.close({
+      ...this.demandeForm.value,
+      idBien: this.data.idBien,
+      dateVisite: this.data.dateVisite,
+      heureVisite: this.data.heureVisite,
+      documents: this.fichiers
+    });}
+}
 
 }

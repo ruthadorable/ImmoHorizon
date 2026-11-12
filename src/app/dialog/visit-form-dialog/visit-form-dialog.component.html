@@ -1,5 +1,5 @@
 
-<div class="reservation-dialog">
+<div class="reservation-dialog" *ngIf="etape === 1">
 
   <!-- HEADER -->
   <header class="dialog-header">
@@ -87,7 +87,7 @@
             <mat-form-field appearance="outline">
               <input matInput
                      id="prenom"
-                     formControlName="prenom"
+                     formControlName="prénom"
                      placeholder="Votre prénom">
 
               <mat-error>Prénom obligatoire.</mat-error>
@@ -185,9 +185,10 @@
 
           <mat-form-field appearance="outline">
             <input matInput
-                   type="date"
-                   formControlName="dateEntree">
-
+                    [matDatepicker]="picker"
+                   formControlName="dateEntree" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
             <mat-error>Date d'entrée obligatoire.</mat-error>
           </mat-form-field>
 
@@ -346,9 +347,9 @@
         <h3>7. Commentaires</h3>
 
         <div class="form-group">
+            <label for="prenom">Vos commentaires</label>
 
           <mat-form-field appearance="outline">
-            <mat-label>Vos commentaires</mat-label>
 
             <textarea
               matInput
@@ -363,68 +364,78 @@
 
       </section>
 
-      <!-- DOCUMENTS -->
-      <section class="form-section">
+      <!-- DOCUMENTS D'IDENTITÉ -->
+        <section class="form-section">     
 
-        <h3>Documents</h3>
+        <h3>Documents d'identité des occupants</h3>
 
         <div class="upload-container">
 
-          <div class="upload-icon">
+            <div class="upload-icon">
             <mat-icon>cloud_upload</mat-icon>
-          </div>
+            </div>
 
-          <h4>Document 01</h4>
+            <h4>Documents d'identité</h4>
 
-          <p>
-            Seulement PDF, DOC, TXT, JPG, JPEG, PNG
-            sont autorisés.
-          </p>
+            <p>
+            Ajoutez un document d'identité pour chaque occupant.
+            Vous pouvez sélectionner plusieurs fichiers simultanément.
+            </p>
 
-          <p class="file-size">
-            Taille maximale : 5 Mo
-          </p>
+            <p class="file-size">
+            Seulement PDF, DOC, TXT, JPG, JPEG, PNG sont autorisés.
+            <br>
+            Taille maximale par fichier : 5 Mo
+            </p>
 
-          <input
+            <input
             type="file"
             id="documentInput"
             hidden
+            multiple
             accept=".pdf,.doc,.txt,.jpg,.jpeg,.png"
             (change)="onFileSelected($event)">
 
-          <label
+            <label
             for="documentInput"
             class="upload-button">
 
             <mat-icon>attach_file</mat-icon>
-            Ajouter un document
+            Ajouter des documents
 
-          </label>
+            </label>
 
-          <div class="selected-file" *ngIf="fichier">
+            <!-- Liste des fichiers sélectionnés -->
+            <div class="selected-files" *ngIf="fichiers.length > 0">
 
-            <mat-icon>description</mat-icon>
+            <div
+                class="selected-file"
+                *ngFor="let fichier of fichiers; let i = index">
 
-            <span>{{ fichier.name }}</span>
+                <mat-icon>description</mat-icon>
 
-            <button
-              type="button"
-              (click)="supprimerFichier()">
+                <span>{{ fichier.name }}</span>
 
-              <mat-icon>delete</mat-icon>
+                <button
+                type="button"
+                (click)="supprimerFichier(i)"
+                aria-label="Supprimer le document">
 
-            </button>
+                <mat-icon>delete</mat-icon>
 
-          </div>
+                </button>
 
-          <p class="error-text" *ngIf="erreurFichier">
+            </div>
+
+            </div>
+
+            <p class="error-text" *ngIf="erreurFichier">
             {{ erreurFichier }}
-          </p>
+            </p>
 
         </div>
 
-      </section>
-
+        </section>
     </form>
 
   </mat-dialog-content>
@@ -455,3 +466,393 @@
   </footer>
 
 </div>
+
+<!-- ÉTAPE 2 : RÉCAPITULATIF -->
+<div class="reservation-dialog" *ngIf="etape === 2">
+
+  <!-- HEADER -->
+  <header class="dialog-header">
+
+    <h2>Réservation</h2>
+
+    <button
+      type="button"
+      class="close-button"
+      aria-label="Fermer"
+      (click)="fermer()">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/cross-close.613567b991e62c61e8853928dd28a136.svg"
+        alt="Fermer">
+
+    </button>
+
+  </header>
+
+  <!-- RÉCAPITULATIF DU RENDEZ-VOUS -->
+  <section class="reservation-summary">
+
+    <div class="summary-item">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/date-white-icon.56d2a4e6d1a504997a5f9d9e31562549.svg"
+        alt="Date">
+
+      <strong>
+        {{ data.dateVisite | date:'EEEE dd MMMM yyyy':'':'fr-BE' }}
+      </strong>
+
+    </div>
+
+    <div class="summary-item">
+
+      <img
+        src="https://smartcalendar-booking.mindfree.be/static/media/time-white-icon.6a687bf60d6002ea4c35dcde2c14b167.svg"
+        alt="Heure">
+
+      <strong>{{ data.heureVisite }}</strong>
+
+    </div>
+
+  </section>
+
+  <mat-dialog-content class="recap-dialog-content">
+
+    <!-- BIEN IMMOBILIER -->
+    <section class="recap-section">
+
+      <h3>Le bien concerné</h3>
+
+      <div class="property-card">
+
+        <img
+          class="property-image"
+          [src]="bien?.images?.[0]?.url || 'assets/images/property-placeholder.jpg'"
+          [alt]="bien?.title || 'Photo du bien immobilier'">
+
+        <div class="property-details">
+
+          <h4>{{ bien?.title }}</h4>
+
+          <p class="property-address">
+            <mat-icon>location_on</mat-icon>
+
+            <span>
+              {{ bien?.rue }} {{ bien?.numero }},
+              {{ bien?.code_postal }} {{ bien?.commune }}
+            </span>
+          </p>
+
+          <div class="property-characteristics">
+
+            <span>
+              <mat-icon>bed</mat-icon>
+              {{ bien?.chambres || 0 }}
+            </span>
+
+            <span>
+              <mat-icon>bathtub</mat-icon>
+              {{ bien?.salleDeBain || 0 }}
+            </span>
+
+            <span>
+              <mat-icon>square_foot</mat-icon>
+              {{ bien?.superficie || 0 }} m²
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- COORDONNÉES DU CANDIDAT -->
+    <section class="recap-section">
+
+      <h3>Vos coordonnées</h3>
+
+      <div class="recap-information-list">
+
+        <!-- Nom et prénom -->
+        <div class="recap-information-row">
+
+          <div class="recap-information-label">
+            <mat-icon>person_outline</mat-icon>
+            <span>Nom et prénom</span>
+          </div>
+
+          <strong>
+            {{ demandeForm.get('prenom')?.value }}
+            {{ demandeForm.get('nom')?.value }}
+          </strong>
+
+        </div>
+
+        <!-- Email -->
+        <div class="recap-information-row">
+
+          <div class="recap-information-label">
+            <mat-icon>mail_outline</mat-icon>
+            <span>E-mail</span>
+          </div>
+
+          <strong>
+            {{ demandeForm.get('email')?.value }}
+          </strong>
+
+        </div>
+
+        <!-- Téléphone -->
+        <div class="recap-information-row">
+
+          <div class="recap-information-label">
+            <mat-icon>phone</mat-icon>
+            <span>Mobile</span>
+          </div>
+
+          <strong>
+            {{ demandeForm.get('telephone')?.value }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- AGENT IMMOBILIER -->
+    <section class="recap-section agent-section">
+
+      <div class="recap-information-row">
+
+        <div class="recap-information-label">
+          <mat-icon>person_outline</mat-icon>
+          <span>Agent</span>
+        </div>
+
+        <strong>
+          {{ agent.prenom }} {{ agent.nom }}
+        </strong>
+
+      </div>
+
+    </section>
+
+    <!-- INFORMATIONS COMPLÉMENTAIRES -->
+    <section class="recap-section">
+
+      <h3>Informations complémentaires</h3>
+
+      <div class="recap-extra-list">
+
+        <div class="recap-extra-row">
+          <span>Date d'entrée souhaitée</span>
+          <strong>
+            {{ demandeForm.get('dateEntree')?.value | date:'dd/MM/yyyy' }}
+          </strong>
+        </div>
+
+        <div class="recap-extra-row">
+          <span>Nombre d'occupants</span>
+          <strong>
+            {{ demandeForm.get('occupants')?.value }}
+          </strong>
+        </div>
+
+        <div class="recap-extra-row">
+          <span>Nombre d'enfants</span>
+          <strong>
+            {{ demandeForm.get('enfants')?.value || 0 }}
+          </strong>
+        </div>
+
+        <div class="recap-extra-row">
+          <span>Animaux</span>
+          <strong>
+            {{ demandeForm.get('animaux')?.value || 'Non renseigné' }}
+          </strong>
+        </div>
+
+        <div class="recap-extra-row">
+          <span>Revenus supérieurs à 3 fois le loyer</span>
+          <strong>
+            {{ demandeForm.get('revenuSuffisant')?.value || 'Non renseigné' }}
+          </strong>
+        </div>
+
+        <div class="recap-extra-row">
+          <span>Garant</span>
+          <strong>
+            {{ demandeForm.get('garant')?.value || 'Non renseigné' }}
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+<!-- DOCUMENTS D'IDENTITÉ -->
+<section class="form-section">
+
+  <h3>Documents d'identité des occupants</h3>
+
+  <div class="upload-container">
+
+    <div class="upload-icon">
+      <mat-icon>cloud_upload</mat-icon>
+    </div>
+
+    <h4>Documents d'identité</h4>
+
+    <p>
+      Ajoutez un document d'identité pour chaque occupant.
+      Vous pouvez sélectionner plusieurs fichiers simultanément.
+    </p>
+
+    <p class="file-size">
+      Seulement PDF, DOC, TXT, JPG, JPEG, PNG sont autorisés.
+      <br>
+      Taille maximale par fichier : 5 Mo
+    </p>
+
+    <input
+      type="file"
+      id="documentInput"
+      hidden
+      multiple
+      accept=".pdf,.doc,.txt,.jpg,.jpeg,.png"
+      (change)="onFileSelected($event)">
+
+    <label
+      for="documentInput"
+      class="upload-button">
+
+      <mat-icon>attach_file</mat-icon>
+      Ajouter des documents
+
+    </label>
+
+    <!-- Liste des fichiers sélectionnés -->
+    <div class="selected-files" *ngIf="fichiers.length > 0">
+
+      <div
+        class="selected-file"
+        *ngFor="let fichier of fichiers; let i = index">
+
+        <mat-icon>description</mat-icon>
+
+        <span>{{ fichier.name }}</span>
+
+        <button
+          type="button"
+          (click)="supprimerFichier(i)"
+          aria-label="Supprimer le document">
+
+          <mat-icon>delete</mat-icon>
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <p class="error-text" *ngIf="erreurFichier">
+      {{ erreurFichier }}
+    </p>
+
+  </div>
+
+</section>
+
+
+    <!-- COMMENTAIRES -->
+    <section
+      class="recap-section"
+      *ngIf="demandeForm.get('commentaires')?.value">
+
+      <h3>Vos commentaires</h3>
+
+      <p class="recap-comments">
+        {{ demandeForm.get('commentaires')?.value }}
+      </p>
+
+    </section>
+
+  </mat-dialog-content>
+
+  <!-- FOOTER -->
+  <footer class="dialog-footer">
+
+    <button
+      type="button"
+      class="cancel-button"
+      (click)="retour()">
+
+      <mat-icon>arrow_back</mat-icon>
+      Retour
+
+    </button>
+
+    <button
+      type="button"
+      class="next-button"
+      (click)="confirmerReservation()">
+
+      Confirmer
+
+      <mat-icon>check</mat-icon>
+
+    </button>
+
+  </footer>
+
+</div>
+
+<!-- ÉTAPE 3 : CONFIRMATION DE LA RÉSERVATION -->
+<div class="confirmation-dialog" *ngIf="etape === 3">
+
+  <!-- Bouton fermer -->
+  <button
+    type="button"
+    class="confirmation-close"
+    aria-label="Fermer"
+    (click)="fermer()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- LOGO -->
+  <div class="confirmation-logo">
+    <div class="logo-symbol">
+      <span>IH</span>
+    </div>
+
+    <h1>ImmoHorizon</h1>
+
+    <p>ENGAGÉS POUR VOTRE IMMOBILIER</p>
+  </div>
+
+  <!-- ICÔNE DE SUCCÈS -->
+  <div class="confirmation-success">
+    <div class="success-circle">
+      <mat-icon>check</mat-icon>
+    </div>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="confirmation-message">
+
+    <h2>
+      Merci, votre demande de visite a été envoyée à notre
+      équipe qui vous répondra dans les plus brefs délais !
+    </h2>
+
+    <p>Merci !</p>
+
+  </div>
+
+</div>
+
+

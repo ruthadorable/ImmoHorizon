@@ -17,14 +17,14 @@
     <div class="property-image">
 
       <img
-        [src]="getImageUrl(bien?.images?.[0]?.url)"
-        [alt]="bien?.title || 'Bien immobilier'">
+        [src]="getImageUrl(bien.images?.[0]?.url)"
+        [alt]="bien.title || 'Bien immobilier'">
 
       <span class="property-type">
-        {{ bien?.type === 'A louer' ? 'À louer' : 'À vendre' }}
+        {{ bien.type === 'A louer' ? 'À louer' : 'À vendre' }}
       </span>
 
-      @if (bien?.type === 'A louer' && bien?.disponibilite) {
+      @if (bien.type === 'A louer' && bien.disponibilite) {
         <span class="availability-badge">
           Disponible à partir du
           {{ bien.disponibilite | date:'dd/MM/yyyy' }}
@@ -163,7 +163,7 @@
             <td>Garantie locative</td>
             <td>
               <strong>
-                {{ bien?.prix | number:'1.0-0' }} €
+                {{ garantieLocative| number:'1.0-0' }} €
               </strong>
             </td>
           </tr>

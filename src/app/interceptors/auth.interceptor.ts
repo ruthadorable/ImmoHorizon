@@ -8,38 +8,37 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class AuthInterceptor 
-implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
 
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ) {
 
-intercept(
- req: HttpRequest<any>,
- next: HttpHandler
-){
+    const publicEndpoints = [
+      '/api/reservation-visite/creer'
+    ];
 
-const token =
-localStorage.getItem('token');
+    const isPublicEndpoint = publicEndpoints.some(
+      endpoint => req.url.includes(endpoint)
+    );
 
+    if (isPublicEndpoint) {
+      return next.handle(req);
+    }
 
-if(token){
+    const token = localStorage.getItem('token');
 
-const clonedRequest =
-req.clone({
+    if (token) {
+      const clonedRequest = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-setHeaders:{
- Authorization:`Bearer ${token}`
-}
+      return next.handle(clonedRequest);
+    }
 
-});
-
-
-return next.handle(clonedRequest);
-
-}
-
-
-return next.handle(req);
-
-}
-
+    return next.handle(req);
+  }
 }

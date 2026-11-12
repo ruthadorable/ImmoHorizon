@@ -29,7 +29,7 @@ interface CreneauVisite {
 })
 export class DemandeVisiteComponent {
 bien: Bien | null = null;
-
+garantieLocative: number | null = null;
 minDate = new Date();
 loading=false;
 successMessage: any;
@@ -85,6 +85,7 @@ idBien!: number;
   this.bienService.getPropertyById(id).subscribe({
     next: (data) => {
       this.bien = data;
+      this.garantieLocative = data.prix ? data.prix * 2 : null;
     },
     error: () => {
       this.errorMessage = 'Impossible de charger le bien immobilier.';
