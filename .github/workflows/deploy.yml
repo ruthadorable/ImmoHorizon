@@ -45,7 +45,7 @@ jobs:
             docker pull ruthann33/immohorizon-backend:latest
 
             echo "Stopping existing container..."
-
+ 
             docker stop immohorizon-backend || true
 
             echo "Removing existing container..."
