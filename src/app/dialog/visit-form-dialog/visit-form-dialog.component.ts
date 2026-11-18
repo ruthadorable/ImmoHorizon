@@ -85,46 +85,48 @@ export class VisitFormDialogComponent {
 
     this.demandeForm = this.fb.group({
 
-      titre: ['', Validators.required],
+  titre: ['', Validators.required],
 
-      prénom: ['', [
-        Validators.required,
-        Validators.minLength(2)
-      ]],
+  prenom: ['', [
+    Validators.required,
+    Validators.minLength(2)
+  ]],
 
-      nom: ['', [
-        Validators.required,
-        Validators.minLength(2)
-      ]],
+  nom: ['', [
+    Validators.required,
+    Validators.minLength(2)
+  ]],
 
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
+  email: ['', [
+    Validators.required,
+    Validators.email
+  ]],
 
-      telephone: ['', [
-        Validators.required,
-        Validators.pattern(/^[+0-9\s().-]{8,20}$/)
-      ]],
+  telephone: ['', [
+    Validators.required,
+    Validators.pattern(/^[+0-9\s().-]{8,20}$/)
+  ]],
 
-      dateEntree: ['', Validators.required],
+  dateEntree: [null, Validators.required],
 
-      occupants: [1, [
-        Validators.required,
-        Validators.min(1)
-      ]],
+  occupants: [1, [
+    Validators.required,
+    Validators.min(1)
+  ]],
 
-      enfants: [false, Validators.required],
+  enfants: [null, [
+    Validators.min(0)
+  ]],
 
-      animaux: [false, Validators.required],
+  animaux: [null],
 
-      revenuSuffisant: [false, Validators.required],
+  revenuSuffisant: [null],
 
-      garant: [false, Validators.required],
+  garant: [null],
 
-      commentaires: ['']
+  commentaires: ['']
 
-    });
+});
 
     this.bienService.getPropertyById(this.data.idBien).subscribe((bien) => {
       this.bien = bien;
@@ -194,6 +196,7 @@ onFileSelected(event: Event): void {
     this.demandeForm.markAllAsTouched();
 
     if (this.demandeForm.invalid) {
+      console.log('Formulaire invalide, veuillez corriger les erreurs.');
       return;
     }
     this.etape +=1;
@@ -226,11 +229,19 @@ retour(): void {
 
 confirmerReservation(): void {
   this.etape+=1;
+  const [heureDebut, heureFin] = this.data.heureVisite
+  .split(' - ')
+  .map(time => time.trim());
   const resultat = {
     ...this.demandeForm.value,
     idBien: this.data.idBien,
+    prenom: this.demandeForm.value.prenom,
+    nom: this.demandeForm.value.nom,
+    email: this.demandeForm.value.email,
+    telephone: this.demandeForm.value.telephone,  
     dateVisite: this.data.dateVisite,
-    heureVisite: this.data.heureVisite,
+    heureDebut: heureDebut,
+    heureFin: heureFin,
     document: this.fichiers
   };
   console.log('Données de réservation à envoyer :', resultat);
