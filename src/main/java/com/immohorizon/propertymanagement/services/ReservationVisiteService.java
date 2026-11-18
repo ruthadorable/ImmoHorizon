@@ -39,7 +39,7 @@ public class ReservationVisiteService {
             List<MultipartFile> documents) throws Exception{
 
         // 1. Vérifier que le bien existe
-        Bien bien = bienRepository.findById(request.getBienId())
+        Bien bien = bienRepository.findById(request.getIdBien())
                 .orElseThrow(() ->
                         new EntityNotFoundException(
                                 "Bien immobilier introuvable"
@@ -49,7 +49,7 @@ public class ReservationVisiteService {
         // 2. Vérifier la date et l'heure
         LocalDateTime dateHeureVisite = LocalDateTime.of(
                 request.getDateVisite(),
-                request.getHeureVisite()
+                request.getHeureDebut()
         );
 
         if (dateHeureVisite.isBefore(LocalDateTime.now())) {
@@ -66,7 +66,8 @@ public class ReservationVisiteService {
         reservation.setAgentId(request.getAgentId());
 
         reservation.setDateVisite(request.getDateVisite());
-        reservation.setHeureVisite(request.getHeureVisite());
+        reservation.setHeureDebut(request.getHeureDebut());
+        reservation.setHeureFin(request.getHeureFin());
 
         reservation.setPrenom(request.getPrenom());
         reservation.setNom(request.getNom());

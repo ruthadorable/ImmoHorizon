@@ -34,7 +34,11 @@ public class ReservationVisite {
     private LocalDate dateVisite;
 
     @Column(nullable = false)
-    private LocalTime heureVisite;
+    private LocalTime heureDebut;
+
+    @Column(nullable = false)
+    private LocalTime heureFin;
+
 
     // Coordonnées du candidat
     @Column(nullable = false)

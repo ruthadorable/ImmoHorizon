@@ -18,7 +18,7 @@ import java.util.List;
 public class ReservationVisiteRequest{
 
     @NotNull
-    private Long bienId;
+    private Long idBien;
 
     private Long candidatId;
 
@@ -29,7 +29,10 @@ public class ReservationVisiteRequest{
     private LocalDate dateVisite;
 
     @NotNull
-    private LocalTime heureVisite;
+    private LocalTime heureDebut;
+
+    @NotNull
+    private LocalTime heureFin;
 
     @NotBlank
     private String prenom;
