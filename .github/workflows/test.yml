@@ -1,3 +1,4 @@
+
 name: Test Project
 on:
   push:
@@ -9,6 +10,14 @@ jobs:
     container:
       image: node:20
     steps:
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        id: setup-chrome
+
+      - name: Run Angular tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadlessCI
+        env:
+          CHROME_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
       - uses: actions/checkout@v7
       - name: Set up Node.js
         uses: actions/setup-node@v7
