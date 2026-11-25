@@ -10,11 +10,41 @@ jobs:
     container:
       image: node:20
     steps:
+      - name: Install Chrome system dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            libnspr4 \
+            libnss3 \
+            libgbm1 \
+            libasound2 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libatspi2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libpango-1.0-0 \
+            libcairo2 \
+            libglib2.0-0 \
+            libx11-6 \
+            libxcb1
+
       - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
         id: setup-chrome
 
-      - name: Run Angular tests
+      - name: Verify Chrome installation
+        run: |
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
+        env:
+          CHROME_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
+
+      - name: Run Angular automated tests
         run: npm run test -- --watch=false --browsers=ChromeHeadlessCI
         env:
           CHROME_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
